@@ -137,6 +137,22 @@ TianXiaoBo = {
 		return true
 	},
 	/**
+	 * 获取数组 array的第一个元素
+	 * 参数
+		* array (Array): 需要查询的数组
+	 * 返回值
+		* (*): 返回数组的第一个元素
+	 * 例子
+		* first([1, 2, 3]);
+		* // => 1
+		* first([]);
+		* // => undefined
+	**/
+	head: function(arr){
+		return arr[0]
+		return true
+	},
+	/**
 	 * 去除数组最后一个元素array.
 	 * 参数
 		* array (Array): 需要查询的数组.
