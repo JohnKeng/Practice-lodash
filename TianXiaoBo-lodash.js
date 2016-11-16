@@ -227,4 +227,42 @@ TianXiaoBo = {
 			return result
 		}
 	},
+	/**
+	 * 递归地平坦一个嵌套的数组.相当于_.flatten(array, true)
+	 * 参数
+		* array (Array): 需要
+	 * 返回值
+		* (Array): 返回处理后的数组.
+	 * 例子
+		* flattenDeep([1, [2, 3, [4]]]);
+		* // => [1, 2, 3, 4]
+	**/
+	function flattenDeep(arr){
+		return flatDeep(arr)
+		function flatDeep(a){
+			var resultDeep = a
+			var onOff = true
+			for(var i=0; i<resultDeep.length; i++){
+				if(Array.isArray(resultDeep[i])){
+					i = 0
+					resultDeep = flat(resultDeep)
+				}
+			}
+			return resultDeep
+		}
+		function flat(a){
+			var result = []
+			var len = a.length
+			for(var i=0; i<len; i++){
+				if(!Array.isArray(a[i])){
+					result.push(a[i])
+				}else{
+					for(var j=0; j<a[i].length; j++){
+						result.push(a[i][j])
+					}
+				}
+			}
+			return result
+		}
+	},
 }
