@@ -327,7 +327,11 @@ TianXiaoBo = {
 		* // => [2, 1]
 	**/
 	union: function(){
-		var result = flattenDeep(arguments)
+		var tmp = []
+		for(var i=0; i<arguments.length; i++){
+			tmp.push(arguments[i])
+		}
+		var result = this.flattenDeep(tmp)
 		var len = result.length
 		for(var i=0; i<len; i++){
 			for(var j=i+1; j<len; j++){
@@ -337,34 +341,6 @@ TianXiaoBo = {
 			}
 		}
 		return result
-		function flattenDeep(arr){
-			return flatDeep(arr)
-			function flatDeep(a){
-				var resultDeep = a
-				var onOff = true
-				for(var i=0; i<resultDeep.length; i++){
-					if(Array.isArray(resultDeep[i])){
-						i = 0
-						resultDeep = flat(resultDeep)
-					}
-				}
-				return resultDeep
-			}
-			function flat(a){
-				var result = []
-				var len = a.length
-				for(var i=0; i<len; i++){
-					if(!Array.isArray(a[i])){
-						result.push(a[i])
-					}else{
-						for(var j=0; j<a[i].length; j++){
-							result.push(a[i][j])
-						}
-					}
-				}
-				return result
-			}
-		}
 	},
 	/**
 	 * 创建唯一值的数组，这个数组包含所有给定数组都包含的元素，使用 SameValueZero进行相等性比较。（愚人码头注：可以理解为给定数组的交集）
