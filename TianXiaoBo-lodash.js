@@ -58,13 +58,22 @@ TianXiaoBo = {
 		* // => [1, "2", 3]
 	**/
 	difference: function(arr, compare){
-		var result = arr
-		var lenA = result.length
-		var lenC = compare.length
-		for(var i=0; i<lenA; i++){
-			for(var j=0; j<lenC; j++){
-				if(compare[j] === result[i]){
+		var tmp = []
+		var len = arguments.length
+		var result = []
+		for(var i=0; i<arguments[0].length; i++){
+			result.push(arguments[0][i])
+		}
+		for(var i=0; i<len; i++){
+			tmp.push(arguments[i])
+		}
+		tmp.splice(0,1)
+		tmp = flattenDeep(tmp)
+		for(var i=0; i<result.length; i++){
+			for(var j=0; j<tmp.length; j++){
+				if(result[i] === tmp[j]){
 					result.splice(i,1)
+					j= -1
 				}
 			}
 		}
@@ -317,7 +326,7 @@ TianXiaoBo = {
 		* union([2], [1, 2]);
 		* // => [2, 1]
 	**/
-	union: function(arr){
+	union: function(){
 		var result = this.flattenDeep(arguments)
 		var len = result.length
 		for(var i=0; i<len; i++){
@@ -325,6 +334,37 @@ TianXiaoBo = {
 				if(result[i] === result[j]){
 					result.splice(j,1)
 				}
+			}
+		}
+		return result
+	},
+	/**
+	 * 创建唯一值的数组，这个数组包含所有给定数组都包含的元素，使用 SameValueZero进行相等性比较。（愚人码头注：可以理解为给定数组的交集）
+	 * 参数
+		* [arrays] (...Array): 待检查的数组。
+	 * 返回值
+		* (Array): 返回一个包含所有传入数组交集元素的新数组。
+	 * 例子
+		* intersection([2, 1], [4, 2], [1, 2]);
+		* // => [2]
+	**/
+	intersection: function(){
+		var result = []
+		var len0 = arguments[0].length
+		var len = arguments.length
+		var count = 0
+		for(var i=0; i<len0; i++){
+			count = 0
+			for(var j=1; j<len; j++){
+				for(var k=0; k<arguments[j].length; k++){
+					if(arguments[0][i] === arguments[j][k]){
+						count++
+						break
+					}
+				}
+			}
+			if(count == len-1){
+				result.push(arguments[0][i])
 			}
 		}
 		return result

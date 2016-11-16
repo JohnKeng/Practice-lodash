@@ -1,0 +1,14 @@
+<script type="text/javascript">
+	function union(){
+		var result = this.flattenDeep(arguments)
+		var len = result.length
+		for(var i=0; i<len; i++){
+			for(var j=i+1; j<len; j++){
+				if(result[i] === result[j]){
+					result.splice(j,1)
+				}
+			}
+		}
+		return result
+	}
+</script>
