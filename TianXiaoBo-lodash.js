@@ -181,4 +181,50 @@ TianXiaoBo = {
 		result.splice(0,1)
 		return result
 	},
+	/**
+	 * 可以理解为将嵌套数组的维数减少，flattened（平坦）. 如果 isDeep 值为 true 时，嵌套数组将递归为一维数组, 否则只减少嵌套数组一个级别的维数.
+	 * 参数
+		* array (Array): 需要flattened（减少维数）的嵌套数组
+		* [isDeep] (boolean): 是否深递归
+	 * 返回值
+		* (Array): 返回处理后的数组
+	 * 例子
+		* flatten([1, [2, 3, [4]]]);
+		* // => [1, 2, 3, [4]]
+		* // using `isDeep`
+		* flatten([1, [2, 3, [4]]], true);
+		* // => [1, 2, 3, 4]
+	**/
+	flatten: function (arr, isDeep){
+		if(!isDeep){
+			return flat(arr)
+		}else{
+			return flatDeep(arr)
+		}
+		function flatDeep(a){
+			var resultDeep = a
+			var onOff = true
+			for(var i=0; i<resultDeep.length; i++){
+				if(Array.isArray(resultDeep[i])){
+					i = 0
+					resultDeep = flat(resultDeep)
+				}
+			}
+			return resultDeep
+		}
+		function flat(a){
+			var result = []
+			var len = a.length
+			for(var i=0; i<len; i++){
+				if(!Array.isArray(a[i])){
+					result.push(a[i])
+				}else{
+					for(var j=0; j<a[i].length; j++){
+						result.push(a[i][j])
+					}
+				}
+			}
+			return result
+		}
+	},
 }
