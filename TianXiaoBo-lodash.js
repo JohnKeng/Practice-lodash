@@ -281,4 +281,52 @@ TianXiaoBo = {
 			return result
 		}
 	},
+	/**
+	 * 创建一个剔除所有给定值的新数组，剔除值的时候，使用SameValueZero做相等比较.
+	 * 注意: 不像 _.pull, 这个方法会返回一个新数组。
+	 * 参数
+		* array (Array): 要检查的数组。
+		* [values] (...*): 要剔除的值。
+	 * 返回值
+		* (Array): 返回过滤值后的新数组。
+	 * 例子
+		* without([2, 1, 2, 3], 1, 2);
+		* // => [3]
+	**/
+	without: function(arr){
+		var result = arr
+		var lenArg = arguments.length
+		var lenArr = result.length
+		for(var i=1; i<lenArg; i++){
+			for(var j=0; j<lenArr; j++){
+				if(arguments[i] === result[j]){
+					result.splice(j,1)
+					j=-1
+				}
+			}
+		}
+		return result
+	},
+	/**
+	 * 创建一个按顺序排列的唯一值的数组。所有给定数组的元素值使用SameValueZero做等值比较。（愚人码头注： arrays（数组）的并集，按顺序返回，返回数组的元素是唯一的）
+	 * 参数
+		* [arrays] (...Array): 要检查的数组。
+	 * 返回值
+		* (Array): 返回一个新的联合数组。
+	 * 例子
+		* union([2], [1, 2]);
+		* // => [2, 1]
+	**/
+	union: function(arr){
+		var result = this.flattenDeep(arguments)
+		var len = result.length
+		for(var i=0; i<len; i++){
+			for(var j=i+1; j<len; j++){
+				if(result[i] === result[j]){
+					result.splice(j,1)
+				}
+			}
+		}
+		return result
+	},
 }
