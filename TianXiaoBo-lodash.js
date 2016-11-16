@@ -253,7 +253,7 @@ TianXiaoBo = {
 		* flattenDeep([1, [2, 3, [4]]]);
 		* // => [1, 2, 3, 4]
 	**/
-	function flattenDeep(arr){
+	flattenDeep: function(arr){
 		return flatDeep(arr)
 		function flatDeep(a){
 			var resultDeep = a
