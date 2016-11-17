@@ -1108,5 +1108,42 @@ TianXiaoBo = {
 		tmp.splice(0,1,str.charAt(0).toLowerCase())
 		var result = tmp.join("")
 		return result
-	}
+	},
+	/**
+	 * 如果string字符串长度小于 length 则从左侧和右侧填充字符。 如果没法平均分配，则截断超出的长度。
+	 * 参数
+		* [string=''] (string): 要填充的字符串。
+		* [length=0] (number): 填充的长度。
+		* [chars=' '] (string): 填充字符。
+	 * 返回值
+		* (string): 返回填充后的字符串。
+	 * 例子
+		* pad('abc', 8);
+		* // => '  abc   '
+		* pad('abc', 8, '_-');
+		* // => '_-abc_-_'
+		* pad('abc', 3);
+		* // => 'abc'
+	**/
+	pad: function(str,len,sign){
+		var result = str
+		if(!sign&&sign!==0){
+			sign = " "
+		}
+		var tmp = [result]
+		if(result.length<len){
+			for(var i=0,j=0; i<len-result.length; i=i + sign.length, j++){
+				if(j%2!==0){
+					tmp.unshift(sign)
+				}else{
+					tmp.push(sign)
+				}
+			}
+			result = tmp.join("").substr(0,len)
+			return result
+
+		}else{
+			return result
+		}
+	},
 }
