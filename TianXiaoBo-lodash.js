@@ -882,4 +882,231 @@ TianXiaoBo = {
 		}
 		return index
 	},
+	/**
+	 * 转换字符串string为 驼峰写法。
+	 * 参数
+		* [string=''] (string): 要转换的字符串。
+	 * 返回值
+		* (string): 返回驼峰写法的字符串。
+	 * 例子
+		* camelCase('Foo Bar');
+		* // => 'fooBar'
+		* camelCase('--foo-bar--');
+		* // => 'fooBar'
+		* camelCase('__FOO_BAR__');
+		* // => 'fooBar'
+	**/
+	camelCase: function(str){
+		var result = str
+		var tmp = []
+		result = result.toLowerCase()
+		if(result.charCodeAt(0)>=97&&result.charCodeAt(0)<=122){
+			tmp.push(result.charAt(0))
+		}
+		for(var i=1; i<result.length; i++){
+			if( result.charCodeAt(i) >=97 && result.charCodeAt(i) <=122 ){
+				if(result.charCodeAt(i-1) < 97 || result.charCodeAt(i-1) > 122){
+					tmp.push(result.charAt(i).toUpperCase())
+					continue
+				}
+				tmp.push(result.charAt(i))
+			}
+		}
+		tmp[0] = tmp[0].toLowerCase()
+		result = tmp.join("")
+		return result
+	},
+	/**
+	 * 转换字符串string首字母为大写，剩下为小写。
+	 * 参数
+		* [string=''] (string): 要大写开头的字符串。
+	 * 返回值
+		* (string): 返回大写开头的字符串。
+	 * 例子
+		* capitalize('FRED');
+		* // => 'Fred'
+	**/
+	capitalize: function(str){
+		tmp = []
+		result = str.toLowerCase()
+		tmp.push(result.charAt(0).toUpperCase())
+		tmp.push(result.substring(1))
+		result = tmp.join("")
+		return result
+	},
+	/**
+	 * 转换字符串string中拉丁语-1补充字母 和 拉丁语扩展字母-A 为基本的拉丁字母，并且去除组合变音标记。
+	 * 参数
+		* [string=''] (string): 要处理的字符串。
+	 * 返回值
+		* (string): 返回处理后的字符串。
+	 * 例子
+		* deburr('déjà vu');
+		* // => 'deja vu'
+	**/
+	deburr: function(str){
+		debugger
+		var tmp = str.split("")
+		for(var i=0; i<tmp.length; i++){
+			if(192<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=221){
+				tmp[i] = deburrTrans(tmp[i]).toUpperCase()
+			}if(224<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=255){
+				tmp[i] = deburrTrans(tmp[i])
+			}
+		}
+		var result = tmp.join("")
+		return result
+		function deburrTrans(n){
+			var result = n.toLowerCase()
+			var codeN = result.charCodeAt(0)
+			if((224<=codeN&&codeN<=229)){
+				result = "a"
+			}
+			if((232<=codeN&&codeN<=235)){
+				result = "e"
+			}
+			if((236<=codeN&&codeN<=239)){
+				result = "i"
+			}
+			if((242<=codeN&&codeN<=245)){
+				result = "o"
+			}
+			if((249<=codeN&&codeN<=252)){
+				result = "u"
+			}
+			return result
+		}
+	},
+	/**
+	 * 检查字符串string是否以给定的target字符串结尾。
+	 * 参数
+		* [string=''] (string): 要检索的字符串。
+		* [target] (string): 要检索字符。
+		* [position=string.length] (number): 检索的位置。
+	 * 返回值
+		* (boolean): 如果字符串string以target字符串结尾，那么返回 true，否则返回 false。
+	 * 例子
+		* endsWith('abc', 'c');
+		* // => true
+		* endsWith('abc', 'b');
+		* // => false
+		* endsWith('abc', 'b', 2);
+		* // => true
+	**/
+	endsWith: function(str,n,index){
+		if(!index&&index!==0){
+			index = 1
+		}
+		return n === str.charAt(str.length-index) ? true:false
+	},
+	/**
+	 * 转换字符串string为 kebab case.
+	 * 参数
+		* [string=''] (string): 要转换的字符串。
+	 * 返回值
+		* (string): 返回转换后的字符串。
+	 * 例子
+		* kebabCase('Foo Bar');
+		* // => 'foo-bar'
+		* kebabCase('fooBar');
+		* // => 'foo-bar'
+		* kebabCase('__FOO_BAR__');
+		* // => 'foo-bar'
+	**/
+	kebabCase: function(str){
+		var result = str
+		var tmp = result.split("")
+		var reArr = []
+		for(var i=0; i<tmp.length-1; i++){
+			if(!((97<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=122)||(65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90))&&!((97<=tmp[i+1].charCodeAt(0)&&tmp[i+1].charCodeAt(0)<=122)||(65<=tmp[i+1].charCodeAt(0)&&tmp[i+1].charCodeAt(0)<=90))){
+				tmp.splice(i,1)
+				i--
+			}
+		}
+		for(var i=0; i<tmp.length; i++){
+			if(!(97<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=122)&&!(65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90)){
+				tmp.splice(i,1)
+				i--
+			}else{
+				break
+			}
+		}
+		for(var i=1; i<tmp.length; i++){
+			if((65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90)&&!(65<=tmp[i-1].charCodeAt(0)&&tmp[i-1].charCodeAt(0)<=90)){
+				tmp.splice(i,0,"-")
+				i++
+			}
+		}
+		for(var i=0; i<tmp.length; i++){
+			if(!((97<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=122)||(65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90)||(tmp[i].charCodeAt(0) === 45))){
+				tmp.splice(i,1)
+			}
+		}
+		result = tmp.join("").toLowerCase()
+		return result
+	},
+	/**
+	 * 转换字符串string以空格分开单词，并转换为小写。
+	 * 参数
+		* [string=''] (string): 要转换的字符串。
+	 * 返回值
+		* (string): 返回转换后的字符串。
+	 * 例子
+		* lowerCase('--Foo-Bar--');
+		* // => 'foo bar'
+		* lowerCase('fooBar');
+		* // => 'foo bar'
+		* kebabCase('__FOO_BAR__');
+		* // => 'foo bar'
+	**/
+	lowerCase: function(str){
+		var result = str
+		var tmp = result.split("")
+		var reArr = []
+		for(var i=0; i<tmp.length-1; i++){
+			if(!((97<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=122)||(65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90))&&!((97<=tmp[i+1].charCodeAt(0)&&tmp[i+1].charCodeAt(0)<=122)||(65<=tmp[i+1].charCodeAt(0)&&tmp[i+1].charCodeAt(0)<=90))){
+				tmp.splice(i,1)
+				i--
+			}
+		}
+		for(var i=0; i<tmp.length; i++){
+			if(!(97<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=122)&&!(65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90)){
+				tmp.splice(i,1)
+				i--
+			}else{
+				break
+			}
+		}
+		for(var i=1; i<tmp.length; i++){
+			if((65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90)&&!(65<=tmp[i-1].charCodeAt(0)&&tmp[i-1].charCodeAt(0)<=90)){
+				tmp.splice(i,0," ")
+				i++
+			}
+		}
+		for(var i=0; i<tmp.length; i++){
+			if(!((97<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=122)||(65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90)||(tmp[i].charCodeAt(0) === 32))){
+				tmp.splice(i,1)
+			}
+		}
+		result = tmp.join("").toLowerCase()
+		return result
+	},
+	/**
+	 * 转换字符串string的首字母为小写。
+	 * 参数
+		* [string=''] (string): 要转换的字符串。
+	 * 返回值
+		* (string): 返回转换后的字符串。
+	 * 例子
+		* lowerFirst('Fred');
+		* // => 'fred'
+		* lowerFirst('FRED');
+		* // => 'fRED'
+	**/
+	lowerFirst: function(str){
+		var tmp = str.split("")
+		tmp.splice(0,1,str.charAt(0).toLowerCase())
+		var result = tmp.join("")
+		return result
+	}
 }
