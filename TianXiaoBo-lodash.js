@@ -629,4 +629,56 @@ TianXiaoBo = {
 		}
 		return result
 	},
+	/**
+	 * 创建一个去重后的array数组副本。使用了 SameValueZero 做等值比较。只有第一次出现的元素才会被保留。
+	 * 参数
+		* array (Array): 要检查的数组。
+	 * 返回值
+		* (Array): 返回新的去重后的数组。
+	 * 例子
+		* uniq([2, 1, 2]);
+		* // => [2, 1]
+	**/
+	uniq: function(arr){
+		var result = arr
+		var len = arr.length
+		for(var i=0; i<len; i++){
+			for(var j=i+1; j<len-i; j++){
+				if(arr[i] === arr[j]){
+					arr.splice(j,1)
+					j = i
+				}
+			}
+		}
+		return result
+	},
+	/**
+	 * 这个方法类似于_.zip，除了它接收分组元素的数组，并且创建一个数组，分组元素到打包前的结构。
+	 * 参数
+		* array (Array): 要处理的分组元素数组。
+	 * 返回值
+		* (Array): 返回重组元素的新数组。
+	 * 例子
+		* var zipped = zip(['fred', 'barney'], [30, 40], [true, false]);
+		* // => [['fred', 30, true], ['barney', 40, false]]
+		* unzip(zipped);
+		* // => [['fred', 'barney'], [30, 40], [true, false]]
+	**/
+	unzip: function(arr){
+		var result = []
+		var len = arr.length
+		var lenR = arr[0].length
+		for(var i=0; i<len-1; i++){
+			lenR = lenR>arr[i+1].length?lenR:arr[i+1].length
+		}
+		for(var i=0; i<lenR; i++){
+			result[i] = []
+		}
+		for(var i=0; i<len; i++){
+			for(var j=0; j<arr[i].length; j++){
+				result[j][i] = arr[i][j]
+			}
+		}
+		return result
+	},
 }
