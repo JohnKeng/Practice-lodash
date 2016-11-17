@@ -668,9 +668,6 @@ TianXiaoBo = {
 		var result = []
 		var len = arr.length
 		var lenR = arr[0].length
-		for(var i=0; i<len-1; i++){
-			lenR = lenR>arr[i+1].length?lenR:arr[i+1].length
-		}
 		for(var i=0; i<lenR; i++){
 			result[i] = []
 		}
