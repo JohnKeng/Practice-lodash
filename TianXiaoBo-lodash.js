@@ -709,4 +709,141 @@ TianXiaoBo = {
 		}
 		return result
 	},
+	/**
+	 * 创建一个分组元素的数组，数组的第一个元素包含所有给定数组的第一个元素，数组的第二个元素包含所有给定数组的第二个元素，以此类推。
+	 * 参数
+		* [arrays] (...Array): 要处理的数组。
+	 * 返回值
+		* (Array): 返回分组元素的新数组。
+	 * 例子
+		* zip(['fred', 'barney'], [30, 40], [true, false]);
+		* /// => [['fred', 30, true], ['barney', 40, false]]
+	**/
+	zip: function(){
+		var tmp = []
+		var result = []
+		var len = arguments.length
+		for(var i=0; i<len; i++){
+			tmp.push(arguments[i])
+		}
+		for(var i=0; i<tmp[0].length; i++){
+			result[i] = []
+		}
+		len = tmp.length
+		for(var i=0; i<len; i++){
+			for(var j=0; j<tmp[i].length; j++){
+				result[j][i] = tmp[i][j]
+			}
+		}
+		return result
+	},
+	/**
+	 * 使用 SameValueZero 等值比较，返回首次 value 在数组array中被找到的 索引值， 如果 fromIndex 为负值，将从数组array尾端索引进行匹配。
+	 * 参数
+		* array (Array): 需要查找的数组。
+		* value (*): 需要查找的值。
+		* [fromIndex=0] (number): 开始查询的位置。
+	 * 返回值
+		* (number): 返回 值value在数组中的索引位置, 没有找到为返回-1。
+	 * 例子
+		* indexOf([1, 2, 1, 2], 2);
+		* // => 1
+		* // Search from the `fromIndex`.
+		* indexOf([1, 2, 1, 2], 2, 2);
+		* // => 3
+	**/
+	indexOf: function(arr, n, start){
+		if(!start){
+			start = 0
+		}
+		var len = arr.length
+		var onOff = false
+		for(var i=start; i<len; i++){
+			if(arr[i] === n){
+				onOff = true
+				break
+			}
+		}
+		if(onOff){
+			return i
+		}else{
+			return -1
+		}
+	},
+	/**
+	 * 将 array 中的所有元素转换为由 separator 分隔的字符串。
+	 * 参数
+		* array (Array): 要转换的数组。
+		* [separator=','] (string): 分隔元素。
+		* [fromIndex=0] (number): 开始查询的位置。
+	 * 返回值
+		* (string): 返回连接字符串。
+	 * 例子
+		* join(['a', 'b', 'c'], '~');
+		* // => 'a~b~c'
+	**/
+	join: function(arr, n){
+		var result = arr
+		result = result.join(n)
+		return result
+	},
+	/**
+	 * 这个方法类似 _.indexOf ，区别是它是从右到左遍历array的元素。
+	 * 参数
+		* array (Array): 要搜索的数组。
+		* value (*): 要搜索的值。
+		* [fromIndex=array.length-1] (number): 开始搜索的索引值。
+	 * 返回值
+		* (number): 返回匹配值的索引值，否则返回 -1。
+	 * 例子
+		* lastIndexOf([1, 2, 1, 2], 2);
+		* // => 3
+		* // Search from the `fromIndex`.
+		* lastIndexOf([1, 2, 1, 2], 2, 2);
+		* // => 1
+	**/
+	lastIndexOf: function(arr, n, start){
+		//debugger
+		var len = arr.length
+		if(!start){
+			start = 0
+		}
+		var onOff = false
+		for(var i=len-start; i>=0; i--){
+			if(arr[i] === n){
+				onOff = true
+				break
+			}
+		}
+		if(onOff){
+			return i
+		}else{
+			return -1
+		}
+	},
+	/**
+	 * 获取数组的索引n处的元素。 如果n为负，则返回从末尾开始的第n个元素。
+	 * 参数
+		* array (Array): The array to query.
+		* [n=0] (number): The index of the element to return.
+	 * 返回值
+		* (*): Returns the nth element of array.
+	 * 例子
+		* var array = ['a', 'b', 'c', 'd'];
+		* nth(array, 1);
+		* // => 'b'
+		* nth(array, -2);
+		* // => 'c';
+	**/
+	nth: function(arr, index){
+		if(!index){
+			index = 0
+		}
+		index = parseInt(index)
+		if(index>=0){
+			return arr[index]
+		}else{
+			return arr[arr.length+index]
+		}
+	},
 }
