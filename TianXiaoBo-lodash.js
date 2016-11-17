@@ -552,7 +552,14 @@ TianXiaoBo = {
 		* // => [3, 2, 1]
 	**/
 	reverse: function(arr){
-		arr = arr.reverse()
+		var len = arr.length
+		var result = []
+		for(var i=0; i<len; i++){
+			result.push(arr.pop())
+		}
+		for(var i=0; i<len; i++){
+			arr.push(result[i])
+		}
 		return arr
 	},
 	/**
