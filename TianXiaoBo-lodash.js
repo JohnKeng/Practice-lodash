@@ -526,14 +526,16 @@ TianXiaoBo = {
 		* // => [10, 20]
 	**/
 	pullAt: function(arr){
-		//debugger
 		var result = []
 		var lenArg = arguments.length
 		for(var i=lenArg-1; i>=1; i--){
-			result.push(arr[arguments[i]])
-			arr.splice(arguments[i],1)
+			if(arguments[i]<arr.length){
+				result.push(arr[arguments[i]-1])
+				arr.splice(arguments[i]-1,1)
+			}
 		}
-		return result.reverse()
+		result = result.reverse()
+		return result
 	},
 	/**
 	 * 反转array，使得第一个元素变为最后一个元素，第二个元素变为倒数第二个元素，依次类推。
@@ -550,8 +552,8 @@ TianXiaoBo = {
 		* // => [3, 2, 1]
 	**/
 	reverse: function(arr){
-		return arr.reverse()
-		return true
+		arr = arr.reverse()
+		return arr
 	},
 	/**
 	 * 获取除了array数组第一个元素以外的全部元素。
