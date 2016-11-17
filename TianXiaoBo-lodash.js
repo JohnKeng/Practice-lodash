@@ -67,7 +67,6 @@ TianXiaoBo = {
 		for(var i=1; i<len; i++){
 			tmp.push(arguments[i])
 		}
-		tmp.splice(0,1)
 		tmp = this.flattenDeep(tmp)
 		for(var i=0; i<result.length; i++){
 			for(var j=0; j<tmp.length; j++){
