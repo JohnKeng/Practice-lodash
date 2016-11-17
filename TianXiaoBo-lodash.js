@@ -438,4 +438,102 @@ TianXiaoBo = {
 		}
 		return arr
 	},
+	/**
+	 * 这个方法返回一个由键值对pairs构成的对象。
+	 * Note: 这个方法会改变 array
+	 * 参数
+		* pairs (Array): 键值对pairs。
+	 * 返回值
+		* (Object): 返回一个新对象。
+	 * 例子
+		* fromPairs([['fred', 30], ['barney', 40]]);
+		* // => { 'fred': 30, 'barney': 40 }
+	**/
+	fromPairs: function(arr){
+		var result = {}
+		var len = arr.length
+		for(var i=0; i<len; i++){
+			result[arr[i][0]] = arr[i][1]
+		}
+		return result
+	},
+	/**
+	 * 移除数组array中所有和给定值相等的元素，使用 SameValueZero 进行全等比较。
+	 * 注意： 和 _.without 方法不同，这个方法会改变数组。使用 _.remove 从一个数组中移除元素。
+	 * 参数
+		* array (Array): 要修改的数组。
+		* [values] (...*): 要删除的值。
+	 * 返回值
+		* (Array): 返回 array.
+	 * 例子
+		* var array = [1, 2, 3, 1, 2, 3];
+		* pull(array, 2, 3);
+		* console.log(array);
+		* // => [1, 1]
+	**/
+	pull: function(arr){
+		var lenArg = arguments.length
+		var lenArr = arr.length
+		for(var i=1; i<lenArg; i++){
+			for(var j=0; j<lenArr; j++){
+				if(arguments[i] === arr[j]){
+					arr.splice(j,1)
+					j=-1
+				}
+			}
+		}
+		return arr
+	},
+	/**
+	 * 这个方法类似_.pull，区别是这个方法接收一个要移除值的数组。
+	 * Note: 不同于 _.difference, 这个方法会改变数组 array。
+	 * 参数
+		* array (Array): 要修改的数组。
+		* values (Array): 要移除值的数组。
+	 * 返回值
+		* (Array): 返回 array。
+	 * 例子
+		* var array = [1, 2, 3, 1, 2, 3];
+		* pullAll(array, [2, 3]);
+		* console.log(array);
+		* // => [1, 1]
+	**/
+	pullAll: function(arr,del){
+		var lenDel = del.length
+		var lenArr = arr.length
+		for(var i=0; i<lenDel; i++){
+			for(var j=0; j<lenArr; j++){
+				if(del[i] === arr[j]){
+					arr.splice(j,1)
+				}
+			}
+		}
+		return arr
+	},
+	/**
+	 * 根据索引 indexes，移除array中对应的元素，并返回被移除元素的数组。
+	 * Note: 和 _.at不同, 这个方法会改变数组 array。
+	 * 参数
+		* array (Array): 要修改的数组。
+		* [indexes] (...(number|number[])): 要移除元素的索引。
+	 * 返回值
+		* (Array): 返回移除元素组成的新数组。
+	 * 例子
+		* var array = [5, 10, 15, 20];
+		* var evens = _.pullAt(array, 1, 3);
+		* console.log(array);
+		* // => [5, 15]
+		* console.log(evens);
+		* // => [10, 20]
+	**/
+	pullAt: function(arr){
+		//debugger
+		var result = []
+		var lenArg = arguments.length
+		for(var i=lenArg-1; i>=1; i--){
+			result.push(arr[arguments[i]])
+			arr.splice(arguments[i],1)
+		}
+		return result.reverse()
+	},
 }
