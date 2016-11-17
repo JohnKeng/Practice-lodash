@@ -530,8 +530,8 @@ TianXiaoBo = {
 		var lenArg = arguments.length
 		for(var i=lenArg-1; i>=1; i--){
 			if(arguments[i]<arr.length){
-				result.push(arr[arguments[i]-1])
-				arr.splice(arguments[i]-1,1)
+				result.push(arr[arguments[i]])
+				arr.splice(arguments[i],1)
 			}
 		}
 		result = result.reverse()
