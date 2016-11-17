@@ -536,4 +536,96 @@ TianXiaoBo = {
 		}
 		return result.reverse()
 	},
+	/**
+	 * 反转array，使得第一个元素变为最后一个元素，第二个元素变为倒数第二个元素，依次类推。
+	 * Note: 这个方法会改变原数组 array，基于 Array#reverse.
+	 * 参数
+		* array (Array): 要修改的数组。
+	 * 返回值
+		* (Array): 返回 array.
+	 * 例子
+		* var array = [1, 2, 3];
+		* reverse(array);
+		* // => [3, 2, 1]
+		* console.log(array);
+		* // => [3, 2, 1]
+	**/
+	reverse: function(arr){
+		return arr.reverse()
+		return true
+	},
+	/**
+	 * 获取除了array数组第一个元素以外的全部元素。
+	 * 参数
+		* array (Array): 要检索的数组。
+	 * 返回值
+		* (Array): 返回 array 数组的切片（除了array数组第一个元素以外的全部元素）。
+	 * 例子
+		* tail([1, 2, 3]);
+		* // => [2, 3]
+	**/
+	tail: function(arr){
+		var result = arr
+		result.splice(0,1)
+		return result
+	},
+	/**
+	 * 创建一个数组切片，从array数组的起始元素开始提取n个元素。
+	 * 参数
+		* array (Array): 要检索的数组。
+		* [n=1] (number): 要提取的元素个数。
+	 * 返回值
+		* (Array): 返回 array 数组的切片（从起始元素开始n个元素）。
+	 * 例子
+		* take([1, 2, 3]);
+		* // => [1]
+		* take([1, 2, 3], 2);
+		* // => [1, 2]
+		* take([1, 2, 3], 5);
+		* // => [1, 2, 3]
+		* take([1, 2, 3], 0);
+		* // => []
+	**/
+	take: function(arr,n){
+		if(!n&&n!==0){
+			n = 1
+		}
+		var result = []
+		var len = arr.length
+		n = n>len ? len:n
+		for(var i=0; i<n; i++){
+			result.push(arr[i])
+		}
+		return result
+	},
+	/**
+	 * 创建一个数组切片，从array数组的最后一个元素开始提取n个元素。
+	 * 参数
+		* array (Array): 要检索的数组。
+		* [n=1] (number): 要提取的元素个数。
+	 * 返回值
+		* (Array): 返回 array 数组的切片（从结尾元素开始n个元素）。
+	 * 例子
+		* take([1, 2, 3]);
+		* // => [3]
+		* take([1, 2, 3], 2);
+		* // => [2, 3]
+		* take([1, 2, 3], 5);
+		* // => [1, 2, 3]
+		* take([1, 2, 3], 0);
+		* // => []
+	**/
+	takeRight: function(arr,n){
+		if(!n&&n!==0){
+			n = 1
+		}
+		var result = []
+		var len = arr.length
+		n = n>len ? len:n
+		var start = len-n
+		for(var i=start; i<len; i++){
+			result.push(arr[i])
+		}
+		return result
+	},
 }
