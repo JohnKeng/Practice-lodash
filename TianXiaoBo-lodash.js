@@ -678,4 +678,35 @@ TianXiaoBo = {
 		}
 		return result
 	},
+	/**
+	 * 创建一个给定数组唯一值的数组，使用symmetric difference做等值比较。返回值的顺序取决于他们数组的出现顺序。
+	 * 参数
+		* [arrays] (...Array): 要检查的数组。
+	 * 返回值
+		* (Array): 返回过滤值后的新数组。
+	 * 例子
+		* xor([2, 1], [2, 3]);
+		* // => [1, 3]
+	**/
+	xor: function(){
+		debugger
+		var result = []
+		var len = arguments.length
+		for(var i=0; i<len; i++){
+			result.push(arguments[i])
+		}
+		result = this.flatten(result)
+		len = result.length
+		for(var i=0; i<len; i++){
+			for(var j=i+1; j<len-i; j++){
+				if(result[i] === result[j]){
+					result.splice(i,1)
+					result.splice(j-1,1)
+					i = -1
+					break
+				}
+			}
+		}
+		return result
+	},
 }
