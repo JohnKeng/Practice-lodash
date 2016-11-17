@@ -58,22 +58,12 @@ TianXiaoBo = {
 		* // => [1, "2", 3]
 	**/
 	difference: function(arr){
-		var tmp = []
-		var len = arguments.length
-		var result = []
-		for(var i=0; i<arguments[0].length; i++){
-			result.push(arguments[0][i])
-		}
-		for(var i=0; i<len; i++){
-			tmp.push(arguments[i])
-		}
-		tmp.splice(0,1)
-		tmp = this.flattenDeep(tmp)
+		var result = arr
 		for(var i=0; i<result.length; i++){
-			for(var j=0; j<tmp.length; j++){
-				if(result[i] === tmp[j]){
+			for(var j=0; j<comp.length; j++){
+				if(result[i] === comp[j]){
 					result.splice(i,1)
-					j= -1
+					i= -1
 				}
 			}
 		}
