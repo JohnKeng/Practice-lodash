@@ -57,7 +57,7 @@ TianXiaoBo = {
 		* difference([1, '2', 3], [4, 2]);
 		* // => [1, "2", 3]
 	**/
-	difference: function(arr){
+	difference: function(arr, comp){
 		var result = arr
 		for(var i=0; i<result.length; i++){
 			for(var j=0; j<comp.length; j++){
