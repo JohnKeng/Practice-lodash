@@ -201,11 +201,11 @@ TianXiaoBo = {
 		* // => [2, 3]
 	**/
 	// lodash 最新版本的 rest 功能不一样
-	rest: function(arr){
-		var result = arr
-		result.splice(0,1)
-		return result
-	},
+	// rest: function(arr){
+	// 	var result = arr
+	// 	result.splice(0,1)
+	// 	return result
+	// },
 	/**
 	 * 可以理解为将嵌套数组的维数减少，flattened（平坦）. 如果 isDeep 值为 true 时，嵌套数组将递归为一维数组, 否则只减少嵌套数组一个级别的维数.
 	 * 参数
