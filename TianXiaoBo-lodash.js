@@ -57,7 +57,7 @@ TianXiaoBo = {
 		* difference([1, '2', 3], [4, 2]);
 		* // => [1, "2", 3]
 	**/
-	difference: function(arr, compare){
+	difference: function(arr){
 		var tmp = []
 		var len = arguments.length
 		var result = []
@@ -68,7 +68,7 @@ TianXiaoBo = {
 			tmp.push(arguments[i])
 		}
 		tmp.splice(0,1)
-		tmp = flattenDeep(tmp)
+		tmp = this.flattenDeep(tmp)
 		for(var i=0; i<result.length; i++){
 			for(var j=0; j<tmp.length; j++){
 				if(result[i] === tmp[j]){
