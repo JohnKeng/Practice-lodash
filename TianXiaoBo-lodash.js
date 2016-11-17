@@ -846,4 +846,33 @@ TianXiaoBo = {
 			return arr[arr.length+index]
 		}
 	},
+	/**
+	 * 使用二分检索来决定 value值 应该插入到数组中 尽可能小的索引位置，以保证array的排序。
+	 * 参数
+		* array (Array): 要检查的排序数组。
+		* value (*): 要评估的值。
+	 * 返回值
+		* (number): 返回 value值 应该在数组array中插入的索引位置 index。
+	 * 例子
+		* sortedIndex([30, 50], 40);
+		* // => 1
+	**/
+	sortedIndex: function(arr, n){
+		debugger
+		var len = arr.length
+		var result = []
+		for(var i=0; i<len; i++){
+			result.push(arr[i])
+		}
+		var index = parseInt(len/2)
+		for(;n>result[index]&&n<=result[index+1];){
+			if(n<=result[index]){
+				index = parseInt(index/2)
+			}
+			if(n>result[index]){
+				index = parseInt((len+index)/2)
+			}
+		}
+		return index
+	},
 }
