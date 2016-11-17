@@ -57,13 +57,23 @@ TianXiaoBo = {
 		* difference([1, '2', 3], [4, 2]);
 		* // => [1, "2", 3]
 	**/
-	difference: function(arr, comp){
-		var result = arr
+	difference: function(arr){
+		var tmp = []
+		var len = arguments.length
+		var result = []
+		for(var i=0; i<arr.length; i++){
+			result.push(arr[i])
+		}
+		for(var i=1; i<len; i++){
+			tmp.push(arguments[i])
+		}
+		tmp.splice(0,1)
+		tmp = this.flattenDeep(tmp)
 		for(var i=0; i<result.length; i++){
-			for(var j=0; j<comp.length; j++){
-				if(result[i] === comp[j]){
+			for(var j=0; j<tmp.length; j++){
+				if(result[i] === tmp[j]){
 					result.splice(i,1)
-					i= -1
+					j= -1
 				}
 			}
 		}
