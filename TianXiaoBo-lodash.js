@@ -1339,7 +1339,7 @@ TianXiaoBo = {
 	reduce: function(arr, fn, init){
 		var start = 1
 		if(init === undefined){
-			init = arr[2]
+			init = arr[0]
 			start = 2
 		}
 		var result = fn(arr[0],init)
