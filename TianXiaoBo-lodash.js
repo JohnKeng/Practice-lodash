@@ -1283,8 +1283,8 @@ TianXiaoBo = {
 		return result
 	},
 	/**
-	 * 创建一个数组， value（值） 是 iteratee（迭代函数）遍历 collection（集合）中的每个元素后返回的结果。 iteratee（迭代函数）调用3个参数： 
-(value, index|key, collection).
+	 * 创建一个数组， value（值） 是 iteratee（迭代函数）遍历 collection（集合）中的每个元素后返回的结果。 iteratee（迭代函数）调用3个参数：(value, index|key, collection).
+	 * 参数
 		* collection (Array|Object): 用来迭代的集合。
 		* [iteratee=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
 	 * 返回值
@@ -1299,4 +1299,42 @@ TianXiaoBo = {
 		}
 		return result
 	},
+	/**
+	 * 遍历 collection（集合）元素，返回 predicate（断言函数）返回真值 的所有元素的数组。 predicate（断言函数）调用三个参数：(value, index|key, collection)。
+	 * 参数
+		* collection (Array|Object): 一个用来迭代的集合。
+		* [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+	 * 返回值
+		* (Array): 返回一个新的过滤后的数组。
+	 * 例子
+	**/
+	filter: function(arr, fn){
+		var result = []
+		for(var i=0; i<arr.length; i++){
+			if(fn(arr[i],i,arr)){
+				result.push(arr[i])
+			}
+		}
+		return result
+	},
+	/**
+	 * 遍历 collection（集合）元素，返回 predicate（断言函数）返回真值 的所有元素的数组。 predicate（断言函数）调用三个参数：(value, index|key, collection)。
+	 * 参数
+		* collection (Array|Object): 一个用来迭代的集合。
+		* [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+	 * 返回值
+		* (Array): 返回一个新的过滤后的数组。
+	 * 例子
+	**/
+	partition: function(arr, fn){
+		var result = [[],[]]
+		for(var i=0; i<arr.length; i++){
+			if(fn(arr[i])){
+				result[0].push(arr[i])
+			}else{
+				result[1].push(arr[i])
+			}
+		}
+		return result
+	}
 }
