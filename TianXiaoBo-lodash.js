@@ -199,12 +199,13 @@ TianXiaoBo = {
 		* rest([1, 2, 3]);
 		* // => [2, 3]
 	**/
-	// lodash 最新版本的 rest 功能不一样
-	// rest: function(arr){
-	// 	var result = arr
-	// 	result.splice(0,1)
-	// 	return result
-	// },
+	/* lodash 最新版本的 rest 功能不一样
+	 * rest: function(arr){
+	 * 	var result = arr
+	 * 	result.splice(0,1)
+	 * 	return result
+	 * },
+	**/
 	/**
 	 * 可以理解为将嵌套数组的维数减少，flattened（平坦）. 如果 isDeep 值为 true 时，嵌套数组将递归为一维数组, 否则只减少嵌套数组一个级别的维数.
 	 * 参数
@@ -1145,5 +1146,140 @@ TianXiaoBo = {
 		}else{
 			return result
 		}
+	},
+	/**
+	 * 如果string字符串长度小于 length 则在右侧填充字符。 如果超出length长度则截断超出的部分。
+	 * 参数
+		* [string=''] (string): 要填充的字符串。
+		* [length=0] (number): 填充的长度。
+		* [chars=' '] (string): 填充字符。
+	 * 返回值
+		* (string): 返回填充后的字符串。
+	 * 例子
+		* padEnd('abc', 6);
+		* // => 'abc   '
+		* padEnd('abc', 6, '_-');
+		* // => 'abc_-_'
+		* padEnd('abc', 3);
+		* // => 'abc'
+	**/
+	padEnd: function(str,len,sign){
+		var result = str
+		if(!sign&&sign!==0){
+			sign = " "
+		}
+		var tmp = [result]
+		if(result.length<len){
+			for(var i=0; i<len-result.length; i=i + sign.length){
+				tmp.push(sign)
+			}
+			result = tmp.join("").substr(0,len)
+			return result
+		}else{
+			return result
+		}
+	},
+	/**
+	 * 如果string字符串长度小于 length 则在左侧填充字符。 如果超出length长度则截断超出的部分。
+	 * 参数
+		* [string=''] (string): 要填充的字符串。
+		* [length=0] (number): 填充的长度。
+		* [chars=' '] (string): 填充字符。
+	 * 返回值
+		* (string): 返回填充后的字符串。
+	 * 例子
+		* padStart('abc', 6);
+		* // => '   abc'
+		* padStart('abc', 6, '_-');
+		* // => '_-_abc'
+		* padStart('abc', 3);
+		* // => 'abc'
+	**/
+	padStart: function(str,len,sign){
+		var result = str
+		if(!sign&&sign!==0){
+			sign = " "
+		}
+		var tmpS = sign.split("").reverse()
+		sign = tmpS.join("")
+		var tmp = [result]
+		if(result.length<len){
+			for(var i=0; i<len-result.length; i=i + sign.length){
+				tmp.unshift(sign)
+			}
+			result = tmp.join("")
+			result = result.substring(result.length-len,result.length)
+			return result
+		}else{
+			return result
+		}
+	},
+	/**
+	 * 重复 N 次给定字符串。
+	 * 参数
+		* [string=''] (string): 要重复的字符串。
+		* [n=1] (number): 重复的次数。
+	 * 返回值
+		* (string): 返回重复的字符串。
+	 * 例子
+		* repeat('*', 3);
+		* // => '***'
+		* repeat('abc', 2);
+		* // => 'abcabc'
+		* repeat('abc', 0);
+		* // => ''
+	**/
+	repeat: function(str, n){
+		var result = ''
+		for(var i=0; i<n; i++){
+			result = result + str
+		}
+		return result
+	},
+	/**
+	 * 转换字符串string为 snake case..
+	 * 参数
+		* [string=''] (string): 要转换的字符串。
+	 * 返回值
+		* (string): 返回转换后的字符串。
+	 * 例子
+		* snakeCase('Foo Bar');
+		* // => 'foo_bar'
+		* snakeCase('fooBar');
+		* // => 'foo_bar'
+		* snakeCase('--FOO-BAR--');
+		* // => 'foo_bar'
+	**/
+	snakeCase: function(str){
+		var result = str
+		var tmp = result.split("")
+		var reArr = []
+		for(var i=0; i<tmp.length-1; i++){
+			if(!((97<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=122)||(65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90))&&!((97<=tmp[i+1].charCodeAt(0)&&tmp[i+1].charCodeAt(0)<=122)||(65<=tmp[i+1].charCodeAt(0)&&tmp[i+1].charCodeAt(0)<=90))){
+				tmp.splice(i,1)
+				i--
+			}
+		}
+		for(var i=0; i<tmp.length; i++){
+			if(!(97<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=122)&&!(65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90)){
+				tmp.splice(i,1)
+				i--
+			}else{
+				break
+			}
+		}
+		for(var i=1; i<tmp.length; i++){
+			if((65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90)&&!(65<=tmp[i-1].charCodeAt(0)&&tmp[i-1].charCodeAt(0)<=90)){
+				tmp.splice(i,0,"_")
+				i++
+			}
+		}
+		for(var i=0; i<tmp.length; i++){
+			if(!((97<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=122)||(65<=tmp[i].charCodeAt(0)&&tmp[i].charCodeAt(0)<=90)||(tmp[i].charCodeAt(0) === 95))){
+				tmp.splice(i,1)
+			}
+		}
+		result = tmp.join("").toLowerCase()
+		return result
 	},
 }
