@@ -1336,12 +1336,12 @@ TianXiaoBo = {
 			}
 		}
 		return result
-	}
+	},
 	reduce: function(arr, fn, init){
 		var result = fn(arr[0],init)
 		for(var i=0; i<arr.length; i++){
 			result = fn(arr[i],result)
 		}
 		return result
-	}
+	},
 }
