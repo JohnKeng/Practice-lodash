@@ -1282,4 +1282,22 @@ TianXiaoBo = {
 		result = tmp.join("").toLowerCase()
 		return result
 	},
+	/**
+	 * 创建一个数组， value（值） 是 iteratee（迭代函数）遍历 collection（集合）中的每个元素后返回的结果。 iteratee（迭代函数）调用3个参数： 
+(value, index|key, collection).
+		* collection (Array|Object): 用来迭代的集合。
+		* [iteratee=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+	 * 返回值
+		* (Array): 返回新的映射后数组。
+	 * 例子
+		
+	**/
+	map: function(arr,fn){
+		var result = []
+		var len = arr.length
+		for(var i=0; i<len; i++){
+			result[i] = fn(arr[i])
+		}
+		return result
+	},
 }
