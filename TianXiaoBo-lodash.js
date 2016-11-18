@@ -1338,9 +1338,9 @@ TianXiaoBo = {
 		return result
 	}
 	reduce: function(arr, fn, init){
-		var redult = fn(arr[0],init)
+		var result = fn(arr[0],init)
 		for(var i=0; i<arr.length; i++){
-			redult = fn(arr[i].redult)
+			result = fn(arr[i],result)
 		}
 		return result
 	}
