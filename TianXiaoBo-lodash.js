@@ -1290,13 +1290,12 @@ TianXiaoBo = {
 	 * 返回值
 		* (Array): 返回新的映射后数组。
 	 * 例子
-		
 	**/
 	map: function(arr,fn){
 		var result = []
 		var len = arr.length
 		for(var i=0; i<len; i++){
-			result[i] = fn(arr[i])
+			result.push(fn(arr[i],i,arr))
 		}
 		return result
 	},
