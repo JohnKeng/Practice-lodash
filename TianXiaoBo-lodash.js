@@ -1338,8 +1338,13 @@ TianXiaoBo = {
 		return result
 	},
 	reduce: function(arr, fn, init){
+		var start = 1
+		if(init === undefined){
+			init = arr[2]
+			start = 2
+		}
 		var result = fn(arr[0],init)
-		for(var i=1; i<arr.length; i++){
+		for(var i=start; i<arr.length; i++){
 			result = fn(arr[i],result)
 		}
 		return result
