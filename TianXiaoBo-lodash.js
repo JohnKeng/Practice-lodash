@@ -40,6 +40,7 @@ TianXiaoBo = {
 		for(var i=0; i<len; i++){
 			if(!result[i]){
 				result.splice(i,1)
+				i--
 			}
 		}
 		return result
