@@ -35,12 +35,10 @@ TianXiaoBo = {
 		* // => [1, 2, 3]
 	**/
 	compact: function(arr){
-		var result = arr
-		var len = result.length
-		for(var i=0; i<len; i++){
-			if(!result[i]){
-				result.splice(i,1)
-				i--
+		var result = []
+		for(var i=0; i<arr.length; i++){
+			if(arr[i]){
+				result.push(arr[i])
 			}
 		}
 		return result
