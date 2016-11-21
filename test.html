@@ -1,35 +1,113 @@
 <script type="text/javascript">
-	function at(obj,path){
-		if(path==undefined){
-			return []
-		}
-		for(var i=0; i<path.length; i++){
-			path[i] = path[i].split(".")
-			
+function at(obj, path) {
+    if (path == undefined) {
+        return []
+    }
+    for (var i = 0; i < path.length; i++) {
+        path[i] = path[i].split(".")
+    }
+    return path
+}
+
+function reduce(arr, fn, init) {
+    debugger
+    var result = fn(arr[0], init)
+    for (var i = 1; i < arr.length; i++) {
+        result = fn(arr[i], result)
+    }
+    return result
+}
+
+function compact(arr) {
+    debugger
+    var result = []
+    for (var i = 0; i < arr.length; i++) {
+        if (arr[i]) {
+            result.push(arr[i])
+        }
+    }
+    return result
+}
+
+function mapKeys(obj, fn) {
+    var result = {}
+    for (keys in obj) {
+        result[fn(obj[keys], keys, obj)] = obj[keys]
+    }
+    return result
+
+}
+
+function mapValues(obj, fn) {
+    var result = {}
+    if (typeof fn == "string") {
+        for (keys in obj) {
+            result[keys] = obj[keys][fn]
+        }
+    } else {
+        for (keys in obj) {
+            result[keys] = fn(obj[keys], keys, obj)
+        }
+    }
+    return result
+}
+
+function pick(obj, arr) {
+    var result = {}
+    for (var i = 0; i < arr.length; i++) {
+        for (keys in obj) {
+            if (arr[i] == keys) {
+                result[keys] = obj[keys]
+            }
+        }
+    }
+    return result
+}
+
+function values(obj) {
+    var result = []
+    for (keys in obj) {
+        result.push(obj[keys])
+    }
+    return result
+}
+
+function at(obj, arr) {
+    debugger
+    var result = []
+    for (var i = 0; i < arr.length; i++) {
+        result.push(eval("obj." + arr[i]))
+    }
+    return result
+}
+
+function assign(obj) {
+    var result = {}
+    for (var i = 0; i < arguments.length; i++) {
+        for (keys in arguments[i]) {
+            result[keys] = arguments[i][keys]
+        }
+    }
+    return result
+}
+
+function merge(obj) { debugger for (var i = 1; i < arguments.length; i++) { for (keys in arguments[i]) { //arguments[1]==o ther if (!obj[keys]) { // obj[a] obj[keys]=a rguments[i][keys] } else { for (var j=0 ; j < arguments[i][keys].length; j++) { if (typeof arguments[i][keys][j]=="object" && arguments[i][keys][j] !==n ull && !Array.isArray(arguments[i][keys][j] !==n ull)) { for (key in arguments[i][keys][j]) { obj[keys][j][key]=a rguments[i][keys][j][key] } } else { obj[keys][j]=a rguments[i][keys][j] } } } } } return obj }
 
 
+function invert2(obj) {
+    var result = {}
+    for (keys in obj) {
+        if (!result[obj[keys]]) {
+            result[obj[keys]] = keys
+        } else if (Array.isArray(result[obj[keys]])) {
+            result[obj[keys]].push(keys)
+        } else {
+            result[obj[keys]] = [result[obj[keys]]]
+            result[obj[keys]].push(keys)
 
+        }
 
-		}
-		return path
-	}
-	function reduce(arr, fn, init){
-		debugger
-		var result = fn(arr[0],init)
-		for(var i=1; i<arr.length; i++){
-			result = fn(arr[i],result)
-		}
-		return result
-	}
-	function compact(arr){
-		debugger
-		var result = []
-		for(var i=0; i<arr.length; i++){
-			if(arr[i]){
-				result.push(arr[i])
-			}
-		}
-		return result
-	}
+    }
+    return result
+}
 </script>
-
