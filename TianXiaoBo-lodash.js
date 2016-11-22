@@ -1437,7 +1437,6 @@ TianXiaoBo = {
      * // => Logs 'a', 'b', then 'c' (无法保证遍历的顺序)。
      */
     forIn: function(obj, fn) {
-
         for (keys in obj) {
             if (obj[keys]) {
                 fn(obj[keys], keys, obj)
@@ -1445,6 +1444,7 @@ TianXiaoBo = {
                 break
             }
         }
+        return obj
     },
     /**
      * 反向版 _.mapValues。 这个方法创建一个对象，对象的值与object相同，并且 key 是通过 iteratee 运行 object 中每个自身可枚举属性名字符串 产生的。iteratee调用三个参数： (value, key, object)。

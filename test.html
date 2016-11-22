@@ -1,2 +1,12 @@
 <script type="text/javascript">
+function forIn(obj, fn) {
+    for (keys in obj) {
+        if (obj[keys]) {
+            fn(obj[keys], keys, obj)
+        } else {
+            break
+        }
+    }
+    return obj
+}
 </script>
