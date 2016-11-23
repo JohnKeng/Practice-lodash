@@ -1,12 +1,72 @@
 <script type="text/javascript">
-function forIn(obj, fn) {
-    for (keys in obj) {
-        if (obj[keys]) {
-            fn(obj[keys], keys, obj)
-        } else {
-            break
+function isEqual(obj1, obj2) {
+    debugger
+    if (typeof obj1 !== typeof obj2) {
+        return false
+    }
+    if (obj1 !== obj1 && obj2 !== obj2) {
+        return true
+    }
+    if (obj1 === obj2) {
+        return true
+    }
+    if (typeof obj1 === "object" && typeof obj2 === "object") {
+        for (key in obj1) {
+            if (typeof obj1[key] == "object") {
+                if (!isEqual(obj1[key], obj2[key])) {
+                    return false
+                }
+            } else if (obj1[key] === obj2[key]) {
+                return true
+            }
         }
     }
-    return obj
+    return true
 }
-</script>
+
+function filter(arr, fn) {
+    var result = []
+    for (var i = 0; i < arr.length; i++) {
+        if (fn(arr[i], i, arr)) {
+            result.push(arr[i])
+        }
+    }
+    return result
+}
+
+function matches(source) {
+    debugger
+    return function(obj) {
+        for (key in source) {
+            if (!isEqual(source[key], obj[key])) {
+                return false
+            }
+        }
+        return true
+    }
+}
+
+function matchesProperty(path, value) {
+    return function(obj) {
+        if (isEqual(eval('obj.' + path), value)) {
+            return true
+        } else {
+            return false
+        }
+    }
+}
+
+function property(path) {
+    if (Array.isArray(path)) {
+        path.join(".")
+    }
+    return function(obj) {
+        return eval('obj.' + path)
+    }
+}
+
+function throttle(fn, clock) {
+
+}
+
+< /style>

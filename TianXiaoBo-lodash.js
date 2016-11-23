@@ -78,6 +78,67 @@ TianXiaoBo = {
         return result
     },
     /**
+     * 这个方法类似_.difference ，除了它接受一个 iteratee
+     * @param  array (Array): 要检查的数组。
+     * @param  [values] (...Array): 排除的值。
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): iteratee 调用每个元素。
+     * @return (Array): 返回一个过滤值后的新数组。
+     */
+    differenceBy: function(arr, value, iter) {
+        var result = []
+        var onOff
+        if (typeof iter == 'function') {
+            for (var i = 0; i < arr.length; i++) {
+                onOff = true
+                for (var j = 0; j < value.length; j++) {
+                    if (iter(value[j]) == iter(arr[i])) {
+                        onOff = false
+                    }
+                }
+                if (onOff) {
+                    result.push(arr[i])
+                }
+            }
+        }
+        if (typeof iter == 'string') {
+            for (var i = 0; i < arr.length; i++) {
+                onOff = true
+                for (var j = 0; j < value.length; j++) {
+                    if (arr[i][iter] == value[j][iter]) {
+                        onOff = false
+                    }
+                }
+                if (onOff) {
+                    result.push(arr[i])
+                }
+            }
+        }
+        return result
+    },
+    /**
+     * 这个方法类似_.difference ，除了它接受一个 comparator
+     * @param  array (Array): 要检查的数组。
+     * @param  [values] (...Array): 排除的值。
+     * @param  [comparator] (Function): comparator 调用每个元素。
+     * @return (Array): 返回一个过滤值后的新数组。
+     */
+    differenceWith: function(arr, value, compara) {
+        var result = []
+        var onOff
+        for (var i = 0; i < arr.length; i++) {
+            onOff = true
+            for (var j = 0; j < value.length; j++) {
+                if (compara(arr[i], value[j])) {
+                    onOff = false
+                }
+            }
+            if (onOff) {
+                result.push(arr[i])
+            }
+        }
+        return result
+    },
+    /**
      * 将 array 中的前 n 个元素去掉，然后返回剩余的部分。
      * 参数
      * array (Array): 被操作的数组。
@@ -95,11 +156,13 @@ TianXiaoBo = {
      * // => [1, 2, 3]
      **/
     drop: function(arr, del) {
-        var result = arr
+        var result = []
         if (del == undefined) {
             del = 1
         }
-        result.splice(0, del)
+        for (var i = del; i < arr.length; i++) {
+            result.push(arr[i])
+        }
         return result
     },
     /**
@@ -120,12 +183,14 @@ TianXiaoBo = {
      * // => [1, 2, 3]
      **/
     dropRight: function(arr, del) {
-        var result = arr.sort()
+        var result = []
         if (del == undefined) {
             del = 1
         }
-        result.splice(0, del)
-        return result.sort()
+        for (var i = 0; i < arr.length - del; i++) {
+            result.push(arr[i])
+        }
+        return result
     },
     /**
      * 获取数组 array的第一个元素
@@ -200,9 +265,9 @@ TianXiaoBo = {
      **/
     /* lodash 最新版本的 rest 功能不一样
      * rest: function(arr){
-     * 	var result = arr
-     * 	result.splice(0,1)
-     * 	return result
+     *  var result = arr
+     *  result.splice(0,1)
+     *  return result
      * },
      **/
     /**
@@ -1592,5 +1657,117 @@ TianXiaoBo = {
 
         }
         return obj
+    },
+    /**
+     * 创建一个调用func的函数，通过this绑定和创建函数的参数调用func，调用次数不超过 n 次。 之后再调用这个函数，将返回一次最后调用func的结果。
+     * @param  n (number): 超过多少次不再调用func
+     * @param  func (Function): 限制执行的函数。
+     * @return (Function): 返回新的限定函数。
+     */
+    before: function(n, fn) {
+        var count
+        var theLastResult
+        return function(arg) {
+            count++
+            if (count < n) {
+                theLastResult = fn(arg)
+                return theLastResult
+            } else {
+                return theLastResult
+            }
+        }
+    },
+    /**
+     * _.before的反向函数;此方法创建一个函数，当他被调用n或更多次之后将马上触发func 。
+     * @param  n (number): func 方法应该在调用多少次后才执行。
+     * @param  func (Function): 用来限定的函数。
+     * @return (Function): 返回新的限定函数。
+     */
+    after: function(n, fn) {
+        var count = 0
+        return function(arg) {
+            count++
+            if (count >= n) {
+                return fn(arg)
+            }
+        }
+    },
+    /**
+     * 执行深比较来确定两者的值是否相等。
+     * @param  value (*): 用来比较的值。
+     * @param  other (*): 另一个用来比较的值。
+     * @return (boolean): 如果 两个值完全相同，那么返回 true，否则返回 false。
+     * example
+     * var object = { 'a': 1 };
+     * var other = { 'a': 1 };
+     * isEqual(object, other);
+     * // => true
+     */
+    isEqual: function(obj1, obj2) {
+        debugger
+        if (typeof obj1 !== typeof obj2) {
+            return false
+        }
+        if (obj1 !== obj1 && obj2 !== obj2) {
+            return true
+        }
+        if (obj1 === obj2) {
+            return true
+        }
+        if (typeof obj1 === "object" && typeof obj2 === "object") {
+            for (key in obj1) {
+                if (typeof obj1[key] == "object") {
+                    if (!isEqual(obj1[key], obj2[key])) {
+                        return false
+                    }
+                } else if (obj1[key] === obj2[key]) {
+                    return true
+                }
+            }
+        }
+        return true
+    },
+    /**
+     * 创建一个深比较的方法来比较给定的对象和 source 对象。 如果给定的对象拥有相同的属性值返回 true，否则返回 false。
+     * @param  source (Object): 要匹配属性值的源对象。
+     * @return (Function): 返回新的函数。
+     */
+    matches: function(source) {
+        return function(obj) {
+            for (key in source) {
+                if (!isEqual(source[key], obj[key])) {
+                    return false
+                }
+            }
+            return true
+        }
+    },
+    /**
+     * 创建一个深比较的方法来比较给定对象的 path 的值是否是 srcValue 。 如果是返回 true ，否则返回 false 。
+     * @param  path (Array|string): 给定对象的属性路径名。
+     * srcValue (*): 要匹配的值。
+     * @return (Function): 返回新的函数。
+     */
+    matchesProperty: function(path, value) {
+        return function(obj) {
+            if (isEqual(eval('obj.' + path), value)) {
+                return true
+            } else {
+                return false
+            }
+        }
+    },
+    /**
+     * 创建一个返回给定对象的 path 的值的函数。
+     * @param  path (Array|string): 要得到值的属性路径。
+     * @return path (Array|string): 要得到值的属性路径。
+     */
+    function property(path) {
+        if (Array.isArray(path)) {
+            path.join(".")
+        }
+        return function(obj) {
+            return eval('obj.' + path)
+        }
     },
 }
