@@ -1762,7 +1762,7 @@ TianXiaoBo = {
      * @param  path (Array|string): 要得到值的属性路径。
      * @return path (Array|string): 要得到值的属性路径。
      */
-    function property(path) {
+    property: function(path) {
         if (Array.isArray(path)) {
             path.join(".")
         }
