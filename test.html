@@ -2215,6 +2215,46 @@ _ = {
         }
         return -1
     },
-
+    intersectionBy: function() {
+        var ident = arguments[arguments.length - 1]
+        var result = []
+        var self = this
+        if (this.isString(ident)) {
+            var fn = function(obj) {
+                return obj[ident]
+            }
+        }
+        if (this.isFunction(ident)) {
+            var fn = ident
+        }
+        //return this.intersection(arguments[0].map(fn), arguments[1].map(fn))
+        for (var keys in arguments[0]) {
+            for (var key in arguments[1]) {
+                if (fn(arguments[0][keys]) === fn(arguments[1][key])) {
+                    result.push(arguments[0][keys])
+                }
+            }
+        }
+        return result
+    },
+    intersectionWith: function() {
+        var ident = arguments[arguments.length - 1]
+        var result = []
+        for (var keys in arguments[0]) {
+            for (var key in arguments[1]) {
+                if (ident(arguments[0][keys], arguments[1][key])) {
+                    result.push(arguments[0][keys])
+                }
+            }
+        }
+        return result
+    },
+    pullAllBy: function(arr, value, iter) {
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+    },
 }
 </script>

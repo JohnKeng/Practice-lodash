@@ -2227,4 +2227,64 @@ TianXiaoBo = {
         }
         return -1
     },
+    /**
+     * 根据 depth 递归减少 array 的嵌套层级
+     * @param  array (Array): 需要减少嵌套层级的数组。
+     * @param  [depth=1] (number):最多减少的嵌套层级数。
+     * @return (Array): 返回减少嵌套层级后的新数组。
+     */
+    flattenDepth: function(arr, depth) {
+        //debugger
+        var result = arr
+        for (var i = 0; i < depth; i++) {
+            result = this.flatten(result)
+        }
+        return result
+    },
+    /**
+     * 这个方法类似 _.intersection，区别是它接受一个 iteratee 调用每一个arrays的每个值以产生一个值，通过产生的值进行了比较。结果值是从第一数组中选择。
+     * @params [arrays] (...Array): 待检查的数组。
+     * @params [iteratee=_.identity] (Array|Function|Object|string): iteratee（迭代器）调用每个元素。
+     * @return (Array): 返回一个包含所有传入数组交集元素的新数组。
+     */
+    intersectionBy: function() {
+        var ident = arguments[arguments.length - 1]
+        var result = []
+        var self = this
+        if (this.isString(ident)) {
+            var fn = function(obj) {
+                return obj[ident]
+            }
+        }
+        if (this.isFunction(ident)) {
+            var fn = ident
+        }
+        //return this.intersection(arguments[0].map(fn), arguments[1].map(fn))
+        for (var keys in arguments[0]) {
+            for (var key in arguments[1]) {
+                if (fn(arguments[0][keys]) === fn(arguments[1][key])) {
+                    result.push(arguments[0][keys])
+                }
+            }
+        }
+        return result
+    },
+    /**
+     * 这个方法类似 _.intersection，区别是它接受一个 comparator 调用比较arrays中的元素。结果值是从第一数组中选择。comparator 会传入两个参数：(arrVal, othVal)。
+     * @params [arrays] (...Array): 待检查的数组。
+     * @params [comparator] (Function): comparator（比较器）调用每个元素。
+     * @return (Array): 返回一个包含所有传入数组交集元素的新数组。
+     */
+    intersectionWith: function() {
+        var ident = arguments[arguments.length - 1]
+        var result = []
+        for (var keys in arguments[0]) {
+            for (var key in arguments[1]) {
+                if (ident(arguments[0][keys], arguments[1][key])) {
+                    result.push(arguments[0][keys])
+                }
+            }
+        }
+        return result
+    },
 }
