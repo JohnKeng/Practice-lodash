@@ -2158,4 +2158,73 @@ TianXiaoBo = {
         }
         return object
     },
+    /**
+     * 该方法类似_.find，区别是该方法返回第一个通过 predicate 判断为真值的元素的索引值（index），而不是元素本身。
+     * @param  array (Array): 要搜索的数组。
+     * @param  [fromIndex=0] (number): The index to search from.
+     * @return (number): 返回找到元素的 索引值（index），否则返回 -1。
+     */
+    findIndex: function(arr, ident, index) {
+        index = index || 0
+        var self = this
+        if (this.isObject(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj, ident)
+            }
+        }
+        if (this.isArray(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj[ident[0]], ident[1])
+            }
+        }
+        if (this.isString(ident)) {
+            var fn = function(obj) {
+                return obj[ident]
+            }
+        }
+        if (this.isFunction(ident)) {
+            var fn = ident
+        }
+        for (var i = index; i < arr.length; i++) {
+            if (fn(arr[i])) {
+                return i
+            }
+        }
+        return -1
+    },
+    /**
+     * 这个方式类似 _.findIndex， 区别是它是从右到左的迭代集合array中的元素。
+     * @param  array (Array): 要搜索的数组。
+     * @param  [predicate=_.identity] (Array|Function|Object|string): 这个函数会在每一次迭代调用。
+     * @param  [fromIndex=array.length-1] (number): The index to search from.
+     * @return (number): 返回找到元素的 索引值（index），否则返回 -1。
+     */
+    findLastIndex: function(arr, ident, index) {
+        index = index || arr.length - 1
+        var self = this
+        if (this.isObject(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj, ident)
+            }
+        }
+        if (this.isArray(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj[ident[0]], ident[1])
+            }
+        }
+        if (this.isString(ident)) {
+            var fn = function(obj) {
+                return obj[ident]
+            }
+        }
+        if (this.isFunction(ident)) {
+            var fn = ident
+        }
+        for (var i = index; i >= 0; i--) {
+            if (fn(arr[i])) {
+                return i
+            }
+        }
+        return -1
+    },
 }
