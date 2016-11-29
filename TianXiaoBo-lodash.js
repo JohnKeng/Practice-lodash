@@ -1704,15 +1704,14 @@ TianXiaoBo = {
      * // => true
      */
     isEqual: function(obj1, obj2) {
-        debugger
         if (typeof obj1 !== typeof obj2) {
             return false
         }
         if (obj1 !== obj1 && obj2 !== obj2) {
             return true
         }
-        if (obj1 === obj2) {
-            return true
+        if (typeof obj1 !== "object" && obj1 !== obj2) {
+            return false
         }
         if (typeof obj1 === "object" && typeof obj2 === "object") {
             for (key in obj1) {
@@ -1720,8 +1719,8 @@ TianXiaoBo = {
                     if (!isEqual(obj1[key], obj2[key])) {
                         return false
                     }
-                } else if (obj1[key] === obj2[key]) {
-                    return true
+                } else if (obj1[key] !== obj2[key]) {
+                    return false
                 }
             }
         }
@@ -1769,5 +1768,423 @@ TianXiaoBo = {
         return function(obj) {
             return eval('obj.' + path)
         }
+    },
+    /**
+     * 创建一个切片数组，去除array中从 predicate 返回假值开始到尾部的部分
+     * @param  array (Array): 要查询的数组。
+     * @param  [predicate=_.identity] (Function): 这个函数会在每一次迭代调用。
+     * @return (Array): 返回array剩余切片。
+     */
+    dropRightWhile: function(arr, ident) {
+        var newArray = Array.prototype.slice.call(arr)
+        var self = this
+        if (this.isObject(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj, ident)
+            }
+        }
+        if (this.isArray(ident)) {
+
+            var fn = function(obj) {
+                return self.isEqual(obj[ident[0]], ident[1])
+            }
+        }
+        if (this.isString(ident)) {
+            var fn = function(obj) {
+                return !(ident in obj)
+            }
+        }
+        if (this.isFunction(ident)) {
+            var fn = ident
+        }
+        for (var i = 0; i < arr.length; i++) {
+            if (fn(arr[i])) {
+                break
+            }
+        }
+        newArray.length = i
+        return newArray
+    },
+    /**
+     * 创建一个切片数组，去除array中从起点开始到 predicate 返回假值结束部分。
+     * @param  array (Array): 要查询的数组。
+     * @param  [predicate=_.identity] (Function): 这个函数会在每一次迭代调用。
+     * @return (Array): 返回array剩余切片。
+     */
+    dropWhile: function(arr, ident) {
+        var newArray = Array.prototype.slice.call(arr)
+        var self = this
+        if (this.isObject(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj, ident)
+            }
+        }
+        if (this.isArray(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj[ident[0]], ident[1])
+            }
+        }
+        if (this.isString(ident)) {
+            var fn = function(obj) {
+                return !(ident in obj)
+            }
+        }
+        if (this.isFunction(ident)) {
+            var fn = ident
+        }
+        for (var i = 0; i < arr.length; i++) {
+            if (fn(arr[i])) {
+                newArray.shift()
+            } else {
+                return newArray
+            }
+        }
+    },
+    /**
+     * 检查 value 是否是一个类 arguments 对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果value是一个 arguments 对象 返回 true，否则返回 false。
+     */
+    isArguments: function(arg) {
+        if (arg.callee) {
+            return true
+        } else {
+            return false
+        }
+    },
+    /**
+     * 检查 value 是否是 Array 类对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果value是一个数组返回 true，否则返回 false。
+     */
+    isArray: function(arr) {
+        if (arr instanceof Array) {
+            return true
+        } else {
+            return false
+        }
+    },
+    /**
+     * 检查 value 是否是原始 boolean 类型或者对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个布尔值，那么返回 true，否则返回 false。
+     */
+    isBoolean: function(value) {
+
+        return typeof value === 'boolean'
+    },
+    /**
+     * 检查 value 是否是 Date 对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个日期对象，那么返回 true，否则返回 false。
+     */
+    isDate: function(value) {
+
+        return value instanceof Date
+    },
+    /**
+     * 执行深比较来确定两者的值是否相等。
+     * @param  value (*): 用来比较的值。
+     * @param  other (*): 另一个用来比较的值。
+     * @return (boolean): 如果 两个值完全相同，那么返回 true，否则返回 false。
+     */
+    isEqual: function(obj1, obj2) {
+        if (typeof obj1 !== typeof obj2) {
+            return false
+        }
+        if (obj1 !== obj1 && obj2 !== obj2) {
+            return true
+        }
+        if (obj1 === obj2) {
+            return true
+        }
+        if (typeof obj1 === "object" && typeof obj2 === "object") {
+            for (key in obj1) {
+                if (typeof obj1[key] == "object") {
+                    if (!isEqual(obj1[key], obj2[key])) {
+                        return false
+                    }
+                } else if (obj1[key] === obj2[key]) {
+                    return true
+                }
+            }
+        }
+        return true
+    },
+    /**
+     * 检查 value 是否是原始有限数值。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个有限数值，那么返回 true，否则返回 false。
+     */
+    isFinite: function(value) {
+        if (typeof value == 'number') {
+            if (value === 0) {
+                return true
+            } else if (value + value == value) {
+                return false
+            } else {
+                return true
+            }
+        } else {
+            return false
+        }
+    },
+    /**
+     * 检查 value 是否是 Function 对象。
+     * @param  value (*): 要检查的值
+     * @return (boolean): 如果 value 是一个函数，那么返回 true，否则返回 false。
+     */
+    isFunction: function(value) {
+
+        return typeof value === 'function'
+    },
+    /**
+     * 检查 value 是否是 NaN。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个 NaN，那么返回 true，否则返回 false。
+     */
+    isNaN: function(value) {
+        if (value !== value) {
+            return true
+        } else {
+            if (typeof value == 'object') {
+                if (value.valueOf() !== value.valueOf()) {
+                    return true
+                }
+            } else {
+                return false
+            }
+        }
+    },
+    /**
+     * 检查 valuealue 是否是 null。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为null，那么返回 true，否则返回 false。
+     */
+    isNull: function(value) {
+        if (value == undefined && value !== undefined) {
+            return true
+        } else {
+            return false
+        }
+    },
+    /**
+     * 检查 value 是否是原始Number数值型 或者 对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个对象，那么返回 true，否则返回 false。
+     */
+    isNumber: function(value) {
+        if (typeof value == 'number' || typeof value.valueOf() == 'number') {
+            return true
+        } else {
+            return false
+        }
+    },
+    /**
+     * 检查 value 是否为 Object 的 language type
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个对象，那么返回 true，否则返回 false。
+     */
+    isObject: function(value) {
+        if (this.isNull(value)) {
+            return false
+        } else if (this.isFunction(value)) {
+            return true
+        } else if (typeof value == 'object') {
+            return true
+        } else {
+            return false
+        }
+    },
+    /**
+     * 检查 value 是否为RegExp对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个正则表达式，那么返回 true，否则返回 false。
+     */
+    isRegExp: function(value) {
+
+        return value instanceof RegExp
+    },
+    /**
+     * 检查 value 是否是原始字符串String或者对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个字符串，那么返回 true，否则返回 false。
+     */
+    isString: function(value) {
+
+        return typeof value == 'string'
+    },
+    /**
+     * 检查 value 是否是 undefined.
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是 undefined ，那么返回 true，否则返回 false。
+     */
+    isUndefined: function(value) {
+
+        return typeof value == 'undefined'
+    },
+    /**
+     * 是否是类数组对象或字符串
+     * @param  {[type]} value [description]
+     * @return {[type]}       [description]
+     */
+    iscollection: function(value) {
+
+        return this.isObject() || this.isString()
+    },
+    /**
+     * 返回collection（集合）的长度，如果集合是类数组或字符串，返回其 length ；如果集合是对象，返回其可枚举属性的个数。
+     * @param  collection (Array|Object): 要检查的集合
+     * @return (number): 返回集合的长度。
+     */
+    size: function(collection) {
+        var count = 0
+        if (this.iscollection(collection)) {
+            for (key in collection) {
+                count++
+            }
+        }
+        return count
+    },
+    /**
+     * 检查 value 是否为一个空对象，集合，映射或者set。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为空，那么返回 true，否则返回 false。
+     */
+    isEmpty: function(value) {
+        if (typeof value == 'object' || typeof value == 'string') {
+            if (this.size(value)) {
+                return false
+            }
+        }
+        return true
+    },
+    /**
+     * 这个方法返回首个提供的参数。
+     * @param  value (*): 任何值。
+     * @return (*): 返回 value.
+     */
+    identity: function(value) {
+
+        return value
+    },
+    /**
+     * 调用 iteratee 遍历 collection(集合) 中的每个元素， iteratee 调用3个参数： (value, index|key, collection)
+     * @param  collection (Array|Object): 一个用来迭代的集合。
+     * @param  [iteratee=_.identity] (Function): 每次迭代调用的函数。
+     * @return (*): 返回集合 collection。
+     */
+    forEach: function(collection, iteratee) {
+        if (iteratee == undefined) {
+            this.identity(collection)
+        }
+        if (this.iscollection(collection)) {
+            for (key in collection) {
+                var tmp = iteratee(collection[key], key, collection)
+                if (tmp === false) {
+                    break
+                }
+            }
+        } else {
+            return collection
+        }
+    },
+    /**
+     * 使用 iteratee 遍历对象的自身和继承的可枚举属性。 iteratee 会传入3个参数：(value, key, object)。 如果返回 false，iteratee 会提前退出遍历。
+     * @param  object (Object): 要遍历的对象。
+     * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
+     * @return (Object): 返回 object。
+     */
+    forIn: function(object, iteratee) {
+        if (typeof object == 'object') {
+            this.forEach(object, iteratee)
+        } else {
+            return object
+        }
+    },
+    /**
+     * 创建一个调用func的函数，通过this绑定和创建函数的参数调用func，调用次数不超过 n 次。 之后再调用这个函数，将返回一次最后调用func的结果。
+     * @param  n (number): 超过多少次不再调用func（愚人码头注：限制调用func 的次数）。
+     * @param  func (Function): 限制执行的函数。
+     * @return (Function): 返回新的限定函数。
+     */
+    before: function(n, func) {
+        var count
+        var lastResult
+        return function(arg) {
+            count++
+            if (count <= n) {
+                lastResult = func(arg)
+                return lastResult
+            } else {
+                return lastResult
+            }
+        }
+    },
+    /**
+     * before的反向函数;此方法创建一个函数，当他被调用n或更多次之后将马上触发func 。
+     * @param  n (number): func 方法应该在调用多少次后才执行。
+     * @param  func (Function): 用来限定的函数
+     * @return (Function): 返回新的限定函数。
+     */
+    after: function(n, func) {
+        var co
+        unt
+        return function(arg) {
+            count++
+            if (count >= n) {
+                return func(arg)
+            }
+        }
+    },
+    /**
+     * 创建一个调用func的函数，thisArg绑定func函数中的 this ，并且func函数会接收partials附加参数。
+     * _.bind.placeholder值，默认是以 _ 作为附加部分参数的占位符。
+     * @param  func (Function): 绑定的函数。
+     * @param  thisArg (*): func 绑定的this对象。
+     * @param  [partials] (...*): 附加的部分参数。
+     * @return (Function): 返回新的绑定函数。
+     */
+    bind: function(func, thisArg) {
+        var self = this
+        var temp = Array.prototype.slice.call(arguments, 2)
+        return function(...args) {
+            for (var i = 0; i < temp.length; i++) {
+                if (self.isEqual(temp[i], _)) {
+                    temp[i] = args.shift()
+                }
+            }
+            return func.apply(thisArg, temp.concat(args))
+        }
+    },
+    /**
+     * 分配来源对象的可枚举属性到目标对象上。 来源对象的应用规则是从左到右，随后的下一个对象的属性会覆盖上一个对象的属性。
+     * @param  object (Object): 目标对象。
+     * @param  [sources] (...Object): 来源对象。]
+     * @return (Object): 返回 object.
+     */
+    assign: function(object, source) {
+        for (var i = 0; i < arguments.length; i++) {
+            for (key in arguments[i]) {
+                if (arguments[i].hasOwnProperty(key)) {
+                    object[key] = arguments[i][key]
+                }
+            }
+        }
+        return object
+    },
+    /**
+     * 这个方法类似 _.assign， 除了它会遍历并继承来源对象的属性。
+     * @param  object (Object): 目标对象。
+     * @param  [sources] (...Object): 来源对象。
+     * @return (Object): 返回 object。n]
+     */
+    assignIn: function(object, source) {
+        for (var i = 0; i < arguments.length; i++) {
+            for (key in arguments[i]) {
+                object[key] = arguments[i][key]
+            }
+        }
+        return object
     },
 }
