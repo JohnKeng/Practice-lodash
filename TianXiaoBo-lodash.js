@@ -1883,35 +1883,6 @@ TianXiaoBo = {
         return value instanceof Date
     },
     /**
-     * 执行深比较来确定两者的值是否相等。
-     * @param  value (*): 用来比较的值。
-     * @param  other (*): 另一个用来比较的值。
-     * @return (boolean): 如果 两个值完全相同，那么返回 true，否则返回 false。
-     */
-    isEqual: function(obj1, obj2) {
-        if (typeof obj1 !== typeof obj2) {
-            return false
-        }
-        if (obj1 !== obj1 && obj2 !== obj2) {
-            return true
-        }
-        if (obj1 === obj2) {
-            return true
-        }
-        if (typeof obj1 === "object" && typeof obj2 === "object") {
-            for (key in obj1) {
-                if (typeof obj1[key] == "object") {
-                    if (!isEqual(obj1[key], obj2[key])) {
-                        return false
-                    }
-                } else if (obj1[key] === obj2[key]) {
-                    return true
-                }
-            }
-        }
-        return true
-    },
-    /**
      * 检查 value 是否是原始有限数值。
      * @param  value (*): 要检查的值。
      * @return (boolean): 如果 value 是一个有限数值，那么返回 true，否则返回 false。
