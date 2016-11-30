@@ -2846,6 +2846,21 @@ TianXiaoBo = {
         }
         return result
     },
+    arrayToLinkedList: function(array) {
+        var result = {
+            next: null
+        }
+        array.map(function(thevalue) {
+            return {
+                value: thevalue,
+                next: null
+            }
+        }).reduce(function(list, curr) {
+            list.next = curr
+            return curr
+        }, result)
+        return result
+    },
 
 
 }

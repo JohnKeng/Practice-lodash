@@ -2522,6 +2522,21 @@ _ = {
         }
         return result
     },
+    arrayToLinkedList: function(arr) {
+        var result = {
+            next: null
+        }
+        arr.map(function(thevalue) {
+            return {
+                value: thevalue,
+                next: null
+            }
+        }).reduce(function(list, curr) {
+            list.next = curr
+            return curr
+        }, result)
+        return result
+    }
 
 }
 </script>
