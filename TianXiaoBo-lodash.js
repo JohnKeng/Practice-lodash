@@ -2287,4 +2287,183 @@ TianXiaoBo = {
         }
         return result
     },
+    /**
+     * 创建一个调用func的函数。调用func时最多接受 n个参数，忽略多出的参数。
+     * @param  func (Function): 需要被限制参数个数的函数。
+     * @param  [n=func.length] (number): 限制的参数数量。
+     * @return (Function): 返回新的覆盖函数。
+     */
+    ary: function(func, n) {
+        return function(args) {
+            if (arguments.length > n) {
+                arguments.length = n
+            }
+            return func(args)
+        }
+    },
+    /**
+     * 这个方法类似于_.pullAll ，区别是这个方法接受一个 iteratee（迭代函数） 调用 array 和 values的每个值以产生一个值，通过产生的值进行了比较。
+     * @param  array (Array): 要修改的数组。
+     * @param  values (Array): 要移除值的数组
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): iteratee（迭代器）调用每个元素。
+     * @return (Array): 返回 array.
+     */
+    pullAllBy: function(arr, value, iter) {
+        debugger
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        for (var i = 0; i < value.length; i++) {
+            for (var j = 0; j < arr.length; j++) {
+                if (fn(value[i]) == fn(arr[j])) {
+                    arr.splice(j, 1)
+                    j--
+                }
+            }
+        }
+        return arr
+    },
+    /**
+     * 这个方法类似于 _.pullAll，区别是这个方法接受 comparator 调用array中的元素和values比较。
+     * @param  array (Array): 要修改的数组。
+     * @param  values (Array): 要移除值的数组。
+     * @param  [comparator] (Function): comparator（比较器）调用每个元素。
+     * @return (Array): 返回 array。
+     */
+    pullAllWith: function(arr, oth, fn) {
+        for (var i = 0; i < oth.length; i++) {
+            for (var j = 0; j < arr.length; j++) {
+                if (fn(arr[j], oth[i])) {
+                    arr.splice(j, 1)
+                    j--
+                }
+            }
+        }
+    },
+    /**
+     * 这个方法类似 _.sortedIndex ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）元素，返回结果和value 值比较来计算排序。
+     * @param  array (Array): 要检查的排序数组。
+     * @param  value (*): 要评估的值。
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): 迭代函数，调用每个元素。
+     * @return (number): 返回 value值 应该在数组array中插入的索引位置 index。
+     */
+    sortedIndexBy: function(arr, value, iter) {
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        for (var i = 0; i < arr.length; i++) {
+            if (fn(value) <= fn(arr[i])) {
+                break
+            }
+        }
+        return i
+    },
+    /**
+     * 这个方法类似 _.indexOf，除了它是在已经排序的数组array上执行二进制检索。
+     * @param  array (Array): 要搜索的数组。
+     * @param  value (*): 搜索的值。
+     * @return (number): 返回匹配值的索引位置，否则返回 -1。
+     */
+    sortedIndexOf: function(arr, value) {
+        for (var i = 0; i < arr.length; i++) {
+            if (value == arr[i]) {
+                return i
+            }
+        }
+        return -1
+    },
+    /**
+     * 此方法类似于_.sortedIndex，除了 它返回 value值 在 array 中尽可能大的索引位置（index）。
+     * @param  array (Array): 要检查的排序数组。
+     * @param  value (*): 要评估的值。
+     * @return (number): 返回 value值 应该在数组array中插入的索引位置 index。
+     */
+    sortedLastIndex: function(arr, value) {
+        for (var i = arr.length - 1; i >= 0; i--) {
+            if (value == arr[i]) {
+                return i + 1
+            }
+        }
+        return -1
+    },
+    /**
+     * 这个方法类似 _.sortedLastIndex ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）元素，返回结果和value 值比较来计算排序。
+     * @param  array (Array): 要检查的排序数组。
+     * @param  value (*): 要评估的值。
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): 迭代函数，调用每个元素。
+     * @return (number): 返回 value值 应该在数组array中插入的索引位置 index。
+     */
+    sortedLastIndexBy: function(arr, value, iter) {
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        for (var i = 0; i < arr.length; i++) {
+            if (fn(value) < fn(arr[i])) {
+                break
+            }
+        }
+        return i
+    },
+    /**
+     * 这个方法类似 _.lastIndexOf，除了它是在已经排序的数组array上执行二进制检索。
+     * @param  array (Array): 要搜索的数组。
+     * @param  value (*): 搜索的值。
+     * @return (number): 返回匹配值的索引位置，否则返回 -1。
+     */
+    sortedLastIndexOf: function(arr, value) {
+        for (var i = arr.length - 1; i >= 0; i--) {
+            if (value == arr[i]) {
+                return i
+            }
+        }
+        return -1
+    },
+    /**
+     * 这个方法类似 _.uniq，除了它会优化排序数组。
+     * @param  array (Array): 要检查的数组。
+     * @return (Array): 返回一个新的不重复的数组。
+     */
+    sortedUniq: function(arr) {
+        arr.sort(function(a, b) {
+            return a - b
+        })
+        for (var i = 0; i < arr.length - 1; i++) {
+            if (arr[i] == arr[i + 1]) {
+                arr.splice(i, 1)
+                i--
+            }
+        }
+        return arr
+    },
+    /**
+     * 这个方法类似 _.uniqBy，除了它会优化排序数组。
+     * @param  array (Array): 要检查的数组。
+     * @param  [iteratee] (Function): 迭代函数，调用每个元素。
+     * @return (Array): 返回一个新的不重复的数组。
+     */
+    sortedUniqBy: function(arr, fn) {
+        arr.sort(function(a, b) {
+            return a - b
+        })
+        for (var i = 0; i < arr.length - 1; i++) {
+            if (fn(arr[i]) == fn(arr[i + 1])) {
+                arr.splice(i + 1, 1)
+                i--
+            }
+        }
+        return arr
+    },
+
 }

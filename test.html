@@ -2249,12 +2249,120 @@ _ = {
         }
         return result
     },
+    ary: function(func, n) {
+        return function(args) {
+            if (arguments.length > n) {
+                arguments.length = n
+            }
+            return func(args)
+        }
+    },
     pullAllBy: function(arr, value, iter) {
+        debugger
         if (this.isString(iter)) {
             var fn = function(obj) {
                 return obj[iter]
             }
         }
+        for (var i = 0; i < value.length; i++) {
+            for (var j = 0; j < arr.length; j++) {
+                if (fn(value[i]) == fn(arr[j])) {
+                    arr.splice(j, 1)
+                    j--
+                }
+            }
+        }
+        return arr
+    },
+    pullAllWith: function(arr, oth, fn) {
+        for (var i = 0; i < oth.length; i++) {
+            for (var j = 0; j < arr.length; j++) {
+                if (fn(arr[j], oth[i])) {
+                    arr.splice(j, 1)
+                    j--
+                }
+            }
+        }
+    },
+    sortedIndexBy: function(arr, value, iter) {
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        for (var i = 0; i < arr.length; i++) {
+            if (fn(value) <= fn(arr[i])) {
+                break
+            }
+        }
+        return i
+    },
+    sortedIndexOf: function(arr, value) {
+        for (var i = 0; i < arr.length; i++) {
+            if (value == arr[i]) {
+                return i
+            }
+        }
+        return -1
+    },
+    sortedLastIndex: function(arr, value) {
+        for (var i = arr.length - 1; i >= 0; i--) {
+            if (value == arr[i]) {
+                return i + 1
+            }
+        }
+        return -1
+    },
+    sortedLastIndexBy: function(arr, value, iter) {
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        for (var i = 0; i < arr.length; i++) {
+            if (fn(value) < fn(arr[i])) {
+                break
+            }
+        }
+        return i
+    },
+    sortedLastIndexOf: function(arr, value) {
+        for (var i = arr.length - 1; i >= 0; i--) {
+            if (value == arr[i]) {
+                return i
+            }
+        }
+        return -1
+    },
+    sortedUniq: function(arr) {
+        arr.sort(function(a, b) {
+            return a - b
+        })
+        for (var i = 0; i < arr.length - 1; i++) {
+            if (arr[i] == arr[i + 1]) {
+                arr.splice(i, 1)
+                i--
+            }
+        }
+        return arr
+    },
+    sortedUniqBy: function(arr, fn) {
+        arr.sort(function(a, b) {
+            return a - b
+        })
+        for (var i = 0; i < arr.length - 1; i++) {
+            if (fn(arr[i]) == fn(arr[i + 1])) {
+                arr.splice(i + 1, 1)
+                i--
+            }
+        }
+        return arr
     },
 }
 </script>
