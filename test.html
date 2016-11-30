@@ -2283,6 +2283,7 @@ _ = {
                 }
             }
         }
+        return arr
     },
     sortedIndexBy: function(arr, value, iter) {
         if (this.isFunction(iter)) {
@@ -2363,6 +2364,64 @@ _ = {
             }
         }
         return arr
+    },
+    takeRightWhile: function(arr, ident) {
+        var self = this
+        if (this.isObject(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj, ident)
+            }
+        }
+        if (this.isArray(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj[ident[0]], ident[1])
+            }
+        }
+        if (this.isString(ident)) {
+            var fn = function(obj) {
+                return !(ident in obj)
+            }
+        }
+        if (this.isFunction(ident)) {
+            var fn = ident
+        }
+        var result = []
+        for (var i = arr.length - 1; i >= 0; i--) {
+            if (fn(arr[i])) {
+                result.unshift(arr[i])
+            } else {
+                return result
+            }
+        }
+    },
+    takeWhile: function(arr, ident) {
+        var self = this
+        if (this.isObject(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj, ident)
+            }
+        }
+        if (this.isArray(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj[ident[0]], ident[1])
+            }
+        }
+        if (this.isString(ident)) {
+            var fn = function(obj) {
+                return !(ident in obj)
+            }
+        }
+        if (this.isFunction(ident)) {
+            var fn = ident
+        }
+        var result = []
+        for (var i = 0; i < arr.length; i++) {
+            if (fn(arr[i])) {
+                result.push(arr[i])
+            } else {
+                return result
+            }
+        }
     },
 }
 </script>

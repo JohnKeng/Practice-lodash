@@ -2309,7 +2309,6 @@ TianXiaoBo = {
      * @return (Array): 返回 array.
      */
     pullAllBy: function(arr, value, iter) {
-        debugger
         if (this.isString(iter)) {
             var fn = function(obj) {
                 return obj[iter]
@@ -2341,6 +2340,7 @@ TianXiaoBo = {
                 }
             }
         }
+        return arr
     },
     /**
      * 这个方法类似 _.sortedIndex ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）元素，返回结果和value 值比较来计算排序。
@@ -2464,6 +2464,76 @@ TianXiaoBo = {
             }
         }
         return arr
+    },
+    /**
+     * 从array数组的最后一个元素开始提取元素，直到 predicate 返回假值。predicate 会传入三个参数： (value, index, array)。
+     * @param  array (Array): 要检索的数组。
+     * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+     * @return (Array): 返回 array 数组的切片。
+     */
+    takeRightWhile: function(arr, ident) {
+        var self = this
+        if (this.isObject(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj, ident)
+            }
+        }
+        if (this.isArray(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj[ident[0]], ident[1])
+            }
+        }
+        if (this.isString(ident)) {
+            var fn = function(obj) {
+                return !(ident in obj)
+            }
+        }
+        if (this.isFunction(ident)) {
+            var fn = ident
+        }
+        var result = []
+        for (var i = arr.length - 1; i >= 0; i--) {
+            if (fn(arr[i])) {
+                result.unshift(arr[i])
+            } else {
+                return result
+            }
+        }
+    },
+    /**
+     * 从array数组的起始元素开始提取元素，，直到 predicate 返回假值
+     * @param  array (Array): 需要处理的数组
+     * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+     * @return (Array): 返回 array 数组的切片。
+     */
+    takeWhile: function(arr, ident) {
+        var self = this
+        if (this.isObject(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj, ident)
+            }
+        }
+        if (this.isArray(ident)) {
+            var fn = function(obj) {
+                return self.isEqual(obj[ident[0]], ident[1])
+            }
+        }
+        if (this.isString(ident)) {
+            var fn = function(obj) {
+                return !(ident in obj)
+            }
+        }
+        if (this.isFunction(ident)) {
+            var fn = ident
+        }
+        var result = []
+        for (var i = 0; i < arr.length; i++) {
+            if (fn(arr[i])) {
+                result.push(arr[i])
+            } else {
+                return result
+            }
+        }
     },
 
 }
