@@ -2632,10 +2632,11 @@ TianXiaoBo = {
         return result
     },
     uniqWith: function(arr, comp) {
+        debugger
         var result = Array.prototype.slice.call(arr)
         for (var i = 0; i < result.length; i++) {
             for (var j = i + 1; j < result.length; j++) {
-                if (comp(arr[i]), arr[j]) {
+                if (comp(arr[i], arr[j])) {
                     result.splice(j, 1)
                     j--
                 }
@@ -2817,6 +2818,33 @@ TianXiaoBo = {
             index++
             return result
         }
+    },
+    /**
+     * 两个数相加。
+     * @param augend (number): 相加的第一个数。
+     * @param addend (number): 相加的第二个数。
+     * @result (number): 返回总和。
+     */
+    add: function(num1, num2) {
+
+        return num1 + num2
+    },
+    /**
+     * 此方法类似于_.unzip，除了它接受一个iteratee指定重组值应该如何被组合。iteratee 调用时会传入每个分组的值： (...group)。
+     * @param  array (Array): 要处理的分组元素数组。
+     * @param  [iteratee=_.identity] (Function): 这个函数用来组合重组的值。
+     * @return (Array): 返回重组元素的新数组。
+     */
+    unzipWith: function(arr, iter) {
+        debugger
+        var result = []
+        var temp
+        for (var j = 0; j < arr[0].length; j++) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                result.push(iter(arr[i][j], arr[i + 1][j]))
+            }
+        }
+        return result
     },
 
 

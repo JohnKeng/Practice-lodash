@@ -2496,13 +2496,28 @@ _ = {
         return result
     },
     uniqWith: function(arr, comp) {
+        debugger
         var result = Array.prototype.slice.call(arr)
         for (var i = 0; i < result.length; i++) {
             for (var j = i + 1; j < result.length; j++) {
-                if (comp(arr[i]), arr[j]) {
+                if (comp(arr[i], arr[j])) {
                     result.splice(j, 1)
                     j--
                 }
+            }
+        }
+        return result
+    },
+    add: function(num1, num2) {
+        return num1 + num2
+    },
+    unzipWith: function(arr, iter) {
+        debugger
+        var result = []
+        var temp
+        for (var j = 0; j < arr[0].length; j++) {
+            for (var i = 0; i < arr.length - 1; i++) {
+                result.push(iter(arr[i][j], arr[i + 1][j]))
             }
         }
         return result
