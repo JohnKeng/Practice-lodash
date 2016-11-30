@@ -236,7 +236,7 @@ _ = {
      * // => [1, 2]
      **/
     initial: function(arr) {
-        var result = arr
+        var result = Array.prototype.slice.call(arr)
         result.splice(-1, 1)
         return result
     },
@@ -2394,7 +2394,7 @@ _ = {
             }
         }
     },
-    takeWhile: function(arr, ident) {
+    takeWhile: function(arr, value, ident) {
         var self = this
         if (this.isObject(ident)) {
             var fn = function(obj) {
@@ -2423,5 +2423,90 @@ _ = {
             }
         }
     },
+    unionBy: function(arr, value, iter) {
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            fn = iter
+        }
+        var result = Array.prototype.slice.call(arr)
+        var onOff = true
+        for (var i = 0; i < value.length; i++) {
+            onOff = true
+            for (var j = 0; j < arr.length; j++) {
+                if (fn(value[i]) == fn(arr[j])) {
+                    onOff = false
+                }
+            }
+            if (onOff) {
+                result.push(value[i])
+            }
+        }
+        return result
+    },
+    forOwn: function(obj, iter) {
+        for (keys in obj) {
+            if (obj.hasOwnProperty(keys)) {
+                if (!iter(obj[keys], keys, obj)) {
+                    return
+                }
+            }
+        }
+    },
+    unionWith: function() {
+        var temp = Array.prototype.slice.call(arguments)
+        var onOff
+        for (var i = 1; i < temp.length - 1; i++) {
+            for (var j = 0; j < temp[i].length; j++) {
+                onOff = true
+                for (var k = 0; k < temp[0].length; k++) {
+                    if (temp[temp.length - 1](temp[0][k], temp[i][j])) {
+                        onOff = false
+                        continue
+                    }
+                }
+                if (onOff) {
+                    temp[0].push(temp[i][j])
+                }
+            }
+        }
+        return temp[0]
+    },
+    uniqBy: function(arr, iter) {
+        var result = Array.prototype.slice.call(arr)
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var i = 0; i < result.length; i++) {
+            for (var j = i + 1; j < result.length; j++) {
+                if (fn(result[i]) == fn(result[j])) {
+                    result.splice(j, 1)
+                    j--
+                }
+            }
+        }
+        return result
+    },
+    uniqWith: function(arr, comp) {
+        var result = Array.prototype.slice.call(arr)
+        for (var i = 0; i < result.length; i++) {
+            for (var j = i + 1; j < result.length; j++) {
+                if (comp(arr[i]), arr[j]) {
+                    result.splice(j, 1)
+                    j--
+                }
+            }
+        }
+        return result
+    },
+
 }
 </script>

@@ -235,7 +235,7 @@ TianXiaoBo = {
      * // => [1, 2]
      **/
     initial: function(arr) {
-        var result = arr
+        var result = Array.prototype.slice.call(arr)
         result.splice(-1, 1)
         return result
     },
@@ -2535,5 +2535,289 @@ TianXiaoBo = {
             }
         }
     },
+    /**
+     * 使用 iteratee 遍历自身的可枚举属性。 iteratee 会传入3个参数：(value, key, object)。 如果返回 false，iteratee 会提前退出遍历。
+     * @param  object (Object): 要遍历的对象。
+     * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
+     * @return (Object): 返回 object。
+     */
+    forOwn: function(obj, iter) {
+        for (keys in obj) {
+            if (obj.hasOwnProperty(keys)) {
+                if (!iter(obj[keys], keys, obj)) {
+                    return obj
+                }
+            }
+        }
+    },
+    /**
+     * 这个方法类似 _.union ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）的每个元素以产生唯一性计算的标准。iteratee 会传入一个参数：(value)。
+     * @param  [arrays] (...Array): 要检查的数组。
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): 迭代函数，调用每个元素。
+     * @return (Array): 返回一个新的联合数组。
+     */
+    unionBy: function(arr, value, iter) {
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            fn = iter
+        }
+        var result = Array.prototype.slice.call(arr)
+        var onOff = true
+        for (var i = 0; i < value.length; i++) {
+            onOff = true
+            for (var j = 0; j < arr.length; j++) {
+                if (fn(value[i]) == fn(arr[j])) {
+                    onOff = false
+                }
+            }
+            if (onOff) {
+                result.push(value[i])
+            }
+        }
+        return result
+    },
+    /**
+     * 这个方法类似 _.union， 除了它接受一个 comparator 调用比较arrays数组的每一个元素
+     * @params [arrays] (...Array): 要检查的数组
+     * @params [comparator] (Function): 比较函数，调用每个元素。
+     * @return (Array): 返回一个新的联合数组。
+     */
+    unionWith: function() {
+        var temp = Array.prototype.slice.call(arguments)
+        var onOff
+        for (var i = 1; i < temp.length - 1; i++) {
+            for (var j = 0; j < temp[i].length; j++) {
+                onOff = true
+                for (var k = 0; k < temp[0].length; k++) {
+                    if (temp[temp.length - 1](temp[0][k], temp[i][j])) {
+                        onOff = false
+                        continue
+                    }
+                }
+                if (onOff) {
+                    temp[0].push(temp[i][j])
+                }
+            }
+        }
+        return temp[0]
+    },
+    /**
+     * 这个方法类似 _.uniq ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）的每个元素以产生唯一性计算的标准。
+     * @param  array (Array): 要检查的数组。
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): 迭代函数，调用每个元素。
+     * @return (Array): 返回新的去重后的数组。
+     */
+    uniqBy: function(arr, iter) {
+        var result = Array.prototype.slice.call(arr)
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var i = 0; i < result.length; i++) {
+            for (var j = i + 1; j < result.length; j++) {
+                if (fn(result[i]) == fn(result[j])) {
+                    result.splice(j, 1)
+                    j--
+                }
+            }
+        }
+        return result
+    },
+    uniqWith: function(arr, comp) {
+        var result = Array.prototype.slice.call(arr)
+        for (var i = 0; i < result.length; i++) {
+            for (var j = i + 1; j < result.length; j++) {
+                if (comp(arr[i]), arr[j]) {
+                    result.splice(j, 1)
+                    j--
+                }
+            }
+        }
+        return result
+    },
+    /**
+     * 传入 JSON 字符串，并初始化指针，解析 JSON 对象
+     * @param  {[string]} jsonString [传入的 JSON 字符串]
+     * @return {[object]}            [解析后的 JOSN 对象]
+     */
+    parseJson: function(jsonString) {
+        var theJson = '',
+            index = 0,
+            onOff = false
+        debugger
+        /**
+         * 处理空格
+         */
+        for (var i = 0; i < jsonString.length; i++) {
+            if (jsonString[i] == '"') {
+                onOff = onOff ? false : true
+            }
+            if (!onOff && (jsonString[i] == ' ' || jsonString[i] == '\n' || jsonString[i] == '\r' || jsonString[i] == 't')) {
+                continue
+            }
+            theJson = theJson + jsonString[i]
+        }
+        return theJson
+        return parse()
+
+        /**
+         * [指针指向合适的位置时进行的解析函数，根据字符串不同的表现返回不同的值]
+         * @param  {[string]} jsonString [当前需要解析的字符串（可能是递归后的值）]
+         * @param  {[number]} index)     {                   var indexChar [指针]
+         * @return {[*]}            [解析后的值]
+         */
+        function parse() {
+            var indexChar = theJson[index]
+            if (indexChar == '{') {
+                return parseObject()
+            }
+
+            if (indexChar == '[') {
+                return parseArray()
+            }
+
+            if (indexChar == 't') {
+                return parseTrue()
+            }
+
+            if (indexChar == 'f') {
+                return parseFalse()
+            }
+
+            if (indexChar == 'n') {
+                return parseNull()
+            }
+
+            if (indexChar == '"') {
+                return parseString()
+            }
+
+            if (isDigit(indexChar)) {
+                return parseNumber()
+            }
+        }
+        /**
+         * [parseNumber 解析值为数字的 value]
+         * @return {[type]} [数字]
+         */
+        function parseNumber() {
+            for (var i = index + 1;; i++) {
+                if (!isDigit(theJson[i])) {
+                    break
+                }
+            }
+            var num = theJson.slice(index, i)
+            index = i
+            return parseInt(num)
+        }
+        /**
+         * [判断一个字符能否转换为数字]
+         * @param  {[string]}  char [传入的单个字符]
+         * @return {Boolean}      [如果能转换为数字，返回true]
+         */
+        function isDigit(char) {
+            if (!char) {
+                return false
+            }
+            var the0 = '0'.charCodeAt(0)
+            var the9 = '9'.charCodeAt(0)
+            var theChar = char.charCodeAt(0)
+            if (the0 <= theChar && theChar <= the9) {
+                return true
+            } else {
+                return false
+            }
+        }
+        /**
+         * [parseString 解析值为字符串的value值]
+         * @return {[string]} [返回作为值的字符串]
+         */
+        function parseString() {
+            var theEnd = theJson.indexOf('"', index + 1)
+            var theString = theJson.slice(index + 1, theEnd)
+            index = theEnd + 1
+            return theString
+        }
+        /**
+         * [parseNull 解析 值为null的value值]
+         * @return {[type]} [返回null]
+         */
+        function parseNull() {
+            index += 4
+            return null
+        }
+        /**
+         * [parseFalse 解析值为 false 的 value 值]
+         * @return {[boolean]} [返回false]
+         */
+        function parseFalse() {
+            index += 5
+            return false
+        }
+        /**
+         * * [parseFalse 解析值为 true 的 value 值]
+         * @return {[boolean]} [返回true]
+         */
+        function parseTrue() {
+            index += 4
+            return true
+        }
+        /**
+         * [parseArray 递归解析数组]
+         * @return {[array]} [返回一个数组]
+         */
+        function parseArray() {
+            var result = [],
+                product
+            index++
+            for (;;) {
+                product = parse()
+                result.push(product)
+                if (theJson[index] === ',') {
+                    index++
+                    continue
+                }
+                if (theJson[index] === ']') {
+                    break
+                }
+            }
+            index++
+            return result
+        }
+        /**
+         * [parseObject 递归解析对象]
+         * @return {[object]} [返回对象]
+         */
+        function parseObject() {
+            var result = {},
+                key,
+                value
+            index++
+            for (;;) {
+                key = parseString()
+                index++
+                value = parse()
+                result[key] = value
+                if (theJson[index] === "}") {
+                    break
+                }
+                if (theJson[index] === ",") {
+                    index++
+                    continue
+                }
+            }
+            index++
+            return result
+        }
+    },
+
 
 }
