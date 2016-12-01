@@ -2665,7 +2665,6 @@ TianXiaoBo = {
             }
             theJson = theJson + jsonString[i]
         }
-        return theJson
         return parse()
 
         /**
@@ -2818,6 +2817,7 @@ TianXiaoBo = {
             return result
         }
     },
+
     /**
      * 两个数相加。
      * @param augend (number): 相加的第一个数。
@@ -2978,6 +2978,55 @@ TianXiaoBo = {
                 return obj
             }
         }
+    },
+    /**
+     * 这个方法类似于_.zip，不同之处在于它接受一个 iteratee（迭代函数），来 指定分组的值应该如何被组合。 该iteratee调用每个组的元素： (...group).
+     * @param [arrays] (...Array): 要处理的数组。
+     * @param [iteratee=_.identity] (Function): 函数用来组合分组的值。
+     * @return (Array): 返回分组元素的新数组。
+     */
+    zipWith: function() {
+        var result = [],
+            theArr = Array.prototype.slice.call(arguments, 0, arguments.length - 1),
+            theIter = arguments[arguments.length - 1],
+            temp
+        for (var j = 0; j < theArr[0].length; j++) {
+            temp = []
+            for (var i = 0; i < theArr.length; i++) {
+                temp.push(theArr[i][j])
+            }
+            result.push(theIter(...temp))
+        }
+        return result
+    },
+    /**
+     * 创建一个组成对象，key（键）是经过 iteratee（迭代函数） 执行处理collection中每个元素后返回的结果，每个key（键）对应的值是 iteratee（迭代函数）返回该key（键）的次数（愚人码头注：迭代次数）。
+     * @param  {[type]} colle [description]
+     * @param  {[type]} iter  [description]
+     * @return {[type]}       [description]
+     */
+    countBy: function(colle, iter) {
+        var count,
+            result = {},
+            keys
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var key in colle) {
+            keys = fn(colle[key])
+            if (keys in result) {
+                count++
+            } else {
+                count = 1
+            }
+            result[keys] = count
+        }
+        return result
     },
 
 
