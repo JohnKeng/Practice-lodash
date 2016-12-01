@@ -16,7 +16,7 @@ function parseJson(jsonString) {
         if (jsonString[i] == '"') {
             onOff = onOff ? false : true
         }
-        if (!onOff && (jsonString[i] == ' ' || jsonString[i] == '\n' || jsonString[i] == '\r' || jsonString[i] == 't')) {
+        if (!onOff && (jsonString[i] == ' ' || jsonString[i] == '\n' || jsonString[i] == '\r' || jsonString[i] == '\t')) {
             continue
         }
         theJson = theJson + jsonString[i]

@@ -2661,7 +2661,7 @@ TianXiaoBo = {
             if (jsonString[i] == '"') {
                 onOff = onOff ? false : true
             }
-            if (!onOff && (jsonString[i] == ' ' || jsonString[i] == '\n' || jsonString[i] == '\r' || jsonString[i] == 't')) {
+            if (!onOff && (jsonString[i] == ' ' || jsonString[i] == '\n' || jsonString[i] == '\r' || jsonString[i] == '\t')) {
                 continue
             }
             theJson = theJson + jsonString[i]
@@ -2836,9 +2836,7 @@ TianXiaoBo = {
      * @return (Array): 返回重组元素的新数组。
      */
     unzipWith: function(arr, iter) {
-        debugger
         var result = []
-        var temp
         for (var j = 0; j < arr[0].length; j++) {
             for (var i = 0; i < arr.length - 1; i++) {
                 result.push(iter(arr[i][j], arr[i + 1][j]))
@@ -2860,6 +2858,84 @@ TianXiaoBo = {
             return curr
         }, result)
         return result
+    },
+    /**
+     * 这个方法类似 _.xor ，除了它接受 iteratee（迭代器），这个迭代器 调用每一个 arrays（数组）的每一个值，以生成比较的新值。iteratee 调用一个参数： (value).
+     * @params [arrays] (...Array): 要检查的数组。
+     * @params [iteratee=_.identity] (Array|Function|Object|string): 调用每一个元素的迭代函数。
+     * @return (Array): 返回过滤值后的新数组。
+     */
+    xorBy: function() {
+        var result = []
+        var iter = arguments[arguments.length - 1]
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        var temp = Array.prototype.slice.call(arguments, 0, arguments.length - 1)
+        var theComp = this.flattenDeep(temp)
+        var count = 0
+        for (var i = 0; i < theComp.length; i++) {
+            count = 0
+            for (var j = 0; j < theComp.length; j++) {
+                if (this.isEqual(fn(theComp[i]), fn(theComp[j]))) {
+                    count++
+                }
+            }
+            if (count == 1) {
+                result.push(theComp[i])
+            }
+        }
+        return result
+    },
+    /**
+     * 该方法是像 _.xor，除了它接受一个 comparator ，以调用比较数组的元素。 comparator 调用2个参数：(arrVal, othVal).
+     * @params [arrays] (...Array): 要检查的数组。
+     * @params [comparator] (Function): 调用每一个元素的比较函数。
+     * @return (Array): 返回过滤值后的新数组。
+     */
+    xorWith: function() {
+        var result = []
+        var iter = arguments[arguments.length - 1]
+        var temp = Array.prototype.slice.call(arguments, 0, arguments.length - 1)
+        var theComp = this.flattenDeep(temp)
+        var count = 0
+        for (var i = 0; i < theComp.length; i++) {
+            count = 0
+            for (var j = 0; j < theComp.length; j++) {
+                if (iter(theComp[i], theComp[j])) {
+                    count++
+                }
+            }
+            if (count == 1) {
+                result.push(theComp[i])
+            }
+        }
+        return result
+    },
+    /**
+     * 这个方法类似 _.fromPairs，除了它接受2个数组，第一个数组中的值作为属性标识符（属性名），第二个数组中的值作为相应的属性值。
+     * @param  [props=[]] (Array): The property identifiers.
+     * @param  [values=[]] (Array): The property values.
+     * @return (Object): Returns the new object.
+     */
+    zipObject: function(props, value) {
+        var result = {}
+        for (var i = 0; i < props.length; i++) {
+            result[props[i]] = value[i]
+        }
+        return result
+    },
+    zipObjectDeep: function(props, value) {
+        var result = {}
+        for (var i = 0; i < props.length; i++) {
+            var theStr = 'result.' + props[i] + '=' + value[i]
+        }
+        return theStr
     },
 
 

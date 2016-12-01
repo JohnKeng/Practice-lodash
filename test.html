@@ -2536,7 +2536,82 @@ _ = {
             return curr
         }, result)
         return result
-    }
+    },
+    xorBy: function() {
+        var result = []
+        var iter = arguments[arguments.length - 1]
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        var temp = Array.prototype.slice.call(arguments, 0, arguments.length - 1)
+        var theComp = this.flattenDeep(temp)
+        var count = 0
+        for (var i = 0; i < theComp.length; i++) {
+            count = 0
+            for (var j = 0; j < theComp.length; j++) {
+                if (this.isEqual(fn(theComp[i]), fn(theComp[j]))) {
+                    count++
+                }
+            }
+            if (count == 1) {
+                result.push(theComp[i])
+            }
+        }
+        return result
+    },
+    xorWith: function() {
+        var result = []
+        var iter = arguments[arguments.length - 1]
+        var temp = Array.prototype.slice.call(arguments, 0, arguments.length - 1)
+        var theComp = this.flattenDeep(temp)
+        var count = 0
+        for (var i = 0; i < theComp.length; i++) {
+            count = 0
+            for (var j = 0; j < theComp.length; j++) {
+                if (iter(theComp[i], theComp[j])) {
+                    count++
+                }
+            }
+            if (count == 1) {
+                result.push(theComp[i])
+            }
+        }
+        return result
+    },
+    zipObject: function(props, value) {
+        var result = {}
+        for (var i = 0; i < props.length; i++) {
+            result[props[i]] = value[i]
+        }
+        return result
+    },
+    zipObjectDeep: function(props, value) {
+        debugger
+        var result = {}
+        for (var i = 0; i < props.length; i++) {
+            parse(props[i], result, value[i])
+        }
+        return result
+            /**
+             * 解析字符串，将字符串路径添加到对象上，并返回对象
+             * @param  {[string]} pathstr [路径字符串,且路径正确]
+             * @param  {[object]} obj     [被添加的对象]
+             * @param  {[number/string/boolean..]} [需要赋给叶子的值]
+             * @return {[object]}         [返回对象]
+             */
+        function parse(pathstr, obj, value) {
+            var pathstr = '.' + pathstr
+        }
+
+        function parseObj() {}
+
+        function parseArr() {}
+    },
 
 }
 </script>
