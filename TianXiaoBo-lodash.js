@@ -2653,10 +2653,9 @@ TianXiaoBo = {
         var theJson = '',
             index = 0,
             onOff = false
-        debugger
-        /**
-         * 处理空格
-         */
+            /**
+             * 处理空格
+             */
         for (var i = 0; i < jsonString.length; i++) {
             if (jsonString[i] == '"') {
                 onOff = onOff ? false : true
@@ -2930,12 +2929,55 @@ TianXiaoBo = {
         }
         return result
     },
+    /**
+     * 这个方法类似 _.zipObject，除了它支持属性路径。
+     * @param  [props=[]] (Array): 属性标识符（属性名）。
+     * @param  [values=[]] (Array): 属性值。
+     * @return (Object): 返回新对象。
+     */
     zipObjectDeep: function(props, value) {
+        debugger
         var result = {}
         for (var i = 0; i < props.length; i++) {
-            var theStr = 'result.' + props[i] + '=' + value[i]
+            var thePath = '.' + props[i]
+            parse(thePath, result, value[i], 0)
         }
-        return theStr
+        return result
+            /**
+             * 解析字符串，将字符串路径添加到对象上，并返回对象
+             * @param  {[string]} pathstr [路径字符串,且路径正确]
+             * @param  {[object]} obj     [被添加的对象]
+             * @param  {[number/string/boolean..]} [需要赋给叶子的值]
+             * @return {[object]}         [返回对象]
+             */
+        function parse(pathstr, obj, value, flag) {
+            var start = flag + 1,
+                end = start + 1,
+                key
+            while (true) {
+                if (pathstr[end] === '.' || pathstr[end] === '[' || pathstr[end] === undefined || pathstr[end] === ']') {
+                    break
+                }
+                end++
+            }
+            key = pathstr.slice(start, end)
+            if (pathstr[end] === ']') {
+                end++
+            }
+            start = end
+            if (key in obj) {
+                parse(pathstr, obj[key], value, start)
+            } else if (pathstr[end] === '.') {
+                obj[key] = {}
+                parse(pathstr, obj[key], value, start)
+            } else if (pathstr[end] === '[') {
+                obj[key] = []
+                parse(pathstr, obj[key], value, start)
+            } else if (pathstr[end] === undefined) {
+                obj[key] = value
+                return obj
+            }
+        }
     },
 
 

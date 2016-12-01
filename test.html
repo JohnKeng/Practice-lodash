@@ -2594,7 +2594,8 @@ _ = {
         debugger
         var result = {}
         for (var i = 0; i < props.length; i++) {
-            parse(props[i], result, value[i])
+            var thePath = '.' + props[i]
+            parse(thePath, result, value[i], 0)
         }
         return result
             /**
@@ -2604,14 +2605,34 @@ _ = {
              * @param  {[number/string/boolean..]} [需要赋给叶子的值]
              * @return {[object]}         [返回对象]
              */
-        function parse(pathstr, obj, value) {
-            var pathstr = '.' + pathstr
+        function parse(pathstr, obj, value, flag) {
+            var start = flag + 1,
+                end = start + 1,
+                key
+            while (true) {
+                if (pathstr[end] === '.' || pathstr[end] === '[' || pathstr[end] === undefined || pathstr[end] === ']') {
+                    break
+                }
+                end++
+            }
+            key = pathstr.slice(start, end)
+            if (pathstr[end] === ']') {
+                end++
+            }
+            start = end
+            if (key in obj) {
+                parse(pathstr, obj[key], value, start)
+            } else if (pathstr[end] === '.') {
+                obj[key] = {}
+                parse(pathstr, obj[key], value, start)
+            } else if (pathstr[end] === '[') {
+                obj[key] = []
+                parse(pathstr, obj[key], value, start)
+            } else if (pathstr[end] === undefined) {
+                obj[key] = value
+                return obj
+            }
         }
-
-        function parseObj() {}
-
-        function parseArr() {}
     },
-
 }
 </script>
