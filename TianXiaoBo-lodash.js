@@ -1361,11 +1361,18 @@ TianXiaoBo = {
      * (Array): 返回新的映射后数组。
      * 例子
      **/
-    map: function(arr, fn) {
+    map: function(colle, iter) {
         var result = []
-        var len = arr.length
-        for (var i = 0; i < len; i++) {
-            result.push(fn(arr[i], i, arr))
+        if (this.isString(iter)) {
+            var fn = function(value, index, collection) {
+                return value[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var key in colle) {
+            result.push(fn(colle[key], key, colle))
         }
         return result
     },

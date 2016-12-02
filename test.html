@@ -3062,9 +3062,8 @@ _ = {
         }
         return result
     },
-    map: function(arr, iter) {
+    map: function(colle, iter) {
         var result = []
-        var len = arr.length
         if (this.isString(iter)) {
             var fn = function(value, index, collection) {
                 return value[iter]
@@ -3073,8 +3072,8 @@ _ = {
         if (this.isFunction(iter)) {
             var fn = iter
         }
-        for (var i = 0; i < len; i++) {
-            result.push(fn(arr[i], i, arr))
+        for (var key in colle) {
+            result.push(fn(colle[key], key, colle))
         }
         return result
     },
