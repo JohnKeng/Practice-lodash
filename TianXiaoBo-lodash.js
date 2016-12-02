@@ -3229,6 +3229,76 @@ TianXiaoBo = {
         }
         return result
     },
+    /**
+     * 检查 value(值) 是否在 collection(集合) 中。如果 collection(集合)是一个字符串，那么检查 value（值，子字符串） 是否在字符串中， 否则使用 SameValueZero 做等值比较。 如果指定 fromIndex 是负数，那么从 collection(集合) 的结尾开始检索。
+     * @param  collection (Array|Object|string): 要检索的集合。
+     * @param  value (*): 要检索的值。
+     * @param  [fromIndex=0] (number): 要检索的 索引位置。
+     * @return (boolean): 如果找到 value 返回 true， 否则返回 false。
+     */
+    includes: function(colle, value, index) {
+        var temp = []
+        if (index === undefined) {
+            index = 0
+        }
+        for (var key in colle) {
+            temp.push(colle[key])
+        }
+        if (this.isString(colle)) {
+            var onOff
+            for (var i = 0; i < colle.length; i++) {
+                onOff = false
+                if (value[0] === colle[i]) {
+                    onOff = true
+                    for (var j = 1; j < value.length; j++) {
+                        if (value[j] !== colle[i + j]) {
+                            onOff = false
+                        }
+                    }
+                }
+                if (onOff) {
+                    return true
+                }
+            }
+        } else {
+            if (index < 0) {
+                index = temp.length + index
+                for (var i = index; i >= 0; i--) {
+                    if (temp[i] === value) {
+                        return true
+                    }
+                }
+            } else {
+                for (var i = index; i < temp.length; i++) {
+                    if (temp[i] === value) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    },
+    /**
+     * 调用path（路径）上的方法处理 collection(集合)中的每个元素，返回一个数组，包含每次调用方法得到的结果。任何附加的参数提供给每个被调用的方法。如果methodName（方法名）是一个函数，每次调用函数时，内部的 this 指向集合中的每个元素。
+     * @param  collection (Array|Object): 用来迭代的集合。
+     * @param  path (Array|Function|string): 用来调用方法的路径 或 者每次迭代调用的函数。
+     * @param  [args] (...*): 调用每个方法的参数。
+     * @return (Array): 返回的结果数组。
+     */
+    invokeMap: function(colle, path, ...args) {
+        var result = []
+        if (this.isString(path)) {
+            for (var key in colle) {
+                result.push(colle[key][path](...args))
+            }
+        }
+        if (this.isFunction(path)) {
+            for (var key in colle) {
+                result.push(path.call(colle[key], ...args))
+            }
+        }
+        return result
+    },
 
 
 

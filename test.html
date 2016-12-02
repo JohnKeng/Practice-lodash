@@ -2999,5 +2999,61 @@ _ = {
         }
         return result
     },
+    includes: function(colle, value, index) {
+        var temp = []
+        if (index === undefined) {
+            index = 0
+        }
+        for (var key in colle) {
+            temp.push(colle[key])
+        }
+        if (this.isString(colle)) {
+            var onOff
+            for (var i = 0; i < colle.length; i++) {
+                onOff = false
+                if (value[0] === colle[i]) {
+                    onOff = true
+                    for (var j = 1; j < value.length; j++) {
+                        if (value[j] !== colle[i + j]) {
+                            onOff = false
+                        }
+                    }
+                }
+                if (onOff) {
+                    return true
+                }
+            }
+        } else {
+            if (index < 0) {
+                index = temp.length + index
+                for (var i = index; i >= 0; i--) {
+                    if (temp[i] === value) {
+                        return true
+                    }
+                }
+            } else {
+                for (var i = index; i < temp.length; i++) {
+                    if (temp[i] === value) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    },
+    invokeMap: function(colle, path, ...args) {
+        var result = []
+        if (this.isString(path)) {
+            for (var key in colle) {
+                result.push(colle[key][path](...args))
+            }
+        }
+        if (this.isFunction(path)) {
+            for (var key in colle) {
+                result.push(path.call(colle[key], ...args))
+            }
+        }
+        return result
+    },
 }
 </script>
