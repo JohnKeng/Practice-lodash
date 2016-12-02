@@ -2015,7 +2015,7 @@ TianXiaoBo = {
      */
     iscollection: function(value) {
 
-        return this.isObject() || this.isString()
+        return this.isObject(value) || this.isString(value)
     },
     /**
      * 返回collection（集合）的长度，如果集合是类数组或字符串，返回其 length ；如果集合是对象，返回其可枚举属性的个数。
@@ -3178,6 +3178,27 @@ TianXiaoBo = {
             result.push(fn(colle[i]))
         }
         return this.flattenDepth(result, depth)
+    },
+    /**
+     * 调用 iteratee 遍历 collection(集合) 中的每个元素， iteratee 调用3个参数： (value, index|key, collection)。 如果迭代函数（iteratee）显式的返回 false ，迭代会提前退出。
+     * @param  collection (Array|Object): 一个用来迭代的集合。
+     * @param  [iteratee=_.identity] (Function): 每次迭代调用的函数。
+     * @return (*): 返回集合 collection。
+     */
+    forEachRight: function(collection, iteratee) {
+        if (this.iscollection(collection)) {
+            var theKey = []
+            for (key in collection) {
+                theKey.unshift(key)
+            }
+            for (var i = 0; i < theKey.length; i++) {
+                if (!iteratee(collection[theKey[i]], theKey[i], collection) === false) {
+                    break
+                }
+            }
+        } else {
+            return collection
+        }
     },
 
 
