@@ -2976,5 +2976,28 @@ _ = {
             return collection
         }
     },
+    groupBy: function(colle, iter) {
+        debugger
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        var result = {}
+        var theKey
+        for (var key in colle) {
+            theKey = fn(colle[key])
+            if (theKey in result) {
+                result[theKey].push(colle[key])
+            } else {
+                result[theKey] = [colle[key]]
+            }
+
+        }
+        return result
+    },
 }
 </script>

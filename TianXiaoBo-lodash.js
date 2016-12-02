@@ -3200,6 +3200,35 @@ TianXiaoBo = {
             return collection
         }
     },
+    /**
+     * 创建一个对象，key 是 iteratee 遍历 collection(集合) 中的每个元素返回的结果。
+     * @param  collection (Array|Object): 一个用来迭代的集合。
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): 这个迭代函数用来转换key。
+     * @return (Object): 返回一个组成聚合的对象。
+     */
+    groupBy: function(colle, iter) {
+        debugger
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        var result = {}
+        var theKey
+        for (var key in colle) {
+            theKey = fn(colle[key])
+            if (theKey in result) {
+                result[theKey].push(colle[key])
+            } else {
+                result[theKey] = [colle[key]]
+            }
+
+        }
+        return result
+    },
 
 
 
