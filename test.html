@@ -1362,14 +1362,6 @@ _ = {
      * (Array): 返回新的映射后数组。
      * 例子
      **/
-    map: function(arr, fn) {
-        var result = []
-        var len = arr.length
-        for (var i = 0; i < len; i++) {
-            result.push(fn(arr[i], i, arr))
-        }
-        return result
-    },
     /**
      * 遍历 collection（集合）元素，返回 predicate（断言函数）返回真值 的所有元素的数组。 predicate（断言函数）调用三个参数：(value, index|key, collection)。
      * 参数
@@ -3067,6 +3059,22 @@ _ = {
         }
         for (var key in colle) {
             result[fn(colle[key])] = colle[key]
+        }
+        return result
+    },
+    map: function(arr, iter) {
+        var result = []
+        var len = arr.length
+        if (this.isString(iter)) {
+            var fn = function(value, index, collection) {
+                return value[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var i = 0; i < len; i++) {
+            result.push(fn(arr[i], i, arr))
         }
         return result
     },
