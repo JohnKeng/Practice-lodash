@@ -1365,7 +1365,7 @@ TianXiaoBo = {
         var result = []
         if (this.isString(iter)) {
             var fn = function(value, index, collection) {
-                return value[iter]
+                return eval(value + '.' + iter)
             }
         }
         if (this.isFunction(iter)) {
