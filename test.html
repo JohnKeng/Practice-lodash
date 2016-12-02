@@ -3055,5 +3055,20 @@ _ = {
         }
         return result
     },
+    keyBy: function(colle, iter) {
+        var result = {}
+        if (this.isString(iter)) {
+            var fn = function(obj) {
+                return obj[iter]
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var key in colle) {
+            result[fn(colle[key])] = colle[key]
+        }
+        return result
+    },
 }
 </script>
