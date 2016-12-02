@@ -1378,11 +1378,24 @@ TianXiaoBo = {
      * (Array): 返回一个新的过滤后的数组。
      * 例子
      **/
-    filter: function(arr, fn) {
+    filter: function(colle, pred) {
+        //debugger
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
         var result = []
-        for (var i = 0; i < arr.length; i++) {
-            if (fn(arr[i], i, arr)) {
-                result.push(arr[i])
+        for (var i = 0; i < colle.length; i++) {
+            if (fn(colle[i])) {
+                result.push(colle[i])
             }
         }
         return result
@@ -1732,9 +1745,10 @@ TianXiaoBo = {
      * @return (Function): 返回新的函数。
      */
     matches: function(source) {
+        var self = this
         return function(obj) {
             for (key in source) {
-                if (!isEqual(source[key], obj[key])) {
+                if (!self.isEqual(source[key], obj[key])) {
                     return false
                 }
             }
@@ -3028,6 +3042,145 @@ TianXiaoBo = {
         }
         return result
     },
+    /**
+     * 通过 predicate（断言函数） 检查 collection（集合）中的 所有 元素是否都返回真值。
+     * @param  collection (Array|Object): 一个用来迭代的集合。
+     * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+     * @return (boolean): 如果所有元素经 predicate（断言函数） 检查后都都返回真值，那么就返回true，否则返回 false 。
+     */
+    every: function(colle, pred) {
+        //debugger
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        for (var i = 0; i < colle.length; i++) {
+            if (!fn(colle[i])) {
+                return false
+            }
+        }
+        return true
+    },
+    /**
+     * 遍历 collection（集合）元素，返回 predicate（断言函数）第一个返回真值的第一个元素。predicate（断言函数）调用3个参数： (value, index|key, collection)。
+     * @param  collection (Array|Object): 一个用来迭代的集合。
+     * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+     * @param  [fromIndex=0] (number): 开始搜索的索引位置。
+     * @return (*): 返回匹配元素，否则返回 undefined。
+     */
+    find: function(colle, pred, index) {
+        if (index === undefined) {
+            index = 0
+        }
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        for (var i = index; i < colle.length; i++) {
+            if (fn(colle[i])) {
+                return colle[i]
+            }
+        }
+    },
+    /**
+     * 这个方法类似_.find ，不同之处在于，_.findLast是从右至左遍历collection （集合）元素的。
+     * @param  collection (Array|Object): 一个用来迭代的集合。
+     * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+     * @param  [fromIndex=collection.length-1] (number): 开始搜索的索引位置。
+     * @return (*): 返回匹配元素，否则返回 undefined。
+     */
+    findLast: function(colle, pred, index) {
+        if (index === undefined) {
+            index = colle.length - 1
+        }
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        for (var i = index; i >= 0; i--) {
+            if (fn(colle[i])) {
+                return colle[i]
+            }
+        }
+    },
+    /**
+     * 创建一个扁平化（愚人码头注：同阶数组）的数组，这个数组的值来自collection（集合）中的每一个值经过 iteratee（迭代函数） 处理后返回的结果，并且扁平化合并。 iteratee 调用三个参数： (value, index|key, collection)。
+     * @param  collection (Array|Object): 一个用来迭代遍历的集合。
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+     * @return (Array): 返回新扁平化数组。
+     */
+    flatMap: function(colle, iter) {
+        var result = []
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var i = 0; i < colle.length; i++) {
+            result.push(fn(colle[i]))
+        }
+        return this.flatten(result)
+    },
+    /**
+     * 这个方法类似 _.flatMap 不同之处在于，_.flatMapDeep 会继续扁平化递归映射的结果。
+     * @param  collection (Array|Object): 一个用来迭代的集合。
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+     * @return (Array): 返回新扁平化数组。
+     */
+    flatMapDeep: function(colle, iter) {
+        var result = []
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var i = 0; i < colle.length; i++) {
+            result.push(fn(colle[i]))
+        }
+        return this.flattenDeep(result)
+    },
+    /**
+     * 该方法类似_.flatMap，不同之处在于，_.flatMapDepth 会根据指定的 depth（递归深度）继续扁平化递归映射结果。
+     * @param  collection (Array|Object): 一个用来迭代的集合。
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+     * @param  [depth=1] (number): 最大递归深度。
+     * @return (Array): 返回新扁平化数组。
+     */
+    flatMapDepth: function(colle, iter, depth) {
+        if (depth === undefined) {
+            depth = 1
+        }
+        var result = []
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var i = 0; i < colle.length; i++) {
+            result.push(fn(colle[i]))
+        }
+        return this.flattenDepth(result, depth)
+    },
+
+
 
 
 }

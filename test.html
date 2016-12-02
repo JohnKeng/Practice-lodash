@@ -1379,11 +1379,24 @@ _ = {
      * (Array): 返回一个新的过滤后的数组。
      * 例子
      **/
-    filter: function(arr, fn) {
+    filter: function(colle, pred) {
+        //debugger
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
         var result = []
-        for (var i = 0; i < arr.length; i++) {
-            if (fn(arr[i], i, arr)) {
-                result.push(arr[i])
+        for (var i = 0; i < colle.length; i++) {
+            if (fn(colle[i])) {
+                result.push(colle[i])
             }
         }
         return result
@@ -1733,9 +1746,10 @@ _ = {
      * @return (Function): 返回新的函数。
      */
     matches: function(source) {
+        var self = this
         return function(obj) {
             for (key in source) {
-                if (!isEqual(source[key], obj[key])) {
+                if (!self.isEqual(source[key], obj[key])) {
                     return false
                 }
             }
@@ -1749,8 +1763,9 @@ _ = {
      * @return (Function): 返回新的函数。
      */
     matchesProperty: function(path, value) {
+        var self = this
         return function(obj) {
-            if (isEqual(eval('obj.' + path), value)) {
+            if (self.isEqual(eval('obj.' + path), value)) {
                 return true
             } else {
                 return false
@@ -2841,16 +2856,110 @@ _ = {
         }
     },
     every: function(colle, pred) {
+        //debugger
         if (this.isObject(pred)) {
-            var fn = function(stuff, obj) {
-                return stuff === obj
-            }
+            var fn = this.matches(pred)
         }
         if (this.isArray(pred)) {
-            var fn = function(obj) {
-                return
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        for (var i = 0; i < colle.length; i++) {
+            if (!fn(colle[i])) {
+                return false
             }
         }
-    }
+        return true
+    },
+    find: function(colle, pred, index) {
+        if (index === undefined) {
+            index = 0
+        }
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        for (var i = index; i < colle.length; i++) {
+            if (fn(colle[i])) {
+                return colle[i]
+            }
+        }
+    },
+    findLast: function(colle, pred, index) {
+        if (index === undefined) {
+            index = colle.length - 1
+        }
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        for (var i = index; i >= 0; i--) {
+            if (fn(colle[i])) {
+                return colle[i]
+            }
+        }
+    },
+    flatMap: function(colle, iter) {
+        var result = []
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var i = 0; i < colle.length; i++) {
+            result.push(fn(colle[i]))
+        }
+        return this.flatten(result)
+    },
+    flatMapDeep: function(colle, iter) {
+        var result = []
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var i = 0; i < colle.length; i++) {
+            result.push(fn(colle[i]))
+        }
+        return this.flattenDeep(result)
+    },
+    flatMapDepth: function(colle, iter, depth) {
+        if (depth === undefined) {
+            depth = 1
+        }
+        var result = []
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (var i = 0; i < colle.length; i++) {
+            result.push(fn(colle[i]))
+        }
+        return this.flattenDepth(result, depth)
+    },
+    flattenDepth: function(arr, depth) {
+        //debugger
+        var result = arr
+        for (var i = 0; i < depth; i++) {
+            result = this.flatten(result)
+        }
+        return result
+    },
 }
 </script>
