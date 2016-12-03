@@ -1365,7 +1365,7 @@ TianXiaoBo = {
         var result = []
         if (this.isString(iter)) {
             var fn = function(value, index, collection) {
-                return eval(value + '.' + iter)
+                return value[iter]
             }
         }
         if (this.isFunction(iter)) {
@@ -3326,6 +3326,40 @@ TianXiaoBo = {
             result[fn(colle[key])] = colle[key]
         }
         return result
+    },
+    /**
+     * 此方法类似于_.sortBy，除了它允许指定 iteratee（迭代函数）结果如何排序。 如果没指定 orders（排序），所有值以升序排序。 否则，指定为"desc" 降序，或者指定为 "asc" 升序，排序对应值。
+     * @param  collection (Array|Object): 用来迭代的集合。
+     * @param  [iteratees=[_.identity]] (Array[]|Function[]|Object[]|string[]): 排序的迭代函数。
+     * @param  [orders] (string[]): iteratees迭代函数的排序顺序。
+     * @return (Array): 排序排序后的新数组。
+     */
+    orderBy: function(colle, iter, order) {
+        debugger
+        for (var i = iter.length - 1; i >= 0; i--) {
+            if (order[i] === 'desc') {
+                colle.sort(function(a, b) {
+                    if (a[iter[i]] > b[iter[i]]) {
+                        return -1
+                    } else if (a[iter[i]] == b[iter[i]]) {
+                        return 0
+                    } else {
+                        return 1
+                    }
+                })
+            } else {
+                colle.sort(function(a, b) {
+                    if (a[iter[i]] < b[iter[i]]) {
+                        return -1
+                    } else if (a[iter[i]] == b[iter[i]]) {
+                        return 0
+                    } else {
+                        return 1
+                    }
+                })
+            }
+        }
+        return colle
     },
 
 
