@@ -3051,22 +3051,29 @@ _ = {
         }
         return result
     },
-    map: function(colle, iter) {
+    map: function(colle, pred) {
         //debugger
         var result = []
-        if (this.isString(iter)) {
-            var fn = function(value, index, collection) {
-                return value[iter]
-            }
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
         }
-
-        if (this.isFunction(iter)) {
-            var fn = iter
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
         }
         for (var key in colle) {
             result.push(fn(colle[key], key, colle))
         }
         return result
+
     },
     orderBy: function(colle, iter, order) {
         debugger

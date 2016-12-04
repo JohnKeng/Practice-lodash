@@ -1361,27 +1361,29 @@ TianXiaoBo = {
      * (Array): 返回新的映射后数组。
      * 例子
      **/
-    map: function(colle, iter) {
+    map: function(colle, pred) {
         //debugger
         var result = []
-        if (this.isString(iter)) {
-            if (iter.indexOf('.') === -1) {
-                var fn = function(value, index, collection) {
-                    return value[iter]
-                }
-            } else {
-                var fn = function(value, index, collection) {
-                    return value[iter]
-                }
-            }
-            if (this.isFunction(iter)) {
-                var fn = iter
-            }
-            for (var key in colle) {
-                result.push(fn(colle[key], key, colle))
-            }
-            return result
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
         }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        for (var key in colle) {
+            result.push(fn(colle[key], key, colle))
+        }
+        return result
+
     },
     /**
      * 遍历 collection（集合）元素，返回 predicate（断言函数）返回真值 的所有元素的数组。 predicate（断言函数）调用三个参数：(value, index|key, collection)。
