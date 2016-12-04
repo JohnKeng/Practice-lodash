@@ -3118,7 +3118,7 @@ _ = {
             var fn = this.matches(pred)
         }
         if (this.isArray(pred)) {
-            var fn = this.matchesProperty(pred)
+            var fn = this.matchesProperty(...pred)
         }
         if (this.isFunction(pred)) {
             var fn = pred
