@@ -1770,7 +1770,7 @@ TianXiaoBo = {
         } else if (Array.isArray(value1) !== Array.isArray(value2)) {
             return false
         } else {
-            var p, t;
+            var p
             for (p in value1) {
                 if (typeof value1[p] !== 'undefined' && typeof value2[p] === 'undefined') {
                     return false;
