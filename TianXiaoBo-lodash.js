@@ -3519,7 +3519,6 @@ TianXiaoBo = {
      * @return (Array): 返回排序后的数组。
      */
     sortBy: function(colle) {
-        debugger
         for (var i = 1; i < arguments.length; i++) {
             if (this.isFunction(arguments[i])) {
                 var fn = arguments[i]
