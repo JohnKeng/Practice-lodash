@@ -1808,7 +1808,7 @@ TianXiaoBo = {
      */
     matchesProperty: function(path, value) {
         return function(obj) {
-            if (isEqual(eval('obj.' + path), value)) {
+            if (this.isEqual(eval('obj.' + path), value)) {
                 return true
             } else {
                 return false
