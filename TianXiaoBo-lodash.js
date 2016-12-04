@@ -1758,43 +1758,8 @@ TianXiaoBo = {
      */
     isEqual: function(value1, value2) {
         //debugger
-        if (typeof value1 === 'number' && typeof value2 === 'number') {
-            if (value1.toString() === 'NaN' && value2.toString() === 'NaN') {
-                return true
-            }
-        }
-        if (value1 === value2) {
+        if (value1 !== value1 && value2 !== value2) {
             return true
-        } else if (typeof value1 !== 'object' || typeof value2 !== 'object') {
-            return false
-        } else if (Array.isArray(value1) !== Array.isArray(value2)) {
-            return false
-        } else {
-            var p
-            for (p in value1) {
-                if (typeof value1[p] !== 'undefined' && typeof value2[p] === 'undefined') {
-                    return false;
-                }
-                if (!TianXiaoBo.isEqual(value1[p], value2[p])) {
-                    return false;
-                }
-
-            }
-            for (p in value2) {
-                if (typeof value2[p] !== 'undefined' && typeof value1[p] === 'undefined') {
-                    return false;
-                }
-            }
-            return true;
-
-        }
-    },
-    isEqual: function(value1, value2) {
-        //debugger
-        if (typeof value1 === 'number' && typeof value2 === 'number') {
-            if (value1.toString() === 'NaN' && value2.toString() === 'NaN') {
-                return true
-            }
         }
         if (value1 === value2) {
             return true
