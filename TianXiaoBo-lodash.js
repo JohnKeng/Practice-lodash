@@ -1757,31 +1757,37 @@ TianXiaoBo = {
      * // => true
      */
     isEqual: function(value1, value2) {
-        var p, t;
-        for (p in value1) {
-            if (typeof value2[p] === 'undefined') {
-                return false;
-            }
-            if (value2[p] && !value1[p]) {
-                return false;
-            }
-            t = typeof value1[p];
-            if (t === 'object' && !isEqual(value1[p], value2[p])) {
-                return false;
-            }
-            if (t === 'function' && (typeof value2[p] === 'undefined' || value1[p].toString() !== value2[p].toString())) {
-                return false;
-            }
-            if (value1[p] !== value2[p]) {
-                return false;
+        //debugger
+        if (typeof value1 === 'number' && typeof value2 === 'number') {
+            if (value1.toString() === 'NaN' && value2.toString() === 'NaN') {
+                return true
             }
         }
-        for (p in value2) {
-            if (typeof value1[p] === 'undefined') {
-                return false;
+        if (value1 === value2) {
+            return true
+        } else if (typeof value1 !== 'object' || typeof value2 !== 'object') {
+            return false
+        } else if (Array.isArray(value1) !== Array.isArray(value2)) {
+            return false
+        } else {
+            var p, t;
+            for (p in value1) {
+                if (typeof value1[p] !== 'undefined' && typeof value2[p] === 'undefined') {
+                    return false;
+                }
+                if (!this.isEqual(value1[p], value2[p])) {
+                    return false;
+                }
+
             }
+            for (p in value2) {
+                if (typeof value2[p] !== 'undefined' && typeof value1[p] === 'undefined') {
+                    return false;
+                }
+            }
+            return true;
+
         }
-        return true;
     },
     /**
      * 创建一个深比较的方法来比较给定的对象和 source 对象。 如果给定的对象拥有相同的属性值返回 true，否则返回 false。
