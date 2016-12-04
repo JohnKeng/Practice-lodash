@@ -3596,6 +3596,21 @@ TianXiaoBo = {
             return result.push(value)
         }
     },
+    /**
+     * 创建一个被打乱值的集合。 使用 Fisher-Yates shuffle 版本。
+     * @param  collection (Array|Object): 要打乱的集合。
+     * @return (Array): 返回打乱的新数组。
+     */
+    shuffle: function(colle) {
+        var result = colle.sort(function(a, b) {
+            if (Math.random() > 0.5) {
+                return 1
+            } else {
+                return -1
+            }
+        })
+        return result
+    },
 
 
 
