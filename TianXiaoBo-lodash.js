@@ -3429,6 +3429,45 @@ TianXiaoBo = {
         }
         return result
     },
+    /**
+     * _.filter的反向方法;此方法 返回 predicate（断言函数） 不 返回 truthy（真值）的collection（集合）元素（愚人码头注释：非真）。
+     * @param  collection (Array|Object): 用来迭代的集合。
+     * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+     * @return (Array): 返回过滤后的新数组
+     */
+    reject: function(colle, pred) {
+        var result = []
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        for (var i = 0; i < colle.length; i++) {
+            if (!fn(colle[i])) {
+                result.push(colle[i])
+            }
+        }
+        return result
+    },
+    /**
+     * 从collection（集合）中获得一个随机元素。
+     * @param  collection (Array|Object): 要取样的集合。
+     * @return (*): 返回随机元素。
+     */
+    sample: function(colle) {
+        var theKey = parseInt(Math.random() * colle.length)
+        return colle[theKey]
+    }
 
 
 

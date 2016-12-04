@@ -3167,6 +3167,35 @@ _ = {
         }
         return acc
     },
+    reject: function(colle, pred) {
+        var result = []
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        for (var i = 0; i < colle.length; i++) {
+            if (!fn(colle[i])) {
+                result.push(colle[i])
+            }
+        }
+        return result
+    },
+    sample: function(colle) {
+        var theKey = parseInt(Math.random() * colle.length)
+        return colle[theKey]
+    }
 
 }
 </script>
+if (this.isObject(pred)) { var fn = this.matches(pred) } if (this.isArray(pred)) { var fn = this.matchesProperty(...pred) } if (this.isString(pred)) { var fn = this.property(pred) } if (this.isFunction(pred)) { var fn = pred } if (this.isFunction(pred)) { var fn = pred }
