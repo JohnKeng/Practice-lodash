@@ -1380,7 +1380,6 @@ TianXiaoBo = {
             result.push(fn(colle[key], key, colle))
         }
         return result
-
     },
     /**
      * 遍历 collection（集合）元素，返回 predicate（断言函数）返回真值 的所有元素的数组。 predicate（断言函数）调用三个参数：(value, index|key, collection)。
@@ -1757,7 +1756,7 @@ TianXiaoBo = {
      * isEqual(object, other);
      * // => true
      */
-    isEqual = function(value1, value2) {
+    isEqual: function(value1, value2) {
         var p, t;
         for (p in value1) {
             if (typeof value2[p] === 'undefined') {
@@ -1783,7 +1782,7 @@ TianXiaoBo = {
             }
         }
         return true;
-    };
+    },
     /**
      * 创建一个深比较的方法来比较给定的对象和 source 对象。 如果给定的对象拥有相同的属性值返回 true，否则返回 false。
      * @param  source (Object): 要匹配属性值的源对象。
