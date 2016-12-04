@@ -1437,17 +1437,19 @@ TianXiaoBo = {
         }
         return result
     },
-    reduce: function(arr, fn, init) {
+    reduce: function(colle, iter, acc) {
+        debugger
+        var theKey = Object.keys(colle)
         var start = 1
-        if (init === undefined) {
-            init = arr[1]
+        if (acc === undefined) {
+            acc = colle[theKey[1]]
             start = 2
         }
-        var result = fn(arr[0], init)
-        for (var i = start; i < arr.length; i++) {
-            result = fn(arr[i], result)
+        acc = iter(acc, colle[theKey[0]], theKey[0], colle)
+        for (var i = start; i < theKey.length; i++) {
+            acc = iter(acc, colle[theKey[i]], theKey[i], colle)
         }
-        return result
+        return acc
     },
     /**
      * 创建一个object键值倒置后的对象。 如果 object 有重复的值，后面的值会覆盖前面的值。
