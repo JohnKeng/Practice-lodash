@@ -3135,7 +3135,6 @@ _ = {
         return result
     },*/
     reduce: function(colle, iter, acc) {
-        debugger
         var theKey = Object.keys(colle)
         var start = 1
         if (acc === undefined) {
@@ -3144,6 +3143,19 @@ _ = {
         }
         acc = iter(acc, colle[theKey[0]], theKey[0], colle)
         for (var i = start; i < theKey.length; i++) {
+            acc = iter(acc, colle[theKey[i]], theKey[i], colle)
+        }
+        return acc
+    },
+    reduceRight: function(colle, iter, acc) {
+        var theKey = Object.keys(colle)
+        var start = theKey.length - 2
+        if (acc === undefined) {
+            acc = colle[theKey[theKey.length - 2]]
+            start = theKey.length - 3
+        }
+        acc = iter(acc, colle[theKey[theKey.length - 1]], theKey[theKey.length - 1], colle)
+        for (var i = start; i >= 0; i--) {
             acc = iter(acc, colle[theKey[i]], theKey[i], colle)
         }
         return acc

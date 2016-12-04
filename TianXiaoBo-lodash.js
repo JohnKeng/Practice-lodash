@@ -1437,8 +1437,14 @@ TianXiaoBo = {
         }
         return result
     },
+    /**
+     * 压缩 collection（集合）为一个值，通过 iteratee（迭代函数）遍历 collection（集合）中的每个元素，每次返回的值会作为下一次迭代使用(愚人码头注：作为iteratee（迭代函数）的第一个参数使用)。 如果没有提供 accumulator，则 collection（集合）中的第一个元素作为初始值。(愚人码头注：accumulator参数在第一次迭代的时候作为iteratee（迭代函数）第一个参数使用。) iteratee 调用4个参数：(accumulator, value, index|key, collection).
+     * @param  collection (Array|Object): 用来迭代的集合。
+     * @param  [iteratee=_.identity] (Function): 每次迭代调用的函数。
+     * @param  [accumulator] (*): 初始值。
+     * @return (*): 返回累加后的值。
+     */
     reduce: function(colle, iter, acc) {
-        debugger
         var theKey = Object.keys(colle)
         var start = 1
         if (acc === undefined) {
@@ -1447,6 +1453,26 @@ TianXiaoBo = {
         }
         acc = iter(acc, colle[theKey[0]], theKey[0], colle)
         for (var i = start; i < theKey.length; i++) {
+            acc = iter(acc, colle[theKey[i]], theKey[i], colle)
+        }
+        return acc
+    },
+    /**
+     * 这个方法类似 _.reduce ，除了它是从右到左遍历collection（集合）中的元素的。
+     * @param  collection (Array|Object): 用来迭代的集合。
+     * @param  [iteratee=_.identity] (Function): 每次迭代调用的函数。
+     * @param  [accumulator] (*): 初始值。
+     * @return (*): 返回累加后的值。
+     */
+    reduceRight: function(colle, iter, acc) {
+        var theKey = Object.keys(colle)
+        var start = theKey.length - 2
+        if (acc === undefined) {
+            acc = colle[theKey[theKey.length - 2]]
+            start = theKey.length - 3
+        }
+        acc = iter(acc, colle[theKey[theKey.length - 1]], theKey[theKey.length - 1], colle)
+        for (var i = start; i >= 0; i--) {
             acc = iter(acc, colle[theKey[i]], theKey[i], colle)
         }
         return acc
@@ -3401,6 +3427,7 @@ TianXiaoBo = {
         }
         return result
     },
+
 
 
 
