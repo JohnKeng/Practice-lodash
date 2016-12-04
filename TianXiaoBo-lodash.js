@@ -3562,6 +3562,40 @@ TianXiaoBo = {
         }
         return colle
     },
+    /**
+     * 推迟调用func，直到当前堆栈清理完毕。 调用时，任何附加的参数会传给func。
+     * @param  func (Function): 要延迟的函数。
+     * @param  [args] (...*): 会在调用时传给 func 的参数
+     * @return (number):返回计时器 id。
+     */
+    defer: function(func, ...args) {
+
+        return setTimeout(func(...args), 0);
+    },
+    /**
+     * 延迟 wait 毫秒后调用 func。 调用时，任何附加的参数会传给func。
+     * @param  func (Function): 要延迟的函数。
+     * @param  wait (number): 要延迟的毫秒数。
+     * @param  [args] (...*): 会在调用时传入到 func 的参数。
+     * @return (number): 返回计时器 id
+     */
+    delay: function(func, wait, ...args) {
+
+        return setTimeout(func(...args), wait);
+    },
+    /**
+     * 如果 value 不是数组, 那么强制转为数组。
+     * @param  value (*): 要处理的值。
+     * @return (Array): 返回转换后的数组。
+     */
+    castArray: function(value) {
+        if (this.isArray(value)) {
+            return value
+        } else {
+            var result = []
+            return result.push(value)
+        }
+    },
 
 
 

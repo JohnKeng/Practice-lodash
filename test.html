@@ -3281,6 +3281,20 @@ _ = {
             }
             return colle
         },
+        defer: function(func, ...args) {
+            return setTimeout(func(...args), 0);
+        },
+        delay: function(func, wait, ...args) {
+            return setTimeout(func(...args), wait);
+        },
+        castArray: function(value) {
+            if (this.isArray(value)) {
+                return value
+            } else {
+                var result = []
+                return result.push(value)
+            }
+        },
 
     }
     /**
