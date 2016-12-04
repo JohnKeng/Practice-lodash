@@ -1759,7 +1759,7 @@ _ = {
      */
 
     isEqual: function(value1, value2) {
-        //debugger
+        debugger
         if (typeof value1 === 'number' && typeof value2 === 'number') {
             if (value1.toString() === 'NaN' && value2.toString() === 'NaN') {
                 return true
@@ -1772,15 +1772,14 @@ _ = {
         } else if (Array.isArray(value1) !== Array.isArray(value2)) {
             return false
         } else {
-            var p, t;
+            var p
             for (p in value1) {
                 if (typeof value1[p] !== 'undefined' && typeof value2[p] === 'undefined') {
                     return false;
                 }
-                if (!this.isEqual(value1[p], value2[p])) {
+                if (!(_.isEqual(value1[p], value2[p]))) {
                     return false;
                 }
-
             }
             for (p in value2) {
                 if (typeof value2[p] !== 'undefined' && typeof value1[p] === 'undefined') {
@@ -3621,6 +3620,16 @@ _ = {
             }
         })
         return result
+    },
+    conformsTo: function(obj, sour) {
+        for (var key in obj) {
+            if (key in sour) {
+                if (sour[key](obj[key])) {
+                    return true
+                }
+            }
+        }
+        return false
     },
 
 

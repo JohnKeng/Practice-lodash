@@ -1775,7 +1775,7 @@ TianXiaoBo = {
                 if (typeof value1[p] !== 'undefined' && typeof value2[p] === 'undefined') {
                     return false;
                 }
-                if (!this.isEqual(value1[p], value2[p])) {
+                if (!TianXiaoBo.isEqual(value1[p], value2[p])) {
                     return false;
                 }
 
@@ -3618,6 +3618,22 @@ TianXiaoBo = {
             }
         })
         return result
+    },
+    /**
+     * 通过调用断言source的属性与 object 的相应属性值，检查 object是否符合 source。当source偏应用时，这种方法和 _.conforms函数是等价的。
+     * @param  object (Object): 要检查的对象。
+     * @param  source (Object): 要断言属性是否符合的对象。
+     * @return (boolean): 如果 object 符合，返回 true，否则 false。
+     */
+    conformsTo: function(obj, sour) {
+        for (var key in obj) {
+            if (key in sour) {
+                if (sour[key](obj[key])) {
+                    return true
+                }
+            }
+        }
+        return false
     },
 
 
