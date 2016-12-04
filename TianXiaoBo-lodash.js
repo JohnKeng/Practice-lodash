@@ -1376,9 +1376,6 @@ TianXiaoBo = {
         if (this.isFunction(pred)) {
             var fn = pred
         }
-        if (this.isFunction(pred)) {
-            var fn = pred
-        }
         for (var key in colle) {
             result.push(fn(colle[key], key, colle))
         }
@@ -3467,7 +3464,104 @@ TianXiaoBo = {
     sample: function(colle) {
         var theKey = parseInt(Math.random() * colle.length)
         return colle[theKey]
-    }
+    },
+    /**
+     * 从collection（集合）中获得 n 个随机元素。
+     * @param  collection (Array|Object): 要取样的集合。
+     * @param  [n=1] (number): 取样的元素个数。
+     * @return (Array): 返回随机元素。
+     */
+    sampleSize: function(colle, n) {
+        var result = [],
+            theKey
+        if (n === undefined) {
+            n = 1
+        }
+        if (n > colle.length) {
+            n = colle.length
+        }
+        for (var i = 0; i < n; i++) {
+            theKey = parseInt(Math.random() * colle.length)
+            result.push(colle[theKey])
+        }
+        return result
+    },
+    /**
+     * 通过 predicate（断言函数） 检查collection（集合）中的元素是否存在 任意 truthy（真值）的元素，一旦 predicate（断言函数） 返回 truthy（真值），遍历就停止。 predicate 调用3个参数：(value, index|key, collection)。
+     * @param  collection (Array|Object): 用来迭代的集合。
+     * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
+     * @return (boolean): 如果任意元素经 predicate 检查都为 truthy（真值），返回 true ，否则返回 false 。
+     */
+    some: function(colle, pred) {
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        for (var i = 0; i < colle.length; i++) {
+            if (fn(colle[i], i, colle)) {
+                return true
+            }
+        }
+        return false
+    },
+    /**
+     * 创建一个元素数组。 以 iteratee 处理的结果升序排序。 这个方法执行稳定排序，也就是说相同元素会保持原始排序。 iteratees 调用1个参数： (value)。
+     * @param  collection (Array|Object): 用来迭代的集合。
+     * @param [iteratees=[_.identity]] (...(Array|Array[]|Function|Function[]|Object|Object[]|string|string[])): 这个函数决定排序。
+     * @return (Array): 返回排序后的数组。
+     */
+    sortBy: function(colle) {
+        debugger
+        for (var i = 1; i < arguments.length; i++) {
+            if (this.isFunction(arguments[i])) {
+                var fn = arguments[i]
+                colle.sort(function(a, b) {
+                    if (fn(a) < fn(b)) {
+                        return -1
+                    } else if (fn(a) === fn(b)) {
+                        return 0
+                    } else {
+                        return 1
+                    }
+                })
+            }
+            if (this.isArray(arguments[i])) {
+                for (var k = arguments[i].length - 1; k >= 0; k--) {
+                    var theValue = arguments[i]
+                    colle.sort(function(a, b) {
+                        if (a[theValue[k]] < b[theValue[k]]) {
+                            return -1
+                        } else if (a[theValue[k]] === b[theValue[k]]) {
+                            return 0
+                        } else {
+                            return 1
+                        }
+                    })
+                }
+            }
+            if (this.isString(arguments[i])) {
+                var theStr = arguments[i]
+                colle.sort(function(a, b) {
+                    if (a[theStr] < b[theStr]) {
+                        return -1
+                    } else if (a[theStr] < b[theStr]) {
+                        return 0
+                    } else {
+                        return 1
+                    }
+                })
+            }
+        }
+        return colle
+    },
 
 
 
