@@ -1789,6 +1789,39 @@ TianXiaoBo = {
 
         }
     },
+    isEqual: function(value1, value2) {
+        //debugger
+        if (typeof value1 === 'number' && typeof value2 === 'number') {
+            if (value1.toString() === 'NaN' && value2.toString() === 'NaN') {
+                return true
+            }
+        }
+        if (value1 === value2) {
+            return true
+        } else if (typeof value1 !== 'object' || typeof value2 !== 'object') {
+            return false
+        } else if (Array.isArray(value1) !== Array.isArray(value2)) {
+            return false
+        } else {
+            var p
+            for (p in value1) {
+                if (typeof value1[p] !== 'undefined' && typeof value2[p] === 'undefined') {
+                    return false;
+                }
+                if (!TianXiaoBo.isEqual(value1[p], value2[p])) {
+                    return false;
+                }
+
+            }
+            for (p in value2) {
+                if (typeof value2[p] !== 'undefined' && typeof value1[p] === 'undefined') {
+                    return false;
+                }
+            }
+            return true;
+
+        }
+    },
     /**
      * 创建一个深比较的方法来比较给定的对象和 source 对象。 如果给定的对象拥有相同的属性值返回 true，否则返回 false。
      * @param  source (Object): 要匹配属性值的源对象。
@@ -3634,6 +3667,111 @@ TianXiaoBo = {
             }
         }
         return false
+    },
+    /**
+     * 执行 SameValueZero 比较两者的值，来确定它们是否相等。
+     * @param  value (*): 要比较的值。
+     * @param  other (*): 另一个要比较的值。
+     * @return (boolean): 如果两个值相等返回 true ，否则返回 false 。
+     */
+    eq: function(value1, value2) {
+        if (typeof value1 === 'number' && typeof value2 === 'number') {
+            if (value1.toString() === 'NaN' && value2.toString() === 'NaN') {
+                return true
+            }
+        }
+        if (value1 === value2) {
+            return true
+        }
+        return false
+    },
+    /**
+     * 检查 value是否大于 other。
+     * @param  value (*): 要比较的值。
+     * @param  other (*): 另一个要比较的值。
+     * @return (boolean): 如果value 大于 other 返回 true，否则返回 false。
+     */
+    gt: function(value, other) {
+        if (value > other) {
+            return true
+        }
+        return false
+    },
+    /**
+     * 检查 value是否大于或者等于 other。
+     * @param  value (*): 要比较的值。
+     * @param  other (*): 另一个要比较的值。
+     * @return (boolean): 如果value 大于或者等于 other 返回 true，否则返回 false。
+     */
+    gte: function(value, other) {
+        if (value >= other) {
+            return true
+        }
+        return false
+    },
+    /**
+     * 检查 value 是否是 ArrayBuffer 对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果value是一个数组 buffer 返回 true，否则返回 false。
+     */
+    isArrayBuffer: function(value) {
+
+        return value instanceof ArrayBuffer
+    },
+    /**
+     * 检查 value 是否是类数组。 如果一个值被认为是类数组，那么它不是一个函数，并且value.length是个整数，大于等于 0，小于或等于 Number.MAX_SAFE_INTEGER。
+     * @param  value (*): 要检查的值
+     * @return (boolean): 如果value是一个类数组，那么返回 true，否则返回 false。
+     */
+    isArrayLike: function(value) {
+        if (this.isFunction(value)) {
+            return false
+        }
+        if (typeof value === 'object' || typeof value === 'string') {
+            if (Math.round(value.length) === value.length && 0 <= value.length && value.length <= Number.MAX_SAFE_INTEGER) {
+                return true
+            }
+        }
+        return false
+    },
+    /**
+     * 这个方法类似_.isArrayLike。除了它还检查value是否是个对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个类数组对象，那么返回 true，否则返回 false。
+     */
+    isArrayLikeObject: function(value) {
+        if (this.isFunction(value)) {
+            return false
+        }
+        if (typeof value === 'object') {
+            if (Math.round(value.length) === value.length && 0 <= value.length && value.length <= Number.MAX_SAFE_INTEGER) {
+                return true
+            }
+        }
+        return false
+    },
+    /**
+     * 检查 value 是否是可能是 DOM 元素。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个DOM元素，那么返回 true，否则返回 false。
+     */
+    isElement: function(value) {
+        if ('nodeType' in value) {
+            if (0 < value.nodeType && value.nodeType <= 12) {
+                return true
+            }
+        }
+        return false
+
+    },
+    /**
+     * 检查 value 是否是 Error, EvalError, RangeError, ReferenceError, SyntaxError, TypeError, 或者 URIError对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个错误（Error）对象，那么返回 true，否则返回 false。
+     */
+    isError: function(value) {
+
+        return value instanceof Error
     },
 
 

@@ -3631,6 +3631,58 @@ _ = {
         }
         return false
     },
+    eq: function(value1, value2) {
+        if (typeof value1 === 'number' && typeof value2 === 'number') {
+            if (value1.toString() === 'NaN' && value2.toString() === 'NaN') {
+                return true
+            }
+        }
+        if (value1 === value2) {
+            return true
+        }
+        return false
+    },
+    gt: function(value, other) {
+        if (value > other) {
+            return true
+        }
+        return false
+    },
+    gte: function(value, other) {
+        if (value >= other) {
+            return true
+        }
+        return false
+    },
+    isArrayBuffer: function(value) {
+        return value instanceof ArrayBuffer
+    },
+    isArrayLike: function(value) {
+        if (this.isFunction(value)) {
+            return false
+        }
+        if (typeof value === 'object' || typeof value === 'string') {
+            if (Math.round(value.length) === value.length && 0 <= value.length && value.length <= Number.MAX_SAFE_INTEGER) {
+                return true
+            }
+        }
+        return false
+    },
+    isArrayLikeObject: function(value) {
+        if (this.isFunction(value)) {
+            return false
+        }
+        if (typeof value === 'object') {
+            if (Math.round(value.length) === value.length && 0 <= value.length && value.length <= Number.MAX_SAFE_INTEGER) {
+                return true
+            }
+        }
+        return false
+    },
+    isError: function(value) {
+        return value instanceof Error
+    },
+
 
 
 
