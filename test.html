@@ -3682,6 +3682,19 @@ _ = {
     isError: function(value) {
         return value instanceof Error
     },
+    isInteger: function(value) {
+        return parseInt(value) === value
+    },
+
+    isLength: function(value) {
+        if (parseInt(value) === value) {
+            if (0 <= value && value <= Number.MAX_SAFE_INTEGER) {
+                return true
+            }
+        }
+        return false
+    },
+
 
 
 

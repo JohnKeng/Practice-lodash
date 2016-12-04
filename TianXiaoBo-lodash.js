@@ -3773,6 +3773,22 @@ TianXiaoBo = {
 
         return value instanceof Error
     },
+    isInteger: function(value) {
+        return parseInt(value) === value
+    },
+    /**
+     * 检查 value 是否为有效的类数组长度。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个有效长度，那么返回 true，否则返回 false。
+     */
+    isLength: function(value) {
+        if (parseInt(value) === value) {
+            if (0 <= value && value <= Number.MAX_SAFE_INTEGER) {
+                return true
+            }
+        }
+        return false
+    },
 
 
 
