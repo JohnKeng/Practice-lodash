@@ -3830,6 +3830,112 @@ TianXiaoBo = {
         }
         return false
     },
+    /**
+     * 检查 value 是否是一个安全整数。 一个安全整数应该是符合 IEEE-754 标准的非双精度浮点数。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个安全整数，那么返回 true，否则返回 false。
+     */
+    isSafeInteger: function(value) {
+
+        return value === parseInt(value)
+    },
+    /**
+     * 检查 value 是否是一个Set对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个 set 对象，那么返回 true，否则返回 false。
+     */
+    isSet: function(value) {
+
+        return value instanceof Set
+    },
+    /**
+     * 检查 value 是否是原始 Symbol 或者对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个symbol，那么返回 true，否则返回 false。
+     */
+    isSymbol: function(value) {
+        if (typeof value === 'symbol' || typeof value === 'object') {
+            return true
+        }
+        return false
+    },
+    /**
+     * 检查 value 是否是TypedArray。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个typed array，那么返回 true，否则返回 false。
+     */
+    isTypedArray: function(value) {
+        if (value.constructor === Int8Array) {
+            return true
+        }
+        if (value.constructor === Uint8Array) {
+            return true
+        }
+        if (value.constructor === Uint8ClampedArray) {
+            return true
+        }
+        if (value.constructor === Int16Array) {
+            return true
+        }
+        if (value.constructor === Uint16Array) {
+            return true
+        }
+        if (value.constructor === Int32Array) {
+            return true
+        }
+        if (value.constructor === Uint32Array) {
+            return true
+        }
+        if (value.constructor === Float32Array) {
+            return true
+        }
+        if (value.constructor === Float64Array) {
+            return true
+        }
+        return false
+    },
+    /**
+     * 检查 value 是否是 WeakMap 对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个 WeakMap 对象 ，那么返回 true，否则返回 false。
+     */
+    isWeakMap: function(value) {
+
+        return value instanceof WeakMap
+    },
+    /**
+     * 检查 value 是否是 WeakSet 对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个 WeakSet 对象 ，那么返回 true，否则返回 false。
+     */
+    isWeakSet: function(value) {
+
+        return value instanceof WeakSet
+    },
+    /**
+     * 检查 value 是否小于 other。
+     * @param  value (*): 用来比较的值。
+     * @param  other (*): 另一个用来比较的值。
+     * @return (boolean): 如果value 小于等于 other 返回 true，否则返回 false。
+     */
+    lt: function(value, other) {
+        if (value < other) {
+            return true
+        }
+        return false
+    },
+    /**
+     * 检查 value 是否小于等于 other。
+     * @param  value (*): 用来比较的值。
+     * @param  other (*): 另一个用来比较的值。
+     * @return {[type]}       [description]
+     */
+    lte: function(value, other) {
+        if (value <= other) {
+            return true
+        }
+        return false
+    },
 
 
 

@@ -3800,6 +3800,70 @@ _ = {
         }
         return false
     },
+    isSafeInteger: function(value) {
+
+        return value === parseInt(value)
+    },
+    isSet: function(value) {
+
+        return value instanceof Set
+    },
+    isSymbol: function(value) {
+        if (typeof value === 'symbol' || typeof value === 'object') {
+            return true
+        }
+        return false
+    },
+    isTypedArray: function(value) {
+        if (value.constructor === Int8Array) {
+            return true
+        }
+        if (value.constructor === Uint8Array) {
+            return true
+        }
+        if (value.constructor === Uint8ClampedArray) {
+            return true
+        }
+        if (value.constructor === Int16Array) {
+            return true
+        }
+        if (value.constructor === Uint16Array) {
+            return true
+        }
+        if (value.constructor === Int32Array) {
+            return true
+        }
+        if (value.constructor === Uint32Array) {
+            return true
+        }
+        if (value.constructor === Float32Array) {
+            return true
+        }
+        if (value.constructor === Float64Array) {
+            return true
+        }
+        return false
+    },
+    isWeakMap: function(value) {
+
+        return value instanceof WeakMap
+    },
+    isWeakSet: function(value) {
+
+        return value instanceof WeakSet
+    },
+    lt: function(value, other) {
+        if (value < other) {
+            return true
+        }
+        return false
+    },
+    lte: function(value, other) {
+        if (value <= other) {
+            return true
+        }
+        return false
+    },
 
 
 
