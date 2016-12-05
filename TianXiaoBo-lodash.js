@@ -1811,7 +1811,7 @@ TianXiaoBo = {
      */
     matchesProperty: function(path, value) {
         return function(obj) {
-            if (this.isEqual(eval('obj.' + path), value)) {
+            if (TianXiaoBo.isEqual(eval('obj.' + path), value)) {
                 return true
             } else {
                 return false
@@ -3526,9 +3526,10 @@ TianXiaoBo = {
      * @return (Array): 返回排序后的数组。
      */
     sortBy: function(colle) {
+        debugger
         for (var i = 1; i < arguments.length; i++) {
-            if (this.isFunction(arguments[i])) {
-                var fn = arguments[i]
+            if (this.isFunction(arguments[i][0])) {
+                var fn = arguments[i][0]
                 colle.sort(function(a, b) {
                     if (fn(a) < fn(b)) {
                         return -1
@@ -3595,12 +3596,16 @@ TianXiaoBo = {
      * @return (Array): 返回转换后的数组。
      */
     castArray: function(value) {
+        var result = []
+        if (arguments.length === 0) {
+            return result
+        }
         if (this.isArray(value)) {
             return value
         } else {
-            var result = []
-            return result.push(value)
+            result.push(value)
         }
+        return result
     },
     /**
      * 创建一个被打乱值的集合。 使用 Fisher-Yates shuffle 版本。
@@ -3935,6 +3940,25 @@ TianXiaoBo = {
             return true
         }
         return false
+    },
+    /**
+     * 转换 value 为一个数组。
+     * @param  value (*): 要转换的值。
+     * @return (Array): 返回转换后的数组。
+     */
+    toArray: function(value) {
+        var result = []
+        if (typeof value === 'object' && value !== null) {
+            for (var key in value) {
+                result.push(value[key])
+            }
+        }
+        if (typeof value === 'string') {
+            for (var i = 0; i < value.length; i++) {
+                result.push(value[i])
+            }
+        }
+        return result
     },
 
 
