@@ -3978,7 +3978,131 @@ TianXiaoBo = {
             }
         }
     },
+    /**
+     * 转换 value 为一个整数。
+     * @param  value (*): 要转换的值。
+     * @return (number): 返回转换后的整数。
+     */
+    toInteger: function(value) {
+        var num = Number(value)
+        if (isNaN(num === NaN)) {
+            return "it's not a number"
+        } else {
+            if (Number.MIN_VALUE <= num && num <= Number.MAX_VALUE) {
+                if (num >= 0) {
+                    return Math.round(num)
+                } else {
+                    return 0
+                }
+            } else if (value < 0) {
+                return 0
+            } else {
+                return Number.MAX_VALUE
+            }
+        }
+    },
+    /**
+     * 转换 value 为用作类数组对象的长度整数。
+     * @param  value (*): 要转换的值。
+     * @return (number): 返回转换后的整数。
+     */
+    toLength: function(value) {
+        var num = Number(value)
+        if (isNaN(num === NaN)) {
+            return "it's not a number"
+        } else {
+            if (0 <= num && num <= 4294967295) {
+                return Math.round(num)
+            } else if (value < 0) {
+                return 0
+            } else {
+                return 4294967295
+            }
+        }
+    },
+    /**
+     * 转换 value 为一个数字。
+     * @param  value (*): 要处理的值。
+     * @return (number): 返回数字。
+     */
+    toNumber: function(value) {
+        if (isNaN(Number(value) === NaN)) {
+            return "it's not a number"
+        } else {
+            return Number(value)
+        }
+    },
+    /**
+     * 转换 value 为安全整数。 安全整数可以用于比较和准确的表示。
+     * @param  value (*): 要转换的值。
+     * @return (number): 返回转换后的整数。
+     */
+    toSafeInteger: function(value) {
+        var num = Number(value)
+        if (isNaN(num === NaN)) {
+            return "it's not a number"
+        } else if (num < -9007199254740991) {
+            return -9007199254740991
+        } else if (num > 9007199254740991) {
+            return 9007199254740991
+        } else {
+            return Math.round(num)
+        }
+    },
+    /**
+     * 根据 precision（精度） 向上舍入 number。（愚人码头注： precision（精度）可以理解为保留几位小数。）
+     * @param  number (number): 要向上舍入的值。
+     * @param  [precision=0] (number): 向上舍入的的精度。
+     * @return (number): 返回向上舍入的值。
+     */
+    ceil: function(number, prec) {
+        if (prec === undefined) {
+            prec = 0
+        }
+        var temp = number
+        var count = 0
+        while (parseInt(temp) !== temp) {
+            temp *= 10
+            count++
+        }
+        var d = Math.pow(10, count - prec)
+        if (parseInt(temp / d) === temp / d) {
+            return number
+        } else {
+            temp = parseInt(temp / d) + 1
+            return temp / Math.pow(10, prec)
+        }
+    },
+    /**
+     * 两个数相除。
+     * @param  dividend (number): 相除的第一个数。
+     * @param  divisor (number): 相除的第二个数。
+     * @return (number): 返回商数。
+     */
+    divide: function(dividend, divisor) {
 
+        return dividend / divisor
+    },
+    /**
+     * 根据 precision（精度） 向下舍入 number。（愚人码头注： precision（精度）可以理解为保留几位小数。）
+     * @param  number (number): 要向下舍入的值。
+     * @param  [precision=0] (number): 向下舍入的精度。
+     * @return (number): 返回向下舍入的值。
+     */
+    floor: function(number, prec) {
+        if (prec === undefined) {
+            prec = 0
+        }
+        var temp = number
+        var count = 0
+        while (parseInt(temp) !== temp) {
+            temp *= 10
+            count++
+        }
+        var d = Math.pow(10, count - prec)
+        temp = parseInt(temp / d)
+        return temp / Math.pow(10, prec)
+    },
 
 
 

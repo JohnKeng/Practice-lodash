@@ -3899,6 +3899,93 @@ _ = {
             }
         }
     },
+    toInteger: function(value) {
+        var num = Number(value)
+        if (isNaN(num === NaN)) {
+            return "it's not a number"
+        } else {
+            if (Number.MIN_VALUE <= num && num <= Number.MAX_VALUE) {
+                if (num >= 0) {
+                    return Math.round(num)
+                } else {
+                    return 0
+                }
+            } else if (value < 0) {
+                return 0
+            } else {
+                return Number.MAX_VALUE
+            }
+        }
+    },
+    toLength: function(value) {
+        var num = Number(value)
+        if (isNaN(num === NaN)) {
+            return "it's not a number"
+        } else {
+            if (0 <= num && num <= 4294967295) {
+                return Math.round(num)
+            } else if (value < 0) {
+                return 0
+            } else {
+                return 4294967295
+            }
+        }
+    },
+    toNumber: function(value) {
+        if (isNaN(Number(value) === NaN)) {
+            return "it's not a number"
+        } else {
+            return Number(value)
+        }
+    },
+    toSafeInteger: function(value) {
+        var num = Number(value)
+        if (isNaN(num === NaN)) {
+            return "it's not a number"
+        } else if (num < -9007199254740991) {
+            return -9007199254740991
+        } else if (num > 9007199254740991) {
+            return 9007199254740991
+        } else {
+            return Math.round(num)
+        }
+    },
+    ceil: function(number, prec) {
+        if (prec === undefined) {
+            prec = 0
+        }
+        var temp = number
+        var count = 0
+        while (parseInt(temp) !== temp) {
+            temp *= 10
+            count++
+        }
+        var d = Math.pow(10, count - prec)
+        if (parseInt(temp / d) === temp / d) {
+            return number
+        } else {
+            temp = parseInt(temp / d) + 1
+            return temp / Math.pow(10, prec)
+        }
+    },
+    divide: function(dividend, divisor) {
+        return dividend / divisor
+    },
+    floor: function(number, prec) {
+        if (prec === undefined) {
+            prec = 0
+        }
+        var temp = number
+        var count = 0
+        while (parseInt(temp) !== temp) {
+            temp *= 10
+            count++
+        }
+        var d = Math.pow(10, count - prec)
+        temp = parseInt(temp / d)
+        return temp / Math.pow(10, prec)
+    },
+
 
 
 
