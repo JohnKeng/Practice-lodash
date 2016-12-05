@@ -4103,6 +4103,141 @@ TianXiaoBo = {
         temp = parseInt(temp / d)
         return temp / Math.pow(10, prec)
     },
+    /**
+     * 计算 array 中的最大值。 如果 array 是 空的或者假值将会返回 undefined。
+     * @param  array (Array): 要迭代的数组。
+     * @return (*): 返回最大的值。
+     */
+    max: function(arr) {
+        if (arr.length === 0) {
+            return undefined
+        }
+        if (arr.length === 1) {
+            return arr[0]
+        }
+        return arr.reduce((a, b) => a > b ? a : b)
+    },
+    /**
+     * 这个方法类似 _.max 除了它接受 iteratee 来调用 array中的每一个元素，来生成其值排序的标准。 iteratee 会调用1个参数: (value) 。
+     * @param  array (Array): 要迭代的数组。
+     * @param  [iteratee=_.identity] (Function): 调用每个元素的迭代函数。
+     * @return (*): 返回最大的值。
+     */
+    maxBy: function(arr, iter) {
+        if (this.isString(iter)) {
+            var fn = this.property(iter)
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        return arr.reduce((a, b) => fn(a) > fn(b) ? a : b)
+    },
+    /**
+     * 计算 array 的平均值。
+     * @param  array (Array): 要迭代的数组。
+     * @return (number): 返回平均值。
+     */
+    mean: function(arr) {
+        if (arr.length === 0) {
+            return undefined
+        }
+        if (arr.length === 1) {
+            return arr[0]
+        }
+        return arr.reduce((a, b) => a + b) / arr.length
+    },
+    /**
+     * 这个方法类似 _.mean， 除了它接受 iteratee 来调用 array中的每一个元素，来生成其值排序的标准。 iteratee 会调用1个参数: (value) 。
+     * @param  array (Array): 要迭代的数组。
+     * @param  [iteratee=_.identity] (Function): 调用每个元素的迭代函数。
+     * @return (number): 返回平均值。
+     */
+    meanBy: function(arr, iter) {
+        if (this.isString(iter)) {
+            var fn = this.property(iter)
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        return arr.map(a => fn(a)).reduce((a, b) => a + b) / arr.length
+    },
+    /**
+     * 计算 array 中的最小值。 如果 array 是 空的或者假值将会返回 undefined。
+     * @param  array (Array): 要迭代的数组。
+     * @return (*): 返回最小的值。
+     */
+    min: function(arr) {
+        if (arr.length === 0) {
+            return undefined
+        }
+        if (arr.length === 1) {
+            return arr[0]
+        }
+        return arr.reduce((a, b) => a < b ? a : b)
+    },
+    /**
+     * 这个方法类似 _.min 除了它接受 iteratee 来调用 array中的每一个元素，来生成其值排序的标准。 iteratee 会调用1个参数: (value) 。
+     * @param  array (Array): 要迭代的数组。
+     * @param  [iteratee=_.identity] (Function): 调用每个元素的迭代函数。
+     * @return (*): 返回最小的值。
+     */
+    minBy: function(arr, iter) {
+        if (this.isString(iter)) {
+            var fn = this.property(iter)
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        return arr.reduce((a, b) => fn(a) < fn(b) ? a : b)
+    },
+    /**
+     * 两个数相乘。
+     * @param  augend (number): 相乘的第一个数。
+     * @param  addend (number): 相乘的第二个数。
+     * @return (number): 返回乘积。
+     */
+    multiply: function(multiplier, multiplicand) {
+
+        return multiplier * multiplicand
+    },
+    /**
+     * 根据 precision（精度） 四舍五入 number。
+     * @param  number (number): 要四舍五入的数字。
+     * @param  [precision=0] (number): 四舍五入的精度。
+     * @return (number): 返回四舍五入的数字。
+     */
+    round: function(number, prec) {
+        if (prec === undefined) {
+            prec = 0
+        }
+        var temp = number
+        var count = 0
+        while (parseInt(temp) !== temp) {
+            temp *= 10
+            count++
+        }
+        var d = Math.pow(10, count - prec)
+        if (temp / d - parseInt(temp / d) < 0.5) {
+            return temp = parseInt(temp / d)
+            return temp / Math.pow(10, prec)
+        } else {
+            temp = parseInt(temp / d) + 1
+            return temp / Math.pow(10, prec)
+        }
+    },
+    /**
+     * 两数相减
+     * @param  minuend (number): 相减的第一个数。
+     * @param  subtrahend (number): 相减的第二个数。
+     * @return (number): 返回差。
+     */
+    subtract: function(minuend, subtrahend) {
+
+        return minuend - subtrahend
+    },
+
+
+
 
 
 

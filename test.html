@@ -1774,7 +1774,7 @@ _ = {
                 if (typeof value1[p] !== 'undefined' && typeof value2[p] === 'undefined') {
                     return false;
                 }
-                if (!_.isEqual(value1[p], value2[p])) {
+                if (!TianXiaoBo.isEqual(value1[p], value2[p])) {
                     return false;
                 }
 
@@ -1812,7 +1812,7 @@ _ = {
      */
     matchesProperty: function(path, value) {
         return function(obj) {
-            if (_.isEqual(eval('obj.' + path), value)) {
+            if (TianXiaoBo.isEqual(eval('obj.' + path), value)) {
                 return true
             } else {
                 return false
@@ -3243,9 +3243,8 @@ _ = {
                     break
                 }
             }
-        } else {
-            return collection
         }
+        return collection
     },
     /**
      * 创建一个对象，key 是 iteratee 遍历 collection(集合) 中的每个元素返回的结果。
@@ -3440,7 +3439,6 @@ _ = {
      * @return (Array): 返回过滤后的新数组
      */
     reject: function(colle, pred) {
-        debugger
         var result = []
         if (this.isObject(pred)) {
             var fn = this.matches(pred)
@@ -3733,7 +3731,6 @@ _ = {
             }
         }
         return false
-
     },
     /**
      * 检查 value 是否是 Error, EvalError, RangeError, ReferenceError, SyntaxError, TypeError, 或者 URIError对象。
@@ -3760,10 +3757,21 @@ _ = {
         }
         return false
     },
+    /**
+     * 检查 value 是否为一个 Map 对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个 Map 对象，那么返回 true，否则返回 false。
+     */
     isMap: function(value) {
 
         return value instanceof Map
     },
+    /**
+     * 执行一个深度比较，来确定 object 是否含有和 source 完全相等的属性值。
+     * @param  object (Object): 要检查的对象。
+     * @param  source (Object): 属性值相匹配的对象。
+     * @return (boolean): 如果object匹配，那么返回 true，否则返回 false。
+     */
     isMatch: function(obj, source) {
         if (source === undefined) {
             var self = this
@@ -3784,44 +3792,84 @@ _ = {
             return false
         }
     },
+    /**
+     * 检查 value 是否是一个原生函数。未实现
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个 原生函数，那么返回 true，否则返回 false。
+     */
     isNative: function(value) {
         if (value === undefined) {
             return true
         }
         return value instanceof Function
     },
+    /**
+     * 检查 value 是否是 null 或者 undefined。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为null 或 undefined，那么返回 true，否则返回 false。
+     */
     isNil: function(value) {
         if (value === undefined || value === null) {
             return true
         }
         return false
     },
+    /**
+     * 检查 value 是否是 类对象。 如果一个值是类对象，那么它不应该是 null，而且 typeof 后的结果是 "object"。
+     * @param  value (*): 要检查的值。
+     * @return {Boolean}       [description]
+     */
     isObjectLike: function(value) {
         if (typeof value === 'object' && value !== null) {
             return true
         }
         return false
     },
+    /**
+     * 检查 value 是否是普通对象。 也就是说该对象由 Object 构造函数创建，或者 [[Prototype]] 为 null 。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个普通对象，那么返回 true，否则返回 false。
+     */
     isPlainObject: function(value) {
         if (Object.getPrototypeOf(value) === null || (value).constructor === Object) {
             return true
         }
         return false
     },
+    /**
+     * 检查 value 是否是一个安全整数。 一个安全整数应该是符合 IEEE-754 标准的非双精度浮点数。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个安全整数，那么返回 true，否则返回 false。
+     */
     isSafeInteger: function(value) {
 
         return value === parseInt(value)
     },
+    /**
+     * 检查 value 是否是一个Set对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个 set 对象，那么返回 true，否则返回 false。
+     */
     isSet: function(value) {
 
         return value instanceof Set
     },
+    /**
+     * 检查 value 是否是原始 Symbol 或者对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个symbol，那么返回 true，否则返回 false。
+     */
     isSymbol: function(value) {
         if (typeof value === 'symbol' || typeof value === 'object') {
             return true
         }
         return false
     },
+    /**
+     * 检查 value 是否是TypedArray。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个typed array，那么返回 true，否则返回 false。
+     */
     isTypedArray: function(value) {
         if (value.constructor === Int8Array) {
             return true
@@ -3852,26 +3900,53 @@ _ = {
         }
         return false
     },
+    /**
+     * 检查 value 是否是 WeakMap 对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个 WeakMap 对象 ，那么返回 true，否则返回 false。
+     */
     isWeakMap: function(value) {
 
         return value instanceof WeakMap
     },
+    /**
+     * 检查 value 是否是 WeakSet 对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个 WeakSet 对象 ，那么返回 true，否则返回 false。
+     */
     isWeakSet: function(value) {
 
         return value instanceof WeakSet
     },
+    /**
+     * 检查 value 是否小于 other。
+     * @param  value (*): 用来比较的值。
+     * @param  other (*): 另一个用来比较的值。
+     * @return (boolean): 如果value 小于等于 other 返回 true，否则返回 false。
+     */
     lt: function(value, other) {
         if (value < other) {
             return true
         }
         return false
     },
+    /**
+     * 检查 value 是否小于等于 other。
+     * @param  value (*): 用来比较的值。
+     * @param  other (*): 另一个用来比较的值。
+     * @return {[type]}       [description]
+     */
     lte: function(value, other) {
         if (value <= other) {
             return true
         }
         return false
     },
+    /**
+     * 转换 value 为一个数组。
+     * @param  value (*): 要转换的值。
+     * @return (Array): 返回转换后的数组。
+     */
     toArray: function(value) {
         var result = []
         if (typeof value === 'object' && value !== null) {
@@ -3886,6 +3961,11 @@ _ = {
         }
         return result
     },
+    /**
+     * 转换 value 为一个有限数字。
+     * @param  value (*): 要转换的值。
+     * @return (number): 返回转换后的数字。
+     */
     toFinite: function(value) {
         if (isNaN(Number(value) === NaN)) {
             return "it's not a number"
@@ -3899,6 +3979,11 @@ _ = {
             }
         }
     },
+    /**
+     * 转换 value 为一个整数。
+     * @param  value (*): 要转换的值。
+     * @return (number): 返回转换后的整数。
+     */
     toInteger: function(value) {
         var num = Number(value)
         if (isNaN(num === NaN)) {
@@ -3917,6 +4002,11 @@ _ = {
             }
         }
     },
+    /**
+     * 转换 value 为用作类数组对象的长度整数。
+     * @param  value (*): 要转换的值。
+     * @return (number): 返回转换后的整数。
+     */
     toLength: function(value) {
         var num = Number(value)
         if (isNaN(num === NaN)) {
@@ -3931,6 +4021,11 @@ _ = {
             }
         }
     },
+    /**
+     * 转换 value 为一个数字。
+     * @param  value (*): 要处理的值。
+     * @return (number): 返回数字。
+     */
     toNumber: function(value) {
         if (isNaN(Number(value) === NaN)) {
             return "it's not a number"
@@ -3938,6 +4033,11 @@ _ = {
             return Number(value)
         }
     },
+    /**
+     * 转换 value 为安全整数。 安全整数可以用于比较和准确的表示。
+     * @param  value (*): 要转换的值。
+     * @return (number): 返回转换后的整数。
+     */
     toSafeInteger: function(value) {
         var num = Number(value)
         if (isNaN(num === NaN)) {
@@ -3950,6 +4050,12 @@ _ = {
             return Math.round(num)
         }
     },
+    /**
+     * 根据 precision（精度） 向上舍入 number。（愚人码头注： precision（精度）可以理解为保留几位小数。）
+     * @param  number (number): 要向上舍入的值。
+     * @param  [precision=0] (number): 向上舍入的的精度。
+     * @return (number): 返回向上舍入的值。
+     */
     ceil: function(number, prec) {
         if (prec === undefined) {
             prec = 0
@@ -3968,9 +4074,22 @@ _ = {
             return temp / Math.pow(10, prec)
         }
     },
+    /**
+     * 两个数相除。
+     * @param  dividend (number): 相除的第一个数。
+     * @param  divisor (number): 相除的第二个数。
+     * @return (number): 返回商数。
+     */
     divide: function(dividend, divisor) {
+
         return dividend / divisor
     },
+    /**
+     * 根据 precision（精度） 向下舍入 number。（愚人码头注： precision（精度）可以理解为保留几位小数。）
+     * @param  number (number): 要向下舍入的值。
+     * @param  [precision=0] (number): 向下舍入的精度。
+     * @return (number): 返回向下舍入的值。
+     */
     floor: function(number, prec) {
         if (prec === undefined) {
             prec = 0
@@ -3985,16 +4104,107 @@ _ = {
         temp = parseInt(temp / d)
         return temp / Math.pow(10, prec)
     },
-
-
-
+    /**
+     * 计算 array 中的最大值。 如果 array 是 空的或者假值将会返回 undefined。
+     * @param  array (Array): 要迭代的数组。
+     * @return (*): 返回最大的值。
+     */
+    max: function(arr) {
+        if (arr.length === 0) {
+            return undefined
+        }
+        if (arr.length === 1) {
+            return arr[0]
+        }
+        return arr.reduce((a, b) => a > b ? a : b)
+    },
+    /**
+     * 这个方法类似 _.max 除了它接受 iteratee 来调用 array中的每一个元素，来生成其值排序的标准。 iteratee 会调用1个参数: (value) 。
+     * @param  array (Array): 要迭代的数组。
+     * @param  [iteratee=_.identity] (Function): 调用每个元素的迭代函数。
+     * @return (*): 返回最大的值。
+     */
+    maxBy: function(arr, iter) {
+        if (this.isString(iter)) {
+            var fn = this.property(iter)
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        return arr.reduce((a, b) => fn(a) > fn(b) ? a : b)
+    },
+    /**
+     * 计算 array 的平均值。
+     * @param  array (Array): 要迭代的数组。
+     * @return (number): 返回平均值。
+     */
+    mean: function(arr) {
+        if (arr.length === 0) {
+            return undefined
+        }
+        if (arr.length === 1) {
+            return arr[0]
+        }
+        return arr.reduce((a, b) => a + b) / arr.length
+    },
+    meanBy: function(arr, iter) {
+        if (this.isString(iter)) {
+            var fn = this.property(iter)
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        return arr.map(a => fn(a)).reduce((a, b) => a + b) / arr.length
+    },
+    min: function(arr) {
+        if (arr.length === 0) {
+            return undefined
+        }
+        if (arr.length === 1) {
+            return arr[0]
+        }
+        return arr.reduce((a, b) => a < b ? a : b)
+    },
+    minBy: function(arr, iter) {
+        if (this.isString(iter)) {
+            var fn = this.property(iter)
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        return arr.reduce((a, b) => fn(a) < fn(b) ? a : b)
+    },
+    multiply: function(multiplier, multiplicand) {
+        return multiplier * multiplicand
+    },
+    round: function(number, prec) {
+        if (prec === undefined) {
+            prec = 0
+        }
+        var temp = number
+        var count = 0
+        while (parseInt(temp) !== temp) {
+            temp *= 10
+            count++
+        }
+        var d = Math.pow(10, count - prec)
+        if (temp / d - parseInt(temp / d) < 0.5) {
+            return temp = parseInt(temp / d)
+            return temp / Math.pow(10, prec)
+        } else {
+            temp = parseInt(temp / d) + 1
+            return temp / Math.pow(10, prec)
+        }
+    },
+    subtract: function(minuend, subtrahend) {
+        return minuend - subtrahend
+    },
 
 
 
 
 
 }
-
 
 /**
 if (this.isObject(pred)) {
