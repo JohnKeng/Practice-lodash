@@ -3797,7 +3797,9 @@ TianXiaoBo = {
      * @return (boolean): 如果 value 是一个 原生函数，那么返回 true，否则返回 false。
      */
     isNative: function(value) {
-
+        if (value === undefined) {
+            return true
+        }
         return value instanceof Function
     },
     /**
@@ -3957,6 +3959,24 @@ TianXiaoBo = {
             }
         }
         return result
+    },
+    /**
+     * 转换 value 为一个有限数字。
+     * @param  value (*): 要转换的值。
+     * @return (number): 返回转换后的数字。
+     */
+    toFinite: function(value) {
+        if (isNaN(Number(value) === NaN)) {
+            return "it's not a number"
+        } else {
+            if (Number.MIN_VALUE <= Number(value) && Number(value) <= Number.MAX_VALUE) {
+                return Number(value)
+            } else if (value < 0) {
+                return Number.MIN_VALUE
+            } else {
+                return Number.MAX_VALUE
+            }
+        }
     },
 
 

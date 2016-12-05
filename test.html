@@ -3785,6 +3785,9 @@ _ = {
         }
     },
     isNative: function(value) {
+        if (value === undefined) {
+            return true
+        }
         return value instanceof Function
     },
     isNil: function(value) {
@@ -3882,8 +3885,20 @@ _ = {
             }
         }
         return result
-    }
-
+    },
+    toFinite: function(value) {
+        if (isNaN(Number(value) === NaN)) {
+            return "it's not a number"
+        } else {
+            if (Number.MIN_VALUE <= Number(value) && Number(value) <= Number.MAX_VALUE) {
+                return Number(value)
+            } else if (value < 0) {
+                return Number.MIN_VALUE
+            } else {
+                return Number.MAX_VALUE
+            }
+        }
+    },
 
 
 
