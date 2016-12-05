@@ -1757,12 +1757,10 @@ _ = {
      * isEqual(object, other);
      * // => true
      */
-
     isEqual: function(value1, value2) {
-        if (typeof value1 === 'number' && typeof value2 === 'number') {
-            if (value1.toString() === 'NaN' && value2.toString() === 'NaN') {
-                return true
-            }
+        //debugger
+        if (value1 !== value1 && value2 !== value2) {
+            return true
         }
         if (value1 === value2) {
             return true
@@ -1776,9 +1774,10 @@ _ = {
                 if (typeof value1[p] !== 'undefined' && typeof value2[p] === 'undefined') {
                     return false;
                 }
-                if (!(_.isEqual(value1[p], value2[p]))) {
+                if (!_.isEqual(value1[p], value2[p])) {
                     return false;
                 }
+
             }
             for (p in value2) {
                 if (typeof value2[p] !== 'undefined' && typeof value1[p] === 'undefined') {
@@ -1812,9 +1811,8 @@ _ = {
      * @return (Function): 返回新的函数。
      */
     matchesProperty: function(path, value) {
-        var self = this
         return function(obj) {
-            if (self.isEqual(eval('obj.' + path), value)) {
+            if (this.isEqual(eval('obj.' + path), value)) {
                 return true
             } else {
                 return false
@@ -3620,6 +3618,12 @@ _ = {
         })
         return result
     },
+    /**
+     * 通过调用断言source的属性与 object 的相应属性值，检查 object是否符合 source。当source偏应用时，这种方法和 _.conforms函数是等价的。
+     * @param  object (Object): 要检查的对象。
+     * @param  source (Object): 要断言属性是否符合的对象。
+     * @return (boolean): 如果 object 符合，返回 true，否则 false。
+     */
     conformsTo: function(obj, sour) {
         for (var key in obj) {
             if (key in sour) {
@@ -3630,6 +3634,12 @@ _ = {
         }
         return false
     },
+    /**
+     * 执行 SameValueZero 比较两者的值，来确定它们是否相等。
+     * @param  value (*): 要比较的值。
+     * @param  other (*): 另一个要比较的值。
+     * @return (boolean): 如果两个值相等返回 true ，否则返回 false 。
+     */
     eq: function(value1, value2) {
         if (typeof value1 === 'number' && typeof value2 === 'number') {
             if (value1.toString() === 'NaN' && value2.toString() === 'NaN') {
@@ -3641,21 +3651,44 @@ _ = {
         }
         return false
     },
+    /**
+     * 检查 value是否大于 other。
+     * @param  value (*): 要比较的值。
+     * @param  other (*): 另一个要比较的值。
+     * @return (boolean): 如果value 大于 other 返回 true，否则返回 false。
+     */
     gt: function(value, other) {
         if (value > other) {
             return true
         }
         return false
     },
+    /**
+     * 检查 value是否大于或者等于 other。
+     * @param  value (*): 要比较的值。
+     * @param  other (*): 另一个要比较的值。
+     * @return (boolean): 如果value 大于或者等于 other 返回 true，否则返回 false。
+     */
     gte: function(value, other) {
         if (value >= other) {
             return true
         }
         return false
     },
+    /**
+     * 检查 value 是否是 ArrayBuffer 对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果value是一个数组 buffer 返回 true，否则返回 false。
+     */
     isArrayBuffer: function(value) {
+
         return value instanceof ArrayBuffer
     },
+    /**
+     * 检查 value 是否是类数组。 如果一个值被认为是类数组，那么它不是一个函数，并且value.length是个整数，大于等于 0，小于或等于 Number.MAX_SAFE_INTEGER。
+     * @param  value (*): 要检查的值
+     * @return (boolean): 如果value是一个类数组，那么返回 true，否则返回 false。
+     */
     isArrayLike: function(value) {
         if (this.isFunction(value)) {
             return false
@@ -3667,6 +3700,11 @@ _ = {
         }
         return false
     },
+    /**
+     * 这个方法类似_.isArrayLike。除了它还检查value是否是个对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个类数组对象，那么返回 true，否则返回 false。
+     */
     isArrayLikeObject: function(value) {
         if (this.isFunction(value)) {
             return false
@@ -3678,18 +3716,87 @@ _ = {
         }
         return false
     },
+    /**
+     * 检查 value 是否是可能是 DOM 元素。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个DOM元素，那么返回 true，否则返回 false。
+     */
+    isElement: function(value) {
+        if ('nodeType' in value) {
+            if (0 < value.nodeType && value.nodeType <= 12) {
+                return true
+            }
+        }
+        return false
+
+    },
+    /**
+     * 检查 value 是否是 Error, EvalError, RangeError, ReferenceError, SyntaxError, TypeError, 或者 URIError对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个错误（Error）对象，那么返回 true，否则返回 false。
+     */
     isError: function(value) {
+
         return value instanceof Error
     },
     isInteger: function(value) {
         return parseInt(value) === value
     },
-
+    /**
+     * 检查 value 是否为有效的类数组长度。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个有效长度，那么返回 true，否则返回 false。
+     */
     isLength: function(value) {
         if (parseInt(value) === value) {
             if (0 <= value && value <= Number.MAX_SAFE_INTEGER) {
                 return true
             }
+        }
+        return false
+    },
+    isMap: function(value) {
+
+        return value instanceof Map
+    },
+    isMatch: function(obj, source) {
+        if (source === undefined) {
+            var self = this
+            return function(obj) {
+                for (key in obj) {
+                    if (!self.isEqual(obj[key], obj[key])) {
+                        return false
+                    }
+                }
+                return true
+            }
+        } else {
+            for (var key in source) {
+                if (this.isEqual(obj[key], source[key])) {
+                    return true
+                }
+            }
+            return false
+        }
+    },
+    isNative: function(value) {
+        return value instanceof Function
+    },
+    isNil: function(value) {
+        if (value === undefined || value === null) {
+            return true
+        }
+        return false
+    },
+    isObjectLike: function(value) {
+        if (typeof value === 'object' && value !== null) {
+            return true
+        }
+        return false
+    },
+    isPlainObject: function(value) {
+        if (Object.getPrototypeOf(value) === null || (value).constructor === Object) {
+            return true
         }
         return false
     },
@@ -3700,7 +3807,9 @@ _ = {
 
 
 
+
 }
+
 
 /**
 if (this.isObject(pred)) {

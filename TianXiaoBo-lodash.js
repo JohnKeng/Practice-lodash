@@ -3727,7 +3727,6 @@ TianXiaoBo = {
             }
         }
         return false
-
     },
     /**
      * 检查 value 是否是 Error, EvalError, RangeError, ReferenceError, SyntaxError, TypeError, 或者 URIError对象。
@@ -3751,6 +3750,83 @@ TianXiaoBo = {
             if (0 <= value && value <= Number.MAX_SAFE_INTEGER) {
                 return true
             }
+        }
+        return false
+    },
+    /**
+     * 检查 value 是否为一个 Map 对象。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个 Map 对象，那么返回 true，否则返回 false。
+     */
+    isMap: function(value) {
+
+        return value instanceof Map
+    },
+    /**
+     * 执行一个深度比较，来确定 object 是否含有和 source 完全相等的属性值。
+     * @param  object (Object): 要检查的对象。
+     * @param  source (Object): 属性值相匹配的对象。
+     * @return (boolean): 如果object匹配，那么返回 true，否则返回 false。
+     */
+    isMatch: function(obj, source) {
+        if (source === undefined) {
+            var self = this
+            return function(obj) {
+                for (key in obj) {
+                    if (!self.isEqual(obj[key], obj[key])) {
+                        return false
+                    }
+                }
+                return true
+            }
+        } else {
+            for (var key in source) {
+                if (this.isEqual(obj[key], source[key])) {
+                    return true
+                }
+            }
+            return false
+        }
+    },
+    /**
+     * 检查 value 是否是一个原生函数。未实现
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 是一个 原生函数，那么返回 true，否则返回 false。
+     */
+    isNative: function(value) {
+
+        return value instanceof Function
+    },
+    /**
+     * 检查 value 是否是 null 或者 undefined。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为null 或 undefined，那么返回 true，否则返回 false。
+     */
+    isNil: function(value) {
+        if (value === undefined || value === null) {
+            return true
+        }
+        return false
+    },
+    /**
+     * 检查 value 是否是 类对象。 如果一个值是类对象，那么它不应该是 null，而且 typeof 后的结果是 "object"。
+     * @param  value (*): 要检查的值。
+     * @return {Boolean}       [description]
+     */
+    isObjectLike: function(value) {
+        if (typeof value === 'object' && value !== null) {
+            return true
+        }
+        return false
+    },
+    /**
+     * 检查 value 是否是普通对象。 也就是说该对象由 Object 构造函数创建，或者 [[Prototype]] 为 null 。
+     * @param  value (*): 要检查的值。
+     * @return (boolean): 如果 value 为一个普通对象，那么返回 true，否则返回 false。
+     */
+    isPlainObject: function(value) {
+        if (Object.getPrototypeOf(value) === null || (value).constructor === Object) {
+            return true
         }
         return false
     },
