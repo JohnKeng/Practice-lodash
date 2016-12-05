@@ -2118,9 +2118,8 @@ TianXiaoBo = {
                     break
                 }
             }
-        } else {
-            return collection
         }
+        return collection
     },
     /**
      * 使用 iteratee 遍历对象的自身和继承的可枚举属性。 iteratee 会传入3个参数：(value, key, object)。 如果返回 false，iteratee 会提前退出遍历。
@@ -3243,9 +3242,8 @@ TianXiaoBo = {
                     break
                 }
             }
-        } else {
-            return collection
         }
+        return collection
     },
     /**
      * 创建一个对象，key 是 iteratee 遍历 collection(集合) 中的每个元素返回的结果。
