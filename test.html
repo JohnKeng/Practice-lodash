@@ -1556,8 +1556,12 @@ _ = {
      * // => Logs 'a', 'b', then 'c' (无法保证遍历的顺序)。
      */
     forIn: function(obj, fn) {
-        for (var keys in obj) {
-            fn(obj[keys], keys, obj)
+        for (keys in obj) {
+            if (obj[keys]) {
+                fn(obj[keys], keys, obj)
+            } else {
+                break
+            }
         }
         return obj
     },
@@ -2586,15 +2590,7 @@ _ = {
      * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
      * @return (Object): 返回 object。
      */
-    forOwn: function(obj, iter) {
-        for (keys in obj) {
-            if (obj.hasOwnProperty(keys)) {
-                if (!iter(obj[keys], keys, obj)) {
-                    return obj
-                }
-            }
-        }
-    },
+
     /**
      * 这个方法类似 _.union ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）的每个元素以产生唯一性计算的标准。iteratee 会传入一个参数：(value)。
      * @param  [arrays] (...Array): 要检查的数组。
@@ -4290,6 +4286,61 @@ _ = {
                 return keys[i]
             }
         }
+    },
+    forInRight: function(obj, fn) {
+        var keys = []
+        for (var key in obj) {
+            keys.push(key)
+        }
+        for (var i = keys.length - 1; i >= 0; i--) {
+            if (obj[keys[i]]) {
+                fn(obj[keys[i]], keys[i], obj)
+            } else {
+                break
+            }
+        }
+        return obj
+    },
+    forOwn: function(obj, iter) {
+        for (keys in obj) {
+            if (obj.hasOwnProperty(keys)) {
+                if (iter(obj[keys], keys, obj) === false) {
+                    break
+                }
+            }
+        }
+        return obj
+    },
+    forOwnRight: function(obj, iter) {
+        var keys = Object.keys(obj)
+        for (var i = keys.length - 1; i >= 0; i--) {
+            if (iter(obj[keys[i]], keys[i], obj) === false) {
+                break
+            }
+        }
+        return obj
+    },
+    times: function(n, iter) {
+        var result = []
+        for (var i = 0; i < n; i++) {
+            result.push(iter(i))
+        }
+        return result
+    },
+    constant: function(value) {
+        return function() {
+            return value
+        }
+    },
+    functions: function(obj) {
+        return Object.keys(obj)
+    },
+    functionsIn: function(obj) {
+        var result = []
+        for (var keys in obj) {
+            result.push(keys)
+        }
+        return result
     },
 
 

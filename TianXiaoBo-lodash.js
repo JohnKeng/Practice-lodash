@@ -2592,11 +2592,12 @@ TianXiaoBo = {
     forOwn: function(obj, iter) {
         for (keys in obj) {
             if (obj.hasOwnProperty(keys)) {
-                if (!iter(obj[keys], keys, obj)) {
-                    return obj
+                if (iter(obj[keys], keys, obj) === false) {
+                    break
                 }
             }
         }
+        return obj
     },
     /**
      * 这个方法类似 _.union ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）的每个元素以产生唯一性计算的标准。iteratee 会传入一个参数：(value)。
@@ -4408,6 +4409,92 @@ TianXiaoBo = {
             }
         }
     },
+    /**
+     * 这个方法类似 _.forIn。 除了它是反方向开始遍历object的。
+     * @param  object (Object): 要遍历的对象。
+     * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
+     * @return (Object): 返回 object。
+     */
+    forInRight: function(obj, fn) {
+        var keys = []
+        for (var key in obj) {
+            keys.push(key)
+        }
+        for (var i = keys.length - 1; i >= 0; i--) {
+            if (obj[keys[i]]) {
+                fn(obj[keys[i]], keys[i], obj)
+            } else {
+                break
+            }
+        }
+        return obj
+    },
+    /**
+     * 这个方法类似 _.forOwn。 除了它是反方向开始遍历object的。
+     * @param  object (Object): 要遍历的对象。
+     * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
+     * @return (Object): 返回 object。
+     */
+    forOwnRight: function(obj, iter) {
+        var keys = Object.keys(obj)
+        for (var i = keys.length - 1; i >= 0; i--) {
+            if (iter(obj[keys[i]], keys[i], obj) === false) {
+                break
+            }
+        }
+        return obj
+    },
+    /**
+     * 调用 iteratee n 次，每次调用返回的结果存入到数组中。 iteratee 调用入1个参数： (index)。
+     * @param  n (number): 调用 iteratee 的次数。
+     * @param  [iteratee=_.identity] (Function): 每次迭代调用的函数。
+     * @return [iteratee=_.identity] (Function): 每次迭代调用的函数。
+     */
+    times: function(n, iter) {
+        var result = []
+        for (var i = 0; i < n; i++) {
+            result.push(iter(i))
+        }
+        return result
+    },
+    /**
+     * 创建一个返回 value 的函数。
+     * @param  value (*): 要新函数返回的值。
+     * @return (Function): 返回新的常量函数。
+     */
+    constant: function(value) {
+        return function() {
+            return value
+        }
+    },
+    /**
+     * 创建一个函数属性名称的数组，函数属性名称来自object对象自身可枚举属性。
+     * @param  object (Object): 要检查的对象。
+     * @return (Array): 返回函数名。
+     */
+    functions: function(obj) {
+        return Object.keys(obj)
+    },
+    functionsIn: function(obj) {
+        var result = []
+        for (var keys in obj) {
+            result.push(keys)
+        }
+        return result
+    },
+    /**
+     * 创建一个函数属性名称的数组，函数属性名称来自object对象自身和继承的可枚举属性。
+     * @param  object (Object): 要检查的对象。
+     * @return (Array): 返回函数名。
+     */
+    functionsIn: function(obj) {
+        var result = []
+        for (var keys in obj) {
+            result.push(keys)
+        }
+        return result
+    },
+
 
 
 
