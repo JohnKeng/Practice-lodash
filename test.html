@@ -1605,17 +1605,7 @@ _ = {
      * pick(object, ['a', 'c']);
      * // => { 'a': 1, 'c': 3 }
      */
-    pick: function(obj, arr) {
-        var result = {}
-        for (var i = 0; i < arr.length; i++) {
-            for (keys in obj) {
-                if (arr[i] == keys) {
-                    result[keys] = obj[keys]
-                }
-            }
-        }
-        return result
-    },
+
     /**
      * 创建 object 自身可枚举属性的值为数组。
      * @param  object (Object): 要检索的对象。
@@ -4730,7 +4720,163 @@ _ = {
             }
         }
         return result
-    }
+    },
+    toPairsIn: function(obj) {
+        if (this.isMap(obj) || this.isSet(obj)) {
+            return obj
+        }
+        var result = [],
+            temp = []
+        for (var key in obj) {
+            temp = []
+            temp.push(key)
+            temp.push(obj[key])
+            result.push(temp)
+        }
+        return result
+    },
+    pickBy: function(obj, iter) {
+        var result = {}
+        for (keys in obj) {
+            if (iter(obj[keys])) {
+                result[keys] = obj[keys]
+            }
+        }
+        return result
+    },
+    transform: function(colle, iter, acc) {
+        var theKey = Object.keys(colle)
+        var start = 0
+        if (acc === undefined) {
+            acc = colle[theKey[0]]
+            start = 1
+        }
+        for (var i = start; i < theKey.length; i++) {
+            if (iter(acc, colle[theKey[i]], theKey[i], colle) === false) {
+                break
+            }
+        }
+        return acc
+    },
+    unset: function(obj, path) {
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        return theIn(obj, temp, 0)
+
+        function theIn(obj, arr, index) {
+            if (index >= arr.length - 1) {
+                return delete obj[arr[index]]
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1)
+            } else if (arr[index + 1] === '0') {
+                obj[arr[index]] = []
+                return theIn(obj[arr[index]], arr, index + 1)
+            } else {
+                obj[arr[index]] = {}
+                return theIn(obj[arr[index]], arr, index + 1)
+            }
+        }
+    },
+    update: function(obj, path, updater) {
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        theIn(obj, temp, 0, updater)
+        return obj
+
+        function theIn(obj, arr, index, updater) {
+            if (index >= arr.length - 1) {
+                obj[arr[index]] = updater(obj[arr[index]])
+                return obj
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1, updater)
+            } else if (arr[index + 1] === '0') {
+                obj[arr[index]] = []
+                return theIn(obj[arr[index]], arr, index + 1, updater)
+            } else {
+                obj[arr[index]] = {}
+                return theIn(obj[arr[index]], arr, index + 1, updater)
+            }
+        }
+    },
+    updateWith: function(obj, path, updater, cust) {
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[start] === '[') {
+                    start++
+                    end++
+                }
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        theIn(obj, temp, 0, updater)
+        return obj
+
+        function theIn(obj, arr, index, updater) {
+            if (index >= arr.length - 1) {
+                obj[arr[index]] = updater(obj[arr[index]])
+                return obj
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1, updater)
+            } else {
+                obj[arr[index]] = cust()
+                return theIn(obj[arr[index]], arr, index + 1, updater)
+            }
+        }
+    },
 
 
 

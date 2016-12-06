@@ -4935,6 +4935,202 @@ TianXiaoBo = {
         }
         return result
     },
+    /**
+     * 创建一个object对象自身和继承的可枚举属性的键值对数组。这个数组可以通过_.fromPairs撤回。如果object 是 map 或 set，返回其条目。
+     * @param  object (Object): 要检索的对象。
+     * @return (Array): 返回键值对的数组。
+     */
+    toPairsIn: function(obj) {
+        if (this.isMap(obj) || this.isSet(obj)) {
+            return obj
+        }
+        var result = [],
+            temp = []
+        for (var key in obj) {
+            temp = []
+            temp.push(key)
+            temp.push(obj[key])
+            result.push(temp)
+        }
+        return result
+    },
+    /**
+     * 创建一个对象，这个对象组成为从 object 中经 predicate 判断为真值的属性。
+     * @param  object (Object): 来源对象。
+     * @param  [predicate=_.identity] (Function): 调用每一个属性的函数。
+     * @return (Object): 返回新对象。
+     */
+    pickBy: function(obj, iter) {
+        var result = {}
+        for (keys in obj) {
+            if (iter(obj[keys])) {
+                result[keys] = obj[keys]
+            }
+        }
+        return result
+    },
+    /**
+     * _.reduce的替代方法;此方法将转换object对象为一个新的accumulator对象，结果来自iteratee处理自身可枚举的属性。
+     * @param  object (Object): 要遍历的对象
+     * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
+     * @param  [accumulator] (*): 定制叠加的值。
+     * @return (*): 返回叠加后的值。
+     */
+    transform: function(colle, iter, acc) {
+        var theKey = Object.keys(colle)
+        var start = 0
+        if (acc === undefined) {
+            acc = colle[theKey[0]]
+            start = 1
+        }
+        for (var i = start; i < theKey.length; i++) {
+            if (iter(acc, colle[theKey[i]], theKey[i], colle) === false) {
+                break
+            }
+        }
+        return acc
+    },
+    /**
+     * 移除object对象 path 路径上的属性。
+     * @param  object (Object): 要修改的对象。
+     * @param  path (Array|string): 要移除的对象路径。
+     * @return (boolean): 如果移除成功，那么返回 true ，否则返回 false。
+     */
+    unset: function(obj, path) {
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        return theIn(obj, temp, 0)
+
+        function theIn(obj, arr, index) {
+            if (index >= arr.length - 1) {
+                return delete obj[arr[index]]
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1)
+            } else if (arr[index + 1] === '0') {
+                obj[arr[index]] = []
+                return theIn(obj[arr[index]], arr, index + 1)
+            } else {
+                obj[arr[index]] = {}
+                return theIn(obj[arr[index]], arr, index + 1)
+            }
+        }
+    },
+    /**
+     * 该方法类似_.set，除了接受updater以生成要设置的值。使用 _.updateWith来自定义生成的新path。updater调用1个参数：(value)。
+     * @param  object (Object): 要修改的对象。
+     * @param  path (Array|string): 要设置属性的路径。
+     * @param  updater (Function): 用来生成设置值的函数。
+     * @return (Object): 返回 object 。
+     */
+    update: function(obj, path, updater) {
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        theIn(obj, temp, 0, updater)
+        return obj
+
+        function theIn(obj, arr, index, updater) {
+            if (index >= arr.length - 1) {
+                obj[arr[index]] = updater(obj[arr[index]])
+                return obj
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1, updater)
+            } else if (arr[index + 1] === '0') {
+                obj[arr[index]] = []
+                return theIn(obj[arr[index]], arr, index + 1, updater)
+            } else {
+                obj[arr[index]] = {}
+                return theIn(obj[arr[index]], arr, index + 1, updater)
+            }
+        }
+    },
+    /**
+     * 该方法类似_.update，不同之处在于它接受customizer，调用来生成新的对象的path。
+     * @param  object (Object): 要修改的对象。
+     * @param  path (Array|string): 要设置属性的路径。
+     * @param  updater (Function): 用来生成设置值的函数。
+     * @param  [customizer] (Function): 用来自定义分配值的函数。
+     * @return (Object): 返回 object.
+     */
+    updateWith: function(obj, path, updater, cust) {
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[start] === '[') {
+                    start++
+                    end++
+                }
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        theIn(obj, temp, 0, updater)
+        return obj
+
+        function theIn(obj, arr, index, updater) {
+            if (index >= arr.length - 1) {
+                obj[arr[index]] = updater(obj[arr[index]])
+                return obj
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1, updater)
+            } else {
+                obj[arr[index]] = cust()
+                return theIn(obj[arr[index]], arr, index + 1, updater)
+            }
+        }
+    },
+
 
 
 
