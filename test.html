@@ -4199,6 +4199,67 @@ _ = {
     subtract: function(minuend, subtrahend) {
         return minuend - subtrahend
     },
+    sum: function(array) {
+        return array.reduce((a, b) => a + b)
+    },
+    sumBy: function(arr, iter) {
+        if (this.isString(iter)) {
+            var fn = this.property(iter)
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        return arr.map(a => fn(a)).reduce((a, b) => a + b)
+    },
+    clamp: function(num, low, upp) {
+        return num > low ? (num > upp ? upp : num) : low
+    },
+    inRange: function(number, start, end) {
+        if (end === undefined) {
+            end = start
+            start = 0
+        }
+        number = Math.abs(number)
+        start = Math.abs(start)
+        end = Math.abs(end)
+        return start <= number && number < end ? true : false
+    },
+    random: function(low, upp, float) {
+        if (float === undefined) {
+            if (upp === undefined) {
+                upp = low
+                low = 0
+                float = false
+            } else if (parseInt(upp) === upp) {
+                float = false
+            } else if (typeof upp !== 'number') {
+                float = upp
+                upp = low
+                low = 0
+            } else {
+                float = true
+            }
+        }
+        if (low === upp) {
+            return low
+        } else if (low > upp) {
+            var temp = low
+            low = upp
+            upp = temp
+        }
+        var num
+        var sym
+        do {
+            num = Math.random()
+            sym = Math.random() > 0.5 ? 1 : -1
+            if (low >= 0) {
+                sym = 1
+            }
+            num = num * (Math.abs(low) > Math.abs(upp) ? Math.abs(low) : Math.abs(upp)) * sym
+            num = float ? num : Math.round(num)
+        } while (num < low || upp <= num)
+        return num
+    }
 
 
 

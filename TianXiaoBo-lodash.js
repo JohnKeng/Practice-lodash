@@ -4235,6 +4235,102 @@ TianXiaoBo = {
 
         return minuend - subtrahend
     },
+    /**
+     * 计算 array 中值的总和
+     * @param  array (Array): 要迭代的数组。
+     * @return (number): 返回总和。
+     */
+    sum: function(array) {
+
+        return array.reduce((a, b) => a + b)
+    },
+    /**
+     * 这个方法类似 _.summin 除了它接受 iteratee 来调用 array中的每一个元素，来生成其值排序的标准。 iteratee 会调用1个参数: (value) 。
+     * @param  array (Array): 要迭代的数组。
+     * @param  [iteratee=_.identity] (Function): 调用每个元素的迭代函数。
+     * @return (number): 返回总和。
+     */
+    sumBy: function(arr, iter) {
+        if (this.isString(iter)) {
+            var fn = this.property(iter)
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        return arr.map(a => fn(a)).reduce((a, b) => a + b)
+    },
+    /**
+     * 返回限制在 lower 和 upper 之间的值。
+     * @param  number (number): 被限制的值。
+     * @param  [lower] (number): 下限。
+     * @param  upper (number): 上限
+     * @return (number): 返回被限制的值。
+     */
+    clamp: function(num, low, upp) {
+
+        return num > low ? (num > upp ? upp : num) : low
+    },
+    /**
+     * 检查 n 是否在 start 与 end 之间，但不包括 end。 如果 end 没有指定，那么 start 设置为0。 如果 start 大于 end，那么参数会交换以便支持负范围。
+     * @param  number (number): 要检查的值。
+     * @param  [start=0] (number): 开始范围。
+     * @param  end (number): 结束范围。
+     * @return (boolean): 如果number在范围内 ，那么返回true，否则返回 false。
+     */
+    inRange: function(number, start, end) {
+        if (end === undefined) {
+            end = start
+            start = 0
+        }
+        number = Math.abs(number)
+        start = Math.abs(start)
+        end = Math.abs(end)
+        return start <= number && number < end ? true : false
+    },
+    /**
+     * 产生一个包括 lower 与 upper 之间的数。 如果只提供一个参数返回一个0到提供数之间的数。 如果 floating 设为 true，或者 lower 或 upper 是浮点数，结果返回浮点数。
+     * @param  [lower=0] (number): 下限。
+     * @param  [upper=1] (number): 上限。
+     * @param  [floating] (boolean): 指定是否返回浮点数。
+     * @return (number): 返回随机数。
+     */
+    random: function(low, upp, float) {
+        if (float === undefined) {
+            if (upp === undefined) {
+                upp = low
+                low = 0
+                float = false
+            } else if (parseInt(upp) === upp) {
+                float = false
+            } else if (typeof upp !== 'number') {
+                float = upp
+                upp = low
+                low = 0
+            } else {
+                float = true
+            }
+        }
+        if (low === upp) {
+            return low
+        } else if (low > upp) {
+            var temp = low
+            low = upp
+            upp = temp
+        }
+        var num
+        var sym
+        do {
+            num = Math.random()
+            sym = Math.random() > 0.5 ? 1 : -1
+            if (low >= 0) {
+                sym = 1
+            }
+            num = num * (Math.abs(low) > Math.abs(upp) ? Math.abs(low) : Math.abs(upp)) * sym
+            num = float ? num : Math.round(num)
+        } while (num < low || upp <= num)
+        return num
+    }
+
 
 
 
