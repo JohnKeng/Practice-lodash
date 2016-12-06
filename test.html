@@ -4509,6 +4509,82 @@ _ = {
         }
         return obj
     },
+    omit: function(obj, prop) {
+        var temp = [],
+            start = 0,
+            end = 1,
+            result = {}
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = prop
+        }
+        for (var key in obj) {
+            result[key] = obj[key]
+        }
+        for (var i = 0; i < temp.length; i++) {
+            if ((temp[i] in obj) && (obj.hasOwnProperty(temp[i]))) {
+                delete result[temp[i]]
+            }
+        }
+        return result
+    },
+    omit: function(obj, prop) {
+        var temp = [],
+            start = 0,
+            end = 1,
+            result = {}
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = prop
+        }
+        for (var key in obj) {
+            result[key] = obj[key]
+        }
+        for (var i = 0; i < temp.length; i++) {
+            if ((temp[i] in obj) && (obj.hasOwnProperty(temp[i]))) {
+                delete result[temp[i]]
+            }
+        }
+        return result
+    },
+    omitBy: function(obj, pred) {
+        var result = {}
+        for (var key in obj) {
+            result[key] = obj[key]
+        }
+        for (var key in obj) {
+            if (pred(obj[key])) {
+                delete result[key]
+            }
+        }
+        return result
+    },
 
 
 

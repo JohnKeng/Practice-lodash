@@ -4707,6 +4707,62 @@ TianXiaoBo = {
         }
         return result[temp[temp.length - 1]](...args)
     },
+    /**
+     * 反向版 _.pick; 这个方法一个对象，这个对象由忽略属性之外的object自身和继承的可枚举属性组成。
+     * @param  object (Object): 来源对象。
+     * @param  [props] (...(string|string[])): 要被忽略的属性
+     * @return (Object): 返回新对象。
+     */
+    omit: function(obj, prop) {
+        var temp = [],
+            start = 0,
+            end = 1,
+            result = {}
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = prop
+        }
+        for (var key in obj) {
+            result[key] = obj[key]
+        }
+        for (var i = 0; i < temp.length; i++) {
+            if ((temp[i] in obj) && (obj.hasOwnProperty(temp[i]))) {
+                delete result[temp[i]]
+            }
+        }
+        return result
+    },
+    /**
+     * 反向版 _.pickBy；这个方法一个对象，这个对象忽略 predicate（断言函数）判断不是真值的属性后，object自身和继承的可枚举属性组成。
+     * @param  object (Object): 来源对象。
+     * @param  [predicate=_.identity] (Function): 调用每一个属性的函数。
+     * @return (Object): 返回新对象。
+     */
+    omitBy: function(obj, pred) {
+        var result = {}
+        for (var key in obj) {
+            result[key] = obj[key]
+        }
+        for (var key in obj) {
+            if (pred(obj[key])) {
+                delete result[key]
+            }
+        }
+        return result
+    },
 
 
 
