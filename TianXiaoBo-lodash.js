@@ -1,12 +1,12 @@
 TianXiaoBo = {
     /**
-     * å°† array æ‹†åˆ†æˆå¤šä¸ª size é•¿åº¦çš„å—æŠŠè¿™äº›å—ç»„æˆä¸€ä¸ªæ–°æ•°ç»„ã€‚å¦‚æœ array æ— æ³•è¢«åˆ†å‰²æˆå…¨éƒ¨ç­‰é•¿çš„å—ï¼Œé‚£ä¹ˆæœ€åå‰©ä½™çš„å…ƒç´ å°†ç»„æˆä¸€ä¸ªå—ã€‚
-     * å‚æ•°
-     * array (Array): éœ€è¦è¢«å¤„ç†çš„æ•°ç»„ã€‚
-     * [size=1] (number): æ¯ä¸ªå—çš„é•¿åº¦ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›ä¸€ä¸ªåŒ…å«æ‹†åˆ†å—æ•°ç»„çš„æ–°æ•°ç»„ï¼ˆç›¸å½“äºä¸€ä¸ªäºŒç»´æ•°ç»„ï¼‰ã€‚
-     * ä¾‹å­
+     * ½« array ²ğ·Ö³É¶à¸ö size ³¤¶ÈµÄ¿é°ÑÕâĞ©¿é×é³ÉÒ»¸öĞÂÊı×é¡£Èç¹û array ÎŞ·¨±»·Ö¸î³ÉÈ«²¿µÈ³¤µÄ¿é£¬ÄÇÃ´×îºóÊ£ÓàµÄÔªËØ½«×é³ÉÒ»¸ö¿é¡£
+     * ²ÎÊı
+     * array (Array): ĞèÒª±»´¦ÀíµÄÊı×é¡£
+     * [size=1] (number): Ã¿¸ö¿éµÄ³¤¶È¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»ØÒ»¸ö°üº¬²ğ·Ö¿éÊı×éµÄĞÂÊı×é£¨Ïàµ±ÓÚÒ»¸ö¶şÎ¬Êı×é£©¡£
+     * Àı×Ó
      * chunk(['a', 'b', 'c', 'd'], 2);
      * => [['a', 'b'], ['c', 'd']]
      * chunk(['a', 'b', 'c', 'd'], 3);
@@ -25,12 +25,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªæ–°æ•°ç»„å¹¶åŒ…å«åŸæ•°ç»„ä¸­æ‰€æœ‰çš„éå‡å€¼å…ƒç´ ã€‚ä¾‹å¦‚ falseã€nullã€ 0ã€""ã€undefined å’Œ NaN éƒ½æ˜¯â€œå‡å€¼â€ã€‚
-     * å‚æ•°
-     * array (Array): æ•°ç»„å‚æ•°ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›è¿‡æ»¤å‡å€¼åçš„æ•°ç»„ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸öĞÂÊı×é²¢°üº¬Ô­Êı×éÖĞËùÓĞµÄ·Ç¼ÙÖµÔªËØ¡£ÀıÈç false¡¢null¡¢ 0¡¢""¡¢undefined ºÍ NaN ¶¼ÊÇ¡°¼ÙÖµ¡±¡£
+     * ²ÎÊı
+     * array (Array): Êı×é²ÎÊı¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø¹ıÂË¼ÙÖµºóµÄÊı×é¡£
+     * Àı×Ó
      * compact([0, 1, false, 2, '', 3]);
      * // => [1, 2, 3]
      **/
@@ -45,12 +45,12 @@ TianXiaoBo = {
     },
     /**
      * Creates an array of unique array values not included in the other provided arrays using SameValueZero for equality comparisons.
-     * å‚æ•°
-     * array (Array): éœ€è¦è¿‡æ»¤çš„æ•°ç»„ã€‚
-     * [values] (...Array): æ•°ç»„éœ€è¦æ’é™¤æ‰çš„å€¼ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›è¿‡æ»¤åçš„æ•°ç»„
-     * ä¾‹å­
+     * ²ÎÊı
+     * array (Array): ĞèÒª¹ıÂËµÄÊı×é¡£
+     * [values] (...Array): Êı×éĞèÒªÅÅ³ıµôµÄÖµ¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø¹ıÂËºóµÄÊı×é
+     * Àı×Ó
      * difference([1, 2, 3], [4, 2]);
      * // => [1, 3]
      * difference([1, '2', 3], [4, 2]);
@@ -78,11 +78,11 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼_.difference ï¼Œé™¤äº†å®ƒæ¥å—ä¸€ä¸ª iteratee
-     * @param  array (Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * @param  [values] (...Array): æ’é™¤çš„å€¼ã€‚
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): iteratee è°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (Array): è¿”å›ä¸€ä¸ªè¿‡æ»¤å€¼åçš„æ–°æ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ_.difference £¬³ıÁËËü½ÓÊÜÒ»¸ö iteratee
+     * @param  array (Array): Òª¼ì²éµÄÊı×é¡£
+     * @param  [values] (...Array): ÅÅ³ıµÄÖµ¡£
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): iteratee µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (Array): ·µ»ØÒ»¸ö¹ıÂËÖµºóµÄĞÂÊı×é¡£
      */
     differenceBy: function(arr, value, iter) {
         var result = []
@@ -116,11 +116,11 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼_.difference ï¼Œé™¤äº†å®ƒæ¥å—ä¸€ä¸ª comparator
-     * @param  array (Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * @param  [values] (...Array): æ’é™¤çš„å€¼ã€‚
-     * @param  [comparator] (Function): comparator è°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (Array): è¿”å›ä¸€ä¸ªè¿‡æ»¤å€¼åçš„æ–°æ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ_.difference £¬³ıÁËËü½ÓÊÜÒ»¸ö comparator
+     * @param  array (Array): Òª¼ì²éµÄÊı×é¡£
+     * @param  [values] (...Array): ÅÅ³ıµÄÖµ¡£
+     * @param  [comparator] (Function): comparator µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (Array): ·µ»ØÒ»¸ö¹ıÂËÖµºóµÄĞÂÊı×é¡£
      */
     differenceWith: function(arr, value, compara) {
         var result = []
@@ -139,15 +139,15 @@ TianXiaoBo = {
         return result
     },
     /**
-     * å°† array ä¸­çš„å‰ n ä¸ªå…ƒç´ å»æ‰ï¼Œç„¶åè¿”å›å‰©ä½™çš„éƒ¨åˆ†ã€‚
-     * å‚æ•°
-     * array (Array): è¢«æ“ä½œçš„æ•°ç»„ã€‚
-     * [n=1] (number): å»æ‰çš„å…ƒç´ ä¸ªæ•°ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å› array çš„å‰©ä½™éƒ¨åˆ†ã€‚
-     * ä¾‹å­
+     * ½« array ÖĞµÄÇ° n ¸öÔªËØÈ¥µô£¬È»ºó·µ»ØÊ£ÓàµÄ²¿·Ö¡£
+     * ²ÎÊı
+     * array (Array): ±»²Ù×÷µÄÊı×é¡£
+     * [n=1] (number): È¥µôµÄÔªËØ¸öÊı¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø array µÄÊ£Óà²¿·Ö¡£
+     * Àı×Ó
      * drop([1, 2, 3]);
-     * // => [2, 3] é»˜è®¤æ˜¯1å¼€å§‹çš„
+     * // => [2, 3] Ä¬ÈÏÊÇ1¿ªÊ¼µÄ
      * drop([1, 2, 3], 2);
      * // => [3]
      * drop([1, 2, 3], 5);
@@ -166,13 +166,13 @@ TianXiaoBo = {
         return result
     },
     /**
-     * å°† array å°¾éƒ¨çš„ n ä¸ªå…ƒç´ å»é™¤ï¼Œå¹¶è¿”å›å‰©ä½™çš„éƒ¨åˆ†ã€‚
-     * å‚æ•°
-     * array (Array): éœ€è¦è¢«å¤„ç†æ•°ç»„ã€‚
-     * [n=1] (number): å»æ‰çš„å…ƒç´ ä¸ªæ•°ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å› array çš„å‰©ä½™éƒ¨åˆ†ã€‚
-     * ä¾‹å­
+     * ½« array Î²²¿µÄ n ¸öÔªËØÈ¥³ı£¬²¢·µ»ØÊ£ÓàµÄ²¿·Ö¡£
+     * ²ÎÊı
+     * array (Array): ĞèÒª±»´¦ÀíÊı×é¡£
+     * [n=1] (number): È¥µôµÄÔªËØ¸öÊı¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø array µÄÊ£Óà²¿·Ö¡£
+     * Àı×Ó
      * dropRight([1, 2, 3]);
      * // => [1, 2]
      * dropRight([1, 2, 3], 2);
@@ -193,12 +193,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è·å–æ•°ç»„ arrayçš„ç¬¬ä¸€ä¸ªå…ƒç´ 
-     * å‚æ•°
-     * array (Array): éœ€è¦æŸ¥è¯¢çš„æ•°ç»„
-     * è¿”å›å€¼
-     * (*): è¿”å›æ•°ç»„çš„ç¬¬ä¸€ä¸ªå…ƒç´ 
-     * ä¾‹å­
+     * »ñÈ¡Êı×é arrayµÄµÚÒ»¸öÔªËØ
+     * ²ÎÊı
+     * array (Array): ĞèÒª²éÑ¯µÄÊı×é
+     * ·µ»ØÖµ
+     * (*): ·µ»ØÊı×éµÄµÚÒ»¸öÔªËØ
+     * Àı×Ó
      * first([1, 2, 3]);
      * // => 1
      * first([]);
@@ -209,12 +209,12 @@ TianXiaoBo = {
         return true
     },
     /**
-     * è·å–æ•°ç»„ arrayçš„ç¬¬ä¸€ä¸ªå…ƒç´ 
-     * å‚æ•°
-     * array (Array): éœ€è¦æŸ¥è¯¢çš„æ•°ç»„
-     * è¿”å›å€¼
-     * (*): è¿”å›æ•°ç»„çš„ç¬¬ä¸€ä¸ªå…ƒç´ 
-     * ä¾‹å­
+     * »ñÈ¡Êı×é arrayµÄµÚÒ»¸öÔªËØ
+     * ²ÎÊı
+     * array (Array): ĞèÒª²éÑ¯µÄÊı×é
+     * ·µ»ØÖµ
+     * (*): ·µ»ØÊı×éµÄµÚÒ»¸öÔªËØ
+     * Àı×Ó
      * first([1, 2, 3]);
      * // => 1
      * first([]);
@@ -225,12 +225,12 @@ TianXiaoBo = {
         return true
     },
     /**
-     * å»é™¤æ•°ç»„æœ€åä¸€ä¸ªå…ƒç´ array.
-     * å‚æ•°
-     * array (Array): éœ€è¦æŸ¥è¯¢çš„æ•°ç»„.
-     * è¿”å›å€¼
-     * (Array): è¿”å›æˆªå–çš„æ•°ç»„array.
-     * ä¾‹å­
+     * È¥³ıÊı×é×îºóÒ»¸öÔªËØarray.
+     * ²ÎÊı
+     * array (Array): ĞèÒª²éÑ¯µÄÊı×é.
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø½ØÈ¡µÄÊı×éarray.
+     * Àı×Ó
      * initial([1, 2, 3]);
      * // => [1, 2]
      **/
@@ -240,12 +240,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * å–å‡ºæ•°ç»„çš„æœ€åä¸€ä¸ªå…ƒç´  array.
-     * å‚æ•°
-     * array (Array): æŸ¥è¯¢çš„æ•°ç»„
-     * è¿”å›å€¼
-     * (*): è¿”å› arrayçš„æœ€åä¸€ä¸ªå…ƒç´ .
-     * ä¾‹å­
+     * È¡³öÊı×éµÄ×îºóÒ»¸öÔªËØ array.
+     * ²ÎÊı
+     * array (Array): ²éÑ¯µÄÊı×é
+     * ·µ»ØÖµ
+     * (*): ·µ»Ø arrayµÄ×îºóÒ»¸öÔªËØ.
+     * Àı×Ó
      * last([1, 2, 3]);
      * // => 3
      **/
@@ -254,16 +254,16 @@ TianXiaoBo = {
         return true
     },
     /**
-     * è·å–æ•°ç»„ arrayç¬¬ä¸€ä¸ªå…ƒç´ é™¤å¤–çš„æ‰€æœ‰å…ƒç´ .
-     * å‚æ•°
-     * array (Array): éœ€è¦æŸ¥è¯¢çš„æ•°ç»„
-     * è¿”å›å€¼
-     * (Array): è¿”å›æˆªå–çš„ array.
-     * ä¾‹å­
+     * »ñÈ¡Êı×é arrayµÚÒ»¸öÔªËØ³ıÍâµÄËùÓĞÔªËØ.
+     * ²ÎÊı
+     * array (Array): ĞèÒª²éÑ¯µÄÊı×é
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø½ØÈ¡µÄ array.
+     * Àı×Ó
      * rest([1, 2, 3]);
      * // => [2, 3]
      **/
-    /* lodash æœ€æ–°ç‰ˆæœ¬çš„ rest åŠŸèƒ½ä¸ä¸€æ ·
+    /* lodash ×îĞÂ°æ±¾µÄ rest ¹¦ÄÜ²»Ò»Ñù
      * rest: function(arr){
      *  var result = arr
      *  result.splice(0,1)
@@ -271,13 +271,13 @@ TianXiaoBo = {
      * },
      **/
     /**
-     * å¯ä»¥ç†è§£ä¸ºå°†åµŒå¥—æ•°ç»„çš„ç»´æ•°å‡å°‘ï¼Œflattenedï¼ˆå¹³å¦ï¼‰. å¦‚æœ isDeep å€¼ä¸º true æ—¶ï¼ŒåµŒå¥—æ•°ç»„å°†é€’å½’ä¸ºä¸€ç»´æ•°ç»„, å¦åˆ™åªå‡å°‘åµŒå¥—æ•°ç»„ä¸€ä¸ªçº§åˆ«çš„ç»´æ•°.
-     * å‚æ•°
-     * array (Array): éœ€è¦flattenedï¼ˆå‡å°‘ç»´æ•°ï¼‰çš„åµŒå¥—æ•°ç»„
-     * [isDeep] (boolean): æ˜¯å¦æ·±é€’å½’
-     * è¿”å›å€¼
-     * (Array): è¿”å›å¤„ç†åçš„æ•°ç»„
-     * ä¾‹å­
+     * ¿ÉÒÔÀí½âÎª½«Ç¶Ì×Êı×éµÄÎ¬Êı¼õÉÙ£¬flattened£¨Æ½Ì¹£©. Èç¹û isDeep ÖµÎª true Ê±£¬Ç¶Ì×Êı×é½«µİ¹éÎªÒ»Î¬Êı×é, ·ñÔòÖ»¼õÉÙÇ¶Ì×Êı×éÒ»¸ö¼¶±ğµÄÎ¬Êı.
+     * ²ÎÊı
+     * array (Array): ĞèÒªflattened£¨¼õÉÙÎ¬Êı£©µÄÇ¶Ì×Êı×é
+     * [isDeep] (boolean): ÊÇ·ñÉîµİ¹é
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø´¦ÀíºóµÄÊı×é
+     * Àı×Ó
      * flatten([1, [2, 3, [4]]]);
      * // => [1, 2, 3, [4]]
      * // using `isDeep`
@@ -319,12 +319,12 @@ TianXiaoBo = {
         }
     },
     /**
-     * é€’å½’åœ°å¹³å¦ä¸€ä¸ªåµŒå¥—çš„æ•°ç»„.ç›¸å½“äº_.flatten(array, true)
-     * å‚æ•°
-     * array (Array): éœ€è¦
-     * è¿”å›å€¼
-     * (Array): è¿”å›å¤„ç†åçš„æ•°ç»„.
-     * ä¾‹å­
+     * µİ¹éµØÆ½Ì¹Ò»¸öÇ¶Ì×µÄÊı×é.Ïàµ±ÓÚ_.flatten(array, true)
+     * ²ÎÊı
+     * array (Array): ĞèÒª
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø´¦ÀíºóµÄÊı×é.
+     * Àı×Ó
      * flattenDeep([1, [2, 3, [4]]]);
      * // => [1, 2, 3, 4]
      **/
@@ -359,14 +359,14 @@ TianXiaoBo = {
         }
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªå‰”é™¤æ‰€æœ‰ç»™å®šå€¼çš„æ–°æ•°ç»„ï¼Œå‰”é™¤å€¼çš„æ—¶å€™ï¼Œä½¿ç”¨SameValueZeroåšç›¸ç­‰æ¯”è¾ƒ.
-     * æ³¨æ„: ä¸åƒ _.pull, è¿™ä¸ªæ–¹æ³•ä¼šè¿”å›ä¸€ä¸ªæ–°æ•°ç»„ã€‚
-     * å‚æ•°
-     * array (Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * [values] (...*): è¦å‰”é™¤çš„å€¼ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›è¿‡æ»¤å€¼åçš„æ–°æ•°ç»„ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸öÌŞ³ıËùÓĞ¸ø¶¨ÖµµÄĞÂÊı×é£¬ÌŞ³ıÖµµÄÊ±ºò£¬Ê¹ÓÃSameValueZero×öÏàµÈ±È½Ï.
+     * ×¢Òâ: ²»Ïñ _.pull, Õâ¸ö·½·¨»á·µ»ØÒ»¸öĞÂÊı×é¡£
+     * ²ÎÊı
+     * array (Array): Òª¼ì²éµÄÊı×é¡£
+     * [values] (...*): ÒªÌŞ³ıµÄÖµ¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø¹ıÂËÖµºóµÄĞÂÊı×é¡£
+     * Àı×Ó
      * without([2, 1, 2, 3], 1, 2);
      * // => [3]
      **/
@@ -385,12 +385,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªæŒ‰é¡ºåºæ’åˆ—çš„å”¯ä¸€å€¼çš„æ•°ç»„ã€‚æ‰€æœ‰ç»™å®šæ•°ç»„çš„å…ƒç´ å€¼ä½¿ç”¨SameValueZeroåšç­‰å€¼æ¯”è¾ƒã€‚ï¼ˆæ„šäººç å¤´æ³¨ï¼š arraysï¼ˆæ•°ç»„ï¼‰çš„å¹¶é›†ï¼ŒæŒ‰é¡ºåºè¿”å›ï¼Œè¿”å›æ•°ç»„çš„å…ƒç´ æ˜¯å”¯ä¸€çš„ï¼‰
-     * å‚æ•°
-     * [arrays] (...Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›ä¸€ä¸ªæ–°çš„è”åˆæ•°ç»„ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸ö°´Ë³ĞòÅÅÁĞµÄÎ¨Ò»ÖµµÄÊı×é¡£ËùÓĞ¸ø¶¨Êı×éµÄÔªËØÖµÊ¹ÓÃSameValueZero×öµÈÖµ±È½Ï¡££¨ÓŞÈËÂëÍ·×¢£º arrays£¨Êı×é£©µÄ²¢¼¯£¬°´Ë³Ğò·µ»Ø£¬·µ»ØÊı×éµÄÔªËØÊÇÎ¨Ò»µÄ£©
+     * ²ÎÊı
+     * [arrays] (...Array): Òª¼ì²éµÄÊı×é¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»ØÒ»¸öĞÂµÄÁªºÏÊı×é¡£
+     * Àı×Ó
      * union([2], [1, 2]);
      * // => [2, 1]
      **/
@@ -411,12 +411,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºå”¯ä¸€å€¼çš„æ•°ç»„ï¼Œè¿™ä¸ªæ•°ç»„åŒ…å«æ‰€æœ‰ç»™å®šæ•°ç»„éƒ½åŒ…å«çš„å…ƒç´ ï¼Œä½¿ç”¨ SameValueZeroè¿›è¡Œç›¸ç­‰æ€§æ¯”è¾ƒã€‚ï¼ˆæ„šäººç å¤´æ³¨ï¼šå¯ä»¥ç†è§£ä¸ºç»™å®šæ•°ç»„çš„äº¤é›†ï¼‰
-     * å‚æ•°
-     * [arrays] (...Array): å¾…æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›ä¸€ä¸ªåŒ…å«æ‰€æœ‰ä¼ å…¥æ•°ç»„äº¤é›†å…ƒç´ çš„æ–°æ•°ç»„ã€‚
-     * ä¾‹å­
+     * ´´½¨Î¨Ò»ÖµµÄÊı×é£¬Õâ¸öÊı×é°üº¬ËùÓĞ¸ø¶¨Êı×é¶¼°üº¬µÄÔªËØ£¬Ê¹ÓÃ SameValueZero½øĞĞÏàµÈĞÔ±È½Ï¡££¨ÓŞÈËÂëÍ·×¢£º¿ÉÒÔÀí½âÎª¸ø¶¨Êı×éµÄ½»¼¯£©
+     * ²ÎÊı
+     * [arrays] (...Array): ´ı¼ì²éµÄÊı×é¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»ØÒ»¸ö°üº¬ËùÓĞ´«ÈëÊı×é½»¼¯ÔªËØµÄĞÂÊı×é¡£
+     * Àı×Ó
      * intersection([2, 1], [4, 2], [1, 2]);
      * // => [2]
      **/
@@ -442,13 +442,13 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªæ–°æ•°ç»„ï¼Œå°†arrayä¸ä»»ä½•æ•°ç»„ æˆ– å€¼è¿æ¥åœ¨ä¸€èµ·ã€‚
-     * å‚æ•°
-     * array (Array): è¢«è¿æ¥çš„æ•°ç»„ã€‚
-     * [values] (...*): è¿æ¥çš„å€¼ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›è¿æ¥åçš„æ–°æ•°ç»„ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸öĞÂÊı×é£¬½«arrayÓëÈÎºÎÊı×é »ò ÖµÁ¬½ÓÔÚÒ»Æğ¡£
+     * ²ÎÊı
+     * array (Array): ±»Á¬½ÓµÄÊı×é¡£
+     * [values] (...*): Á¬½ÓµÄÖµ¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»ØÁ¬½ÓºóµÄĞÂÊı×é¡£
+     * Àı×Ó
      * var array = [1];
      * var other = concat(array, 2, [3], [[4]]);
      * console.log(other);
@@ -475,16 +475,16 @@ TianXiaoBo = {
         return result
     },
     /**
-     * ä½¿ç”¨ value å€¼æ¥å¡«å……ï¼ˆæ›¿æ¢ï¼‰ arrayï¼Œä»startä½ç½®å¼€å§‹, åˆ°endä½ç½®ç»“æŸï¼ˆä½†ä¸åŒ…å«endä½ç½®ï¼‰ã€‚
-     * Note: è¿™ä¸ªæ–¹æ³•ä¼šæ”¹å˜ array
-     * å‚æ•°
-     * array (Array): è¦å¡«å……æ”¹å˜çš„æ•°ç»„ã€‚
-     * value (*): å¡«å……ç»™ array çš„å€¼ã€‚
-     * [start=0] (number): å¼€å§‹ä½ç½®ï¼ˆé»˜è®¤0ï¼‰ã€‚
-     * [end=array.length] (number):ç»“æŸä½ç½®ï¼ˆé»˜è®¤array.lengthï¼‰ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å› arrayã€‚
-     * ä¾‹å­
+     * Ê¹ÓÃ value ÖµÀ´Ìî³ä£¨Ìæ»»£© array£¬´ÓstartÎ»ÖÃ¿ªÊ¼, µ½endÎ»ÖÃ½áÊø£¨µ«²»°üº¬endÎ»ÖÃ£©¡£
+     * Note: Õâ¸ö·½·¨»á¸Ä±ä array
+     * ²ÎÊı
+     * array (Array): ÒªÌî³ä¸Ä±äµÄÊı×é¡£
+     * value (*): Ìî³ä¸ø array µÄÖµ¡£
+     * [start=0] (number): ¿ªÊ¼Î»ÖÃ£¨Ä¬ÈÏ0£©¡£
+     * [end=array.length] (number):½áÊøÎ»ÖÃ£¨Ä¬ÈÏarray.length£©¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø array¡£
+     * Àı×Ó
      * var array = [1, 2, 3];
      * fill(array, 'a');
      * console.log(array);
@@ -507,13 +507,13 @@ TianXiaoBo = {
         return arr
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•è¿”å›ä¸€ä¸ªç”±é”®å€¼å¯¹pairsæ„æˆçš„å¯¹è±¡ã€‚
-     * Note: è¿™ä¸ªæ–¹æ³•ä¼šæ”¹å˜ array
-     * å‚æ•°
-     * pairs (Array): é”®å€¼å¯¹pairsã€‚
-     * è¿”å›å€¼
-     * (Object): è¿”å›ä¸€ä¸ªæ–°å¯¹è±¡ã€‚
-     * ä¾‹å­
+     * Õâ¸ö·½·¨·µ»ØÒ»¸öÓÉ¼üÖµ¶Ôpairs¹¹³ÉµÄ¶ÔÏó¡£
+     * Note: Õâ¸ö·½·¨»á¸Ä±ä array
+     * ²ÎÊı
+     * pairs (Array): ¼üÖµ¶Ôpairs¡£
+     * ·µ»ØÖµ
+     * (Object): ·µ»ØÒ»¸öĞÂ¶ÔÏó¡£
+     * Àı×Ó
      * fromPairs([['fred', 30], ['barney', 40]]);
      * // => { 'fred': 30, 'barney': 40 }
      **/
@@ -526,14 +526,14 @@ TianXiaoBo = {
         return result
     },
     /**
-     * ç§»é™¤æ•°ç»„arrayä¸­æ‰€æœ‰å’Œç»™å®šå€¼ç›¸ç­‰çš„å…ƒç´ ï¼Œä½¿ç”¨ SameValueZero è¿›è¡Œå…¨ç­‰æ¯”è¾ƒã€‚
-     * æ³¨æ„ï¼š å’Œ _.without æ–¹æ³•ä¸åŒï¼Œè¿™ä¸ªæ–¹æ³•ä¼šæ”¹å˜æ•°ç»„ã€‚ä½¿ç”¨ _.remove ä»ä¸€ä¸ªæ•°ç»„ä¸­ç§»é™¤å…ƒç´ ã€‚
-     * å‚æ•°
-     * array (Array): è¦ä¿®æ”¹çš„æ•°ç»„ã€‚
-     * [values] (...*): è¦åˆ é™¤çš„å€¼ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å› array.
-     * ä¾‹å­
+     * ÒÆ³ıÊı×éarrayÖĞËùÓĞºÍ¸ø¶¨ÖµÏàµÈµÄÔªËØ£¬Ê¹ÓÃ SameValueZero ½øĞĞÈ«µÈ±È½Ï¡£
+     * ×¢Òâ£º ºÍ _.without ·½·¨²»Í¬£¬Õâ¸ö·½·¨»á¸Ä±äÊı×é¡£Ê¹ÓÃ _.remove ´ÓÒ»¸öÊı×éÖĞÒÆ³ıÔªËØ¡£
+     * ²ÎÊı
+     * array (Array): ÒªĞŞ¸ÄµÄÊı×é¡£
+     * [values] (...*): ÒªÉ¾³ıµÄÖµ¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø array.
+     * Àı×Ó
      * var array = [1, 2, 3, 1, 2, 3];
      * pull(array, 2, 3);
      * console.log(array);
@@ -553,14 +553,14 @@ TianXiaoBo = {
         return arr
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼_.pullï¼ŒåŒºåˆ«æ˜¯è¿™ä¸ªæ–¹æ³•æ¥æ”¶ä¸€ä¸ªè¦ç§»é™¤å€¼çš„æ•°ç»„ã€‚
-     * Note: ä¸åŒäº _.difference, è¿™ä¸ªæ–¹æ³•ä¼šæ”¹å˜æ•°ç»„ arrayã€‚
-     * å‚æ•°
-     * array (Array): è¦ä¿®æ”¹çš„æ•°ç»„ã€‚
-     * values (Array): è¦ç§»é™¤å€¼çš„æ•°ç»„ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å› arrayã€‚
-     * ä¾‹å­
+     * Õâ¸ö·½·¨ÀàËÆ_.pull£¬Çø±ğÊÇÕâ¸ö·½·¨½ÓÊÕÒ»¸öÒªÒÆ³ıÖµµÄÊı×é¡£
+     * Note: ²»Í¬ÓÚ _.difference, Õâ¸ö·½·¨»á¸Ä±äÊı×é array¡£
+     * ²ÎÊı
+     * array (Array): ÒªĞŞ¸ÄµÄÊı×é¡£
+     * values (Array): ÒªÒÆ³ıÖµµÄÊı×é¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø array¡£
+     * Àı×Ó
      * var array = [1, 2, 3, 1, 2, 3];
      * pullAll(array, [2, 3]);
      * console.log(array);
@@ -579,14 +579,14 @@ TianXiaoBo = {
         return arr
     },
     /**
-     * æ ¹æ®ç´¢å¼• indexesï¼Œç§»é™¤arrayä¸­å¯¹åº”çš„å…ƒç´ ï¼Œå¹¶è¿”å›è¢«ç§»é™¤å…ƒç´ çš„æ•°ç»„ã€‚
-     * Note: å’Œ _.atä¸åŒ, è¿™ä¸ªæ–¹æ³•ä¼šæ”¹å˜æ•°ç»„ arrayã€‚
-     * å‚æ•°
-     * array (Array): è¦ä¿®æ”¹çš„æ•°ç»„ã€‚
-     * [indexes] (...(number|number[])): è¦ç§»é™¤å…ƒç´ çš„ç´¢å¼•ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›ç§»é™¤å…ƒç´ ç»„æˆçš„æ–°æ•°ç»„ã€‚
-     * ä¾‹å­
+     * ¸ù¾İË÷Òı indexes£¬ÒÆ³ıarrayÖĞ¶ÔÓ¦µÄÔªËØ£¬²¢·µ»Ø±»ÒÆ³ıÔªËØµÄÊı×é¡£
+     * Note: ºÍ _.at²»Í¬, Õâ¸ö·½·¨»á¸Ä±äÊı×é array¡£
+     * ²ÎÊı
+     * array (Array): ÒªĞŞ¸ÄµÄÊı×é¡£
+     * [indexes] (...(number|number[])): ÒªÒÆ³ıÔªËØµÄË÷Òı¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»ØÒÆ³ıÔªËØ×é³ÉµÄĞÂÊı×é¡£
+     * Àı×Ó
      * var array = [5, 10, 15, 20];
      * var evens = _.pullAt(array, 1, 3);
      * console.log(array);
@@ -607,13 +607,13 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åè½¬arrayï¼Œä½¿å¾—ç¬¬ä¸€ä¸ªå…ƒç´ å˜ä¸ºæœ€åä¸€ä¸ªå…ƒç´ ï¼Œç¬¬äºŒä¸ªå…ƒç´ å˜ä¸ºå€’æ•°ç¬¬äºŒä¸ªå…ƒç´ ï¼Œä¾æ¬¡ç±»æ¨ã€‚
-     * Note: è¿™ä¸ªæ–¹æ³•ä¼šæ”¹å˜åŸæ•°ç»„ arrayï¼ŒåŸºäº Array#reverse.
-     * å‚æ•°
-     * array (Array): è¦ä¿®æ”¹çš„æ•°ç»„ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å› array.
-     * ä¾‹å­
+     * ·´×ªarray£¬Ê¹µÃµÚÒ»¸öÔªËØ±äÎª×îºóÒ»¸öÔªËØ£¬µÚ¶ş¸öÔªËØ±äÎªµ¹ÊıµÚ¶ş¸öÔªËØ£¬ÒÀ´ÎÀàÍÆ¡£
+     * Note: Õâ¸ö·½·¨»á¸Ä±äÔ­Êı×é array£¬»ùÓÚ Array#reverse.
+     * ²ÎÊı
+     * array (Array): ÒªĞŞ¸ÄµÄÊı×é¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø array.
+     * Àı×Ó
      * var array = [1, 2, 3];
      * reverse(array);
      * // => [3, 2, 1]
@@ -632,12 +632,12 @@ TianXiaoBo = {
         return arr
     },
     /**
-     * è·å–é™¤äº†arrayæ•°ç»„ç¬¬ä¸€ä¸ªå…ƒç´ ä»¥å¤–çš„å…¨éƒ¨å…ƒç´ ã€‚
-     * å‚æ•°
-     * array (Array): è¦æ£€ç´¢çš„æ•°ç»„ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å› array æ•°ç»„çš„åˆ‡ç‰‡ï¼ˆé™¤äº†arrayæ•°ç»„ç¬¬ä¸€ä¸ªå…ƒç´ ä»¥å¤–çš„å…¨éƒ¨å…ƒç´ ï¼‰ã€‚
-     * ä¾‹å­
+     * »ñÈ¡³ıÁËarrayÊı×éµÚÒ»¸öÔªËØÒÔÍâµÄÈ«²¿ÔªËØ¡£
+     * ²ÎÊı
+     * array (Array): Òª¼ìË÷µÄÊı×é¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø array Êı×éµÄÇĞÆ¬£¨³ıÁËarrayÊı×éµÚÒ»¸öÔªËØÒÔÍâµÄÈ«²¿ÔªËØ£©¡£
+     * Àı×Ó
      * tail([1, 2, 3]);
      * // => [2, 3]
      **/
@@ -647,13 +647,13 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªæ•°ç»„åˆ‡ç‰‡ï¼Œä»arrayæ•°ç»„çš„èµ·å§‹å…ƒç´ å¼€å§‹æå–nä¸ªå…ƒç´ ã€‚
-     * å‚æ•°
-     * array (Array): è¦æ£€ç´¢çš„æ•°ç»„ã€‚
-     * [n=1] (number): è¦æå–çš„å…ƒç´ ä¸ªæ•°ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å› array æ•°ç»„çš„åˆ‡ç‰‡ï¼ˆä»èµ·å§‹å…ƒç´ å¼€å§‹nä¸ªå…ƒç´ ï¼‰ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸öÊı×éÇĞÆ¬£¬´ÓarrayÊı×éµÄÆğÊ¼ÔªËØ¿ªÊ¼ÌáÈ¡n¸öÔªËØ¡£
+     * ²ÎÊı
+     * array (Array): Òª¼ìË÷µÄÊı×é¡£
+     * [n=1] (number): ÒªÌáÈ¡µÄÔªËØ¸öÊı¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø array Êı×éµÄÇĞÆ¬£¨´ÓÆğÊ¼ÔªËØ¿ªÊ¼n¸öÔªËØ£©¡£
+     * Àı×Ó
      * take([1, 2, 3]);
      * // => [1]
      * take([1, 2, 3], 2);
@@ -676,13 +676,13 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªæ•°ç»„åˆ‡ç‰‡ï¼Œä»arrayæ•°ç»„çš„æœ€åä¸€ä¸ªå…ƒç´ å¼€å§‹æå–nä¸ªå…ƒç´ ã€‚
-     * å‚æ•°
-     * array (Array): è¦æ£€ç´¢çš„æ•°ç»„ã€‚
-     * [n=1] (number): è¦æå–çš„å…ƒç´ ä¸ªæ•°ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å› array æ•°ç»„çš„åˆ‡ç‰‡ï¼ˆä»ç»“å°¾å…ƒç´ å¼€å§‹nä¸ªå…ƒç´ ï¼‰ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸öÊı×éÇĞÆ¬£¬´ÓarrayÊı×éµÄ×îºóÒ»¸öÔªËØ¿ªÊ¼ÌáÈ¡n¸öÔªËØ¡£
+     * ²ÎÊı
+     * array (Array): Òª¼ìË÷µÄÊı×é¡£
+     * [n=1] (number): ÒªÌáÈ¡µÄÔªËØ¸öÊı¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø array Êı×éµÄÇĞÆ¬£¨´Ó½áÎ²ÔªËØ¿ªÊ¼n¸öÔªËØ£©¡£
+     * Àı×Ó
      * take([1, 2, 3]);
      * // => [3]
      * take([1, 2, 3], 2);
@@ -706,12 +706,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªå»é‡åçš„arrayæ•°ç»„å‰¯æœ¬ã€‚ä½¿ç”¨äº† SameValueZero åšç­‰å€¼æ¯”è¾ƒã€‚åªæœ‰ç¬¬ä¸€æ¬¡å‡ºç°çš„å…ƒç´ æ‰ä¼šè¢«ä¿ç•™ã€‚
-     * å‚æ•°
-     * array (Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›æ–°çš„å»é‡åçš„æ•°ç»„ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸öÈ¥ÖØºóµÄarrayÊı×é¸±±¾¡£Ê¹ÓÃÁË SameValueZero ×öµÈÖµ±È½Ï¡£Ö»ÓĞµÚÒ»´Î³öÏÖµÄÔªËØ²Å»á±»±£Áô¡£
+     * ²ÎÊı
+     * array (Array): Òª¼ì²éµÄÊı×é¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»ØĞÂµÄÈ¥ÖØºóµÄÊı×é¡£
+     * Àı×Ó
      * uniq([2, 1, 2]);
      * // => [2, 1]
      **/
@@ -729,12 +729,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼äº_.zipï¼Œé™¤äº†å®ƒæ¥æ”¶åˆ†ç»„å…ƒç´ çš„æ•°ç»„ï¼Œå¹¶ä¸”åˆ›å»ºä¸€ä¸ªæ•°ç»„ï¼Œåˆ†ç»„å…ƒç´ åˆ°æ‰“åŒ…å‰çš„ç»“æ„ã€‚
-     * å‚æ•°
-     * array (Array): è¦å¤„ç†çš„åˆ†ç»„å…ƒç´ æ•°ç»„ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›é‡ç»„å…ƒç´ çš„æ–°æ•°ç»„ã€‚
-     * ä¾‹å­
+     * Õâ¸ö·½·¨ÀàËÆÓÚ_.zip£¬³ıÁËËü½ÓÊÕ·Ö×éÔªËØµÄÊı×é£¬²¢ÇÒ´´½¨Ò»¸öÊı×é£¬·Ö×éÔªËØµ½´ò°üÇ°µÄ½á¹¹¡£
+     * ²ÎÊı
+     * array (Array): Òª´¦ÀíµÄ·Ö×éÔªËØÊı×é¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»ØÖØ×éÔªËØµÄĞÂÊı×é¡£
+     * Àı×Ó
      * var zipped = zip(['fred', 'barney'], [30, 40], [true, false]);
      * // => [['fred', 30, true], ['barney', 40, false]]
      * unzip(zipped);
@@ -755,12 +755,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªç»™å®šæ•°ç»„å”¯ä¸€å€¼çš„æ•°ç»„ï¼Œä½¿ç”¨symmetric differenceåšç­‰å€¼æ¯”è¾ƒã€‚è¿”å›å€¼çš„é¡ºåºå–å†³äºä»–ä»¬æ•°ç»„çš„å‡ºç°é¡ºåºã€‚
-     * å‚æ•°
-     * [arrays] (...Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›è¿‡æ»¤å€¼åçš„æ–°æ•°ç»„ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸ö¸ø¶¨Êı×éÎ¨Ò»ÖµµÄÊı×é£¬Ê¹ÓÃsymmetric difference×öµÈÖµ±È½Ï¡£·µ»ØÖµµÄË³ĞòÈ¡¾öÓÚËûÃÇÊı×éµÄ³öÏÖË³Ğò¡£
+     * ²ÎÊı
+     * [arrays] (...Array): Òª¼ì²éµÄÊı×é¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø¹ıÂËÖµºóµÄĞÂÊı×é¡£
+     * Àı×Ó
      * xor([2, 1], [2, 3]);
      * // => [1, 3]
      **/
@@ -786,12 +786,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªåˆ†ç»„å…ƒç´ çš„æ•°ç»„ï¼Œæ•°ç»„çš„ç¬¬ä¸€ä¸ªå…ƒç´ åŒ…å«æ‰€æœ‰ç»™å®šæ•°ç»„çš„ç¬¬ä¸€ä¸ªå…ƒç´ ï¼Œæ•°ç»„çš„ç¬¬äºŒä¸ªå…ƒç´ åŒ…å«æ‰€æœ‰ç»™å®šæ•°ç»„çš„ç¬¬äºŒä¸ªå…ƒç´ ï¼Œä»¥æ­¤ç±»æ¨ã€‚
-     * å‚æ•°
-     * [arrays] (...Array): è¦å¤„ç†çš„æ•°ç»„ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›åˆ†ç»„å…ƒç´ çš„æ–°æ•°ç»„ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸ö·Ö×éÔªËØµÄÊı×é£¬Êı×éµÄµÚÒ»¸öÔªËØ°üº¬ËùÓĞ¸ø¶¨Êı×éµÄµÚÒ»¸öÔªËØ£¬Êı×éµÄµÚ¶ş¸öÔªËØ°üº¬ËùÓĞ¸ø¶¨Êı×éµÄµÚ¶ş¸öÔªËØ£¬ÒÔ´ËÀàÍÆ¡£
+     * ²ÎÊı
+     * [arrays] (...Array): Òª´¦ÀíµÄÊı×é¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»Ø·Ö×éÔªËØµÄĞÂÊı×é¡£
+     * Àı×Ó
      * zip(['fred', 'barney'], [30, 40], [true, false]);
      * /// => [['fred', 30, true], ['barney', 40, false]]
      **/
@@ -814,14 +814,14 @@ TianXiaoBo = {
         return result
     },
     /**
-     * ä½¿ç”¨ SameValueZero ç­‰å€¼æ¯”è¾ƒï¼Œè¿”å›é¦–æ¬¡ value åœ¨æ•°ç»„arrayä¸­è¢«æ‰¾åˆ°çš„ ç´¢å¼•å€¼ï¼Œ å¦‚æœ fromIndex ä¸ºè´Ÿå€¼ï¼Œå°†ä»æ•°ç»„arrayå°¾ç«¯ç´¢å¼•è¿›è¡ŒåŒ¹é…ã€‚
-     * å‚æ•°
-     * array (Array): éœ€è¦æŸ¥æ‰¾çš„æ•°ç»„ã€‚
-     * value (*): éœ€è¦æŸ¥æ‰¾çš„å€¼ã€‚
-     * [fromIndex=0] (number): å¼€å§‹æŸ¥è¯¢çš„ä½ç½®ã€‚
-     * è¿”å›å€¼
-     * (number): è¿”å› å€¼valueåœ¨æ•°ç»„ä¸­çš„ç´¢å¼•ä½ç½®, æ²¡æœ‰æ‰¾åˆ°ä¸ºè¿”å›-1ã€‚
-     * ä¾‹å­
+     * Ê¹ÓÃ SameValueZero µÈÖµ±È½Ï£¬·µ»ØÊ×´Î value ÔÚÊı×éarrayÖĞ±»ÕÒµ½µÄ Ë÷ÒıÖµ£¬ Èç¹û fromIndex Îª¸ºÖµ£¬½«´ÓÊı×éarrayÎ²¶ËË÷Òı½øĞĞÆ¥Åä¡£
+     * ²ÎÊı
+     * array (Array): ĞèÒª²éÕÒµÄÊı×é¡£
+     * value (*): ĞèÒª²éÕÒµÄÖµ¡£
+     * [fromIndex=0] (number): ¿ªÊ¼²éÑ¯µÄÎ»ÖÃ¡£
+     * ·µ»ØÖµ
+     * (number): ·µ»Ø ÖµvalueÔÚÊı×éÖĞµÄË÷ÒıÎ»ÖÃ, Ã»ÓĞÕÒµ½Îª·µ»Ø-1¡£
+     * Àı×Ó
      * indexOf([1, 2, 1, 2], 2);
      * // => 1
      * // Search from the `fromIndex`.
@@ -847,14 +847,14 @@ TianXiaoBo = {
         }
     },
     /**
-     * å°† array ä¸­çš„æ‰€æœ‰å…ƒç´ è½¬æ¢ä¸ºç”± separator åˆ†éš”çš„å­—ç¬¦ä¸²ã€‚
-     * å‚æ•°
-     * array (Array): è¦è½¬æ¢çš„æ•°ç»„ã€‚
-     * [separator=','] (string): åˆ†éš”å…ƒç´ ã€‚
-     * [fromIndex=0] (number): å¼€å§‹æŸ¥è¯¢çš„ä½ç½®ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›è¿æ¥å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
+     * ½« array ÖĞµÄËùÓĞÔªËØ×ª»»ÎªÓÉ separator ·Ö¸ôµÄ×Ö·û´®¡£
+     * ²ÎÊı
+     * array (Array): Òª×ª»»µÄÊı×é¡£
+     * [separator=','] (string): ·Ö¸ôÔªËØ¡£
+     * [fromIndex=0] (number): ¿ªÊ¼²éÑ¯µÄÎ»ÖÃ¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»ØÁ¬½Ó×Ö·û´®¡£
+     * Àı×Ó
      * join(['a', 'b', 'c'], '~');
      * // => 'a~b~c'
      **/
@@ -864,14 +864,14 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.indexOf ï¼ŒåŒºåˆ«æ˜¯å®ƒæ˜¯ä»å³åˆ°å·¦éå†arrayçš„å…ƒç´ ã€‚
-     * å‚æ•°
-     * array (Array): è¦æœç´¢çš„æ•°ç»„ã€‚
-     * value (*): è¦æœç´¢çš„å€¼ã€‚
-     * [fromIndex=array.length-1] (number): å¼€å§‹æœç´¢çš„ç´¢å¼•å€¼ã€‚
-     * è¿”å›å€¼
-     * (number): è¿”å›åŒ¹é…å€¼çš„ç´¢å¼•å€¼ï¼Œå¦åˆ™è¿”å› -1ã€‚
-     * ä¾‹å­
+     * Õâ¸ö·½·¨ÀàËÆ _.indexOf £¬Çø±ğÊÇËüÊÇ´ÓÓÒµ½×ó±éÀúarrayµÄÔªËØ¡£
+     * ²ÎÊı
+     * array (Array): ÒªËÑË÷µÄÊı×é¡£
+     * value (*): ÒªËÑË÷µÄÖµ¡£
+     * [fromIndex=array.length-1] (number): ¿ªÊ¼ËÑË÷µÄË÷ÒıÖµ¡£
+     * ·µ»ØÖµ
+     * (number): ·µ»ØÆ¥ÅäÖµµÄË÷ÒıÖµ£¬·ñÔò·µ»Ø -1¡£
+     * Àı×Ó
      * lastIndexOf([1, 2, 1, 2], 2);
      * // => 3
      * // Search from the `fromIndex`.
@@ -898,13 +898,13 @@ TianXiaoBo = {
         }
     },
     /**
-     * è·å–æ•°ç»„çš„ç´¢å¼•nå¤„çš„å…ƒç´ ã€‚ å¦‚æœnä¸ºè´Ÿï¼Œåˆ™è¿”å›ä»æœ«å°¾å¼€å§‹çš„ç¬¬nä¸ªå…ƒç´ ã€‚
-     * å‚æ•°
+     * »ñÈ¡Êı×éµÄË÷Òın´¦µÄÔªËØ¡£ Èç¹ûnÎª¸º£¬Ôò·µ»Ø´ÓÄ©Î²¿ªÊ¼µÄµÚn¸öÔªËØ¡£
+     * ²ÎÊı
      * array (Array): The array to query.
      * [n=0] (number): The index of the element to return.
-     * è¿”å›å€¼
+     * ·µ»ØÖµ
      * (*): Returns the nth element of array.
-     * ä¾‹å­
+     * Àı×Ó
      * var array = ['a', 'b', 'c', 'd'];
      * nth(array, 1);
      * // => 'b'
@@ -923,13 +923,13 @@ TianXiaoBo = {
         }
     },
     /**
-     * ä½¿ç”¨äºŒåˆ†æ£€ç´¢æ¥å†³å®š valueå€¼ åº”è¯¥æ’å…¥åˆ°æ•°ç»„ä¸­ å°½å¯èƒ½å°çš„ç´¢å¼•ä½ç½®ï¼Œä»¥ä¿è¯arrayçš„æ’åºã€‚
-     * å‚æ•°
-     * array (Array): è¦æ£€æŸ¥çš„æ’åºæ•°ç»„ã€‚
-     * value (*): è¦è¯„ä¼°çš„å€¼ã€‚
-     * è¿”å›å€¼
-     * (number): è¿”å› valueå€¼ åº”è¯¥åœ¨æ•°ç»„arrayä¸­æ’å…¥çš„ç´¢å¼•ä½ç½® indexã€‚
-     * ä¾‹å­
+     * Ê¹ÓÃ¶ş·Ö¼ìË÷À´¾ö¶¨ valueÖµ Ó¦¸Ã²åÈëµ½Êı×éÖĞ ¾¡¿ÉÄÜĞ¡µÄË÷ÒıÎ»ÖÃ£¬ÒÔ±£Ö¤arrayµÄÅÅĞò¡£
+     * ²ÎÊı
+     * array (Array): Òª¼ì²éµÄÅÅĞòÊı×é¡£
+     * value (*): ÒªÆÀ¹ÀµÄÖµ¡£
+     * ·µ»ØÖµ
+     * (number): ·µ»Ø valueÖµ Ó¦¸ÃÔÚÊı×éarrayÖĞ²åÈëµÄË÷ÒıÎ»ÖÃ index¡£
+     * Àı×Ó
      * sortedIndex([30, 50], 40);
      * // => 1
      **/
@@ -952,12 +952,12 @@ TianXiaoBo = {
         return index
     },
     /**
-     * è½¬æ¢å­—ç¬¦ä¸²stringä¸º é©¼å³°å†™æ³•ã€‚
-     * å‚æ•°
-     * [string=''] (string): è¦è½¬æ¢çš„å­—ç¬¦ä¸²ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›é©¼å³°å†™æ³•çš„å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
+     * ×ª»»×Ö·û´®stringÎª ÍÕ·åĞ´·¨¡£
+     * ²ÎÊı
+     * [string=''] (string): Òª×ª»»µÄ×Ö·û´®¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»ØÍÕ·åĞ´·¨µÄ×Ö·û´®¡£
+     * Àı×Ó
      * camelCase('Foo Bar');
      * // => 'fooBar'
      * camelCase('--foo-bar--');
@@ -986,12 +986,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è½¬æ¢å­—ç¬¦ä¸²stringé¦–å­—æ¯ä¸ºå¤§å†™ï¼Œå‰©ä¸‹ä¸ºå°å†™ã€‚
-     * å‚æ•°
-     * [string=''] (string): è¦å¤§å†™å¼€å¤´çš„å­—ç¬¦ä¸²ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›å¤§å†™å¼€å¤´çš„å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
+     * ×ª»»×Ö·û´®stringÊ××ÖÄ¸Îª´óĞ´£¬Ê£ÏÂÎªĞ¡Ğ´¡£
+     * ²ÎÊı
+     * [string=''] (string): Òª´óĞ´¿ªÍ·µÄ×Ö·û´®¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»Ø´óĞ´¿ªÍ·µÄ×Ö·û´®¡£
+     * Àı×Ó
      * capitalize('FRED');
      * // => 'Fred'
      **/
@@ -1004,13 +1004,13 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è½¬æ¢å­—ç¬¦ä¸²stringä¸­æ‹‰ä¸è¯­-1è¡¥å……å­—æ¯ å’Œ æ‹‰ä¸è¯­æ‰©å±•å­—æ¯-A ä¸ºåŸºæœ¬çš„æ‹‰ä¸å­—æ¯ï¼Œå¹¶ä¸”å»é™¤ç»„åˆå˜éŸ³æ ‡è®°ã€‚
-     * å‚æ•°
-     * [string=''] (string): è¦å¤„ç†çš„å­—ç¬¦ä¸²ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›å¤„ç†åçš„å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
-     * deburr('dÃ©jÃ  vu');
+     * ×ª»»×Ö·û´®stringÖĞÀ­¶¡Óï-1²¹³ä×ÖÄ¸ ºÍ À­¶¡ÓïÀ©Õ¹×ÖÄ¸-A Îª»ù±¾µÄÀ­¶¡×ÖÄ¸£¬²¢ÇÒÈ¥³ı×éºÏ±äÒô±ê¼Ç¡£
+     * ²ÎÊı
+     * [string=''] (string): Òª´¦ÀíµÄ×Ö·û´®¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»Ø´¦ÀíºóµÄ×Ö·û´®¡£
+     * Àı×Ó
+     * deburr('d¨¦j¨¤ vu');
      * // => 'deja vu'
      **/
     deburr: function(str) {
@@ -1049,14 +1049,14 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ£€æŸ¥å­—ç¬¦ä¸²stringæ˜¯å¦ä»¥ç»™å®šçš„targetå­—ç¬¦ä¸²ç»“å°¾ã€‚
-     * å‚æ•°
-     * [string=''] (string): è¦æ£€ç´¢çš„å­—ç¬¦ä¸²ã€‚
-     * [target] (string): è¦æ£€ç´¢å­—ç¬¦ã€‚
-     * [position=string.length] (number): æ£€ç´¢çš„ä½ç½®ã€‚
-     * è¿”å›å€¼
-     * (boolean): å¦‚æœå­—ç¬¦ä¸²stringä»¥targetå­—ç¬¦ä¸²ç»“å°¾ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
-     * ä¾‹å­
+     * ¼ì²é×Ö·û´®stringÊÇ·ñÒÔ¸ø¶¨µÄtarget×Ö·û´®½áÎ²¡£
+     * ²ÎÊı
+     * [string=''] (string): Òª¼ìË÷µÄ×Ö·û´®¡£
+     * [target] (string): Òª¼ìË÷×Ö·û¡£
+     * [position=string.length] (number): ¼ìË÷µÄÎ»ÖÃ¡£
+     * ·µ»ØÖµ
+     * (boolean): Èç¹û×Ö·û´®stringÒÔtarget×Ö·û´®½áÎ²£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
+     * Àı×Ó
      * endsWith('abc', 'c');
      * // => true
      * endsWith('abc', 'b');
@@ -1071,12 +1071,12 @@ TianXiaoBo = {
         return n === str.charAt(str.length - index) ? true : false
     },
     /**
-     * è½¬æ¢å­—ç¬¦ä¸²stringä¸º kebab case.
-     * å‚æ•°
-     * [string=''] (string): è¦è½¬æ¢çš„å­—ç¬¦ä¸²ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›è½¬æ¢åçš„å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
+     * ×ª»»×Ö·û´®stringÎª kebab case.
+     * ²ÎÊı
+     * [string=''] (string): Òª×ª»»µÄ×Ö·û´®¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»Ø×ª»»ºóµÄ×Ö·û´®¡£
+     * Àı×Ó
      * kebabCase('Foo Bar');
      * // => 'foo-bar'
      * kebabCase('fooBar');
@@ -1117,12 +1117,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è½¬æ¢å­—ç¬¦ä¸²stringä»¥ç©ºæ ¼åˆ†å¼€å•è¯ï¼Œå¹¶è½¬æ¢ä¸ºå°å†™ã€‚
-     * å‚æ•°
-     * [string=''] (string): è¦è½¬æ¢çš„å­—ç¬¦ä¸²ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›è½¬æ¢åçš„å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
+     * ×ª»»×Ö·û´®stringÒÔ¿Õ¸ñ·Ö¿ªµ¥´Ê£¬²¢×ª»»ÎªĞ¡Ğ´¡£
+     * ²ÎÊı
+     * [string=''] (string): Òª×ª»»µÄ×Ö·û´®¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»Ø×ª»»ºóµÄ×Ö·û´®¡£
+     * Àı×Ó
      * lowerCase('--Foo-Bar--');
      * // => 'foo bar'
      * lowerCase('fooBar');
@@ -1163,12 +1163,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è½¬æ¢å­—ç¬¦ä¸²stringçš„é¦–å­—æ¯ä¸ºå°å†™ã€‚
-     * å‚æ•°
-     * [string=''] (string): è¦è½¬æ¢çš„å­—ç¬¦ä¸²ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›è½¬æ¢åçš„å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
+     * ×ª»»×Ö·û´®stringµÄÊ××ÖÄ¸ÎªĞ¡Ğ´¡£
+     * ²ÎÊı
+     * [string=''] (string): Òª×ª»»µÄ×Ö·û´®¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»Ø×ª»»ºóµÄ×Ö·û´®¡£
+     * Àı×Ó
      * lowerFirst('Fred');
      * // => 'fred'
      * lowerFirst('FRED');
@@ -1181,14 +1181,14 @@ TianXiaoBo = {
         return result
     },
     /**
-     * å¦‚æœstringå­—ç¬¦ä¸²é•¿åº¦å°äº length åˆ™ä»å·¦ä¾§å’Œå³ä¾§å¡«å……å­—ç¬¦ã€‚ å¦‚æœæ²¡æ³•å¹³å‡åˆ†é…ï¼Œåˆ™æˆªæ–­è¶…å‡ºçš„é•¿åº¦ã€‚
-     * å‚æ•°
-     * [string=''] (string): è¦å¡«å……çš„å­—ç¬¦ä¸²ã€‚
-     * [length=0] (number): å¡«å……çš„é•¿åº¦ã€‚
-     * [chars=' '] (string): å¡«å……å­—ç¬¦ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›å¡«å……åçš„å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
+     * Èç¹ûstring×Ö·û´®³¤¶ÈĞ¡ÓÚ length Ôò´Ó×ó²àºÍÓÒ²àÌî³ä×Ö·û¡£ Èç¹ûÃ»·¨Æ½¾ù·ÖÅä£¬Ôò½Ø¶Ï³¬³öµÄ³¤¶È¡£
+     * ²ÎÊı
+     * [string=''] (string): ÒªÌî³äµÄ×Ö·û´®¡£
+     * [length=0] (number): Ìî³äµÄ³¤¶È¡£
+     * [chars=' '] (string): Ìî³ä×Ö·û¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»ØÌî³äºóµÄ×Ö·û´®¡£
+     * Àı×Ó
      * pad('abc', 8);
      * // => '  abc   '
      * pad('abc', 8, '_-');
@@ -1218,14 +1218,14 @@ TianXiaoBo = {
         }
     },
     /**
-     * å¦‚æœstringå­—ç¬¦ä¸²é•¿åº¦å°äº length åˆ™åœ¨å³ä¾§å¡«å……å­—ç¬¦ã€‚ å¦‚æœè¶…å‡ºlengthé•¿åº¦åˆ™æˆªæ–­è¶…å‡ºçš„éƒ¨åˆ†ã€‚
-     * å‚æ•°
-     * [string=''] (string): è¦å¡«å……çš„å­—ç¬¦ä¸²ã€‚
-     * [length=0] (number): å¡«å……çš„é•¿åº¦ã€‚
-     * [chars=' '] (string): å¡«å……å­—ç¬¦ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›å¡«å……åçš„å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
+     * Èç¹ûstring×Ö·û´®³¤¶ÈĞ¡ÓÚ length ÔòÔÚÓÒ²àÌî³ä×Ö·û¡£ Èç¹û³¬³ölength³¤¶ÈÔò½Ø¶Ï³¬³öµÄ²¿·Ö¡£
+     * ²ÎÊı
+     * [string=''] (string): ÒªÌî³äµÄ×Ö·û´®¡£
+     * [length=0] (number): Ìî³äµÄ³¤¶È¡£
+     * [chars=' '] (string): Ìî³ä×Ö·û¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»ØÌî³äºóµÄ×Ö·û´®¡£
+     * Àı×Ó
      * padEnd('abc', 6);
      * // => 'abc   '
      * padEnd('abc', 6, '_-');
@@ -1250,14 +1250,14 @@ TianXiaoBo = {
         }
     },
     /**
-     * å¦‚æœstringå­—ç¬¦ä¸²é•¿åº¦å°äº length åˆ™åœ¨å·¦ä¾§å¡«å……å­—ç¬¦ã€‚ å¦‚æœè¶…å‡ºlengthé•¿åº¦åˆ™æˆªæ–­è¶…å‡ºçš„éƒ¨åˆ†ã€‚
-     * å‚æ•°
-     * [string=''] (string): è¦å¡«å……çš„å­—ç¬¦ä¸²ã€‚
-     * [length=0] (number): å¡«å……çš„é•¿åº¦ã€‚
-     * [chars=' '] (string): å¡«å……å­—ç¬¦ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›å¡«å……åçš„å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
+     * Èç¹ûstring×Ö·û´®³¤¶ÈĞ¡ÓÚ length ÔòÔÚ×ó²àÌî³ä×Ö·û¡£ Èç¹û³¬³ölength³¤¶ÈÔò½Ø¶Ï³¬³öµÄ²¿·Ö¡£
+     * ²ÎÊı
+     * [string=''] (string): ÒªÌî³äµÄ×Ö·û´®¡£
+     * [length=0] (number): Ìî³äµÄ³¤¶È¡£
+     * [chars=' '] (string): Ìî³ä×Ö·û¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»ØÌî³äºóµÄ×Ö·û´®¡£
+     * Àı×Ó
      * padStart('abc', 6);
      * // => '   abc'
      * padStart('abc', 6, '_-');
@@ -1285,13 +1285,13 @@ TianXiaoBo = {
         }
     },
     /**
-     * é‡å¤ N æ¬¡ç»™å®šå­—ç¬¦ä¸²ã€‚
-     * å‚æ•°
-     * [string=''] (string): è¦é‡å¤çš„å­—ç¬¦ä¸²ã€‚
-     * [n=1] (number): é‡å¤çš„æ¬¡æ•°ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›é‡å¤çš„å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
+     * ÖØ¸´ N ´Î¸ø¶¨×Ö·û´®¡£
+     * ²ÎÊı
+     * [string=''] (string): ÒªÖØ¸´µÄ×Ö·û´®¡£
+     * [n=1] (number): ÖØ¸´µÄ´ÎÊı¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»ØÖØ¸´µÄ×Ö·û´®¡£
+     * Àı×Ó
      * repeat('*', 3);
      * // => '***'
      * repeat('abc', 2);
@@ -1307,12 +1307,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è½¬æ¢å­—ç¬¦ä¸²stringä¸º snake case..
-     * å‚æ•°
-     * [string=''] (string): è¦è½¬æ¢çš„å­—ç¬¦ä¸²ã€‚
-     * è¿”å›å€¼
-     * (string): è¿”å›è½¬æ¢åçš„å­—ç¬¦ä¸²ã€‚
-     * ä¾‹å­
+     * ×ª»»×Ö·û´®stringÎª snake case..
+     * ²ÎÊı
+     * [string=''] (string): Òª×ª»»µÄ×Ö·û´®¡£
+     * ·µ»ØÖµ
+     * (string): ·µ»Ø×ª»»ºóµÄ×Ö·û´®¡£
+     * Àı×Ó
      * snakeCase('Foo Bar');
      * // => 'foo_bar'
      * snakeCase('fooBar');
@@ -1353,13 +1353,13 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªæ•°ç»„ï¼Œ valueï¼ˆå€¼ï¼‰ æ˜¯ iterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰éå† collectionï¼ˆé›†åˆï¼‰ä¸­çš„æ¯ä¸ªå…ƒç´ åè¿”å›çš„ç»“æœã€‚ iterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰è°ƒç”¨3ä¸ªå‚æ•°ï¼š(value, index|key, collection).
-     * å‚æ•°
-     * collection (Array|Object): ç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * [iteratee=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›æ–°çš„æ˜ å°„åæ•°ç»„ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸öÊı×é£¬ value£¨Öµ£© ÊÇ iteratee£¨µü´úº¯Êı£©±éÀú collection£¨¼¯ºÏ£©ÖĞµÄÃ¿¸öÔªËØºó·µ»ØµÄ½á¹û¡£ iteratee£¨µü´úº¯Êı£©µ÷ÓÃ3¸ö²ÎÊı£º(value, index|key, collection).
+     * ²ÎÊı
+     * collection (Array|Object): ÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * [iteratee=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»ØĞÂµÄÓ³ÉäºóÊı×é¡£
+     * Àı×Ó
      **/
     map: function(colle, pred) {
         //debugger
@@ -1382,13 +1382,13 @@ TianXiaoBo = {
         return result
     },
     /**
-     * éå† collectionï¼ˆé›†åˆï¼‰å…ƒç´ ï¼Œè¿”å› predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰è¿”å›çœŸå€¼ çš„æ‰€æœ‰å…ƒç´ çš„æ•°ç»„ã€‚ predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰è°ƒç”¨ä¸‰ä¸ªå‚æ•°ï¼š(value, index|key, collection)ã€‚
-     * å‚æ•°
-     * collection (Array|Object): ä¸€ä¸ªç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * [predicate=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›ä¸€ä¸ªæ–°çš„è¿‡æ»¤åçš„æ•°ç»„ã€‚
-     * ä¾‹å­
+     * ±éÀú collection£¨¼¯ºÏ£©ÔªËØ£¬·µ»Ø predicate£¨¶ÏÑÔº¯Êı£©·µ»ØÕæÖµ µÄËùÓĞÔªËØµÄÊı×é¡£ predicate£¨¶ÏÑÔº¯Êı£©µ÷ÓÃÈı¸ö²ÎÊı£º(value, index|key, collection)¡£
+     * ²ÎÊı
+     * collection (Array|Object): Ò»¸öÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * [predicate=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»ØÒ»¸öĞÂµÄ¹ıÂËºóµÄÊı×é¡£
+     * Àı×Ó
      **/
     filter: function(colle, pred) {
         //debugger
@@ -1413,13 +1413,13 @@ TianXiaoBo = {
         return result
     },
     /**
-     * éå† collectionï¼ˆé›†åˆï¼‰å…ƒç´ ï¼Œè¿”å› predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰è¿”å›çœŸå€¼ çš„æ‰€æœ‰å…ƒç´ çš„æ•°ç»„ã€‚ predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰è°ƒç”¨ä¸‰ä¸ªå‚æ•°ï¼š(value, index|key, collection)ã€‚
-     * å‚æ•°
-     * collection (Array|Object): ä¸€ä¸ªç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * [predicate=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * è¿”å›å€¼
-     * (Array): è¿”å›ä¸€ä¸ªæ–°çš„è¿‡æ»¤åçš„æ•°ç»„ã€‚
-     * ä¾‹å­
+     * ±éÀú collection£¨¼¯ºÏ£©ÔªËØ£¬·µ»Ø predicate£¨¶ÏÑÔº¯Êı£©·µ»ØÕæÖµ µÄËùÓĞÔªËØµÄÊı×é¡£ predicate£¨¶ÏÑÔº¯Êı£©µ÷ÓÃÈı¸ö²ÎÊı£º(value, index|key, collection)¡£
+     * ²ÎÊı
+     * collection (Array|Object): Ò»¸öÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * [predicate=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * ·µ»ØÖµ
+     * (Array): ·µ»ØÒ»¸öĞÂµÄ¹ıÂËºóµÄÊı×é¡£
+     * Àı×Ó
      **/
     partition: function(arr, fn) {
         var result = [
@@ -1436,11 +1436,11 @@ TianXiaoBo = {
         return result
     },
     /**
-     * å‹ç¼© collectionï¼ˆé›†åˆï¼‰ä¸ºä¸€ä¸ªå€¼ï¼Œé€šè¿‡ iterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰éå† collectionï¼ˆé›†åˆï¼‰ä¸­çš„æ¯ä¸ªå…ƒç´ ï¼Œæ¯æ¬¡è¿”å›çš„å€¼ä¼šä½œä¸ºä¸‹ä¸€æ¬¡è¿­ä»£ä½¿ç”¨(æ„šäººç å¤´æ³¨ï¼šä½œä¸ºiterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰çš„ç¬¬ä¸€ä¸ªå‚æ•°ä½¿ç”¨)ã€‚ å¦‚æœæ²¡æœ‰æä¾› accumulatorï¼Œåˆ™ collectionï¼ˆé›†åˆï¼‰ä¸­çš„ç¬¬ä¸€ä¸ªå…ƒç´ ä½œä¸ºåˆå§‹å€¼ã€‚(æ„šäººç å¤´æ³¨ï¼šaccumulatorå‚æ•°åœ¨ç¬¬ä¸€æ¬¡è¿­ä»£çš„æ—¶å€™ä½œä¸ºiterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰ç¬¬ä¸€ä¸ªå‚æ•°ä½¿ç”¨ã€‚) iteratee è°ƒç”¨4ä¸ªå‚æ•°ï¼š(accumulator, value, index|key, collection).
-     * @param  collection (Array|Object): ç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @param  [accumulator] (*): åˆå§‹å€¼ã€‚
-     * @return (*): è¿”å›ç´¯åŠ åçš„å€¼ã€‚
+     * Ñ¹Ëõ collection£¨¼¯ºÏ£©ÎªÒ»¸öÖµ£¬Í¨¹ı iteratee£¨µü´úº¯Êı£©±éÀú collection£¨¼¯ºÏ£©ÖĞµÄÃ¿¸öÔªËØ£¬Ã¿´Î·µ»ØµÄÖµ»á×÷ÎªÏÂÒ»´Îµü´úÊ¹ÓÃ(ÓŞÈËÂëÍ·×¢£º×÷Îªiteratee£¨µü´úº¯Êı£©µÄµÚÒ»¸ö²ÎÊıÊ¹ÓÃ)¡£ Èç¹ûÃ»ÓĞÌá¹© accumulator£¬Ôò collection£¨¼¯ºÏ£©ÖĞµÄµÚÒ»¸öÔªËØ×÷Îª³õÊ¼Öµ¡£(ÓŞÈËÂëÍ·×¢£ºaccumulator²ÎÊıÔÚµÚÒ»´Îµü´úµÄÊ±ºò×÷Îªiteratee£¨µü´úº¯Êı£©µÚÒ»¸ö²ÎÊıÊ¹ÓÃ¡£) iteratee µ÷ÓÃ4¸ö²ÎÊı£º(accumulator, value, index|key, collection).
+     * @param  collection (Array|Object): ÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [iteratee=_.identity] (Function): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @param  [accumulator] (*): ³õÊ¼Öµ¡£
+     * @return (*): ·µ»ØÀÛ¼ÓºóµÄÖµ¡£
      */
     reduce: function(colle, iter, acc) {
         var theKey = Object.keys(colle)
@@ -1456,11 +1456,11 @@ TianXiaoBo = {
         return acc
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.reduce ï¼Œé™¤äº†å®ƒæ˜¯ä»å³åˆ°å·¦éå†collectionï¼ˆé›†åˆï¼‰ä¸­çš„å…ƒç´ çš„ã€‚
-     * @param  collection (Array|Object): ç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @param  [accumulator] (*): åˆå§‹å€¼ã€‚
-     * @return (*): è¿”å›ç´¯åŠ åçš„å€¼ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.reduce £¬³ıÁËËüÊÇ´ÓÓÒµ½×ó±éÀúcollection£¨¼¯ºÏ£©ÖĞµÄÔªËØµÄ¡£
+     * @param  collection (Array|Object): ÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [iteratee=_.identity] (Function): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @param  [accumulator] (*): ³õÊ¼Öµ¡£
+     * @return (*): ·µ»ØÀÛ¼ÓºóµÄÖµ¡£
      */
     reduceRight: function(colle, iter, acc) {
         var theKey = Object.keys(colle)
@@ -1476,12 +1476,12 @@ TianXiaoBo = {
         return acc
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªobjecté”®å€¼å€’ç½®åçš„å¯¹è±¡ã€‚ å¦‚æœ object æœ‰é‡å¤çš„å€¼ï¼Œåé¢çš„å€¼ä¼šè¦†ç›–å‰é¢çš„å€¼ã€‚
-     * å‚æ•°
-     * object (Object): è¦é”®å€¼å€’ç½®å¯¹è±¡ã€‚
-     * è¿”å›å€¼
-     * (Object): è¿”å›æ–°çš„é”®å€¼å€’ç½®åçš„å¯¹è±¡ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸öobject¼üÖµµ¹ÖÃºóµÄ¶ÔÏó¡£ Èç¹û object ÓĞÖØ¸´µÄÖµ£¬ºóÃæµÄÖµ»á¸²¸ÇÇ°ÃæµÄÖµ¡£
+     * ²ÎÊı
+     * object (Object): Òª¼üÖµµ¹ÖÃ¶ÔÏó¡£
+     * ·µ»ØÖµ
+     * (Object): ·µ»ØĞÂµÄ¼üÖµµ¹ÖÃºóµÄ¶ÔÏó¡£
+     * Àı×Ó
      * var object = { 'a': 1, 'b': 2, 'c': 1 };
      * invert(object);
      * // => { '1': 'c', '2': 'b' }
@@ -1494,12 +1494,12 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªobjecté”®å€¼å€’ç½®åçš„å¯¹è±¡ã€‚ å¦‚æœ object æœ‰é‡å¤çš„å€¼ï¼Œæ”¾å…¥æ•°ç»„ã€‚
-     * å‚æ•°
-     * object (Object): è¦é”®å€¼å€’ç½®å¯¹è±¡ã€‚
-     * è¿”å›å€¼
-     * (Object): è¿”å›æ–°çš„é”®å€¼å€’ç½®åçš„å¯¹è±¡ã€‚
-     * ä¾‹å­
+     * ´´½¨Ò»¸öobject¼üÖµµ¹ÖÃºóµÄ¶ÔÏó¡£ Èç¹û object ÓĞÖØ¸´µÄÖµ£¬·ÅÈëÊı×é¡£
+     * ²ÎÊı
+     * object (Object): Òª¼üÖµµ¹ÖÃ¶ÔÏó¡£
+     * ·µ»ØÖµ
+     * (Object): ·µ»ØĞÂµÄ¼üÖµµ¹ÖÃºóµÄ¶ÔÏó¡£
+     * Àı×Ó
      * var object = { 'a': 1, 'b': 2, 'c': 1 };
      * invert(object);
      * // => { '1': 'c', '2': 'b' }
@@ -1521,11 +1521,11 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ª object çš„è‡ªèº«å¯æšä¸¾å±æ€§åä¸ºæ•°ç»„ã€‚
-     * å‚æ•°
-     * object (Object): è¦æ£€ç´¢çš„å¯¹è±¡ã€‚
-     * è¿”å›
-     * (Array): è¿”å›åŒ…å«å±æ€§åçš„æ•°ç»„ã€‚
+     * ´´½¨Ò»¸ö object µÄ×ÔÉí¿ÉÃ¶¾ÙÊôĞÔÃûÎªÊı×é¡£
+     * ²ÎÊı
+     * object (Object): Òª¼ìË÷µÄ¶ÔÏó¡£
+     * ·µ»Ø
+     * (Array): ·µ»Ø°üº¬ÊôĞÔÃûµÄÊı×é¡£
      * function Foo() {this.a = 1;this.b = 2;}
      * Foo.prototype.c = 3;
      * keys(new Foo);
@@ -1543,16 +1543,16 @@ TianXiaoBo = {
         return result
     },
     /**
-     * ä½¿ç”¨ iteratee éå†å¯¹è±¡çš„è‡ªèº«å’Œç»§æ‰¿çš„å¯æšä¸¾å±æ€§ã€‚ iteratee ä¼šä¼ å…¥3ä¸ªå‚æ•°ï¼š(value, key, object)ã€‚ å¦‚æœè¿”å› falseï¼Œiteratee ä¼šæå‰é€€å‡ºéå†ã€‚
-     * å‚æ•°
-     * object (Object): è¦éå†çš„å¯¹è±¡ã€‚
-     * [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£æ—¶è°ƒç”¨çš„å‡½æ•°ã€‚
-     * è¿”å›
-     * (Object): è¿”å› objectã€‚
+     * Ê¹ÓÃ iteratee ±éÀú¶ÔÏóµÄ×ÔÉíºÍ¼Ì³ĞµÄ¿ÉÃ¶¾ÙÊôĞÔ¡£ iteratee »á´«Èë3¸ö²ÎÊı£º(value, key, object)¡£ Èç¹û·µ»Ø false£¬iteratee »áÌáÇ°ÍË³ö±éÀú¡£
+     * ²ÎÊı
+     * object (Object): Òª±éÀúµÄ¶ÔÏó¡£
+     * [iteratee=_.identity] (Function): Ã¿´Îµü´úÊ±µ÷ÓÃµÄº¯Êı¡£
+     * ·µ»Ø
+     * (Object): ·µ»Ø object¡£
      * function Foo() {this.a = 1;this.b = 2;}
      * Foo.prototype.c = 3;
      * forIn(new Foo, function(value, key) {console.log(key);});
-     * // => Logs 'a', 'b', then 'c' (æ— æ³•ä¿è¯éå†çš„é¡ºåº)ã€‚
+     * // => Logs 'a', 'b', then 'c' (ÎŞ·¨±£Ö¤±éÀúµÄË³Ğò)¡£
      */
     forIn: function(obj, fn) {
         for (keys in obj) {
@@ -1565,10 +1565,10 @@ TianXiaoBo = {
         return obj
     },
     /**
-     * åå‘ç‰ˆ _.mapValuesã€‚ è¿™ä¸ªæ–¹æ³•åˆ›å»ºä¸€ä¸ªå¯¹è±¡ï¼Œå¯¹è±¡çš„å€¼ä¸objectç›¸åŒï¼Œå¹¶ä¸” key æ˜¯é€šè¿‡ iteratee è¿è¡Œ object ä¸­æ¯ä¸ªè‡ªèº«å¯æšä¸¾å±æ€§åå­—ç¬¦ä¸² äº§ç”Ÿçš„ã€‚iterateeè°ƒç”¨ä¸‰ä¸ªå‚æ•°ï¼š (value, key, object)ã€‚
-     * @param  object (Object): è¦éå†çš„å¯¹è±¡ã€‚
-     * @param  [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£æ—¶è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (Object): è¿”å›æ˜ å°„åçš„æ–°å¯¹è±¡ã€‚
+     * ·´Ïò°æ _.mapValues¡£ Õâ¸ö·½·¨´´½¨Ò»¸ö¶ÔÏó£¬¶ÔÏóµÄÖµÓëobjectÏàÍ¬£¬²¢ÇÒ key ÊÇÍ¨¹ı iteratee ÔËĞĞ object ÖĞÃ¿¸ö×ÔÉí¿ÉÃ¶¾ÙÊôĞÔÃû×Ö·û´® ²úÉúµÄ¡£iterateeµ÷ÓÃÈı¸ö²ÎÊı£º (value, key, object)¡£
+     * @param  object (Object): Òª±éÀúµÄ¶ÔÏó¡£
+     * @param  [iteratee=_.identity] (Function): Ã¿´Îµü´úÊ±µ÷ÓÃµÄº¯Êı¡£
+     * @return (Object): ·µ»ØÓ³ÉäºóµÄĞÂ¶ÔÏó¡£
      * example mapKeys({ 'a': 1, 'b': 2 }, function(value, key) {return key + value;});
      * // => { 'a1': 1, 'b2': 2 }
      */
@@ -1580,10 +1580,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªå¯¹è±¡ï¼Œè¿™ä¸ªå¯¹è±¡çš„keyä¸objectå¯¹è±¡ç›¸åŒï¼Œå€¼æ˜¯é€šè¿‡ iteratee è¿è¡Œ object ä¸­æ¯ä¸ªè‡ªèº«å¯æšä¸¾å±æ€§åå­—ç¬¦ä¸²äº§ç”Ÿçš„ã€‚ iterateeè°ƒç”¨ä¸‰ä¸ªå‚æ•°ï¼š (value, key, object)ã€‚
-     * @param  object (Object): è¦éå†çš„å¯¹è±¡ã€‚
-     * @param  [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£æ—¶è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (Object): è¿”å›æ˜ å°„åçš„æ–°å¯¹è±¡ã€‚
+     * ´´½¨Ò»¸ö¶ÔÏó£¬Õâ¸ö¶ÔÏóµÄkeyÓëobject¶ÔÏóÏàÍ¬£¬ÖµÊÇÍ¨¹ı iteratee ÔËĞĞ object ÖĞÃ¿¸ö×ÔÉí¿ÉÃ¶¾ÙÊôĞÔÃû×Ö·û´®²úÉúµÄ¡£ iterateeµ÷ÓÃÈı¸ö²ÎÊı£º (value, key, object)¡£
+     * @param  object (Object): Òª±éÀúµÄ¶ÔÏó¡£
+     * @param  [iteratee=_.identity] (Function): Ã¿´Îµü´úÊ±µ÷ÓÃµÄº¯Êı¡£
+     * @return (Object): ·µ»ØÓ³ÉäºóµÄĞÂ¶ÔÏó¡£
      * example var users = {'fred':{ 'user': 'fred',    'age': 40 },'pebbles': { 'user': 'pebbles', 'age': 1 }};
      * mapValues(users, function(o) { return o.age; });
      * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
@@ -1604,10 +1604,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªä» object ä¸­é€‰ä¸­çš„å±æ€§çš„å¯¹è±¡ã€‚
-     * @param  object (Object): æ¥æºå¯¹è±¡ã€‚
-     * @param  [props] (...(string|string[])): è¦è¢«å¿½ç•¥çš„å±æ€§ã€‚
-     * @return (Object): è¿”å›æ–°å¯¹è±¡ã€‚
+     * ´´½¨Ò»¸ö´Ó object ÖĞÑ¡ÖĞµÄÊôĞÔµÄ¶ÔÏó¡£
+     * @param  object (Object): À´Ô´¶ÔÏó¡£
+     * @param  [props] (...(string|string[])): Òª±»ºöÂÔµÄÊôĞÔ¡£
+     * @return (Object): ·µ»ØĞÂ¶ÔÏó¡£
      * var object = { 'a': 1, 'b': '2', 'c': 3 };
      * pick(object, ['a', 'c']);
      * // => { 'a': 1, 'c': 3 }
@@ -1624,9 +1624,9 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»º object è‡ªèº«å¯æšä¸¾å±æ€§çš„å€¼ä¸ºæ•°ç»„ã€‚
-     * @param  object (Object): è¦æ£€ç´¢çš„å¯¹è±¡ã€‚
-     * @return (Array): è¿”å›å¯¹è±¡å±æ€§çš„å€¼çš„æ•°ç»„ã€‚
+     * ´´½¨ object ×ÔÉí¿ÉÃ¶¾ÙÊôĞÔµÄÖµÎªÊı×é¡£
+     * @param  object (Object): Òª¼ìË÷µÄ¶ÔÏó¡£
+     * @return (Array): ·µ»Ø¶ÔÏóÊôĞÔµÄÖµµÄÊı×é¡£
      * example function Foo() {this.a = 1;this.b = 2;}
      * Foo.prototype.c = 3;
      * values(new Foo);
@@ -1642,10 +1642,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªæ•°ç»„ï¼Œå€¼æ¥è‡ª object çš„pathsè·¯å¾„ç›¸åº”çš„å€¼ã€‚
-     * @param  object (Object): è¦è¿­ä»£çš„å¯¹è±¡ã€‚
-     * @param  [paths] (...(string|string[])): è¦è·å–çš„å¯¹è±¡çš„å…ƒç´ è·¯å¾„ï¼Œå•ç‹¬æŒ‡å®šæˆ–è€…æŒ‡å®šåœ¨æ•°ç»„ä¸­ã€‚
-     * @return (Array): è¿”å›é€‰ä¸­å€¼çš„æ•°ç»„ã€‚
+     * ´´½¨Ò»¸öÊı×é£¬ÖµÀ´×Ô object µÄpathsÂ·¾¶ÏàÓ¦µÄÖµ¡£
+     * @param  object (Object): Òªµü´úµÄ¶ÔÏó¡£
+     * @param  [paths] (...(string|string[])): Òª»ñÈ¡µÄ¶ÔÏóµÄÔªËØÂ·¾¶£¬µ¥¶ÀÖ¸¶¨»òÕßÖ¸¶¨ÔÚÊı×éÖĞ¡£
+     * @return (Array): ·µ»ØÑ¡ÖĞÖµµÄÊı×é¡£
      * example var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
      * at(object, ['a[0].b.c', 'a[1]']);
      * // => [3, 4]
@@ -1659,9 +1659,9 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ†é…æ¥æºå¯¹è±¡çš„å¯æšä¸¾å±æ€§åˆ°ç›®æ ‡å¯¹è±¡ä¸Šã€‚ æ¥æºå¯¹è±¡çš„åº”ç”¨è§„åˆ™æ˜¯ä»å·¦åˆ°å³ï¼Œéšåçš„ä¸‹ä¸€ä¸ªå¯¹è±¡çš„å±æ€§ä¼šè¦†ç›–ä¸Šä¸€ä¸ªå¯¹è±¡çš„å±æ€§ã€‚
-     * @param  object (Object): ç›®æ ‡å¯¹è±¡ã€‚
-     * (Object): è¿”å› object.
+     * ·ÖÅäÀ´Ô´¶ÔÏóµÄ¿ÉÃ¶¾ÙÊôĞÔµ½Ä¿±ê¶ÔÏóÉÏ¡£ À´Ô´¶ÔÏóµÄÓ¦ÓÃ¹æÔòÊÇ´Ó×óµ½ÓÒ£¬ËæºóµÄÏÂÒ»¸ö¶ÔÏóµÄÊôĞÔ»á¸²¸ÇÉÏÒ»¸ö¶ÔÏóµÄÊôĞÔ¡£
+     * @param  object (Object): Ä¿±ê¶ÔÏó¡£
+     * (Object): ·µ»Ø object.
      * example
      * function Foo() {this.a = 1;}
      * function Bar() {this.c = 3;}
@@ -1680,10 +1680,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¯¥æ–¹æ³•ç±»ä¼¼_.assignï¼Œ é™¤äº†å®ƒé€’å½’åˆå¹¶ sources æ¥æºå¯¹è±¡è‡ªèº«å’Œç»§æ‰¿çš„å¯æšä¸¾å±æ€§åˆ° object ç›®æ ‡å¯¹è±¡ã€‚å¦‚æœç›®æ ‡å€¼å­˜åœ¨ï¼Œè¢«è§£æä¸ºundefinedçš„sources æ¥æºå¯¹è±¡å±æ€§å°†è¢«è·³è¿‡ã€‚æ•°ç»„å’Œæ™®é€šå¯¹è±¡ä¼šé€’å½’åˆå¹¶ï¼Œå…¶ä»–å¯¹è±¡å’Œå€¼ä¼šè¢«ç›´æ¥åˆ†é…è¦†ç›–ã€‚æºå¯¹è±¡ä»ä»å·¦åˆ°å³åˆ†é…ã€‚åç»­çš„æ¥æºå¯¹è±¡å±æ€§ä¼šè¦†ç›–ä¹‹å‰åˆ†é…çš„å±æ€§ã€‚
-     * @param  object (Object): ç›®æ ‡å¯¹è±¡ã€‚
-     * @param [sources] (...Object): æ¥æºå¯¹è±¡ã€‚
-     * @return (Object): è¿”å› object.
+     * ¸Ã·½·¨ÀàËÆ_.assign£¬ ³ıÁËËüµİ¹éºÏ²¢ sources À´Ô´¶ÔÏó×ÔÉíºÍ¼Ì³ĞµÄ¿ÉÃ¶¾ÙÊôĞÔµ½ object Ä¿±ê¶ÔÏó¡£Èç¹ûÄ¿±êÖµ´æÔÚ£¬±»½âÎöÎªundefinedµÄsources À´Ô´¶ÔÏóÊôĞÔ½«±»Ìø¹ı¡£Êı×éºÍÆÕÍ¨¶ÔÏó»áµİ¹éºÏ²¢£¬ÆäËû¶ÔÏóºÍÖµ»á±»Ö±½Ó·ÖÅä¸²¸Ç¡£Ô´¶ÔÏó´Ó´Ó×óµ½ÓÒ·ÖÅä¡£ºóĞøµÄÀ´Ô´¶ÔÏóÊôĞÔ»á¸²¸ÇÖ®Ç°·ÖÅäµÄÊôĞÔ¡£
+     * @param  object (Object): Ä¿±ê¶ÔÏó¡£
+     * @param [sources] (...Object): À´Ô´¶ÔÏó¡£
+     * @return (Object): ·µ»Ø object.
      * example var object = {'a': [{ 'b': 2 }, { 'd': 4 }]};
      * var other = {'a': [{ 'c': 3 }, { 'e': 5 }]};
      * merge(object, other);
@@ -1712,10 +1712,10 @@ TianXiaoBo = {
         return obj
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªè°ƒç”¨funcçš„å‡½æ•°ï¼Œé€šè¿‡thisç»‘å®šå’Œåˆ›å»ºå‡½æ•°çš„å‚æ•°è°ƒç”¨funcï¼Œè°ƒç”¨æ¬¡æ•°ä¸è¶…è¿‡ n æ¬¡ã€‚ ä¹‹åå†è°ƒç”¨è¿™ä¸ªå‡½æ•°ï¼Œå°†è¿”å›ä¸€æ¬¡æœ€åè°ƒç”¨funcçš„ç»“æœã€‚
-     * @param  n (number): è¶…è¿‡å¤šå°‘æ¬¡ä¸å†è°ƒç”¨func
-     * @param  func (Function): é™åˆ¶æ‰§è¡Œçš„å‡½æ•°ã€‚
-     * @return (Function): è¿”å›æ–°çš„é™å®šå‡½æ•°ã€‚
+     * ´´½¨Ò»¸öµ÷ÓÃfuncµÄº¯Êı£¬Í¨¹ıthis°ó¶¨ºÍ´´½¨º¯ÊıµÄ²ÎÊıµ÷ÓÃfunc£¬µ÷ÓÃ´ÎÊı²»³¬¹ı n ´Î¡£ Ö®ºóÔÙµ÷ÓÃÕâ¸öº¯Êı£¬½«·µ»ØÒ»´Î×îºóµ÷ÓÃfuncµÄ½á¹û¡£
+     * @param  n (number): ³¬¹ı¶àÉÙ´Î²»ÔÙµ÷ÓÃfunc
+     * @param  func (Function): ÏŞÖÆÖ´ĞĞµÄº¯Êı¡£
+     * @return (Function): ·µ»ØĞÂµÄÏŞ¶¨º¯Êı¡£
      */
     before: function(n, fn) {
         var count
@@ -1731,10 +1731,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * _.beforeçš„åå‘å‡½æ•°;æ­¤æ–¹æ³•åˆ›å»ºä¸€ä¸ªå‡½æ•°ï¼Œå½“ä»–è¢«è°ƒç”¨næˆ–æ›´å¤šæ¬¡ä¹‹åå°†é©¬ä¸Šè§¦å‘func ã€‚
-     * @param  n (number): func æ–¹æ³•åº”è¯¥åœ¨è°ƒç”¨å¤šå°‘æ¬¡åæ‰æ‰§è¡Œã€‚
-     * @param  func (Function): ç”¨æ¥é™å®šçš„å‡½æ•°ã€‚
-     * @return (Function): è¿”å›æ–°çš„é™å®šå‡½æ•°ã€‚
+     * _.beforeµÄ·´Ïòº¯Êı;´Ë·½·¨´´½¨Ò»¸öº¯Êı£¬µ±Ëû±»µ÷ÓÃn»ò¸ü¶à´ÎÖ®ºó½«ÂíÉÏ´¥·¢func ¡£
+     * @param  n (number): func ·½·¨Ó¦¸ÃÔÚµ÷ÓÃ¶àÉÙ´Îºó²ÅÖ´ĞĞ¡£
+     * @param  func (Function): ÓÃÀ´ÏŞ¶¨µÄº¯Êı¡£
+     * @return (Function): ·µ»ØĞÂµÄÏŞ¶¨º¯Êı¡£
      */
     after: function(n, fn) {
         var count = 0
@@ -1746,10 +1746,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ‰§è¡Œæ·±æ¯”è¾ƒæ¥ç¡®å®šä¸¤è€…çš„å€¼æ˜¯å¦ç›¸ç­‰ã€‚
-     * @param  value (*): ç”¨æ¥æ¯”è¾ƒçš„å€¼ã€‚
-     * @param  other (*): å¦ä¸€ä¸ªç”¨æ¥æ¯”è¾ƒçš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ ä¸¤ä¸ªå€¼å®Œå…¨ç›¸åŒï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * Ö´ĞĞÉî±È½ÏÀ´È·¶¨Á½ÕßµÄÖµÊÇ·ñÏàµÈ¡£
+     * @param  value (*): ÓÃÀ´±È½ÏµÄÖµ¡£
+     * @param  other (*): ÁíÒ»¸öÓÃÀ´±È½ÏµÄÖµ¡£
+     * @return (boolean): Èç¹û Á½¸öÖµÍêÈ«ÏàÍ¬£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      * example
      * var object = { 'a': 1 };
      * var other = { 'a': 1 };
@@ -1788,9 +1788,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªæ·±æ¯”è¾ƒçš„æ–¹æ³•æ¥æ¯”è¾ƒç»™å®šçš„å¯¹è±¡å’Œ source å¯¹è±¡ã€‚ å¦‚æœç»™å®šçš„å¯¹è±¡æ‹¥æœ‰ç›¸åŒçš„å±æ€§å€¼è¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
-     * @param  source (Object): è¦åŒ¹é…å±æ€§å€¼çš„æºå¯¹è±¡ã€‚
-     * @return (Function): è¿”å›æ–°çš„å‡½æ•°ã€‚
+     * ´´½¨Ò»¸öÉî±È½ÏµÄ·½·¨À´±È½Ï¸ø¶¨µÄ¶ÔÏóºÍ source ¶ÔÏó¡£ Èç¹û¸ø¶¨µÄ¶ÔÏóÓµÓĞÏàÍ¬µÄÊôĞÔÖµ·µ»Ø true£¬·ñÔò·µ»Ø false¡£
+     * @param  source (Object): ÒªÆ¥ÅäÊôĞÔÖµµÄÔ´¶ÔÏó¡£
+     * @return (Function): ·µ»ØĞÂµÄº¯Êı¡£
      */
     matches: function(source) {
         var self = this
@@ -1804,10 +1804,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªæ·±æ¯”è¾ƒçš„æ–¹æ³•æ¥æ¯”è¾ƒç»™å®šå¯¹è±¡çš„ path çš„å€¼æ˜¯å¦æ˜¯ srcValue ã€‚ å¦‚æœæ˜¯è¿”å› true ï¼Œå¦åˆ™è¿”å› false ã€‚
-     * @param  path (Array|string): ç»™å®šå¯¹è±¡çš„å±æ€§è·¯å¾„åã€‚
-     * srcValue (*): è¦åŒ¹é…çš„å€¼ã€‚
-     * @return (Function): è¿”å›æ–°çš„å‡½æ•°ã€‚
+     * ´´½¨Ò»¸öÉî±È½ÏµÄ·½·¨À´±È½Ï¸ø¶¨¶ÔÏóµÄ path µÄÖµÊÇ·ñÊÇ srcValue ¡£ Èç¹ûÊÇ·µ»Ø true £¬·ñÔò·µ»Ø false ¡£
+     * @param  path (Array|string): ¸ø¶¨¶ÔÏóµÄÊôĞÔÂ·¾¶Ãû¡£
+     * srcValue (*): ÒªÆ¥ÅäµÄÖµ¡£
+     * @return (Function): ·µ»ØĞÂµÄº¯Êı¡£
      */
     matchesProperty: function(path, value) {
         return function(obj) {
@@ -1819,9 +1819,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªè¿”å›ç»™å®šå¯¹è±¡çš„ path çš„å€¼çš„å‡½æ•°ã€‚
-     * @param  path (Array|string): è¦å¾—åˆ°å€¼çš„å±æ€§è·¯å¾„ã€‚
-     * @return path (Array|string): è¦å¾—åˆ°å€¼çš„å±æ€§è·¯å¾„ã€‚
+     * ´´½¨Ò»¸ö·µ»Ø¸ø¶¨¶ÔÏóµÄ path µÄÖµµÄº¯Êı¡£
+     * @param  path (Array|string): ÒªµÃµ½ÖµµÄÊôĞÔÂ·¾¶¡£
+     * @return path (Array|string): ÒªµÃµ½ÖµµÄÊôĞÔÂ·¾¶¡£
      */
     property: function(path) {
         if (Array.isArray(path)) {
@@ -1832,10 +1832,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªåˆ‡ç‰‡æ•°ç»„ï¼Œå»é™¤arrayä¸­ä» predicate è¿”å›å‡å€¼å¼€å§‹åˆ°å°¾éƒ¨çš„éƒ¨åˆ†
-     * @param  array (Array): è¦æŸ¥è¯¢çš„æ•°ç»„ã€‚
-     * @param  [predicate=_.identity] (Function): è¿™ä¸ªå‡½æ•°ä¼šåœ¨æ¯ä¸€æ¬¡è¿­ä»£è°ƒç”¨ã€‚
-     * @return (Array): è¿”å›arrayå‰©ä½™åˆ‡ç‰‡ã€‚
+     * ´´½¨Ò»¸öÇĞÆ¬Êı×é£¬È¥³ıarrayÖĞ´Ó predicate ·µ»Ø¼ÙÖµ¿ªÊ¼µ½Î²²¿µÄ²¿·Ö
+     * @param  array (Array): Òª²éÑ¯µÄÊı×é¡£
+     * @param  [predicate=_.identity] (Function): Õâ¸öº¯Êı»áÔÚÃ¿Ò»´Îµü´úµ÷ÓÃ¡£
+     * @return (Array): ·µ»ØarrayÊ£ÓàÇĞÆ¬¡£
      */
     dropRightWhile: function(arr, ident) {
         var newArray = Array.prototype.slice.call(arr)
@@ -1868,10 +1868,10 @@ TianXiaoBo = {
         return newArray
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªåˆ‡ç‰‡æ•°ç»„ï¼Œå»é™¤arrayä¸­ä»èµ·ç‚¹å¼€å§‹åˆ° predicate è¿”å›å‡å€¼ç»“æŸéƒ¨åˆ†ã€‚
-     * @param  array (Array): è¦æŸ¥è¯¢çš„æ•°ç»„ã€‚
-     * @param  [predicate=_.identity] (Function): è¿™ä¸ªå‡½æ•°ä¼šåœ¨æ¯ä¸€æ¬¡è¿­ä»£è°ƒç”¨ã€‚
-     * @return (Array): è¿”å›arrayå‰©ä½™åˆ‡ç‰‡ã€‚
+     * ´´½¨Ò»¸öÇĞÆ¬Êı×é£¬È¥³ıarrayÖĞ´ÓÆğµã¿ªÊ¼µ½ predicate ·µ»Ø¼ÙÖµ½áÊø²¿·Ö¡£
+     * @param  array (Array): Òª²éÑ¯µÄÊı×é¡£
+     * @param  [predicate=_.identity] (Function): Õâ¸öº¯Êı»áÔÚÃ¿Ò»´Îµü´úµ÷ÓÃ¡£
+     * @return (Array): ·µ»ØarrayÊ£ÓàÇĞÆ¬¡£
      */
     dropWhile: function(arr, ident) {
         var newArray = Array.prototype.slice.call(arr)
@@ -1903,9 +1903,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ä¸€ä¸ªç±» arguments å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœvalueæ˜¯ä¸€ä¸ª arguments å¯¹è±¡ è¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇÒ»¸öÀà arguments ¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹ûvalueÊÇÒ»¸ö arguments ¶ÔÏó ·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isArguments: function(arg) {
         if (arg.callee) {
@@ -1915,9 +1915,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ Array ç±»å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœvalueæ˜¯ä¸€ä¸ªæ•°ç»„è¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ Array Àà¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹ûvalueÊÇÒ»¸öÊı×é·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isArray: function(arr) {
         if (arr instanceof Array) {
@@ -1927,27 +1927,27 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯åŸå§‹ boolean ç±»å‹æˆ–è€…å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value æ˜¯ä¸€ä¸ªå¸ƒå°”å€¼ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇÔ­Ê¼ boolean ÀàĞÍ»òÕß¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÊÇÒ»¸ö²¼¶ûÖµ£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isBoolean: function(value) {
 
         return typeof value === 'boolean'
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ Date å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value æ˜¯ä¸€ä¸ªæ—¥æœŸå¯¹è±¡ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ Date ¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÊÇÒ»¸öÈÕÆÚ¶ÔÏó£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isDate: function(value) {
 
         return value instanceof Date
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯åŸå§‹æœ‰é™æ•°å€¼ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value æ˜¯ä¸€ä¸ªæœ‰é™æ•°å€¼ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇÔ­Ê¼ÓĞÏŞÊıÖµ¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÊÇÒ»¸öÓĞÏŞÊıÖµ£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isFinite: function(value) {
         if (typeof value == 'number') {
@@ -1963,18 +1963,18 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ Function å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼
-     * @return (boolean): å¦‚æœ value æ˜¯ä¸€ä¸ªå‡½æ•°ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ Function ¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ
+     * @return (boolean): Èç¹û value ÊÇÒ»¸öº¯Êı£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isFunction: function(value) {
 
         return typeof value === 'function'
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ NaNã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value æ˜¯ä¸€ä¸ª NaNï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ NaN¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÊÇÒ»¸ö NaN£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isNaN: function(value) {
         if (value !== value) {
@@ -1990,9 +1990,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ£€æŸ¥ valuealue æ˜¯å¦æ˜¯ nullã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºnullï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é valuealue ÊÇ·ñÊÇ null¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value Îªnull£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isNull: function(value) {
         if (value == undefined && value !== undefined) {
@@ -2002,9 +2002,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯åŸå§‹Numberæ•°å€¼å‹ æˆ–è€… å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºä¸€ä¸ªå¯¹è±¡ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇÔ­Ê¼NumberÊıÖµĞÍ »òÕß ¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÎªÒ»¸ö¶ÔÏó£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isNumber: function(value) {
         if (typeof value == 'number' || typeof value.valueOf() == 'number') {
@@ -2014,9 +2014,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦ä¸º Object çš„ language type
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºä¸€ä¸ªå¯¹è±¡ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÎª Object µÄ language type
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÎªÒ»¸ö¶ÔÏó£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isObject: function(value) {
         if (this.isNull(value)) {
@@ -2030,34 +2030,34 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦ä¸ºRegExpå¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºä¸€ä¸ªæ­£åˆ™è¡¨è¾¾å¼ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÎªRegExp¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÎªÒ»¸öÕıÔò±í´ïÊ½£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isRegExp: function(value) {
 
         return value instanceof RegExp
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯åŸå§‹å­—ç¬¦ä¸²Stringæˆ–è€…å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºä¸€ä¸ªå­—ç¬¦ä¸²ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇÔ­Ê¼×Ö·û´®String»òÕß¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÎªÒ»¸ö×Ö·û´®£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isString: function(value) {
 
         return typeof value == 'string'
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ undefined.
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value æ˜¯ undefined ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ undefined.
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÊÇ undefined £¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isUndefined: function(value) {
 
         return typeof value == 'undefined'
     },
     /**
-     * æ˜¯å¦æ˜¯ç±»æ•°ç»„å¯¹è±¡æˆ–å­—ç¬¦ä¸²
+     * ÊÇ·ñÊÇÀàÊı×é¶ÔÏó»ò×Ö·û´®
      * @param  {[type]} value [description]
      * @return {[type]}       [description]
      */
@@ -2066,9 +2066,9 @@ TianXiaoBo = {
         return this.isObject(value) || this.isString(value)
     },
     /**
-     * è¿”å›collectionï¼ˆé›†åˆï¼‰çš„é•¿åº¦ï¼Œå¦‚æœé›†åˆæ˜¯ç±»æ•°ç»„æˆ–å­—ç¬¦ä¸²ï¼Œè¿”å›å…¶ length ï¼›å¦‚æœé›†åˆæ˜¯å¯¹è±¡ï¼Œè¿”å›å…¶å¯æšä¸¾å±æ€§çš„ä¸ªæ•°ã€‚
-     * @param  collection (Array|Object): è¦æ£€æŸ¥çš„é›†åˆ
-     * @return (number): è¿”å›é›†åˆçš„é•¿åº¦ã€‚
+     * ·µ»Øcollection£¨¼¯ºÏ£©µÄ³¤¶È£¬Èç¹û¼¯ºÏÊÇÀàÊı×é»ò×Ö·û´®£¬·µ»ØÆä length £»Èç¹û¼¯ºÏÊÇ¶ÔÏó£¬·µ»ØÆä¿ÉÃ¶¾ÙÊôĞÔµÄ¸öÊı¡£
+     * @param  collection (Array|Object): Òª¼ì²éµÄ¼¯ºÏ
+     * @return (number): ·µ»Ø¼¯ºÏµÄ³¤¶È¡£
      */
     size: function(collection) {
         var count = 0
@@ -2080,9 +2080,9 @@ TianXiaoBo = {
         return count
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦ä¸ºä¸€ä¸ªç©ºå¯¹è±¡ï¼Œé›†åˆï¼Œæ˜ å°„æˆ–è€…setã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºç©ºï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÎªÒ»¸ö¿Õ¶ÔÏó£¬¼¯ºÏ£¬Ó³Éä»òÕßset¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value Îª¿Õ£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isEmpty: function(value) {
         if (typeof value == 'object' || typeof value == 'string') {
@@ -2093,19 +2093,19 @@ TianXiaoBo = {
         return true
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•è¿”å›é¦–ä¸ªæä¾›çš„å‚æ•°ã€‚
-     * @param  value (*): ä»»ä½•å€¼ã€‚
-     * @return (*): è¿”å› value.
+     * Õâ¸ö·½·¨·µ»ØÊ×¸öÌá¹©µÄ²ÎÊı¡£
+     * @param  value (*): ÈÎºÎÖµ¡£
+     * @return (*): ·µ»Ø value.
      */
     identity: function(value) {
 
         return value
     },
     /**
-     * è°ƒç”¨ iteratee éå† collection(é›†åˆ) ä¸­çš„æ¯ä¸ªå…ƒç´ ï¼Œ iteratee è°ƒç”¨3ä¸ªå‚æ•°ï¼š (value, index|key, collection)
-     * @param  collection (Array|Object): ä¸€ä¸ªç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (*): è¿”å›é›†åˆ collectionã€‚
+     * µ÷ÓÃ iteratee ±éÀú collection(¼¯ºÏ) ÖĞµÄÃ¿¸öÔªËØ£¬ iteratee µ÷ÓÃ3¸ö²ÎÊı£º (value, index|key, collection)
+     * @param  collection (Array|Object): Ò»¸öÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [iteratee=_.identity] (Function): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @return (*): ·µ»Ø¼¯ºÏ collection¡£
      */
     forEach: function(collection, iteratee) {
         if (iteratee == undefined) {
@@ -2122,10 +2122,10 @@ TianXiaoBo = {
         return collection
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªè°ƒç”¨funcçš„å‡½æ•°ï¼Œé€šè¿‡thisç»‘å®šå’Œåˆ›å»ºå‡½æ•°çš„å‚æ•°è°ƒç”¨funcï¼Œè°ƒç”¨æ¬¡æ•°ä¸è¶…è¿‡ n æ¬¡ã€‚ ä¹‹åå†è°ƒç”¨è¿™ä¸ªå‡½æ•°ï¼Œå°†è¿”å›ä¸€æ¬¡æœ€åè°ƒç”¨funcçš„ç»“æœã€‚
-     * @param  n (number): è¶…è¿‡å¤šå°‘æ¬¡ä¸å†è°ƒç”¨funcï¼ˆæ„šäººç å¤´æ³¨ï¼šé™åˆ¶è°ƒç”¨func çš„æ¬¡æ•°ï¼‰ã€‚
-     * @param  func (Function): é™åˆ¶æ‰§è¡Œçš„å‡½æ•°ã€‚
-     * @return (Function): è¿”å›æ–°çš„é™å®šå‡½æ•°ã€‚
+     * ´´½¨Ò»¸öµ÷ÓÃfuncµÄº¯Êı£¬Í¨¹ıthis°ó¶¨ºÍ´´½¨º¯ÊıµÄ²ÎÊıµ÷ÓÃfunc£¬µ÷ÓÃ´ÎÊı²»³¬¹ı n ´Î¡£ Ö®ºóÔÙµ÷ÓÃÕâ¸öº¯Êı£¬½«·µ»ØÒ»´Î×îºóµ÷ÓÃfuncµÄ½á¹û¡£
+     * @param  n (number): ³¬¹ı¶àÉÙ´Î²»ÔÙµ÷ÓÃfunc£¨ÓŞÈËÂëÍ·×¢£ºÏŞÖÆµ÷ÓÃfunc µÄ´ÎÊı£©¡£
+     * @param  func (Function): ÏŞÖÆÖ´ĞĞµÄº¯Êı¡£
+     * @return (Function): ·µ»ØĞÂµÄÏŞ¶¨º¯Êı¡£
      */
     before: function(n, func) {
         var count
@@ -2141,10 +2141,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * beforeçš„åå‘å‡½æ•°;æ­¤æ–¹æ³•åˆ›å»ºä¸€ä¸ªå‡½æ•°ï¼Œå½“ä»–è¢«è°ƒç”¨næˆ–æ›´å¤šæ¬¡ä¹‹åå°†é©¬ä¸Šè§¦å‘func ã€‚
-     * @param  n (number): func æ–¹æ³•åº”è¯¥åœ¨è°ƒç”¨å¤šå°‘æ¬¡åæ‰æ‰§è¡Œã€‚
-     * @param  func (Function): ç”¨æ¥é™å®šçš„å‡½æ•°
-     * @return (Function): è¿”å›æ–°çš„é™å®šå‡½æ•°ã€‚
+     * beforeµÄ·´Ïòº¯Êı;´Ë·½·¨´´½¨Ò»¸öº¯Êı£¬µ±Ëû±»µ÷ÓÃn»ò¸ü¶à´ÎÖ®ºó½«ÂíÉÏ´¥·¢func ¡£
+     * @param  n (number): func ·½·¨Ó¦¸ÃÔÚµ÷ÓÃ¶àÉÙ´Îºó²ÅÖ´ĞĞ¡£
+     * @param  func (Function): ÓÃÀ´ÏŞ¶¨µÄº¯Êı
+     * @return (Function): ·µ»ØĞÂµÄÏŞ¶¨º¯Êı¡£
      */
     after: function(n, func) {
         var co
@@ -2157,12 +2157,12 @@ TianXiaoBo = {
         }
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªè°ƒç”¨funcçš„å‡½æ•°ï¼ŒthisArgç»‘å®šfuncå‡½æ•°ä¸­çš„ this ï¼Œå¹¶ä¸”funcå‡½æ•°ä¼šæ¥æ”¶partialsé™„åŠ å‚æ•°ã€‚
-     * _.bind.placeholderå€¼ï¼Œé»˜è®¤æ˜¯ä»¥ _ ä½œä¸ºé™„åŠ éƒ¨åˆ†å‚æ•°çš„å ä½ç¬¦ã€‚
-     * @param  func (Function): ç»‘å®šçš„å‡½æ•°ã€‚
-     * @param  thisArg (*): func ç»‘å®šçš„thiså¯¹è±¡ã€‚
-     * @param  [partials] (...*): é™„åŠ çš„éƒ¨åˆ†å‚æ•°ã€‚
-     * @return (Function): è¿”å›æ–°çš„ç»‘å®šå‡½æ•°ã€‚
+     * ´´½¨Ò»¸öµ÷ÓÃfuncµÄº¯Êı£¬thisArg°ó¶¨funcº¯ÊıÖĞµÄ this £¬²¢ÇÒfuncº¯Êı»á½ÓÊÕpartials¸½¼Ó²ÎÊı¡£
+     * _.bind.placeholderÖµ£¬Ä¬ÈÏÊÇÒÔ _ ×÷Îª¸½¼Ó²¿·Ö²ÎÊıµÄÕ¼Î»·û¡£
+     * @param  func (Function): °ó¶¨µÄº¯Êı¡£
+     * @param  thisArg (*): func °ó¶¨µÄthis¶ÔÏó¡£
+     * @param  [partials] (...*): ¸½¼ÓµÄ²¿·Ö²ÎÊı¡£
+     * @return (Function): ·µ»ØĞÂµÄ°ó¶¨º¯Êı¡£
      */
     bind: function(func, thisArg) {
         var self = this
@@ -2177,10 +2177,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * åˆ†é…æ¥æºå¯¹è±¡çš„å¯æšä¸¾å±æ€§åˆ°ç›®æ ‡å¯¹è±¡ä¸Šã€‚ æ¥æºå¯¹è±¡çš„åº”ç”¨è§„åˆ™æ˜¯ä»å·¦åˆ°å³ï¼Œéšåçš„ä¸‹ä¸€ä¸ªå¯¹è±¡çš„å±æ€§ä¼šè¦†ç›–ä¸Šä¸€ä¸ªå¯¹è±¡çš„å±æ€§ã€‚
-     * @param  object (Object): ç›®æ ‡å¯¹è±¡ã€‚
-     * @param  [sources] (...Object): æ¥æºå¯¹è±¡ã€‚]
-     * @return (Object): è¿”å› object.
+     * ·ÖÅäÀ´Ô´¶ÔÏóµÄ¿ÉÃ¶¾ÙÊôĞÔµ½Ä¿±ê¶ÔÏóÉÏ¡£ À´Ô´¶ÔÏóµÄÓ¦ÓÃ¹æÔòÊÇ´Ó×óµ½ÓÒ£¬ËæºóµÄÏÂÒ»¸ö¶ÔÏóµÄÊôĞÔ»á¸²¸ÇÉÏÒ»¸ö¶ÔÏóµÄÊôĞÔ¡£
+     * @param  object (Object): Ä¿±ê¶ÔÏó¡£
+     * @param  [sources] (...Object): À´Ô´¶ÔÏó¡£]
+     * @return (Object): ·µ»Ø object.
      */
     assign: function(object, source) {
         for (var i = 0; i < arguments.length; i++) {
@@ -2193,10 +2193,10 @@ TianXiaoBo = {
         return object
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.assignï¼Œ é™¤äº†å®ƒä¼šéå†å¹¶ç»§æ‰¿æ¥æºå¯¹è±¡çš„å±æ€§ã€‚
-     * @param  object (Object): ç›®æ ‡å¯¹è±¡ã€‚
-     * @param  [sources] (...Object): æ¥æºå¯¹è±¡ã€‚
-     * @return (Object): è¿”å› objectã€‚n]
+     * Õâ¸ö·½·¨ÀàËÆ _.assign£¬ ³ıÁËËü»á±éÀú²¢¼Ì³ĞÀ´Ô´¶ÔÏóµÄÊôĞÔ¡£
+     * @param  object (Object): Ä¿±ê¶ÔÏó¡£
+     * @param  [sources] (...Object): À´Ô´¶ÔÏó¡£
+     * @return (Object): ·µ»Ø object¡£n]
      */
     assignIn: function(object, source) {
         for (var i = 0; i < arguments.length; i++) {
@@ -2207,10 +2207,10 @@ TianXiaoBo = {
         return object
     },
     /**
-     * è¯¥æ–¹æ³•ç±»ä¼¼_.findï¼ŒåŒºåˆ«æ˜¯è¯¥æ–¹æ³•è¿”å›ç¬¬ä¸€ä¸ªé€šè¿‡ predicate åˆ¤æ–­ä¸ºçœŸå€¼çš„å…ƒç´ çš„ç´¢å¼•å€¼ï¼ˆindexï¼‰ï¼Œè€Œä¸æ˜¯å…ƒç´ æœ¬èº«ã€‚
-     * @param  array (Array): è¦æœç´¢çš„æ•°ç»„ã€‚
+     * ¸Ã·½·¨ÀàËÆ_.find£¬Çø±ğÊÇ¸Ã·½·¨·µ»ØµÚÒ»¸öÍ¨¹ı predicate ÅĞ¶ÏÎªÕæÖµµÄÔªËØµÄË÷ÒıÖµ£¨index£©£¬¶ø²»ÊÇÔªËØ±¾Éí¡£
+     * @param  array (Array): ÒªËÑË÷µÄÊı×é¡£
      * @param  [fromIndex=0] (number): The index to search from.
-     * @return (number): è¿”å›æ‰¾åˆ°å…ƒç´ çš„ ç´¢å¼•å€¼ï¼ˆindexï¼‰ï¼Œå¦åˆ™è¿”å› -1ã€‚
+     * @return (number): ·µ»ØÕÒµ½ÔªËØµÄ Ë÷ÒıÖµ£¨index£©£¬·ñÔò·µ»Ø -1¡£
      */
     findIndex: function(arr, ident, index) {
         index = index || 0
@@ -2241,11 +2241,11 @@ TianXiaoBo = {
         return -1
     },
     /**
-     * è¿™ä¸ªæ–¹å¼ç±»ä¼¼ _.findIndexï¼Œ åŒºåˆ«æ˜¯å®ƒæ˜¯ä»å³åˆ°å·¦çš„è¿­ä»£é›†åˆarrayä¸­çš„å…ƒç´ ã€‚
-     * @param  array (Array): è¦æœç´¢çš„æ•°ç»„ã€‚
-     * @param  [predicate=_.identity] (Array|Function|Object|string): è¿™ä¸ªå‡½æ•°ä¼šåœ¨æ¯ä¸€æ¬¡è¿­ä»£è°ƒç”¨ã€‚
+     * Õâ¸ö·½Ê½ÀàËÆ _.findIndex£¬ Çø±ğÊÇËüÊÇ´ÓÓÒµ½×óµÄµü´ú¼¯ºÏarrayÖĞµÄÔªËØ¡£
+     * @param  array (Array): ÒªËÑË÷µÄÊı×é¡£
+     * @param  [predicate=_.identity] (Array|Function|Object|string): Õâ¸öº¯Êı»áÔÚÃ¿Ò»´Îµü´úµ÷ÓÃ¡£
      * @param  [fromIndex=array.length-1] (number): The index to search from.
-     * @return (number): è¿”å›æ‰¾åˆ°å…ƒç´ çš„ ç´¢å¼•å€¼ï¼ˆindexï¼‰ï¼Œå¦åˆ™è¿”å› -1ã€‚
+     * @return (number): ·µ»ØÕÒµ½ÔªËØµÄ Ë÷ÒıÖµ£¨index£©£¬·ñÔò·µ»Ø -1¡£
      */
     findLastIndex: function(arr, ident, index) {
         index = index || arr.length - 1
@@ -2276,10 +2276,10 @@ TianXiaoBo = {
         return -1
     },
     /**
-     * æ ¹æ® depth é€’å½’å‡å°‘ array çš„åµŒå¥—å±‚çº§
-     * @param  array (Array): éœ€è¦å‡å°‘åµŒå¥—å±‚çº§çš„æ•°ç»„ã€‚
-     * @param  [depth=1] (number):æœ€å¤šå‡å°‘çš„åµŒå¥—å±‚çº§æ•°ã€‚
-     * @return (Array): è¿”å›å‡å°‘åµŒå¥—å±‚çº§åçš„æ–°æ•°ç»„ã€‚
+     * ¸ù¾İ depth µİ¹é¼õÉÙ array µÄÇ¶Ì×²ã¼¶
+     * @param  array (Array): ĞèÒª¼õÉÙÇ¶Ì×²ã¼¶µÄÊı×é¡£
+     * @param  [depth=1] (number):×î¶à¼õÉÙµÄÇ¶Ì×²ã¼¶Êı¡£
+     * @return (Array): ·µ»Ø¼õÉÙÇ¶Ì×²ã¼¶ºóµÄĞÂÊı×é¡£
      */
     flattenDepth: function(arr, depth) {
         //debugger
@@ -2290,10 +2290,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.intersectionï¼ŒåŒºåˆ«æ˜¯å®ƒæ¥å—ä¸€ä¸ª iteratee è°ƒç”¨æ¯ä¸€ä¸ªarraysçš„æ¯ä¸ªå€¼ä»¥äº§ç”Ÿä¸€ä¸ªå€¼ï¼Œé€šè¿‡äº§ç”Ÿçš„å€¼è¿›è¡Œäº†æ¯”è¾ƒã€‚ç»“æœå€¼æ˜¯ä»ç¬¬ä¸€æ•°ç»„ä¸­é€‰æ‹©ã€‚
-     * @params [arrays] (...Array): å¾…æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * @params [iteratee=_.identity] (Array|Function|Object|string): iterateeï¼ˆè¿­ä»£å™¨ï¼‰è°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (Array): è¿”å›ä¸€ä¸ªåŒ…å«æ‰€æœ‰ä¼ å…¥æ•°ç»„äº¤é›†å…ƒç´ çš„æ–°æ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.intersection£¬Çø±ğÊÇËü½ÓÊÜÒ»¸ö iteratee µ÷ÓÃÃ¿Ò»¸öarraysµÄÃ¿¸öÖµÒÔ²úÉúÒ»¸öÖµ£¬Í¨¹ı²úÉúµÄÖµ½øĞĞÁË±È½Ï¡£½á¹ûÖµÊÇ´ÓµÚÒ»Êı×éÖĞÑ¡Ôñ¡£
+     * @params [arrays] (...Array): ´ı¼ì²éµÄÊı×é¡£
+     * @params [iteratee=_.identity] (Array|Function|Object|string): iteratee£¨µü´úÆ÷£©µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (Array): ·µ»ØÒ»¸ö°üº¬ËùÓĞ´«ÈëÊı×é½»¼¯ÔªËØµÄĞÂÊı×é¡£
      */
     intersectionBy: function() {
         var ident = arguments[arguments.length - 1]
@@ -2318,10 +2318,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.intersectionï¼ŒåŒºåˆ«æ˜¯å®ƒæ¥å—ä¸€ä¸ª comparator è°ƒç”¨æ¯”è¾ƒarraysä¸­çš„å…ƒç´ ã€‚ç»“æœå€¼æ˜¯ä»ç¬¬ä¸€æ•°ç»„ä¸­é€‰æ‹©ã€‚comparator ä¼šä¼ å…¥ä¸¤ä¸ªå‚æ•°ï¼š(arrVal, othVal)ã€‚
-     * @params [arrays] (...Array): å¾…æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * @params [comparator] (Function): comparatorï¼ˆæ¯”è¾ƒå™¨ï¼‰è°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (Array): è¿”å›ä¸€ä¸ªåŒ…å«æ‰€æœ‰ä¼ å…¥æ•°ç»„äº¤é›†å…ƒç´ çš„æ–°æ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.intersection£¬Çø±ğÊÇËü½ÓÊÜÒ»¸ö comparator µ÷ÓÃ±È½ÏarraysÖĞµÄÔªËØ¡£½á¹ûÖµÊÇ´ÓµÚÒ»Êı×éÖĞÑ¡Ôñ¡£comparator »á´«ÈëÁ½¸ö²ÎÊı£º(arrVal, othVal)¡£
+     * @params [arrays] (...Array): ´ı¼ì²éµÄÊı×é¡£
+     * @params [comparator] (Function): comparator£¨±È½ÏÆ÷£©µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (Array): ·µ»ØÒ»¸ö°üº¬ËùÓĞ´«ÈëÊı×é½»¼¯ÔªËØµÄĞÂÊı×é¡£
      */
     intersectionWith: function() {
         var ident = arguments[arguments.length - 1]
@@ -2336,10 +2336,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªè°ƒç”¨funcçš„å‡½æ•°ã€‚è°ƒç”¨funcæ—¶æœ€å¤šæ¥å— nä¸ªå‚æ•°ï¼Œå¿½ç•¥å¤šå‡ºçš„å‚æ•°ã€‚
-     * @param  func (Function): éœ€è¦è¢«é™åˆ¶å‚æ•°ä¸ªæ•°çš„å‡½æ•°ã€‚
-     * @param  [n=func.length] (number): é™åˆ¶çš„å‚æ•°æ•°é‡ã€‚
-     * @return (Function): è¿”å›æ–°çš„è¦†ç›–å‡½æ•°ã€‚
+     * ´´½¨Ò»¸öµ÷ÓÃfuncµÄº¯Êı¡£µ÷ÓÃfuncÊ±×î¶à½ÓÊÜ n¸ö²ÎÊı£¬ºöÂÔ¶à³öµÄ²ÎÊı¡£
+     * @param  func (Function): ĞèÒª±»ÏŞÖÆ²ÎÊı¸öÊıµÄº¯Êı¡£
+     * @param  [n=func.length] (number): ÏŞÖÆµÄ²ÎÊıÊıÁ¿¡£
+     * @return (Function): ·µ»ØĞÂµÄ¸²¸Çº¯Êı¡£
      */
     ary: function(func, n) {
         return function(args) {
@@ -2350,11 +2350,11 @@ TianXiaoBo = {
         }
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼äº_.pullAll ï¼ŒåŒºåˆ«æ˜¯è¿™ä¸ªæ–¹æ³•æ¥å—ä¸€ä¸ª iterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰ è°ƒç”¨ array å’Œ valuesçš„æ¯ä¸ªå€¼ä»¥äº§ç”Ÿä¸€ä¸ªå€¼ï¼Œé€šè¿‡äº§ç”Ÿçš„å€¼è¿›è¡Œäº†æ¯”è¾ƒã€‚
-     * @param  array (Array): è¦ä¿®æ”¹çš„æ•°ç»„ã€‚
-     * @param  values (Array): è¦ç§»é™¤å€¼çš„æ•°ç»„
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): iterateeï¼ˆè¿­ä»£å™¨ï¼‰è°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (Array): è¿”å› array.
+     * Õâ¸ö·½·¨ÀàËÆÓÚ_.pullAll £¬Çø±ğÊÇÕâ¸ö·½·¨½ÓÊÜÒ»¸ö iteratee£¨µü´úº¯Êı£© µ÷ÓÃ array ºÍ valuesµÄÃ¿¸öÖµÒÔ²úÉúÒ»¸öÖµ£¬Í¨¹ı²úÉúµÄÖµ½øĞĞÁË±È½Ï¡£
+     * @param  array (Array): ÒªĞŞ¸ÄµÄÊı×é¡£
+     * @param  values (Array): ÒªÒÆ³ıÖµµÄÊı×é
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): iteratee£¨µü´úÆ÷£©µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (Array): ·µ»Ø array.
      */
     pullAllBy: function(arr, value, iter) {
         if (this.isString(iter)) {
@@ -2373,11 +2373,11 @@ TianXiaoBo = {
         return arr
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼äº _.pullAllï¼ŒåŒºåˆ«æ˜¯è¿™ä¸ªæ–¹æ³•æ¥å— comparator è°ƒç”¨arrayä¸­çš„å…ƒç´ å’Œvaluesæ¯”è¾ƒã€‚
-     * @param  array (Array): è¦ä¿®æ”¹çš„æ•°ç»„ã€‚
-     * @param  values (Array): è¦ç§»é™¤å€¼çš„æ•°ç»„ã€‚
-     * @param  [comparator] (Function): comparatorï¼ˆæ¯”è¾ƒå™¨ï¼‰è°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (Array): è¿”å› arrayã€‚
+     * Õâ¸ö·½·¨ÀàËÆÓÚ _.pullAll£¬Çø±ğÊÇÕâ¸ö·½·¨½ÓÊÜ comparator µ÷ÓÃarrayÖĞµÄÔªËØºÍvalues±È½Ï¡£
+     * @param  array (Array): ÒªĞŞ¸ÄµÄÊı×é¡£
+     * @param  values (Array): ÒªÒÆ³ıÖµµÄÊı×é¡£
+     * @param  [comparator] (Function): comparator£¨±È½ÏÆ÷£©µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (Array): ·µ»Ø array¡£
      */
     pullAllWith: function(arr, oth, fn) {
         for (var i = 0; i < oth.length; i++) {
@@ -2391,11 +2391,11 @@ TianXiaoBo = {
         return arr
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.sortedIndex ï¼Œé™¤äº†å®ƒæ¥å—ä¸€ä¸ª iteratee ï¼ˆè¿­ä»£å‡½æ•°ï¼‰ï¼Œè°ƒç”¨æ¯ä¸€ä¸ªæ•°ç»„ï¼ˆarrayï¼‰å…ƒç´ ï¼Œè¿”å›ç»“æœå’Œvalue å€¼æ¯”è¾ƒæ¥è®¡ç®—æ’åºã€‚
-     * @param  array (Array): è¦æ£€æŸ¥çš„æ’åºæ•°ç»„ã€‚
-     * @param  value (*): è¦è¯„ä¼°çš„å€¼ã€‚
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): è¿­ä»£å‡½æ•°ï¼Œè°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (number): è¿”å› valueå€¼ åº”è¯¥åœ¨æ•°ç»„arrayä¸­æ’å…¥çš„ç´¢å¼•ä½ç½® indexã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.sortedIndex £¬³ıÁËËü½ÓÊÜÒ»¸ö iteratee £¨µü´úº¯Êı£©£¬µ÷ÓÃÃ¿Ò»¸öÊı×é£¨array£©ÔªËØ£¬·µ»Ø½á¹ûºÍvalue Öµ±È½ÏÀ´¼ÆËãÅÅĞò¡£
+     * @param  array (Array): Òª¼ì²éµÄÅÅĞòÊı×é¡£
+     * @param  value (*): ÒªÆÀ¹ÀµÄÖµ¡£
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): µü´úº¯Êı£¬µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (number): ·µ»Ø valueÖµ Ó¦¸ÃÔÚÊı×éarrayÖĞ²åÈëµÄË÷ÒıÎ»ÖÃ index¡£
      */
     sortedIndexBy: function(arr, value, iter) {
         if (this.isFunction(iter)) {
@@ -2414,10 +2414,10 @@ TianXiaoBo = {
         return i
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.indexOfï¼Œé™¤äº†å®ƒæ˜¯åœ¨å·²ç»æ’åºçš„æ•°ç»„arrayä¸Šæ‰§è¡ŒäºŒè¿›åˆ¶æ£€ç´¢ã€‚
-     * @param  array (Array): è¦æœç´¢çš„æ•°ç»„ã€‚
-     * @param  value (*): æœç´¢çš„å€¼ã€‚
-     * @return (number): è¿”å›åŒ¹é…å€¼çš„ç´¢å¼•ä½ç½®ï¼Œå¦åˆ™è¿”å› -1ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.indexOf£¬³ıÁËËüÊÇÔÚÒÑ¾­ÅÅĞòµÄÊı×éarrayÉÏÖ´ĞĞ¶ş½øÖÆ¼ìË÷¡£
+     * @param  array (Array): ÒªËÑË÷µÄÊı×é¡£
+     * @param  value (*): ËÑË÷µÄÖµ¡£
+     * @return (number): ·µ»ØÆ¥ÅäÖµµÄË÷ÒıÎ»ÖÃ£¬·ñÔò·µ»Ø -1¡£
      */
     sortedIndexOf: function(arr, value) {
         for (var i = 0; i < arr.length; i++) {
@@ -2428,10 +2428,10 @@ TianXiaoBo = {
         return -1
     },
     /**
-     * æ­¤æ–¹æ³•ç±»ä¼¼äº_.sortedIndexï¼Œé™¤äº† å®ƒè¿”å› valueå€¼ åœ¨ array ä¸­å°½å¯èƒ½å¤§çš„ç´¢å¼•ä½ç½®ï¼ˆindexï¼‰ã€‚
-     * @param  array (Array): è¦æ£€æŸ¥çš„æ’åºæ•°ç»„ã€‚
-     * @param  value (*): è¦è¯„ä¼°çš„å€¼ã€‚
-     * @return (number): è¿”å› valueå€¼ åº”è¯¥åœ¨æ•°ç»„arrayä¸­æ’å…¥çš„ç´¢å¼•ä½ç½® indexã€‚
+     * ´Ë·½·¨ÀàËÆÓÚ_.sortedIndex£¬³ıÁË Ëü·µ»Ø valueÖµ ÔÚ array ÖĞ¾¡¿ÉÄÜ´óµÄË÷ÒıÎ»ÖÃ£¨index£©¡£
+     * @param  array (Array): Òª¼ì²éµÄÅÅĞòÊı×é¡£
+     * @param  value (*): ÒªÆÀ¹ÀµÄÖµ¡£
+     * @return (number): ·µ»Ø valueÖµ Ó¦¸ÃÔÚÊı×éarrayÖĞ²åÈëµÄË÷ÒıÎ»ÖÃ index¡£
      */
     sortedLastIndex: function(arr, value) {
         for (var i = arr.length - 1; i >= 0; i--) {
@@ -2442,11 +2442,11 @@ TianXiaoBo = {
         return -1
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.sortedLastIndex ï¼Œé™¤äº†å®ƒæ¥å—ä¸€ä¸ª iteratee ï¼ˆè¿­ä»£å‡½æ•°ï¼‰ï¼Œè°ƒç”¨æ¯ä¸€ä¸ªæ•°ç»„ï¼ˆarrayï¼‰å…ƒç´ ï¼Œè¿”å›ç»“æœå’Œvalue å€¼æ¯”è¾ƒæ¥è®¡ç®—æ’åºã€‚
-     * @param  array (Array): è¦æ£€æŸ¥çš„æ’åºæ•°ç»„ã€‚
-     * @param  value (*): è¦è¯„ä¼°çš„å€¼ã€‚
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): è¿­ä»£å‡½æ•°ï¼Œè°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (number): è¿”å› valueå€¼ åº”è¯¥åœ¨æ•°ç»„arrayä¸­æ’å…¥çš„ç´¢å¼•ä½ç½® indexã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.sortedLastIndex £¬³ıÁËËü½ÓÊÜÒ»¸ö iteratee £¨µü´úº¯Êı£©£¬µ÷ÓÃÃ¿Ò»¸öÊı×é£¨array£©ÔªËØ£¬·µ»Ø½á¹ûºÍvalue Öµ±È½ÏÀ´¼ÆËãÅÅĞò¡£
+     * @param  array (Array): Òª¼ì²éµÄÅÅĞòÊı×é¡£
+     * @param  value (*): ÒªÆÀ¹ÀµÄÖµ¡£
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): µü´úº¯Êı£¬µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (number): ·µ»Ø valueÖµ Ó¦¸ÃÔÚÊı×éarrayÖĞ²åÈëµÄË÷ÒıÎ»ÖÃ index¡£
      */
     sortedLastIndexBy: function(arr, value, iter) {
         if (this.isFunction(iter)) {
@@ -2465,10 +2465,10 @@ TianXiaoBo = {
         return i
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.lastIndexOfï¼Œé™¤äº†å®ƒæ˜¯åœ¨å·²ç»æ’åºçš„æ•°ç»„arrayä¸Šæ‰§è¡ŒäºŒè¿›åˆ¶æ£€ç´¢ã€‚
-     * @param  array (Array): è¦æœç´¢çš„æ•°ç»„ã€‚
-     * @param  value (*): æœç´¢çš„å€¼ã€‚
-     * @return (number): è¿”å›åŒ¹é…å€¼çš„ç´¢å¼•ä½ç½®ï¼Œå¦åˆ™è¿”å› -1ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.lastIndexOf£¬³ıÁËËüÊÇÔÚÒÑ¾­ÅÅĞòµÄÊı×éarrayÉÏÖ´ĞĞ¶ş½øÖÆ¼ìË÷¡£
+     * @param  array (Array): ÒªËÑË÷µÄÊı×é¡£
+     * @param  value (*): ËÑË÷µÄÖµ¡£
+     * @return (number): ·µ»ØÆ¥ÅäÖµµÄË÷ÒıÎ»ÖÃ£¬·ñÔò·µ»Ø -1¡£
      */
     sortedLastIndexOf: function(arr, value) {
         for (var i = arr.length - 1; i >= 0; i--) {
@@ -2479,9 +2479,9 @@ TianXiaoBo = {
         return -1
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.uniqï¼Œé™¤äº†å®ƒä¼šä¼˜åŒ–æ’åºæ•°ç»„ã€‚
-     * @param  array (Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * @return (Array): è¿”å›ä¸€ä¸ªæ–°çš„ä¸é‡å¤çš„æ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.uniq£¬³ıÁËËü»áÓÅ»¯ÅÅĞòÊı×é¡£
+     * @param  array (Array): Òª¼ì²éµÄÊı×é¡£
+     * @return (Array): ·µ»ØÒ»¸öĞÂµÄ²»ÖØ¸´µÄÊı×é¡£
      */
     sortedUniq: function(arr) {
         arr.sort(function(a, b) {
@@ -2496,10 +2496,10 @@ TianXiaoBo = {
         return arr
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.uniqByï¼Œé™¤äº†å®ƒä¼šä¼˜åŒ–æ’åºæ•°ç»„ã€‚
-     * @param  array (Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * @param  [iteratee] (Function): è¿­ä»£å‡½æ•°ï¼Œè°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (Array): è¿”å›ä¸€ä¸ªæ–°çš„ä¸é‡å¤çš„æ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.uniqBy£¬³ıÁËËü»áÓÅ»¯ÅÅĞòÊı×é¡£
+     * @param  array (Array): Òª¼ì²éµÄÊı×é¡£
+     * @param  [iteratee] (Function): µü´úº¯Êı£¬µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (Array): ·µ»ØÒ»¸öĞÂµÄ²»ÖØ¸´µÄÊı×é¡£
      */
     sortedUniqBy: function(arr, fn) {
         arr.sort(function(a, b) {
@@ -2514,10 +2514,10 @@ TianXiaoBo = {
         return arr
     },
     /**
-     * ä»arrayæ•°ç»„çš„æœ€åä¸€ä¸ªå…ƒç´ å¼€å§‹æå–å…ƒç´ ï¼Œç›´åˆ° predicate è¿”å›å‡å€¼ã€‚predicate ä¼šä¼ å…¥ä¸‰ä¸ªå‚æ•°ï¼š (value, index, array)ã€‚
-     * @param  array (Array): è¦æ£€ç´¢çš„æ•°ç»„ã€‚
-     * @param  [predicate=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (Array): è¿”å› array æ•°ç»„çš„åˆ‡ç‰‡ã€‚
+     * ´ÓarrayÊı×éµÄ×îºóÒ»¸öÔªËØ¿ªÊ¼ÌáÈ¡ÔªËØ£¬Ö±µ½ predicate ·µ»Ø¼ÙÖµ¡£predicate »á´«ÈëÈı¸ö²ÎÊı£º (value, index, array)¡£
+     * @param  array (Array): Òª¼ìË÷µÄÊı×é¡£
+     * @param  [predicate=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @return (Array): ·µ»Ø array Êı×éµÄÇĞÆ¬¡£
      */
     takeRightWhile: function(arr, ident) {
         var self = this
@@ -2549,10 +2549,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * ä»arrayæ•°ç»„çš„èµ·å§‹å…ƒç´ å¼€å§‹æå–å…ƒç´ ï¼Œï¼Œç›´åˆ° predicate è¿”å›å‡å€¼
-     * @param  array (Array): éœ€è¦å¤„ç†çš„æ•°ç»„
-     * @param  [predicate=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (Array): è¿”å› array æ•°ç»„çš„åˆ‡ç‰‡ã€‚
+     * ´ÓarrayÊı×éµÄÆğÊ¼ÔªËØ¿ªÊ¼ÌáÈ¡ÔªËØ£¬£¬Ö±µ½ predicate ·µ»Ø¼ÙÖµ
+     * @param  array (Array): ĞèÒª´¦ÀíµÄÊı×é
+     * @param  [predicate=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @return (Array): ·µ»Ø array Êı×éµÄÇĞÆ¬¡£
      */
     takeWhile: function(arr, ident) {
         var self = this
@@ -2584,10 +2584,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * ä½¿ç”¨ iteratee éå†è‡ªèº«çš„å¯æšä¸¾å±æ€§ã€‚ iteratee ä¼šä¼ å…¥3ä¸ªå‚æ•°ï¼š(value, key, object)ã€‚ å¦‚æœè¿”å› falseï¼Œiteratee ä¼šæå‰é€€å‡ºéå†ã€‚
-     * @param  object (Object): è¦éå†çš„å¯¹è±¡ã€‚
-     * @param  [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£æ—¶è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (Object): è¿”å› objectã€‚
+     * Ê¹ÓÃ iteratee ±éÀú×ÔÉíµÄ¿ÉÃ¶¾ÙÊôĞÔ¡£ iteratee »á´«Èë3¸ö²ÎÊı£º(value, key, object)¡£ Èç¹û·µ»Ø false£¬iteratee »áÌáÇ°ÍË³ö±éÀú¡£
+     * @param  object (Object): Òª±éÀúµÄ¶ÔÏó¡£
+     * @param  [iteratee=_.identity] (Function): Ã¿´Îµü´úÊ±µ÷ÓÃµÄº¯Êı¡£
+     * @return (Object): ·µ»Ø object¡£
      */
     forOwn: function(obj, iter) {
         for (keys in obj) {
@@ -2600,10 +2600,10 @@ TianXiaoBo = {
         return obj
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.union ï¼Œé™¤äº†å®ƒæ¥å—ä¸€ä¸ª iteratee ï¼ˆè¿­ä»£å‡½æ•°ï¼‰ï¼Œè°ƒç”¨æ¯ä¸€ä¸ªæ•°ç»„ï¼ˆarrayï¼‰çš„æ¯ä¸ªå…ƒç´ ä»¥äº§ç”Ÿå”¯ä¸€æ€§è®¡ç®—çš„æ ‡å‡†ã€‚iteratee ä¼šä¼ å…¥ä¸€ä¸ªå‚æ•°ï¼š(value)ã€‚
-     * @param  [arrays] (...Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): è¿­ä»£å‡½æ•°ï¼Œè°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (Array): è¿”å›ä¸€ä¸ªæ–°çš„è”åˆæ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.union £¬³ıÁËËü½ÓÊÜÒ»¸ö iteratee £¨µü´úº¯Êı£©£¬µ÷ÓÃÃ¿Ò»¸öÊı×é£¨array£©µÄÃ¿¸öÔªËØÒÔ²úÉúÎ¨Ò»ĞÔ¼ÆËãµÄ±ê×¼¡£iteratee »á´«ÈëÒ»¸ö²ÎÊı£º(value)¡£
+     * @param  [arrays] (...Array): Òª¼ì²éµÄÊı×é¡£
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): µü´úº¯Êı£¬µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (Array): ·µ»ØÒ»¸öĞÂµÄÁªºÏÊı×é¡£
      */
     unionBy: function(arr, value, iter) {
         if (this.isString(iter)) {
@@ -2630,10 +2630,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.unionï¼Œ é™¤äº†å®ƒæ¥å—ä¸€ä¸ª comparator è°ƒç”¨æ¯”è¾ƒarraysæ•°ç»„çš„æ¯ä¸€ä¸ªå…ƒç´ 
-     * @params [arrays] (...Array): è¦æ£€æŸ¥çš„æ•°ç»„
-     * @params [comparator] (Function): æ¯”è¾ƒå‡½æ•°ï¼Œè°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (Array): è¿”å›ä¸€ä¸ªæ–°çš„è”åˆæ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.union£¬ ³ıÁËËü½ÓÊÜÒ»¸ö comparator µ÷ÓÃ±È½ÏarraysÊı×éµÄÃ¿Ò»¸öÔªËØ
+     * @params [arrays] (...Array): Òª¼ì²éµÄÊı×é
+     * @params [comparator] (Function): ±È½Ïº¯Êı£¬µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (Array): ·µ»ØÒ»¸öĞÂµÄÁªºÏÊı×é¡£
      */
     unionWith: function() {
         var temp = Array.prototype.slice.call(arguments)
@@ -2655,10 +2655,10 @@ TianXiaoBo = {
         return temp[0]
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.uniq ï¼Œé™¤äº†å®ƒæ¥å—ä¸€ä¸ª iteratee ï¼ˆè¿­ä»£å‡½æ•°ï¼‰ï¼Œè°ƒç”¨æ¯ä¸€ä¸ªæ•°ç»„ï¼ˆarrayï¼‰çš„æ¯ä¸ªå…ƒç´ ä»¥äº§ç”Ÿå”¯ä¸€æ€§è®¡ç®—çš„æ ‡å‡†ã€‚
-     * @param  array (Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): è¿­ä»£å‡½æ•°ï¼Œè°ƒç”¨æ¯ä¸ªå…ƒç´ ã€‚
-     * @return (Array): è¿”å›æ–°çš„å»é‡åçš„æ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.uniq £¬³ıÁËËü½ÓÊÜÒ»¸ö iteratee £¨µü´úº¯Êı£©£¬µ÷ÓÃÃ¿Ò»¸öÊı×é£¨array£©µÄÃ¿¸öÔªËØÒÔ²úÉúÎ¨Ò»ĞÔ¼ÆËãµÄ±ê×¼¡£
+     * @param  array (Array): Òª¼ì²éµÄÊı×é¡£
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): µü´úº¯Êı£¬µ÷ÓÃÃ¿¸öÔªËØ¡£
+     * @return (Array): ·µ»ØĞÂµÄÈ¥ÖØºóµÄÊı×é¡£
      */
     uniqBy: function(arr, iter) {
         var result = Array.prototype.slice.call(arr)
@@ -2694,16 +2694,16 @@ TianXiaoBo = {
         return result
     },
     /**
-     * ä¼ å…¥ JSON å­—ç¬¦ä¸²ï¼Œå¹¶åˆå§‹åŒ–æŒ‡é’ˆï¼Œè§£æ JSON å¯¹è±¡
-     * @param  {[string]} jsonString [ä¼ å…¥çš„ JSON å­—ç¬¦ä¸²]
-     * @return {[object]}            [è§£æåçš„ JOSN å¯¹è±¡]
+     * ´«Èë JSON ×Ö·û´®£¬²¢³õÊ¼»¯Ö¸Õë£¬½âÎö JSON ¶ÔÏó
+     * @param  {[string]} jsonString [´«ÈëµÄ JSON ×Ö·û´®]
+     * @return {[object]}            [½âÎöºóµÄ JOSN ¶ÔÏó]
      */
     parseJson: function(jsonString) {
         var theJson = '',
             index = 0,
             onOff = false
             /**
-             * å¤„ç†ç©ºæ ¼
+             * ´¦Àí¿Õ¸ñ
              */
         for (var i = 0; i < jsonString.length; i++) {
             if (jsonString[i] == '"') {
@@ -2717,10 +2717,10 @@ TianXiaoBo = {
         return parse()
 
         /**
-         * [æŒ‡é’ˆæŒ‡å‘åˆé€‚çš„ä½ç½®æ—¶è¿›è¡Œçš„è§£æå‡½æ•°ï¼Œæ ¹æ®å­—ç¬¦ä¸²ä¸åŒçš„è¡¨ç°è¿”å›ä¸åŒçš„å€¼]
-         * @param  {[string]} jsonString [å½“å‰éœ€è¦è§£æçš„å­—ç¬¦ä¸²ï¼ˆå¯èƒ½æ˜¯é€’å½’åçš„å€¼ï¼‰]
-         * @param  {[number]} index)     {                   var indexChar [æŒ‡é’ˆ]
-         * @return {[*]}            [è§£æåçš„å€¼]
+         * [Ö¸ÕëÖ¸ÏòºÏÊÊµÄÎ»ÖÃÊ±½øĞĞµÄ½âÎöº¯Êı£¬¸ù¾İ×Ö·û´®²»Í¬µÄ±íÏÖ·µ»Ø²»Í¬µÄÖµ]
+         * @param  {[string]} jsonString [µ±Ç°ĞèÒª½âÎöµÄ×Ö·û´®£¨¿ÉÄÜÊÇµİ¹éºóµÄÖµ£©]
+         * @param  {[number]} index)     {                   var indexChar [Ö¸Õë]
+         * @return {[*]}            [½âÎöºóµÄÖµ]
          */
         function parse() {
             var indexChar = theJson[index]
@@ -2753,8 +2753,8 @@ TianXiaoBo = {
             }
         }
         /**
-         * [parseNumber è§£æå€¼ä¸ºæ•°å­—çš„ value]
-         * @return {[type]} [æ•°å­—]
+         * [parseNumber ½âÎöÖµÎªÊı×ÖµÄ value]
+         * @return {[type]} [Êı×Ö]
          */
         function parseNumber() {
             for (var i = index + 1;; i++) {
@@ -2767,9 +2767,9 @@ TianXiaoBo = {
             return parseInt(num)
         }
         /**
-         * [åˆ¤æ–­ä¸€ä¸ªå­—ç¬¦èƒ½å¦è½¬æ¢ä¸ºæ•°å­—]
-         * @param  {[string]}  char [ä¼ å…¥çš„å•ä¸ªå­—ç¬¦]
-         * @return {Boolean}      [å¦‚æœèƒ½è½¬æ¢ä¸ºæ•°å­—ï¼Œè¿”å›true]
+         * [ÅĞ¶ÏÒ»¸ö×Ö·ûÄÜ·ñ×ª»»ÎªÊı×Ö]
+         * @param  {[string]}  char [´«ÈëµÄµ¥¸ö×Ö·û]
+         * @return {Boolean}      [Èç¹ûÄÜ×ª»»ÎªÊı×Ö£¬·µ»Øtrue]
          */
         function isDigit(char) {
             if (!char) {
@@ -2785,8 +2785,8 @@ TianXiaoBo = {
             }
         }
         /**
-         * [parseString è§£æå€¼ä¸ºå­—ç¬¦ä¸²çš„valueå€¼]
-         * @return {[string]} [è¿”å›ä½œä¸ºå€¼çš„å­—ç¬¦ä¸²]
+         * [parseString ½âÎöÖµÎª×Ö·û´®µÄvalueÖµ]
+         * @return {[string]} [·µ»Ø×÷ÎªÖµµÄ×Ö·û´®]
          */
         function parseString() {
             var theEnd = theJson.indexOf('"', index + 1)
@@ -2795,32 +2795,32 @@ TianXiaoBo = {
             return theString
         }
         /**
-         * [parseNull è§£æ å€¼ä¸ºnullçš„valueå€¼]
-         * @return {[type]} [è¿”å›null]
+         * [parseNull ½âÎö ÖµÎªnullµÄvalueÖµ]
+         * @return {[type]} [·µ»Ønull]
          */
         function parseNull() {
             index += 4
             return null
         }
         /**
-         * [parseFalse è§£æå€¼ä¸º false çš„ value å€¼]
-         * @return {[boolean]} [è¿”å›false]
+         * [parseFalse ½âÎöÖµÎª false µÄ value Öµ]
+         * @return {[boolean]} [·µ»Øfalse]
          */
         function parseFalse() {
             index += 5
             return false
         }
         /**
-         * * [parseFalse è§£æå€¼ä¸º true çš„ value å€¼]
-         * @return {[boolean]} [è¿”å›true]
+         * * [parseFalse ½âÎöÖµÎª true µÄ value Öµ]
+         * @return {[boolean]} [·µ»Øtrue]
          */
         function parseTrue() {
             index += 4
             return true
         }
         /**
-         * [parseArray é€’å½’è§£ææ•°ç»„]
-         * @return {[array]} [è¿”å›ä¸€ä¸ªæ•°ç»„]
+         * [parseArray µİ¹é½âÎöÊı×é]
+         * @return {[array]} [·µ»ØÒ»¸öÊı×é]
          */
         function parseArray() {
             var result = [],
@@ -2841,8 +2841,8 @@ TianXiaoBo = {
             return result
         }
         /**
-         * [parseObject é€’å½’è§£æå¯¹è±¡]
-         * @return {[object]} [è¿”å›å¯¹è±¡]
+         * [parseObject µİ¹é½âÎö¶ÔÏó]
+         * @return {[object]} [·µ»Ø¶ÔÏó]
          */
         function parseObject() {
             var result = {},
@@ -2867,20 +2867,20 @@ TianXiaoBo = {
         }
     },
     /**
-     * ä¸¤ä¸ªæ•°ç›¸åŠ ã€‚
-     * @param augend (number): ç›¸åŠ çš„ç¬¬ä¸€ä¸ªæ•°ã€‚
-     * @param addend (number): ç›¸åŠ çš„ç¬¬äºŒä¸ªæ•°ã€‚
-     * @result (number): è¿”å›æ€»å’Œã€‚
+     * Á½¸öÊıÏà¼Ó¡£
+     * @param augend (number): Ïà¼ÓµÄµÚÒ»¸öÊı¡£
+     * @param addend (number): Ïà¼ÓµÄµÚ¶ş¸öÊı¡£
+     * @result (number): ·µ»Ø×ÜºÍ¡£
      */
     add: function(num1, num2) {
 
         return num1 + num2
     },
     /**
-     * æ­¤æ–¹æ³•ç±»ä¼¼äº_.unzipï¼Œé™¤äº†å®ƒæ¥å—ä¸€ä¸ªiterateeæŒ‡å®šé‡ç»„å€¼åº”è¯¥å¦‚ä½•è¢«ç»„åˆã€‚iteratee è°ƒç”¨æ—¶ä¼šä¼ å…¥æ¯ä¸ªåˆ†ç»„çš„å€¼ï¼š (...group)ã€‚
-     * @param  array (Array): è¦å¤„ç†çš„åˆ†ç»„å…ƒç´ æ•°ç»„ã€‚
-     * @param  [iteratee=_.identity] (Function): è¿™ä¸ªå‡½æ•°ç”¨æ¥ç»„åˆé‡ç»„çš„å€¼ã€‚
-     * @return (Array): è¿”å›é‡ç»„å…ƒç´ çš„æ–°æ•°ç»„ã€‚
+     * ´Ë·½·¨ÀàËÆÓÚ_.unzip£¬³ıÁËËü½ÓÊÜÒ»¸öiterateeÖ¸¶¨ÖØ×éÖµÓ¦¸ÃÈçºÎ±»×éºÏ¡£iteratee µ÷ÓÃÊ±»á´«ÈëÃ¿¸ö·Ö×éµÄÖµ£º (...group)¡£
+     * @param  array (Array): Òª´¦ÀíµÄ·Ö×éÔªËØÊı×é¡£
+     * @param  [iteratee=_.identity] (Function): Õâ¸öº¯ÊıÓÃÀ´×éºÏÖØ×éµÄÖµ¡£
+     * @return (Array): ·µ»ØÖØ×éÔªËØµÄĞÂÊı×é¡£
      */
     unzipWith: function(arr, iter) {
         var result = []
@@ -2907,10 +2907,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.xor ï¼Œé™¤äº†å®ƒæ¥å— iterateeï¼ˆè¿­ä»£å™¨ï¼‰ï¼Œè¿™ä¸ªè¿­ä»£å™¨ è°ƒç”¨æ¯ä¸€ä¸ª arraysï¼ˆæ•°ç»„ï¼‰çš„æ¯ä¸€ä¸ªå€¼ï¼Œä»¥ç”Ÿæˆæ¯”è¾ƒçš„æ–°å€¼ã€‚iteratee è°ƒç”¨ä¸€ä¸ªå‚æ•°ï¼š (value).
-     * @params [arrays] (...Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * @params [iteratee=_.identity] (Array|Function|Object|string): è°ƒç”¨æ¯ä¸€ä¸ªå…ƒç´ çš„è¿­ä»£å‡½æ•°ã€‚
-     * @return (Array): è¿”å›è¿‡æ»¤å€¼åçš„æ–°æ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.xor £¬³ıÁËËü½ÓÊÜ iteratee£¨µü´úÆ÷£©£¬Õâ¸öµü´úÆ÷ µ÷ÓÃÃ¿Ò»¸ö arrays£¨Êı×é£©µÄÃ¿Ò»¸öÖµ£¬ÒÔÉú³É±È½ÏµÄĞÂÖµ¡£iteratee µ÷ÓÃÒ»¸ö²ÎÊı£º (value).
+     * @params [arrays] (...Array): Òª¼ì²éµÄÊı×é¡£
+     * @params [iteratee=_.identity] (Array|Function|Object|string): µ÷ÓÃÃ¿Ò»¸öÔªËØµÄµü´úº¯Êı¡£
+     * @return (Array): ·µ»Ø¹ıÂËÖµºóµÄĞÂÊı×é¡£
      */
     xorBy: function() {
         var result = []
@@ -2940,10 +2940,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¯¥æ–¹æ³•æ˜¯åƒ _.xorï¼Œé™¤äº†å®ƒæ¥å—ä¸€ä¸ª comparator ï¼Œä»¥è°ƒç”¨æ¯”è¾ƒæ•°ç»„çš„å…ƒç´ ã€‚ comparator è°ƒç”¨2ä¸ªå‚æ•°ï¼š(arrVal, othVal).
-     * @params [arrays] (...Array): è¦æ£€æŸ¥çš„æ•°ç»„ã€‚
-     * @params [comparator] (Function): è°ƒç”¨æ¯ä¸€ä¸ªå…ƒç´ çš„æ¯”è¾ƒå‡½æ•°ã€‚
-     * @return (Array): è¿”å›è¿‡æ»¤å€¼åçš„æ–°æ•°ç»„ã€‚
+     * ¸Ã·½·¨ÊÇÏñ _.xor£¬³ıÁËËü½ÓÊÜÒ»¸ö comparator £¬ÒÔµ÷ÓÃ±È½ÏÊı×éµÄÔªËØ¡£ comparator µ÷ÓÃ2¸ö²ÎÊı£º(arrVal, othVal).
+     * @params [arrays] (...Array): Òª¼ì²éµÄÊı×é¡£
+     * @params [comparator] (Function): µ÷ÓÃÃ¿Ò»¸öÔªËØµÄ±È½Ïº¯Êı¡£
+     * @return (Array): ·µ»Ø¹ıÂËÖµºóµÄĞÂÊı×é¡£
      */
     xorWith: function() {
         var result = []
@@ -2965,7 +2965,7 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.fromPairsï¼Œé™¤äº†å®ƒæ¥å—2ä¸ªæ•°ç»„ï¼Œç¬¬ä¸€ä¸ªæ•°ç»„ä¸­çš„å€¼ä½œä¸ºå±æ€§æ ‡è¯†ç¬¦ï¼ˆå±æ€§åï¼‰ï¼Œç¬¬äºŒä¸ªæ•°ç»„ä¸­çš„å€¼ä½œä¸ºç›¸åº”çš„å±æ€§å€¼ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.fromPairs£¬³ıÁËËü½ÓÊÜ2¸öÊı×é£¬µÚÒ»¸öÊı×éÖĞµÄÖµ×÷ÎªÊôĞÔ±êÊ¶·û£¨ÊôĞÔÃû£©£¬µÚ¶ş¸öÊı×éÖĞµÄÖµ×÷ÎªÏàÓ¦µÄÊôĞÔÖµ¡£
      * @param  [props=[]] (Array): The property identifiers.
      * @param  [values=[]] (Array): The property values.
      * @return (Object): Returns the new object.
@@ -2978,10 +2978,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.zipObjectï¼Œé™¤äº†å®ƒæ”¯æŒå±æ€§è·¯å¾„ã€‚
-     * @param  [props=[]] (Array): å±æ€§æ ‡è¯†ç¬¦ï¼ˆå±æ€§åï¼‰ã€‚
-     * @param  [values=[]] (Array): å±æ€§å€¼ã€‚
-     * @return (Object): è¿”å›æ–°å¯¹è±¡ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.zipObject£¬³ıÁËËüÖ§³ÖÊôĞÔÂ·¾¶¡£
+     * @param  [props=[]] (Array): ÊôĞÔ±êÊ¶·û£¨ÊôĞÔÃû£©¡£
+     * @param  [values=[]] (Array): ÊôĞÔÖµ¡£
+     * @return (Object): ·µ»ØĞÂ¶ÔÏó¡£
      */
     zipObjectDeep: function(props, value) {
         debugger
@@ -2992,11 +2992,11 @@ TianXiaoBo = {
         }
         return result
             /**
-             * è§£æå­—ç¬¦ä¸²ï¼Œå°†å­—ç¬¦ä¸²è·¯å¾„æ·»åŠ åˆ°å¯¹è±¡ä¸Šï¼Œå¹¶è¿”å›å¯¹è±¡
-             * @param  {[string]} pathstr [è·¯å¾„å­—ç¬¦ä¸²,ä¸”è·¯å¾„æ­£ç¡®]
-             * @param  {[object]} obj     [è¢«æ·»åŠ çš„å¯¹è±¡]
-             * @param  {[number/string/boolean..]} [éœ€è¦èµ‹ç»™å¶å­çš„å€¼]
-             * @return {[object]}         [è¿”å›å¯¹è±¡]
+             * ½âÎö×Ö·û´®£¬½«×Ö·û´®Â·¾¶Ìí¼Óµ½¶ÔÏóÉÏ£¬²¢·µ»Ø¶ÔÏó
+             * @param  {[string]} pathstr [Â·¾¶×Ö·û´®,ÇÒÂ·¾¶ÕıÈ·]
+             * @param  {[object]} obj     [±»Ìí¼ÓµÄ¶ÔÏó]
+             * @param  {[number/string/boolean..]} [ĞèÒª¸³¸øÒ¶×ÓµÄÖµ]
+             * @return {[object]}         [·µ»Ø¶ÔÏó]
              */
         function parse(pathstr, obj, value, flag) {
             var start = flag + 1,
@@ -3028,10 +3028,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼äº_.zipï¼Œä¸åŒä¹‹å¤„åœ¨äºå®ƒæ¥å—ä¸€ä¸ª iterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰ï¼Œæ¥ æŒ‡å®šåˆ†ç»„çš„å€¼åº”è¯¥å¦‚ä½•è¢«ç»„åˆã€‚ è¯¥iterateeè°ƒç”¨æ¯ä¸ªç»„çš„å…ƒç´ ï¼š (...group).
-     * @param [arrays] (...Array): è¦å¤„ç†çš„æ•°ç»„ã€‚
-     * @param [iteratee=_.identity] (Function): å‡½æ•°ç”¨æ¥ç»„åˆåˆ†ç»„çš„å€¼ã€‚
-     * @return (Array): è¿”å›åˆ†ç»„å…ƒç´ çš„æ–°æ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆÓÚ_.zip£¬²»Í¬Ö®´¦ÔÚÓÚËü½ÓÊÜÒ»¸ö iteratee£¨µü´úº¯Êı£©£¬À´ Ö¸¶¨·Ö×éµÄÖµÓ¦¸ÃÈçºÎ±»×éºÏ¡£ ¸Ãiterateeµ÷ÓÃÃ¿¸ö×éµÄÔªËØ£º (...group).
+     * @param [arrays] (...Array): Òª´¦ÀíµÄÊı×é¡£
+     * @param [iteratee=_.identity] (Function): º¯ÊıÓÃÀ´×éºÏ·Ö×éµÄÖµ¡£
+     * @return (Array): ·µ»Ø·Ö×éÔªËØµÄĞÂÊı×é¡£
      */
     zipWith: function() {
         var result = [],
@@ -3048,7 +3048,7 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªç»„æˆå¯¹è±¡ï¼Œkeyï¼ˆé”®ï¼‰æ˜¯ç»è¿‡ iterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰ æ‰§è¡Œå¤„ç†collectionä¸­æ¯ä¸ªå…ƒç´ åè¿”å›çš„ç»“æœï¼Œæ¯ä¸ªkeyï¼ˆé”®ï¼‰å¯¹åº”çš„å€¼æ˜¯ iterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰è¿”å›è¯¥keyï¼ˆé”®ï¼‰çš„æ¬¡æ•°ï¼ˆæ„šäººç å¤´æ³¨ï¼šè¿­ä»£æ¬¡æ•°ï¼‰ã€‚
+     * ´´½¨Ò»¸ö×é³É¶ÔÏó£¬key£¨¼ü£©ÊÇ¾­¹ı iteratee£¨µü´úº¯Êı£© Ö´ĞĞ´¦ÀícollectionÖĞÃ¿¸öÔªËØºó·µ»ØµÄ½á¹û£¬Ã¿¸ökey£¨¼ü£©¶ÔÓ¦µÄÖµÊÇ iteratee£¨µü´úº¯Êı£©·µ»Ø¸Ãkey£¨¼ü£©µÄ´ÎÊı£¨ÓŞÈËÂëÍ·×¢£ºµü´ú´ÎÊı£©¡£
      * @param  {[type]} colle [description]
      * @param  {[type]} iter  [description]
      * @return {[type]}       [description]
@@ -3077,10 +3077,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * é€šè¿‡ predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰ æ£€æŸ¥ collectionï¼ˆé›†åˆï¼‰ä¸­çš„ æ‰€æœ‰ å…ƒç´ æ˜¯å¦éƒ½è¿”å›çœŸå€¼ã€‚
-     * @param  collection (Array|Object): ä¸€ä¸ªç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [predicate=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (boolean): å¦‚æœæ‰€æœ‰å…ƒç´ ç» predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰ æ£€æŸ¥åéƒ½éƒ½è¿”å›çœŸå€¼ï¼Œé‚£ä¹ˆå°±è¿”å›trueï¼Œå¦åˆ™è¿”å› false ã€‚
+     * Í¨¹ı predicate£¨¶ÏÑÔº¯Êı£© ¼ì²é collection£¨¼¯ºÏ£©ÖĞµÄ ËùÓĞ ÔªËØÊÇ·ñ¶¼·µ»ØÕæÖµ¡£
+     * @param  collection (Array|Object): Ò»¸öÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [predicate=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @return (boolean): Èç¹ûËùÓĞÔªËØ¾­ predicate£¨¶ÏÑÔº¯Êı£© ¼ì²éºó¶¼¶¼·µ»ØÕæÖµ£¬ÄÇÃ´¾Í·µ»Øtrue£¬·ñÔò·µ»Ø false ¡£
      */
     every: function(colle, pred) {
         //debugger
@@ -3104,11 +3104,11 @@ TianXiaoBo = {
         return true
     },
     /**
-     * éå† collectionï¼ˆé›†åˆï¼‰å…ƒç´ ï¼Œè¿”å› predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰ç¬¬ä¸€ä¸ªè¿”å›çœŸå€¼çš„ç¬¬ä¸€ä¸ªå…ƒç´ ã€‚predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰è°ƒç”¨3ä¸ªå‚æ•°ï¼š (value, index|key, collection)ã€‚
-     * @param  collection (Array|Object): ä¸€ä¸ªç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [predicate=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @param  [fromIndex=0] (number): å¼€å§‹æœç´¢çš„ç´¢å¼•ä½ç½®ã€‚
-     * @return (*): è¿”å›åŒ¹é…å…ƒç´ ï¼Œå¦åˆ™è¿”å› undefinedã€‚
+     * ±éÀú collection£¨¼¯ºÏ£©ÔªËØ£¬·µ»Ø predicate£¨¶ÏÑÔº¯Êı£©µÚÒ»¸ö·µ»ØÕæÖµµÄµÚÒ»¸öÔªËØ¡£predicate£¨¶ÏÑÔº¯Êı£©µ÷ÓÃ3¸ö²ÎÊı£º (value, index|key, collection)¡£
+     * @param  collection (Array|Object): Ò»¸öÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [predicate=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @param  [fromIndex=0] (number): ¿ªÊ¼ËÑË÷µÄË÷ÒıÎ»ÖÃ¡£
+     * @return (*): ·µ»ØÆ¥ÅäÔªËØ£¬·ñÔò·µ»Ø undefined¡£
      */
     find: function(colle, pred, index) {
         if (index === undefined) {
@@ -3133,11 +3133,11 @@ TianXiaoBo = {
         }
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼_.find ï¼Œä¸åŒä¹‹å¤„åœ¨äºï¼Œ_.findLastæ˜¯ä»å³è‡³å·¦éå†collection ï¼ˆé›†åˆï¼‰å…ƒç´ çš„ã€‚
-     * @param  collection (Array|Object): ä¸€ä¸ªç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [predicate=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @param  [fromIndex=collection.length-1] (number): å¼€å§‹æœç´¢çš„ç´¢å¼•ä½ç½®ã€‚
-     * @return (*): è¿”å›åŒ¹é…å…ƒç´ ï¼Œå¦åˆ™è¿”å› undefinedã€‚
+     * Õâ¸ö·½·¨ÀàËÆ_.find £¬²»Í¬Ö®´¦ÔÚÓÚ£¬_.findLastÊÇ´ÓÓÒÖÁ×ó±éÀúcollection £¨¼¯ºÏ£©ÔªËØµÄ¡£
+     * @param  collection (Array|Object): Ò»¸öÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [predicate=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @param  [fromIndex=collection.length-1] (number): ¿ªÊ¼ËÑË÷µÄË÷ÒıÎ»ÖÃ¡£
+     * @return (*): ·µ»ØÆ¥ÅäÔªËØ£¬·ñÔò·µ»Ø undefined¡£
      */
     findLast: function(colle, pred, index) {
         if (index === undefined) {
@@ -3162,10 +3162,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªæ‰å¹³åŒ–ï¼ˆæ„šäººç å¤´æ³¨ï¼šåŒé˜¶æ•°ç»„ï¼‰çš„æ•°ç»„ï¼Œè¿™ä¸ªæ•°ç»„çš„å€¼æ¥è‡ªcollectionï¼ˆé›†åˆï¼‰ä¸­çš„æ¯ä¸€ä¸ªå€¼ç»è¿‡ iterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰ å¤„ç†åè¿”å›çš„ç»“æœï¼Œå¹¶ä¸”æ‰å¹³åŒ–åˆå¹¶ã€‚ iteratee è°ƒç”¨ä¸‰ä¸ªå‚æ•°ï¼š (value, index|key, collection)ã€‚
-     * @param  collection (Array|Object): ä¸€ä¸ªç”¨æ¥è¿­ä»£éå†çš„é›†åˆã€‚
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (Array): è¿”å›æ–°æ‰å¹³åŒ–æ•°ç»„ã€‚
+     * ´´½¨Ò»¸ö±âÆ½»¯£¨ÓŞÈËÂëÍ·×¢£ºÍ¬½×Êı×é£©µÄÊı×é£¬Õâ¸öÊı×éµÄÖµÀ´×Ôcollection£¨¼¯ºÏ£©ÖĞµÄÃ¿Ò»¸öÖµ¾­¹ı iteratee£¨µü´úº¯Êı£© ´¦Àíºó·µ»ØµÄ½á¹û£¬²¢ÇÒ±âÆ½»¯ºÏ²¢¡£ iteratee µ÷ÓÃÈı¸ö²ÎÊı£º (value, index|key, collection)¡£
+     * @param  collection (Array|Object): Ò»¸öÓÃÀ´µü´ú±éÀúµÄ¼¯ºÏ¡£
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @return (Array): ·µ»ØĞÂ±âÆ½»¯Êı×é¡£
      */
     flatMap: function(colle, iter) {
         var result = []
@@ -3178,10 +3178,10 @@ TianXiaoBo = {
         return this.flatten(result)
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.flatMap ä¸åŒä¹‹å¤„åœ¨äºï¼Œ_.flatMapDeep ä¼šç»§ç»­æ‰å¹³åŒ–é€’å½’æ˜ å°„çš„ç»“æœã€‚
-     * @param  collection (Array|Object): ä¸€ä¸ªç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (Array): è¿”å›æ–°æ‰å¹³åŒ–æ•°ç»„ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.flatMap ²»Í¬Ö®´¦ÔÚÓÚ£¬_.flatMapDeep »á¼ÌĞø±âÆ½»¯µİ¹éÓ³ÉäµÄ½á¹û¡£
+     * @param  collection (Array|Object): Ò»¸öÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @return (Array): ·µ»ØĞÂ±âÆ½»¯Êı×é¡£
      */
     flatMapDeep: function(colle, iter) {
         var result = []
@@ -3194,11 +3194,11 @@ TianXiaoBo = {
         return this.flattenDeep(result)
     },
     /**
-     * è¯¥æ–¹æ³•ç±»ä¼¼_.flatMapï¼Œä¸åŒä¹‹å¤„åœ¨äºï¼Œ_.flatMapDepth ä¼šæ ¹æ®æŒ‡å®šçš„ depthï¼ˆé€’å½’æ·±åº¦ï¼‰ç»§ç»­æ‰å¹³åŒ–é€’å½’æ˜ å°„ç»“æœã€‚
-     * @param  collection (Array|Object): ä¸€ä¸ªç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @param  [depth=1] (number): æœ€å¤§é€’å½’æ·±åº¦ã€‚
-     * @return (Array): è¿”å›æ–°æ‰å¹³åŒ–æ•°ç»„ã€‚
+     * ¸Ã·½·¨ÀàËÆ_.flatMap£¬²»Í¬Ö®´¦ÔÚÓÚ£¬_.flatMapDepth »á¸ù¾İÖ¸¶¨µÄ depth£¨µİ¹éÉî¶È£©¼ÌĞø±âÆ½»¯µİ¹éÓ³Éä½á¹û¡£
+     * @param  collection (Array|Object): Ò»¸öÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @param  [depth=1] (number): ×î´óµİ¹éÉî¶È¡£
+     * @return (Array): ·µ»ØĞÂ±âÆ½»¯Êı×é¡£
      */
     flatMapDepth: function(colle, iter, depth) {
         if (depth === undefined) {
@@ -3214,10 +3214,10 @@ TianXiaoBo = {
         return this.flattenDepth(result, depth)
     },
     /**
-     * è°ƒç”¨ iteratee éå† collection(é›†åˆ) ä¸­çš„æ¯ä¸ªå…ƒç´ ï¼Œ iteratee è°ƒç”¨3ä¸ªå‚æ•°ï¼š (value, index|key, collection)ã€‚ å¦‚æœè¿­ä»£å‡½æ•°ï¼ˆiterateeï¼‰æ˜¾å¼çš„è¿”å› false ï¼Œè¿­ä»£ä¼šæå‰é€€å‡ºã€‚
-     * @param  collection (Array|Object): ä¸€ä¸ªç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (*): è¿”å›é›†åˆ collectionã€‚
+     * µ÷ÓÃ iteratee ±éÀú collection(¼¯ºÏ) ÖĞµÄÃ¿¸öÔªËØ£¬ iteratee µ÷ÓÃ3¸ö²ÎÊı£º (value, index|key, collection)¡£ Èç¹ûµü´úº¯Êı£¨iteratee£©ÏÔÊ½µÄ·µ»Ø false £¬µü´ú»áÌáÇ°ÍË³ö¡£
+     * @param  collection (Array|Object): Ò»¸öÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [iteratee=_.identity] (Function): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @return (*): ·µ»Ø¼¯ºÏ collection¡£
      */
     forEachRight: function(collection, iteratee) {
         if (this.iscollection(collection)) {
@@ -3234,10 +3234,10 @@ TianXiaoBo = {
         return collection
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªå¯¹è±¡ï¼Œkey æ˜¯ iteratee éå† collection(é›†åˆ) ä¸­çš„æ¯ä¸ªå…ƒç´ è¿”å›çš„ç»“æœã€‚
-     * @param  collection (Array|Object): ä¸€ä¸ªç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): è¿™ä¸ªè¿­ä»£å‡½æ•°ç”¨æ¥è½¬æ¢keyã€‚
-     * @return (Object): è¿”å›ä¸€ä¸ªç»„æˆèšåˆçš„å¯¹è±¡ã€‚
+     * ´´½¨Ò»¸ö¶ÔÏó£¬key ÊÇ iteratee ±éÀú collection(¼¯ºÏ) ÖĞµÄÃ¿¸öÔªËØ·µ»ØµÄ½á¹û¡£
+     * @param  collection (Array|Object): Ò»¸öÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): Õâ¸öµü´úº¯ÊıÓÃÀ´×ª»»key¡£
+     * @return (Object): ·µ»ØÒ»¸ö×é³É¾ÛºÏµÄ¶ÔÏó¡£
      */
     groupBy: function(colle, iter) {
         debugger
@@ -3263,11 +3263,11 @@ TianXiaoBo = {
         return result
     },
     /**
-     * æ£€æŸ¥ value(å€¼) æ˜¯å¦åœ¨ collection(é›†åˆ) ä¸­ã€‚å¦‚æœ collection(é›†åˆ)æ˜¯ä¸€ä¸ªå­—ç¬¦ä¸²ï¼Œé‚£ä¹ˆæ£€æŸ¥ valueï¼ˆå€¼ï¼Œå­å­—ç¬¦ä¸²ï¼‰ æ˜¯å¦åœ¨å­—ç¬¦ä¸²ä¸­ï¼Œ å¦åˆ™ä½¿ç”¨ SameValueZero åšç­‰å€¼æ¯”è¾ƒã€‚ å¦‚æœæŒ‡å®š fromIndex æ˜¯è´Ÿæ•°ï¼Œé‚£ä¹ˆä» collection(é›†åˆ) çš„ç»“å°¾å¼€å§‹æ£€ç´¢ã€‚
-     * @param  collection (Array|Object|string): è¦æ£€ç´¢çš„é›†åˆã€‚
-     * @param  value (*): è¦æ£€ç´¢çš„å€¼ã€‚
-     * @param  [fromIndex=0] (number): è¦æ£€ç´¢çš„ ç´¢å¼•ä½ç½®ã€‚
-     * @return (boolean): å¦‚æœæ‰¾åˆ° value è¿”å› trueï¼Œ å¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value(Öµ) ÊÇ·ñÔÚ collection(¼¯ºÏ) ÖĞ¡£Èç¹û collection(¼¯ºÏ)ÊÇÒ»¸ö×Ö·û´®£¬ÄÇÃ´¼ì²é value£¨Öµ£¬×Ó×Ö·û´®£© ÊÇ·ñÔÚ×Ö·û´®ÖĞ£¬ ·ñÔòÊ¹ÓÃ SameValueZero ×öµÈÖµ±È½Ï¡£ Èç¹ûÖ¸¶¨ fromIndex ÊÇ¸ºÊı£¬ÄÇÃ´´Ó collection(¼¯ºÏ) µÄ½áÎ²¿ªÊ¼¼ìË÷¡£
+     * @param  collection (Array|Object|string): Òª¼ìË÷µÄ¼¯ºÏ¡£
+     * @param  value (*): Òª¼ìË÷µÄÖµ¡£
+     * @param  [fromIndex=0] (number): Òª¼ìË÷µÄ Ë÷ÒıÎ»ÖÃ¡£
+     * @return (boolean): Èç¹ûÕÒµ½ value ·µ»Ø true£¬ ·ñÔò·µ»Ø false¡£
      */
     includes: function(colle, value, index) {
         var temp = []
@@ -3312,11 +3312,11 @@ TianXiaoBo = {
         return false
     },
     /**
-     * è°ƒç”¨pathï¼ˆè·¯å¾„ï¼‰ä¸Šçš„æ–¹æ³•å¤„ç† collection(é›†åˆ)ä¸­çš„æ¯ä¸ªå…ƒç´ ï¼Œè¿”å›ä¸€ä¸ªæ•°ç»„ï¼ŒåŒ…å«æ¯æ¬¡è°ƒç”¨æ–¹æ³•å¾—åˆ°çš„ç»“æœã€‚ä»»ä½•é™„åŠ çš„å‚æ•°æä¾›ç»™æ¯ä¸ªè¢«è°ƒç”¨çš„æ–¹æ³•ã€‚å¦‚æœmethodNameï¼ˆæ–¹æ³•åï¼‰æ˜¯ä¸€ä¸ªå‡½æ•°ï¼Œæ¯æ¬¡è°ƒç”¨å‡½æ•°æ—¶ï¼Œå†…éƒ¨çš„ this æŒ‡å‘é›†åˆä¸­çš„æ¯ä¸ªå…ƒç´ ã€‚
-     * @param  collection (Array|Object): ç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  path (Array|Function|string): ç”¨æ¥è°ƒç”¨æ–¹æ³•çš„è·¯å¾„ æˆ– è€…æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @param  [args] (...*): è°ƒç”¨æ¯ä¸ªæ–¹æ³•çš„å‚æ•°ã€‚
-     * @return (Array): è¿”å›çš„ç»“æœæ•°ç»„ã€‚
+     * µ÷ÓÃpath£¨Â·¾¶£©ÉÏµÄ·½·¨´¦Àí collection(¼¯ºÏ)ÖĞµÄÃ¿¸öÔªËØ£¬·µ»ØÒ»¸öÊı×é£¬°üº¬Ã¿´Îµ÷ÓÃ·½·¨µÃµ½µÄ½á¹û¡£ÈÎºÎ¸½¼ÓµÄ²ÎÊıÌá¹©¸øÃ¿¸ö±»µ÷ÓÃµÄ·½·¨¡£Èç¹ûmethodName£¨·½·¨Ãû£©ÊÇÒ»¸öº¯Êı£¬Ã¿´Îµ÷ÓÃº¯ÊıÊ±£¬ÄÚ²¿µÄ this Ö¸Ïò¼¯ºÏÖĞµÄÃ¿¸öÔªËØ¡£
+     * @param  collection (Array|Object): ÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  path (Array|Function|string): ÓÃÀ´µ÷ÓÃ·½·¨µÄÂ·¾¶ »ò ÕßÃ¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @param  [args] (...*): µ÷ÓÃÃ¿¸ö·½·¨µÄ²ÎÊı¡£
+     * @return (Array): ·µ»ØµÄ½á¹ûÊı×é¡£
      */
     invokeMap: function(colle, path, ...args) {
         var result = []
@@ -3333,10 +3333,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªå¯¹è±¡ç»„æˆï¼Œ keyï¼ˆé”®ï¼‰ æ˜¯ collectionï¼ˆé›†åˆï¼‰ä¸­çš„æ¯ä¸ªå…ƒç´ ç»è¿‡ iterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰ å¤„ç†åè¿”å›çš„ç»“æœã€‚ æ¯ä¸ª keyï¼ˆé”®ï¼‰å¯¹åº”çš„å€¼æ˜¯ç”Ÿæˆkeyï¼ˆé”®ï¼‰çš„æœ€åä¸€ä¸ªå…ƒç´ ã€‚iterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰è°ƒç”¨1ä¸ªå‚æ•°ï¼š(value)ã€‚
-     * @param  collection (Array|Object): ç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): è¿™ä¸ªè¿­ä»£å‡½æ•°ç”¨æ¥è½¬æ¢keyã€‚
-     * @return (Object): è¿”å›ä¸€ä¸ªç»„æˆèšåˆçš„å¯¹è±¡ã€‚
+     * ´´½¨Ò»¸ö¶ÔÏó×é³É£¬ key£¨¼ü£© ÊÇ collection£¨¼¯ºÏ£©ÖĞµÄÃ¿¸öÔªËØ¾­¹ı iteratee£¨µü´úº¯Êı£© ´¦Àíºó·µ»ØµÄ½á¹û¡£ Ã¿¸ö key£¨¼ü£©¶ÔÓ¦µÄÖµÊÇÉú³Ékey£¨¼ü£©µÄ×îºóÒ»¸öÔªËØ¡£iteratee£¨µü´úº¯Êı£©µ÷ÓÃ1¸ö²ÎÊı£º(value)¡£
+     * @param  collection (Array|Object): ÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): Õâ¸öµü´úº¯ÊıÓÃÀ´×ª»»key¡£
+     * @return (Object): ·µ»ØÒ»¸ö×é³É¾ÛºÏµÄ¶ÔÏó¡£
      */
     keyBy: function(colle, iter) {
         var result = {}
@@ -3354,11 +3354,11 @@ TianXiaoBo = {
         return result
     },
     /**
-     * æ­¤æ–¹æ³•ç±»ä¼¼äº_.sortByï¼Œé™¤äº†å®ƒå…è®¸æŒ‡å®š iterateeï¼ˆè¿­ä»£å‡½æ•°ï¼‰ç»“æœå¦‚ä½•æ’åºã€‚ å¦‚æœæ²¡æŒ‡å®š ordersï¼ˆæ’åºï¼‰ï¼Œæ‰€æœ‰å€¼ä»¥å‡åºæ’åºã€‚ å¦åˆ™ï¼ŒæŒ‡å®šä¸º"desc" é™åºï¼Œæˆ–è€…æŒ‡å®šä¸º "asc" å‡åºï¼Œæ’åºå¯¹åº”å€¼ã€‚
-     * @param  collection (Array|Object): ç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [iteratees=[_.identity]] (Array[]|Function[]|Object[]|string[]): æ’åºçš„è¿­ä»£å‡½æ•°ã€‚
-     * @param  [orders] (string[]): iterateesè¿­ä»£å‡½æ•°çš„æ’åºé¡ºåºã€‚
-     * @return (Array): æ’åºæ’åºåçš„æ–°æ•°ç»„ã€‚
+     * ´Ë·½·¨ÀàËÆÓÚ_.sortBy£¬³ıÁËËüÔÊĞíÖ¸¶¨ iteratee£¨µü´úº¯Êı£©½á¹ûÈçºÎÅÅĞò¡£ Èç¹ûÃ»Ö¸¶¨ orders£¨ÅÅĞò£©£¬ËùÓĞÖµÒÔÉıĞòÅÅĞò¡£ ·ñÔò£¬Ö¸¶¨Îª"desc" ½µĞò£¬»òÕßÖ¸¶¨Îª "asc" ÉıĞò£¬ÅÅĞò¶ÔÓ¦Öµ¡£
+     * @param  collection (Array|Object): ÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [iteratees=[_.identity]] (Array[]|Function[]|Object[]|string[]): ÅÅĞòµÄµü´úº¯Êı¡£
+     * @param  [orders] (string[]): iterateesµü´úº¯ÊıµÄÅÅĞòË³Ğò¡£
+     * @return (Array): ÅÅĞòÅÅĞòºóµÄĞÂÊı×é¡£
      */
     orderBy: function(colle, iter, order) {
         debugger
@@ -3388,10 +3388,10 @@ TianXiaoBo = {
         return colle
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªåˆ†æˆä¸¤ç»„çš„å…ƒç´ æ•°ç»„ï¼Œç¬¬ä¸€ç»„åŒ…å«predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰è¿”å›ä¸º truthyï¼ˆçœŸå€¼ï¼‰çš„å…ƒç´ ï¼Œç¬¬äºŒç»„åŒ…å«predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰è¿”å›ä¸º falseyï¼ˆå‡å€¼ï¼‰çš„å…ƒç´ ã€‚predicate è°ƒç”¨1ä¸ªå‚æ•°ï¼š(value)ã€‚
-     * @param  collection (Array|Object): ç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  {[predicate=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (Array): è¿”å›å…ƒç´ åˆ†ç»„åçš„æ•°ç»„ã€‚
+     * ´´½¨Ò»¸ö·Ö³ÉÁ½×éµÄÔªËØÊı×é£¬µÚÒ»×é°üº¬predicate£¨¶ÏÑÔº¯Êı£©·µ»ØÎª truthy£¨ÕæÖµ£©µÄÔªËØ£¬µÚ¶ş×é°üº¬predicate£¨¶ÏÑÔº¯Êı£©·µ»ØÎª falsey£¨¼ÙÖµ£©µÄÔªËØ¡£predicate µ÷ÓÃ1¸ö²ÎÊı£º(value)¡£
+     * @param  collection (Array|Object): ÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  {[predicate=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @return (Array): ·µ»ØÔªËØ·Ö×éºóµÄÊı×é¡£
      */
     partition: function(colle, pred) {
         var result = [
@@ -3420,10 +3420,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * _.filterçš„åå‘æ–¹æ³•;æ­¤æ–¹æ³• è¿”å› predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰ ä¸ è¿”å› truthyï¼ˆçœŸå€¼ï¼‰çš„collectionï¼ˆé›†åˆï¼‰å…ƒç´ ï¼ˆæ„šäººç å¤´æ³¨é‡Šï¼šéçœŸï¼‰ã€‚
-     * @param  collection (Array|Object): ç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [predicate=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (Array): è¿”å›è¿‡æ»¤åçš„æ–°æ•°ç»„
+     * _.filterµÄ·´Ïò·½·¨;´Ë·½·¨ ·µ»Ø predicate£¨¶ÏÑÔº¯Êı£© ²» ·µ»Ø truthy£¨ÕæÖµ£©µÄcollection£¨¼¯ºÏ£©ÔªËØ£¨ÓŞÈËÂëÍ·×¢ÊÍ£º·ÇÕæ£©¡£
+     * @param  collection (Array|Object): ÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [predicate=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @return (Array): ·µ»Ø¹ıÂËºóµÄĞÂÊı×é
      */
     reject: function(colle, pred) {
         var result = []
@@ -3450,19 +3450,19 @@ TianXiaoBo = {
         return result
     },
     /**
-     * ä»collectionï¼ˆé›†åˆï¼‰ä¸­è·å¾—ä¸€ä¸ªéšæœºå…ƒç´ ã€‚
-     * @param  collection (Array|Object): è¦å–æ ·çš„é›†åˆã€‚
-     * @return (*): è¿”å›éšæœºå…ƒç´ ã€‚
+     * ´Ócollection£¨¼¯ºÏ£©ÖĞ»ñµÃÒ»¸öËæ»úÔªËØ¡£
+     * @param  collection (Array|Object): ÒªÈ¡ÑùµÄ¼¯ºÏ¡£
+     * @return (*): ·µ»ØËæ»úÔªËØ¡£
      */
     sample: function(colle) {
         var theKey = parseInt(Math.random() * colle.length)
         return colle[theKey]
     },
     /**
-     * ä»collectionï¼ˆé›†åˆï¼‰ä¸­è·å¾— n ä¸ªéšæœºå…ƒç´ ã€‚
-     * @param  collection (Array|Object): è¦å–æ ·çš„é›†åˆã€‚
-     * @param  [n=1] (number): å–æ ·çš„å…ƒç´ ä¸ªæ•°ã€‚
-     * @return (Array): è¿”å›éšæœºå…ƒç´ ã€‚
+     * ´Ócollection£¨¼¯ºÏ£©ÖĞ»ñµÃ n ¸öËæ»úÔªËØ¡£
+     * @param  collection (Array|Object): ÒªÈ¡ÑùµÄ¼¯ºÏ¡£
+     * @param  [n=1] (number): È¡ÑùµÄÔªËØ¸öÊı¡£
+     * @return (Array): ·µ»ØËæ»úÔªËØ¡£
      */
     sampleSize: function(colle, n) {
         var result = [],
@@ -3480,10 +3480,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * é€šè¿‡ predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰ æ£€æŸ¥collectionï¼ˆé›†åˆï¼‰ä¸­çš„å…ƒç´ æ˜¯å¦å­˜åœ¨ ä»»æ„ truthyï¼ˆçœŸå€¼ï¼‰çš„å…ƒç´ ï¼Œä¸€æ—¦ predicateï¼ˆæ–­è¨€å‡½æ•°ï¼‰ è¿”å› truthyï¼ˆçœŸå€¼ï¼‰ï¼Œéå†å°±åœæ­¢ã€‚ predicate è°ƒç”¨3ä¸ªå‚æ•°ï¼š(value, index|key, collection)ã€‚
-     * @param  collection (Array|Object): ç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param  [predicate=_.identity] (Array|Function|Object|string): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (boolean): å¦‚æœä»»æ„å…ƒç´ ç» predicate æ£€æŸ¥éƒ½ä¸º truthyï¼ˆçœŸå€¼ï¼‰ï¼Œè¿”å› true ï¼Œå¦åˆ™è¿”å› false ã€‚
+     * Í¨¹ı predicate£¨¶ÏÑÔº¯Êı£© ¼ì²écollection£¨¼¯ºÏ£©ÖĞµÄÔªËØÊÇ·ñ´æÔÚ ÈÎÒâ truthy£¨ÕæÖµ£©µÄÔªËØ£¬Ò»µ© predicate£¨¶ÏÑÔº¯Êı£© ·µ»Ø truthy£¨ÕæÖµ£©£¬±éÀú¾ÍÍ£Ö¹¡£ predicate µ÷ÓÃ3¸ö²ÎÊı£º(value, index|key, collection)¡£
+     * @param  collection (Array|Object): ÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param  [predicate=_.identity] (Array|Function|Object|string): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @return (boolean): Èç¹ûÈÎÒâÔªËØ¾­ predicate ¼ì²é¶¼Îª truthy£¨ÕæÖµ£©£¬·µ»Ø true £¬·ñÔò·µ»Ø false ¡£
      */
     some: function(colle, pred) {
         if (this.isObject(pred)) {
@@ -3506,10 +3506,10 @@ TianXiaoBo = {
         return false
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªå…ƒç´ æ•°ç»„ã€‚ ä»¥ iteratee å¤„ç†çš„ç»“æœå‡åºæ’åºã€‚ è¿™ä¸ªæ–¹æ³•æ‰§è¡Œç¨³å®šæ’åºï¼Œä¹Ÿå°±æ˜¯è¯´ç›¸åŒå…ƒç´ ä¼šä¿æŒåŸå§‹æ’åºã€‚ iteratees è°ƒç”¨1ä¸ªå‚æ•°ï¼š (value)ã€‚
-     * @param  collection (Array|Object): ç”¨æ¥è¿­ä»£çš„é›†åˆã€‚
-     * @param [iteratees=[_.identity]] (...(Array|Array[]|Function|Function[]|Object|Object[]|string|string[])): è¿™ä¸ªå‡½æ•°å†³å®šæ’åºã€‚
-     * @return (Array): è¿”å›æ’åºåçš„æ•°ç»„ã€‚
+     * ´´½¨Ò»¸öÔªËØÊı×é¡£ ÒÔ iteratee ´¦ÀíµÄ½á¹ûÉıĞòÅÅĞò¡£ Õâ¸ö·½·¨Ö´ĞĞÎÈ¶¨ÅÅĞò£¬Ò²¾ÍÊÇËµÏàÍ¬ÔªËØ»á±£³ÖÔ­Ê¼ÅÅĞò¡£ iteratees µ÷ÓÃ1¸ö²ÎÊı£º (value)¡£
+     * @param  collection (Array|Object): ÓÃÀ´µü´úµÄ¼¯ºÏ¡£
+     * @param [iteratees=[_.identity]] (...(Array|Array[]|Function|Function[]|Object|Object[]|string|string[])): Õâ¸öº¯Êı¾ö¶¨ÅÅĞò¡£
+     * @return (Array): ·µ»ØÅÅĞòºóµÄÊı×é¡£
      */
     sortBy: function(colle) {
         debugger
@@ -3556,30 +3556,30 @@ TianXiaoBo = {
         return colle
     },
     /**
-     * æ¨è¿Ÿè°ƒç”¨funcï¼Œç›´åˆ°å½“å‰å †æ ˆæ¸…ç†å®Œæ¯•ã€‚ è°ƒç”¨æ—¶ï¼Œä»»ä½•é™„åŠ çš„å‚æ•°ä¼šä¼ ç»™funcã€‚
-     * @param  func (Function): è¦å»¶è¿Ÿçš„å‡½æ•°ã€‚
-     * @param  [args] (...*): ä¼šåœ¨è°ƒç”¨æ—¶ä¼ ç»™ func çš„å‚æ•°
-     * @return (number):è¿”å›è®¡æ—¶å™¨ idã€‚
+     * ÍÆ³Ùµ÷ÓÃfunc£¬Ö±µ½µ±Ç°¶ÑÕ»ÇåÀíÍê±Ï¡£ µ÷ÓÃÊ±£¬ÈÎºÎ¸½¼ÓµÄ²ÎÊı»á´«¸øfunc¡£
+     * @param  func (Function): ÒªÑÓ³ÙµÄº¯Êı¡£
+     * @param  [args] (...*): »áÔÚµ÷ÓÃÊ±´«¸ø func µÄ²ÎÊı
+     * @return (number):·µ»Ø¼ÆÊ±Æ÷ id¡£
      */
     defer: function(func, ...args) {
 
         return setTimeout(func(...args), 0);
     },
     /**
-     * å»¶è¿Ÿ wait æ¯«ç§’åè°ƒç”¨ funcã€‚ è°ƒç”¨æ—¶ï¼Œä»»ä½•é™„åŠ çš„å‚æ•°ä¼šä¼ ç»™funcã€‚
-     * @param  func (Function): è¦å»¶è¿Ÿçš„å‡½æ•°ã€‚
-     * @param  wait (number): è¦å»¶è¿Ÿçš„æ¯«ç§’æ•°ã€‚
-     * @param  [args] (...*): ä¼šåœ¨è°ƒç”¨æ—¶ä¼ å…¥åˆ° func çš„å‚æ•°ã€‚
-     * @return (number): è¿”å›è®¡æ—¶å™¨ id
+     * ÑÓ³Ù wait ºÁÃëºóµ÷ÓÃ func¡£ µ÷ÓÃÊ±£¬ÈÎºÎ¸½¼ÓµÄ²ÎÊı»á´«¸øfunc¡£
+     * @param  func (Function): ÒªÑÓ³ÙµÄº¯Êı¡£
+     * @param  wait (number): ÒªÑÓ³ÙµÄºÁÃëÊı¡£
+     * @param  [args] (...*): »áÔÚµ÷ÓÃÊ±´«Èëµ½ func µÄ²ÎÊı¡£
+     * @return (number): ·µ»Ø¼ÆÊ±Æ÷ id
      */
     delay: function(func, wait, ...args) {
 
         return setTimeout(func(...args), wait);
     },
     /**
-     * å¦‚æœ value ä¸æ˜¯æ•°ç»„, é‚£ä¹ˆå¼ºåˆ¶è½¬ä¸ºæ•°ç»„ã€‚
-     * @param  value (*): è¦å¤„ç†çš„å€¼ã€‚
-     * @return (Array): è¿”å›è½¬æ¢åçš„æ•°ç»„ã€‚
+     * Èç¹û value ²»ÊÇÊı×é, ÄÇÃ´Ç¿ÖÆ×ªÎªÊı×é¡£
+     * @param  value (*): Òª´¦ÀíµÄÖµ¡£
+     * @return (Array): ·µ»Ø×ª»»ºóµÄÊı×é¡£
      */
     castArray: function(value) {
         var result = []
@@ -3594,9 +3594,9 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªè¢«æ‰“ä¹±å€¼çš„é›†åˆã€‚ ä½¿ç”¨ Fisher-Yates shuffle ç‰ˆæœ¬ã€‚
-     * @param  collection (Array|Object): è¦æ‰“ä¹±çš„é›†åˆã€‚
-     * @return (Array): è¿”å›æ‰“ä¹±çš„æ–°æ•°ç»„ã€‚
+     * ´´½¨Ò»¸ö±»´òÂÒÖµµÄ¼¯ºÏ¡£ Ê¹ÓÃ Fisher-Yates shuffle °æ±¾¡£
+     * @param  collection (Array|Object): Òª´òÂÒµÄ¼¯ºÏ¡£
+     * @return (Array): ·µ»Ø´òÂÒµÄĞÂÊı×é¡£
      */
     shuffle: function(colle) {
         var result = colle.sort(function(a, b) {
@@ -3609,10 +3609,10 @@ TianXiaoBo = {
         return result
     },
     /**
-     * é€šè¿‡è°ƒç”¨æ–­è¨€sourceçš„å±æ€§ä¸ object çš„ç›¸åº”å±æ€§å€¼ï¼Œæ£€æŸ¥ objectæ˜¯å¦ç¬¦åˆ sourceã€‚å½“sourceååº”ç”¨æ—¶ï¼Œè¿™ç§æ–¹æ³•å’Œ _.conformså‡½æ•°æ˜¯ç­‰ä»·çš„ã€‚
-     * @param  object (Object): è¦æ£€æŸ¥çš„å¯¹è±¡ã€‚
-     * @param  source (Object): è¦æ–­è¨€å±æ€§æ˜¯å¦ç¬¦åˆçš„å¯¹è±¡ã€‚
-     * @return (boolean): å¦‚æœ object ç¬¦åˆï¼Œè¿”å› trueï¼Œå¦åˆ™ falseã€‚
+     * Í¨¹ıµ÷ÓÃ¶ÏÑÔsourceµÄÊôĞÔÓë object µÄÏàÓ¦ÊôĞÔÖµ£¬¼ì²é objectÊÇ·ñ·ûºÏ source¡£µ±sourceÆ«Ó¦ÓÃÊ±£¬ÕâÖÖ·½·¨ºÍ _.conformsº¯ÊıÊÇµÈ¼ÛµÄ¡£
+     * @param  object (Object): Òª¼ì²éµÄ¶ÔÏó¡£
+     * @param  source (Object): Òª¶ÏÑÔÊôĞÔÊÇ·ñ·ûºÏµÄ¶ÔÏó¡£
+     * @return (boolean): Èç¹û object ·ûºÏ£¬·µ»Ø true£¬·ñÔò false¡£
      */
     conformsTo: function(obj, sour) {
         for (var key in obj) {
@@ -3625,10 +3625,10 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ‰§è¡Œ SameValueZero æ¯”è¾ƒä¸¤è€…çš„å€¼ï¼Œæ¥ç¡®å®šå®ƒä»¬æ˜¯å¦ç›¸ç­‰ã€‚
-     * @param  value (*): è¦æ¯”è¾ƒçš„å€¼ã€‚
-     * @param  other (*): å¦ä¸€ä¸ªè¦æ¯”è¾ƒçš„å€¼ã€‚
-     * @return (boolean): å¦‚æœä¸¤ä¸ªå€¼ç›¸ç­‰è¿”å› true ï¼Œå¦åˆ™è¿”å› false ã€‚
+     * Ö´ĞĞ SameValueZero ±È½ÏÁ½ÕßµÄÖµ£¬À´È·¶¨ËüÃÇÊÇ·ñÏàµÈ¡£
+     * @param  value (*): Òª±È½ÏµÄÖµ¡£
+     * @param  other (*): ÁíÒ»¸öÒª±È½ÏµÄÖµ¡£
+     * @return (boolean): Èç¹ûÁ½¸öÖµÏàµÈ·µ»Ø true £¬·ñÔò·µ»Ø false ¡£
      */
     eq: function(value1, value2) {
         if (typeof value1 === 'number' && typeof value2 === 'number') {
@@ -3642,10 +3642,10 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ valueæ˜¯å¦å¤§äº otherã€‚
-     * @param  value (*): è¦æ¯”è¾ƒçš„å€¼ã€‚
-     * @param  other (*): å¦ä¸€ä¸ªè¦æ¯”è¾ƒçš„å€¼ã€‚
-     * @return (boolean): å¦‚æœvalue å¤§äº other è¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é valueÊÇ·ñ´óÓÚ other¡£
+     * @param  value (*): Òª±È½ÏµÄÖµ¡£
+     * @param  other (*): ÁíÒ»¸öÒª±È½ÏµÄÖµ¡£
+     * @return (boolean): Èç¹ûvalue ´óÓÚ other ·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     gt: function(value, other) {
         if (value > other) {
@@ -3654,10 +3654,10 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ valueæ˜¯å¦å¤§äºæˆ–è€…ç­‰äº otherã€‚
-     * @param  value (*): è¦æ¯”è¾ƒçš„å€¼ã€‚
-     * @param  other (*): å¦ä¸€ä¸ªè¦æ¯”è¾ƒçš„å€¼ã€‚
-     * @return (boolean): å¦‚æœvalue å¤§äºæˆ–è€…ç­‰äº other è¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é valueÊÇ·ñ´óÓÚ»òÕßµÈÓÚ other¡£
+     * @param  value (*): Òª±È½ÏµÄÖµ¡£
+     * @param  other (*): ÁíÒ»¸öÒª±È½ÏµÄÖµ¡£
+     * @return (boolean): Èç¹ûvalue ´óÓÚ»òÕßµÈÓÚ other ·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     gte: function(value, other) {
         if (value >= other) {
@@ -3666,18 +3666,18 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ ArrayBuffer å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœvalueæ˜¯ä¸€ä¸ªæ•°ç»„ buffer è¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ ArrayBuffer ¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹ûvalueÊÇÒ»¸öÊı×é buffer ·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isArrayBuffer: function(value) {
 
         return value instanceof ArrayBuffer
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ç±»æ•°ç»„ã€‚ å¦‚æœä¸€ä¸ªå€¼è¢«è®¤ä¸ºæ˜¯ç±»æ•°ç»„ï¼Œé‚£ä¹ˆå®ƒä¸æ˜¯ä¸€ä¸ªå‡½æ•°ï¼Œå¹¶ä¸”value.lengthæ˜¯ä¸ªæ•´æ•°ï¼Œå¤§äºç­‰äº 0ï¼Œå°äºæˆ–ç­‰äº Number.MAX_SAFE_INTEGERã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼
-     * @return (boolean): å¦‚æœvalueæ˜¯ä¸€ä¸ªç±»æ•°ç»„ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇÀàÊı×é¡£ Èç¹ûÒ»¸öÖµ±»ÈÏÎªÊÇÀàÊı×é£¬ÄÇÃ´Ëü²»ÊÇÒ»¸öº¯Êı£¬²¢ÇÒvalue.lengthÊÇ¸öÕûÊı£¬´óÓÚµÈÓÚ 0£¬Ğ¡ÓÚ»òµÈÓÚ Number.MAX_SAFE_INTEGER¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ
+     * @return (boolean): Èç¹ûvalueÊÇÒ»¸öÀàÊı×é£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isArrayLike: function(value) {
         if (this.isFunction(value)) {
@@ -3691,9 +3691,9 @@ TianXiaoBo = {
         return false
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼_.isArrayLikeã€‚é™¤äº†å®ƒè¿˜æ£€æŸ¥valueæ˜¯å¦æ˜¯ä¸ªå¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value æ˜¯ä¸€ä¸ªç±»æ•°ç»„å¯¹è±¡ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * Õâ¸ö·½·¨ÀàËÆ_.isArrayLike¡£³ıÁËËü»¹¼ì²évalueÊÇ·ñÊÇ¸ö¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÊÇÒ»¸öÀàÊı×é¶ÔÏó£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isArrayLikeObject: function(value) {
         if (this.isFunction(value)) {
@@ -3707,9 +3707,9 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯å¯èƒ½æ˜¯ DOM å…ƒç´ ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value æ˜¯ä¸€ä¸ªDOMå…ƒç´ ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ¿ÉÄÜÊÇ DOM ÔªËØ¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÊÇÒ»¸öDOMÔªËØ£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isElement: function(value) {
         if ('nodeType' in value) {
@@ -3720,9 +3720,9 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ Error, EvalError, RangeError, ReferenceError, SyntaxError, TypeError, æˆ–è€… URIErrorå¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value æ˜¯ä¸€ä¸ªé”™è¯¯ï¼ˆErrorï¼‰å¯¹è±¡ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ Error, EvalError, RangeError, ReferenceError, SyntaxError, TypeError, »òÕß URIError¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÊÇÒ»¸ö´íÎó£¨Error£©¶ÔÏó£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isError: function(value) {
 
@@ -3732,9 +3732,9 @@ TianXiaoBo = {
         return parseInt(value) === value
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦ä¸ºæœ‰æ•ˆçš„ç±»æ•°ç»„é•¿åº¦ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value æ˜¯ä¸€ä¸ªæœ‰æ•ˆé•¿åº¦ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÎªÓĞĞ§µÄÀàÊı×é³¤¶È¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÊÇÒ»¸öÓĞĞ§³¤¶È£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isLength: function(value) {
         if (parseInt(value) === value) {
@@ -3745,19 +3745,19 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦ä¸ºä¸€ä¸ª Map å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value æ˜¯ä¸€ä¸ª Map å¯¹è±¡ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÎªÒ»¸ö Map ¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÊÇÒ»¸ö Map ¶ÔÏó£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isMap: function(value) {
 
         return value instanceof Map
     },
     /**
-     * æ‰§è¡Œä¸€ä¸ªæ·±åº¦æ¯”è¾ƒï¼Œæ¥ç¡®å®š object æ˜¯å¦å«æœ‰å’Œ source å®Œå…¨ç›¸ç­‰çš„å±æ€§å€¼ã€‚
-     * @param  object (Object): è¦æ£€æŸ¥çš„å¯¹è±¡ã€‚
-     * @param  source (Object): å±æ€§å€¼ç›¸åŒ¹é…çš„å¯¹è±¡ã€‚
-     * @return (boolean): å¦‚æœobjectåŒ¹é…ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * Ö´ĞĞÒ»¸öÉî¶È±È½Ï£¬À´È·¶¨ object ÊÇ·ñº¬ÓĞºÍ source ÍêÈ«ÏàµÈµÄÊôĞÔÖµ¡£
+     * @param  object (Object): Òª¼ì²éµÄ¶ÔÏó¡£
+     * @param  source (Object): ÊôĞÔÖµÏàÆ¥ÅäµÄ¶ÔÏó¡£
+     * @return (boolean): Èç¹ûobjectÆ¥Åä£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isMatch: function(obj, source) {
         if (source === undefined) {
@@ -3780,9 +3780,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ä¸€ä¸ªåŸç”Ÿå‡½æ•°ã€‚æœªå®ç°
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value æ˜¯ä¸€ä¸ª åŸç”Ÿå‡½æ•°ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇÒ»¸öÔ­Éúº¯Êı¡£Î´ÊµÏÖ
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÊÇÒ»¸ö Ô­Éúº¯Êı£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isNative: function(value) {
         if (value === undefined) {
@@ -3791,9 +3791,9 @@ TianXiaoBo = {
         return value instanceof Function
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ null æˆ–è€… undefinedã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºnull æˆ– undefinedï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ null »òÕß undefined¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value Îªnull »ò undefined£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isNil: function(value) {
         if (value === undefined || value === null) {
@@ -3802,8 +3802,8 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ ç±»å¯¹è±¡ã€‚ å¦‚æœä¸€ä¸ªå€¼æ˜¯ç±»å¯¹è±¡ï¼Œé‚£ä¹ˆå®ƒä¸åº”è¯¥æ˜¯ nullï¼Œè€Œä¸” typeof åçš„ç»“æœæ˜¯ "object"ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ Àà¶ÔÏó¡£ Èç¹ûÒ»¸öÖµÊÇÀà¶ÔÏó£¬ÄÇÃ´Ëü²»Ó¦¸ÃÊÇ null£¬¶øÇÒ typeof ºóµÄ½á¹ûÊÇ "object"¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
      * @return {Boolean}       [description]
      */
     isObjectLike: function(value) {
@@ -3813,9 +3813,9 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯æ™®é€šå¯¹è±¡ã€‚ ä¹Ÿå°±æ˜¯è¯´è¯¥å¯¹è±¡ç”± Object æ„é€ å‡½æ•°åˆ›å»ºï¼Œæˆ–è€… [[Prototype]] ä¸º null ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºä¸€ä¸ªæ™®é€šå¯¹è±¡ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇÆÕÍ¨¶ÔÏó¡£ Ò²¾ÍÊÇËµ¸Ã¶ÔÏóÓÉ Object ¹¹Ôìº¯Êı´´½¨£¬»òÕß [[Prototype]] Îª null ¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÎªÒ»¸öÆÕÍ¨¶ÔÏó£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isPlainObject: function(value) {
         if (Object.getPrototypeOf(value) === null || (value).constructor === Object) {
@@ -3824,27 +3824,27 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ä¸€ä¸ªå®‰å…¨æ•´æ•°ã€‚ ä¸€ä¸ªå®‰å…¨æ•´æ•°åº”è¯¥æ˜¯ç¬¦åˆ IEEE-754 æ ‡å‡†çš„éåŒç²¾åº¦æµ®ç‚¹æ•°ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºä¸€ä¸ªå®‰å…¨æ•´æ•°ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇÒ»¸ö°²È«ÕûÊı¡£ Ò»¸ö°²È«ÕûÊıÓ¦¸ÃÊÇ·ûºÏ IEEE-754 ±ê×¼µÄ·ÇË«¾«¶È¸¡µãÊı¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÎªÒ»¸ö°²È«ÕûÊı£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isSafeInteger: function(value) {
 
         return value === parseInt(value)
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ä¸€ä¸ªSetå¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºä¸€ä¸ª set å¯¹è±¡ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇÒ»¸öSet¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÎªÒ»¸ö set ¶ÔÏó£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isSet: function(value) {
 
         return value instanceof Set
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯åŸå§‹ Symbol æˆ–è€…å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºä¸€ä¸ªsymbolï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇÔ­Ê¼ Symbol »òÕß¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÎªÒ»¸ösymbol£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isSymbol: function(value) {
         if (typeof value === 'symbol' || typeof value === 'object') {
@@ -3853,9 +3853,9 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯TypedArrayã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºä¸€ä¸ªtyped arrayï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇTypedArray¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÎªÒ»¸ötyped array£¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isTypedArray: function(value) {
         if (value.constructor === Int8Array) {
@@ -3888,28 +3888,28 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ WeakMap å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºä¸€ä¸ª WeakMap å¯¹è±¡ ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ WeakMap ¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÎªÒ»¸ö WeakMap ¶ÔÏó £¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isWeakMap: function(value) {
 
         return value instanceof WeakMap
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦æ˜¯ WeakSet å¯¹è±¡ã€‚
-     * @param  value (*): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @return (boolean): å¦‚æœ value ä¸ºä¸€ä¸ª WeakSet å¯¹è±¡ ï¼Œé‚£ä¹ˆè¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñÊÇ WeakSet ¶ÔÏó¡£
+     * @param  value (*): Òª¼ì²éµÄÖµ¡£
+     * @return (boolean): Èç¹û value ÎªÒ»¸ö WeakSet ¶ÔÏó £¬ÄÇÃ´·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     isWeakSet: function(value) {
 
         return value instanceof WeakSet
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦å°äº otherã€‚
-     * @param  value (*): ç”¨æ¥æ¯”è¾ƒçš„å€¼ã€‚
-     * @param  other (*): å¦ä¸€ä¸ªç”¨æ¥æ¯”è¾ƒçš„å€¼ã€‚
-     * @return (boolean): å¦‚æœvalue å°äºç­‰äº other è¿”å› trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é value ÊÇ·ñĞ¡ÓÚ other¡£
+     * @param  value (*): ÓÃÀ´±È½ÏµÄÖµ¡£
+     * @param  other (*): ÁíÒ»¸öÓÃÀ´±È½ÏµÄÖµ¡£
+     * @return (boolean): Èç¹ûvalue Ğ¡ÓÚµÈÓÚ other ·µ»Ø true£¬·ñÔò·µ»Ø false¡£
      */
     lt: function(value, other) {
         if (value < other) {
@@ -3918,9 +3918,9 @@ TianXiaoBo = {
         return false
     },
     /**
-     * æ£€æŸ¥ value æ˜¯å¦å°äºç­‰äº otherã€‚
-     * @param  value (*): ç”¨æ¥æ¯”è¾ƒçš„å€¼ã€‚
-     * @param  other (*): å¦ä¸€ä¸ªç”¨æ¥æ¯”è¾ƒçš„å€¼ã€‚
+     * ¼ì²é value ÊÇ·ñĞ¡ÓÚµÈÓÚ other¡£
+     * @param  value (*): ÓÃÀ´±È½ÏµÄÖµ¡£
+     * @param  other (*): ÁíÒ»¸öÓÃÀ´±È½ÏµÄÖµ¡£
      * @return {[type]}       [description]
      */
     lte: function(value, other) {
@@ -3930,9 +3930,9 @@ TianXiaoBo = {
         return false
     },
     /**
-     * è½¬æ¢ value ä¸ºä¸€ä¸ªæ•°ç»„ã€‚
-     * @param  value (*): è¦è½¬æ¢çš„å€¼ã€‚
-     * @return (Array): è¿”å›è½¬æ¢åçš„æ•°ç»„ã€‚
+     * ×ª»» value ÎªÒ»¸öÊı×é¡£
+     * @param  value (*): Òª×ª»»µÄÖµ¡£
+     * @return (Array): ·µ»Ø×ª»»ºóµÄÊı×é¡£
      */
     toArray: function(value) {
         var result = []
@@ -3949,9 +3949,9 @@ TianXiaoBo = {
         return result
     },
     /**
-     * è½¬æ¢ value ä¸ºä¸€ä¸ªæœ‰é™æ•°å­—ã€‚
-     * @param  value (*): è¦è½¬æ¢çš„å€¼ã€‚
-     * @return (number): è¿”å›è½¬æ¢åçš„æ•°å­—ã€‚
+     * ×ª»» value ÎªÒ»¸öÓĞÏŞÊı×Ö¡£
+     * @param  value (*): Òª×ª»»µÄÖµ¡£
+     * @return (number): ·µ»Ø×ª»»ºóµÄÊı×Ö¡£
      */
     toFinite: function(value) {
         if (isNaN(Number(value) === NaN)) {
@@ -3967,9 +3967,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * è½¬æ¢ value ä¸ºä¸€ä¸ªæ•´æ•°ã€‚
-     * @param  value (*): è¦è½¬æ¢çš„å€¼ã€‚
-     * @return (number): è¿”å›è½¬æ¢åçš„æ•´æ•°ã€‚
+     * ×ª»» value ÎªÒ»¸öÕûÊı¡£
+     * @param  value (*): Òª×ª»»µÄÖµ¡£
+     * @return (number): ·µ»Ø×ª»»ºóµÄÕûÊı¡£
      */
     toInteger: function(value) {
         var num = Number(value)
@@ -3990,9 +3990,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * è½¬æ¢ value ä¸ºç”¨ä½œç±»æ•°ç»„å¯¹è±¡çš„é•¿åº¦æ•´æ•°ã€‚
-     * @param  value (*): è¦è½¬æ¢çš„å€¼ã€‚
-     * @return (number): è¿”å›è½¬æ¢åçš„æ•´æ•°ã€‚
+     * ×ª»» value ÎªÓÃ×÷ÀàÊı×é¶ÔÏóµÄ³¤¶ÈÕûÊı¡£
+     * @param  value (*): Òª×ª»»µÄÖµ¡£
+     * @return (number): ·µ»Ø×ª»»ºóµÄÕûÊı¡£
      */
     toLength: function(value) {
         var num = Number(value)
@@ -4009,9 +4009,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * è½¬æ¢ value ä¸ºä¸€ä¸ªæ•°å­—ã€‚
-     * @param  value (*): è¦å¤„ç†çš„å€¼ã€‚
-     * @return (number): è¿”å›æ•°å­—ã€‚
+     * ×ª»» value ÎªÒ»¸öÊı×Ö¡£
+     * @param  value (*): Òª´¦ÀíµÄÖµ¡£
+     * @return (number): ·µ»ØÊı×Ö¡£
      */
     toNumber: function(value) {
         if (isNaN(Number(value) === NaN)) {
@@ -4021,9 +4021,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * è½¬æ¢ value ä¸ºå®‰å…¨æ•´æ•°ã€‚ å®‰å…¨æ•´æ•°å¯ä»¥ç”¨äºæ¯”è¾ƒå’Œå‡†ç¡®çš„è¡¨ç¤ºã€‚
-     * @param  value (*): è¦è½¬æ¢çš„å€¼ã€‚
-     * @return (number): è¿”å›è½¬æ¢åçš„æ•´æ•°ã€‚
+     * ×ª»» value Îª°²È«ÕûÊı¡£ °²È«ÕûÊı¿ÉÒÔÓÃÓÚ±È½ÏºÍ×¼È·µÄ±íÊ¾¡£
+     * @param  value (*): Òª×ª»»µÄÖµ¡£
+     * @return (number): ·µ»Ø×ª»»ºóµÄÕûÊı¡£
      */
     toSafeInteger: function(value) {
         var num = Number(value)
@@ -4038,10 +4038,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * æ ¹æ® precisionï¼ˆç²¾åº¦ï¼‰ å‘ä¸Šèˆå…¥ numberã€‚ï¼ˆæ„šäººç å¤´æ³¨ï¼š precisionï¼ˆç²¾åº¦ï¼‰å¯ä»¥ç†è§£ä¸ºä¿ç•™å‡ ä½å°æ•°ã€‚ï¼‰
-     * @param  number (number): è¦å‘ä¸Šèˆå…¥çš„å€¼ã€‚
-     * @param  [precision=0] (number): å‘ä¸Šèˆå…¥çš„çš„ç²¾åº¦ã€‚
-     * @return (number): è¿”å›å‘ä¸Šèˆå…¥çš„å€¼ã€‚
+     * ¸ù¾İ precision£¨¾«¶È£© ÏòÉÏÉáÈë number¡££¨ÓŞÈËÂëÍ·×¢£º precision£¨¾«¶È£©¿ÉÒÔÀí½âÎª±£Áô¼¸Î»Ğ¡Êı¡££©
+     * @param  number (number): ÒªÏòÉÏÉáÈëµÄÖµ¡£
+     * @param  [precision=0] (number): ÏòÉÏÉáÈëµÄµÄ¾«¶È¡£
+     * @return (number): ·µ»ØÏòÉÏÉáÈëµÄÖµ¡£
      */
     ceil: function(number, prec) {
         if (prec === undefined) {
@@ -4062,20 +4062,20 @@ TianXiaoBo = {
         }
     },
     /**
-     * ä¸¤ä¸ªæ•°ç›¸é™¤ã€‚
-     * @param  dividend (number): ç›¸é™¤çš„ç¬¬ä¸€ä¸ªæ•°ã€‚
-     * @param  divisor (number): ç›¸é™¤çš„ç¬¬äºŒä¸ªæ•°ã€‚
-     * @return (number): è¿”å›å•†æ•°ã€‚
+     * Á½¸öÊıÏà³ı¡£
+     * @param  dividend (number): Ïà³ıµÄµÚÒ»¸öÊı¡£
+     * @param  divisor (number): Ïà³ıµÄµÚ¶ş¸öÊı¡£
+     * @return (number): ·µ»ØÉÌÊı¡£
      */
     divide: function(dividend, divisor) {
 
         return dividend / divisor
     },
     /**
-     * æ ¹æ® precisionï¼ˆç²¾åº¦ï¼‰ å‘ä¸‹èˆå…¥ numberã€‚ï¼ˆæ„šäººç å¤´æ³¨ï¼š precisionï¼ˆç²¾åº¦ï¼‰å¯ä»¥ç†è§£ä¸ºä¿ç•™å‡ ä½å°æ•°ã€‚ï¼‰
-     * @param  number (number): è¦å‘ä¸‹èˆå…¥çš„å€¼ã€‚
-     * @param  [precision=0] (number): å‘ä¸‹èˆå…¥çš„ç²¾åº¦ã€‚
-     * @return (number): è¿”å›å‘ä¸‹èˆå…¥çš„å€¼ã€‚
+     * ¸ù¾İ precision£¨¾«¶È£© ÏòÏÂÉáÈë number¡££¨ÓŞÈËÂëÍ·×¢£º precision£¨¾«¶È£©¿ÉÒÔÀí½âÎª±£Áô¼¸Î»Ğ¡Êı¡££©
+     * @param  number (number): ÒªÏòÏÂÉáÈëµÄÖµ¡£
+     * @param  [precision=0] (number): ÏòÏÂÉáÈëµÄ¾«¶È¡£
+     * @return (number): ·µ»ØÏòÏÂÉáÈëµÄÖµ¡£
      */
     floor: function(number, prec) {
         if (prec === undefined) {
@@ -4092,9 +4092,9 @@ TianXiaoBo = {
         return temp / Math.pow(10, prec)
     },
     /**
-     * è®¡ç®— array ä¸­çš„æœ€å¤§å€¼ã€‚ å¦‚æœ array æ˜¯ ç©ºçš„æˆ–è€…å‡å€¼å°†ä¼šè¿”å› undefinedã€‚
-     * @param  array (Array): è¦è¿­ä»£çš„æ•°ç»„ã€‚
-     * @return (*): è¿”å›æœ€å¤§çš„å€¼ã€‚
+     * ¼ÆËã array ÖĞµÄ×î´óÖµ¡£ Èç¹û array ÊÇ ¿ÕµÄ»òÕß¼ÙÖµ½«»á·µ»Ø undefined¡£
+     * @param  array (Array): Òªµü´úµÄÊı×é¡£
+     * @return (*): ·µ»Ø×î´óµÄÖµ¡£
      */
     max: function(arr) {
         if (arr.length === 0) {
@@ -4106,10 +4106,10 @@ TianXiaoBo = {
         return arr.reduce((a, b) => a > b ? a : b)
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.max é™¤äº†å®ƒæ¥å— iteratee æ¥è°ƒç”¨ arrayä¸­çš„æ¯ä¸€ä¸ªå…ƒç´ ï¼Œæ¥ç”Ÿæˆå…¶å€¼æ’åºçš„æ ‡å‡†ã€‚ iteratee ä¼šè°ƒç”¨1ä¸ªå‚æ•°: (value) ã€‚
-     * @param  array (Array): è¦è¿­ä»£çš„æ•°ç»„ã€‚
-     * @param  [iteratee=_.identity] (Function): è°ƒç”¨æ¯ä¸ªå…ƒç´ çš„è¿­ä»£å‡½æ•°ã€‚
-     * @return (*): è¿”å›æœ€å¤§çš„å€¼ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.max ³ıÁËËü½ÓÊÜ iteratee À´µ÷ÓÃ arrayÖĞµÄÃ¿Ò»¸öÔªËØ£¬À´Éú³ÉÆäÖµÅÅĞòµÄ±ê×¼¡£ iteratee »áµ÷ÓÃ1¸ö²ÎÊı: (value) ¡£
+     * @param  array (Array): Òªµü´úµÄÊı×é¡£
+     * @param  [iteratee=_.identity] (Function): µ÷ÓÃÃ¿¸öÔªËØµÄµü´úº¯Êı¡£
+     * @return (*): ·µ»Ø×î´óµÄÖµ¡£
      */
     maxBy: function(arr, iter) {
         if (this.isString(iter)) {
@@ -4121,9 +4121,9 @@ TianXiaoBo = {
         return arr.reduce((a, b) => fn(a) > fn(b) ? a : b)
     },
     /**
-     * è®¡ç®— array çš„å¹³å‡å€¼ã€‚
-     * @param  array (Array): è¦è¿­ä»£çš„æ•°ç»„ã€‚
-     * @return (number): è¿”å›å¹³å‡å€¼ã€‚
+     * ¼ÆËã array µÄÆ½¾ùÖµ¡£
+     * @param  array (Array): Òªµü´úµÄÊı×é¡£
+     * @return (number): ·µ»ØÆ½¾ùÖµ¡£
      */
     mean: function(arr) {
         if (arr.length === 0) {
@@ -4135,10 +4135,10 @@ TianXiaoBo = {
         return arr.reduce((a, b) => a + b) / arr.length
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.meanï¼Œ é™¤äº†å®ƒæ¥å— iteratee æ¥è°ƒç”¨ arrayä¸­çš„æ¯ä¸€ä¸ªå…ƒç´ ï¼Œæ¥ç”Ÿæˆå…¶å€¼æ’åºçš„æ ‡å‡†ã€‚ iteratee ä¼šè°ƒç”¨1ä¸ªå‚æ•°: (value) ã€‚
-     * @param  array (Array): è¦è¿­ä»£çš„æ•°ç»„ã€‚
-     * @param  [iteratee=_.identity] (Function): è°ƒç”¨æ¯ä¸ªå…ƒç´ çš„è¿­ä»£å‡½æ•°ã€‚
-     * @return (number): è¿”å›å¹³å‡å€¼ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.mean£¬ ³ıÁËËü½ÓÊÜ iteratee À´µ÷ÓÃ arrayÖĞµÄÃ¿Ò»¸öÔªËØ£¬À´Éú³ÉÆäÖµÅÅĞòµÄ±ê×¼¡£ iteratee »áµ÷ÓÃ1¸ö²ÎÊı: (value) ¡£
+     * @param  array (Array): Òªµü´úµÄÊı×é¡£
+     * @param  [iteratee=_.identity] (Function): µ÷ÓÃÃ¿¸öÔªËØµÄµü´úº¯Êı¡£
+     * @return (number): ·µ»ØÆ½¾ùÖµ¡£
      */
     meanBy: function(arr, iter) {
         if (this.isString(iter)) {
@@ -4150,9 +4150,9 @@ TianXiaoBo = {
         return arr.map(a => fn(a)).reduce((a, b) => a + b) / arr.length
     },
     /**
-     * è®¡ç®— array ä¸­çš„æœ€å°å€¼ã€‚ å¦‚æœ array æ˜¯ ç©ºçš„æˆ–è€…å‡å€¼å°†ä¼šè¿”å› undefinedã€‚
-     * @param  array (Array): è¦è¿­ä»£çš„æ•°ç»„ã€‚
-     * @return (*): è¿”å›æœ€å°çš„å€¼ã€‚
+     * ¼ÆËã array ÖĞµÄ×îĞ¡Öµ¡£ Èç¹û array ÊÇ ¿ÕµÄ»òÕß¼ÙÖµ½«»á·µ»Ø undefined¡£
+     * @param  array (Array): Òªµü´úµÄÊı×é¡£
+     * @return (*): ·µ»Ø×îĞ¡µÄÖµ¡£
      */
     min: function(arr) {
         if (arr.length === 0) {
@@ -4164,10 +4164,10 @@ TianXiaoBo = {
         return arr.reduce((a, b) => a < b ? a : b)
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.min é™¤äº†å®ƒæ¥å— iteratee æ¥è°ƒç”¨ arrayä¸­çš„æ¯ä¸€ä¸ªå…ƒç´ ï¼Œæ¥ç”Ÿæˆå…¶å€¼æ’åºçš„æ ‡å‡†ã€‚ iteratee ä¼šè°ƒç”¨1ä¸ªå‚æ•°: (value) ã€‚
-     * @param  array (Array): è¦è¿­ä»£çš„æ•°ç»„ã€‚
-     * @param  [iteratee=_.identity] (Function): è°ƒç”¨æ¯ä¸ªå…ƒç´ çš„è¿­ä»£å‡½æ•°ã€‚
-     * @return (*): è¿”å›æœ€å°çš„å€¼ã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.min ³ıÁËËü½ÓÊÜ iteratee À´µ÷ÓÃ arrayÖĞµÄÃ¿Ò»¸öÔªËØ£¬À´Éú³ÉÆäÖµÅÅĞòµÄ±ê×¼¡£ iteratee »áµ÷ÓÃ1¸ö²ÎÊı: (value) ¡£
+     * @param  array (Array): Òªµü´úµÄÊı×é¡£
+     * @param  [iteratee=_.identity] (Function): µ÷ÓÃÃ¿¸öÔªËØµÄµü´úº¯Êı¡£
+     * @return (*): ·µ»Ø×îĞ¡µÄÖµ¡£
      */
     minBy: function(arr, iter) {
         if (this.isString(iter)) {
@@ -4179,20 +4179,20 @@ TianXiaoBo = {
         return arr.reduce((a, b) => fn(a) < fn(b) ? a : b)
     },
     /**
-     * ä¸¤ä¸ªæ•°ç›¸ä¹˜ã€‚
-     * @param  augend (number): ç›¸ä¹˜çš„ç¬¬ä¸€ä¸ªæ•°ã€‚
-     * @param  addend (number): ç›¸ä¹˜çš„ç¬¬äºŒä¸ªæ•°ã€‚
-     * @return (number): è¿”å›ä¹˜ç§¯ã€‚
+     * Á½¸öÊıÏà³Ë¡£
+     * @param  augend (number): Ïà³ËµÄµÚÒ»¸öÊı¡£
+     * @param  addend (number): Ïà³ËµÄµÚ¶ş¸öÊı¡£
+     * @return (number): ·µ»Ø³Ë»ı¡£
      */
     multiply: function(multiplier, multiplicand) {
 
         return multiplier * multiplicand
     },
     /**
-     * æ ¹æ® precisionï¼ˆç²¾åº¦ï¼‰ å››èˆäº”å…¥ numberã€‚
-     * @param  number (number): è¦å››èˆäº”å…¥çš„æ•°å­—ã€‚
-     * @param  [precision=0] (number): å››èˆäº”å…¥çš„ç²¾åº¦ã€‚
-     * @return (number): è¿”å›å››èˆäº”å…¥çš„æ•°å­—ã€‚
+     * ¸ù¾İ precision£¨¾«¶È£© ËÄÉáÎåÈë number¡£
+     * @param  number (number): ÒªËÄÉáÎåÈëµÄÊı×Ö¡£
+     * @param  [precision=0] (number): ËÄÉáÎåÈëµÄ¾«¶È¡£
+     * @return (number): ·µ»ØËÄÉáÎåÈëµÄÊı×Ö¡£
      */
     round: function(number, prec) {
         if (prec === undefined) {
@@ -4214,29 +4214,29 @@ TianXiaoBo = {
         }
     },
     /**
-     * ä¸¤æ•°ç›¸å‡
-     * @param  minuend (number): ç›¸å‡çš„ç¬¬ä¸€ä¸ªæ•°ã€‚
-     * @param  subtrahend (number): ç›¸å‡çš„ç¬¬äºŒä¸ªæ•°ã€‚
-     * @return (number): è¿”å›å·®ã€‚
+     * Á½ÊıÏà¼õ
+     * @param  minuend (number): Ïà¼õµÄµÚÒ»¸öÊı¡£
+     * @param  subtrahend (number): Ïà¼õµÄµÚ¶ş¸öÊı¡£
+     * @return (number): ·µ»Ø²î¡£
      */
     subtract: function(minuend, subtrahend) {
 
         return minuend - subtrahend
     },
     /**
-     * è®¡ç®— array ä¸­å€¼çš„æ€»å’Œ
-     * @param  array (Array): è¦è¿­ä»£çš„æ•°ç»„ã€‚
-     * @return (number): è¿”å›æ€»å’Œã€‚
+     * ¼ÆËã array ÖĞÖµµÄ×ÜºÍ
+     * @param  array (Array): Òªµü´úµÄÊı×é¡£
+     * @return (number): ·µ»Ø×ÜºÍ¡£
      */
     sum: function(array) {
 
         return array.reduce((a, b) => a + b)
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.summin é™¤äº†å®ƒæ¥å— iteratee æ¥è°ƒç”¨ arrayä¸­çš„æ¯ä¸€ä¸ªå…ƒç´ ï¼Œæ¥ç”Ÿæˆå…¶å€¼æ’åºçš„æ ‡å‡†ã€‚ iteratee ä¼šè°ƒç”¨1ä¸ªå‚æ•°: (value) ã€‚
-     * @param  array (Array): è¦è¿­ä»£çš„æ•°ç»„ã€‚
-     * @param  [iteratee=_.identity] (Function): è°ƒç”¨æ¯ä¸ªå…ƒç´ çš„è¿­ä»£å‡½æ•°ã€‚
-     * @return (number): è¿”å›æ€»å’Œã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.summin ³ıÁËËü½ÓÊÜ iteratee À´µ÷ÓÃ arrayÖĞµÄÃ¿Ò»¸öÔªËØ£¬À´Éú³ÉÆäÖµÅÅĞòµÄ±ê×¼¡£ iteratee »áµ÷ÓÃ1¸ö²ÎÊı: (value) ¡£
+     * @param  array (Array): Òªµü´úµÄÊı×é¡£
+     * @param  [iteratee=_.identity] (Function): µ÷ÓÃÃ¿¸öÔªËØµÄµü´úº¯Êı¡£
+     * @return (number): ·µ»Ø×ÜºÍ¡£
      */
     sumBy: function(arr, iter) {
         if (this.isString(iter)) {
@@ -4248,22 +4248,22 @@ TianXiaoBo = {
         return arr.map(a => fn(a)).reduce((a, b) => a + b)
     },
     /**
-     * è¿”å›é™åˆ¶åœ¨ lower å’Œ upper ä¹‹é—´çš„å€¼ã€‚
-     * @param  number (number): è¢«é™åˆ¶çš„å€¼ã€‚
-     * @param  [lower] (number): ä¸‹é™ã€‚
-     * @param  upper (number): ä¸Šé™
-     * @return (number): è¿”å›è¢«é™åˆ¶çš„å€¼ã€‚
+     * ·µ»ØÏŞÖÆÔÚ lower ºÍ upper Ö®¼äµÄÖµ¡£
+     * @param  number (number): ±»ÏŞÖÆµÄÖµ¡£
+     * @param  [lower] (number): ÏÂÏŞ¡£
+     * @param  upper (number): ÉÏÏŞ
+     * @return (number): ·µ»Ø±»ÏŞÖÆµÄÖµ¡£
      */
     clamp: function(num, low, upp) {
 
         return num > low ? (num > upp ? upp : num) : low
     },
     /**
-     * æ£€æŸ¥ n æ˜¯å¦åœ¨ start ä¸ end ä¹‹é—´ï¼Œä½†ä¸åŒ…æ‹¬ endã€‚ å¦‚æœ end æ²¡æœ‰æŒ‡å®šï¼Œé‚£ä¹ˆ start è®¾ç½®ä¸º0ã€‚ å¦‚æœ start å¤§äº endï¼Œé‚£ä¹ˆå‚æ•°ä¼šäº¤æ¢ä»¥ä¾¿æ”¯æŒè´ŸèŒƒå›´ã€‚
-     * @param  number (number): è¦æ£€æŸ¥çš„å€¼ã€‚
-     * @param  [start=0] (number): å¼€å§‹èŒƒå›´ã€‚
-     * @param  end (number): ç»“æŸèŒƒå›´ã€‚
-     * @return (boolean): å¦‚æœnumberåœ¨èŒƒå›´å†… ï¼Œé‚£ä¹ˆè¿”å›trueï¼Œå¦åˆ™è¿”å› falseã€‚
+     * ¼ì²é n ÊÇ·ñÔÚ start Óë end Ö®¼ä£¬µ«²»°üÀ¨ end¡£ Èç¹û end Ã»ÓĞÖ¸¶¨£¬ÄÇÃ´ start ÉèÖÃÎª0¡£ Èç¹û start ´óÓÚ end£¬ÄÇÃ´²ÎÊı»á½»»»ÒÔ±ãÖ§³Ö¸º·¶Î§¡£
+     * @param  number (number): Òª¼ì²éµÄÖµ¡£
+     * @param  [start=0] (number): ¿ªÊ¼·¶Î§¡£
+     * @param  end (number): ½áÊø·¶Î§¡£
+     * @return (boolean): Èç¹ûnumberÔÚ·¶Î§ÄÚ £¬ÄÇÃ´·µ»Øtrue£¬·ñÔò·µ»Ø false¡£
      */
     inRange: function(number, start, end) {
         if (end === undefined) {
@@ -4276,11 +4276,11 @@ TianXiaoBo = {
         return start <= number && number < end ? true : false
     },
     /**
-     * äº§ç”Ÿä¸€ä¸ªåŒ…æ‹¬ lower ä¸ upper ä¹‹é—´çš„æ•°ã€‚ å¦‚æœåªæä¾›ä¸€ä¸ªå‚æ•°è¿”å›ä¸€ä¸ª0åˆ°æä¾›æ•°ä¹‹é—´çš„æ•°ã€‚ å¦‚æœ floating è®¾ä¸º trueï¼Œæˆ–è€… lower æˆ– upper æ˜¯æµ®ç‚¹æ•°ï¼Œç»“æœè¿”å›æµ®ç‚¹æ•°ã€‚
-     * @param  [lower=0] (number): ä¸‹é™ã€‚
-     * @param  [upper=1] (number): ä¸Šé™ã€‚
-     * @param  [floating] (boolean): æŒ‡å®šæ˜¯å¦è¿”å›æµ®ç‚¹æ•°ã€‚
-     * @return (number): è¿”å›éšæœºæ•°ã€‚
+     * ²úÉúÒ»¸ö°üÀ¨ lower Óë upper Ö®¼äµÄÊı¡£ Èç¹ûÖ»Ìá¹©Ò»¸ö²ÎÊı·µ»ØÒ»¸ö0µ½Ìá¹©ÊıÖ®¼äµÄÊı¡£ Èç¹û floating ÉèÎª true£¬»òÕß lower »ò upper ÊÇ¸¡µãÊı£¬½á¹û·µ»Ø¸¡µãÊı¡£
+     * @param  [lower=0] (number): ÏÂÏŞ¡£
+     * @param  [upper=1] (number): ÉÏÏŞ¡£
+     * @param  [floating] (boolean): Ö¸¶¨ÊÇ·ñ·µ»Ø¸¡µãÊı¡£
+     * @return (number): ·µ»ØËæ»úÊı¡£
      */
     random: function(low, upp, float) {
         if (float === undefined) {
@@ -4319,10 +4319,10 @@ TianXiaoBo = {
         return num
     },
     /**
-     * åˆ†é…æ¥æºå¯¹è±¡çš„å¯æšä¸¾å±æ€§åˆ°ç›®æ ‡å¯¹è±¡æ‰€æœ‰è§£æä¸º undefined çš„å±æ€§ä¸Šã€‚ æ¥æºå¯¹è±¡ä»å·¦åˆ°å³åº”ç”¨ã€‚ ä¸€æ—¦è®¾ç½®äº†ç›¸åŒå±æ€§çš„å€¼ï¼Œåç»­çš„å°†è¢«å¿½ç•¥æ‰ã€‚
-     * @param  object (Object): ç›®æ ‡å¯¹è±¡ã€‚
-     * @param  [sources] (...Object): æ¥æºå¯¹è±¡ã€‚
-     * @return (Object): è¿”å› objectã€‚
+     * ·ÖÅäÀ´Ô´¶ÔÏóµÄ¿ÉÃ¶¾ÙÊôĞÔµ½Ä¿±ê¶ÔÏóËùÓĞ½âÎöÎª undefined µÄÊôĞÔÉÏ¡£ À´Ô´¶ÔÏó´Ó×óµ½ÓÒÓ¦ÓÃ¡£ Ò»µ©ÉèÖÃÁËÏàÍ¬ÊôĞÔµÄÖµ£¬ºóĞøµÄ½«±»ºöÂÔµô¡£
+     * @param  object (Object): Ä¿±ê¶ÔÏó¡£
+     * @param  [sources] (...Object): À´Ô´¶ÔÏó¡£
+     * @return (Object): ·µ»Ø object¡£
      */
     defaults: function(obj) {
         for (var i = 1; i < arguments.length; i++) {
@@ -4337,10 +4337,10 @@ TianXiaoBo = {
         return obj
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.defaultsï¼Œé™¤äº†å®ƒä¼šé€’å½’åˆ†é…é»˜è®¤å±æ€§ã€‚
-     * @param  object (Object): ç›®æ ‡å¯¹è±¡ã€‚
-     * @param  [sources] (...Object): æ¥æºå¯¹è±¡ã€‚
-     * @return (Object): è¿”å› objectã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.defaults£¬³ıÁËËü»áµİ¹é·ÖÅäÄ¬ÈÏÊôĞÔ¡£
+     * @param  object (Object): Ä¿±ê¶ÔÏó¡£
+     * @param  [sources] (...Object): À´Ô´¶ÔÏó¡£
+     * @return (Object): ·µ»Ø object¡£
      */
     defaultsDeep: function(obj) {
         for (var i = 1; i < arguments.length; i++) {
@@ -4359,10 +4359,10 @@ TianXiaoBo = {
         return obj
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.find ã€‚ é™¤äº†å®ƒè¿”å›æœ€å…ˆè¢« predicate åˆ¤æ–­ä¸ºçœŸå€¼çš„å…ƒç´  keyï¼Œè€Œä¸æ˜¯å…ƒç´ æœ¬èº«ã€‚
-     * @param  object (Object): éœ€è¦æ£€ç´¢çš„å¯¹è±¡ã€‚
-     * @param  [predicate=_.identity] (Function): æ¯æ¬¡è¿­ä»£æ—¶è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (*): è¿”å›åŒ¹é…çš„ keyï¼Œå¦åˆ™è¿”å› undefinedã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.find ¡£ ³ıÁËËü·µ»Ø×îÏÈ±» predicate ÅĞ¶ÏÎªÕæÖµµÄÔªËØ key£¬¶ø²»ÊÇÔªËØ±¾Éí¡£
+     * @param  object (Object): ĞèÒª¼ìË÷µÄ¶ÔÏó¡£
+     * @param  [predicate=_.identity] (Function): Ã¿´Îµü´úÊ±µ÷ÓÃµÄº¯Êı¡£
+     * @return (*): ·µ»ØÆ¥ÅäµÄ key£¬·ñÔò·µ»Ø undefined¡£
      */
     findKey: function(colle, pred) {
         if (this.isObject(pred)) {
@@ -4384,10 +4384,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼_.findKeyã€‚ ä¸è¿‡å®ƒæ˜¯åæ–¹å‘å¼€å§‹éå†çš„ã€‚
-     * @param  object (Object): éœ€è¦æ£€ç´¢çš„å¯¹è±¡ã€‚
-     * @param  [predicate=_.identity] (Function): æ¯æ¬¡è¿­ä»£æ—¶è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (*): è¿”å›åŒ¹é…çš„ keyï¼Œå¦åˆ™è¿”å› undefined.
+     * Õâ¸ö·½·¨ÀàËÆ_.findKey¡£ ²»¹ıËüÊÇ·´·½Ïò¿ªÊ¼±éÀúµÄ¡£
+     * @param  object (Object): ĞèÒª¼ìË÷µÄ¶ÔÏó¡£
+     * @param  [predicate=_.identity] (Function): Ã¿´Îµü´úÊ±µ÷ÓÃµÄº¯Êı¡£
+     * @return (*): ·µ»ØÆ¥ÅäµÄ key£¬·ñÔò·µ»Ø undefined.
      */
     findLastKey: function(colle, pred) {
         if (this.isObject(pred)) {
@@ -4410,10 +4410,10 @@ TianXiaoBo = {
         }
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.forInã€‚ é™¤äº†å®ƒæ˜¯åæ–¹å‘å¼€å§‹éå†objectçš„ã€‚
-     * @param  object (Object): è¦éå†çš„å¯¹è±¡ã€‚
-     * @param  [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£æ—¶è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (Object): è¿”å› objectã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.forIn¡£ ³ıÁËËüÊÇ·´·½Ïò¿ªÊ¼±éÀúobjectµÄ¡£
+     * @param  object (Object): Òª±éÀúµÄ¶ÔÏó¡£
+     * @param  [iteratee=_.identity] (Function): Ã¿´Îµü´úÊ±µ÷ÓÃµÄº¯Êı¡£
+     * @return (Object): ·µ»Ø object¡£
      */
     forInRight: function(obj, fn) {
         var keys = []
@@ -4430,10 +4430,10 @@ TianXiaoBo = {
         return obj
     },
     /**
-     * è¿™ä¸ªæ–¹æ³•ç±»ä¼¼ _.forOwnã€‚ é™¤äº†å®ƒæ˜¯åæ–¹å‘å¼€å§‹éå†objectçš„ã€‚
-     * @param  object (Object): è¦éå†çš„å¯¹è±¡ã€‚
-     * @param  [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£æ—¶è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return (Object): è¿”å› objectã€‚
+     * Õâ¸ö·½·¨ÀàËÆ _.forOwn¡£ ³ıÁËËüÊÇ·´·½Ïò¿ªÊ¼±éÀúobjectµÄ¡£
+     * @param  object (Object): Òª±éÀúµÄ¶ÔÏó¡£
+     * @param  [iteratee=_.identity] (Function): Ã¿´Îµü´úÊ±µ÷ÓÃµÄº¯Êı¡£
+     * @return (Object): ·µ»Ø object¡£
      */
     forOwnRight: function(obj, iter) {
         var keys = Object.keys(obj)
@@ -4445,10 +4445,10 @@ TianXiaoBo = {
         return obj
     },
     /**
-     * è°ƒç”¨ iteratee n æ¬¡ï¼Œæ¯æ¬¡è°ƒç”¨è¿”å›çš„ç»“æœå­˜å…¥åˆ°æ•°ç»„ä¸­ã€‚ iteratee è°ƒç”¨å…¥1ä¸ªå‚æ•°ï¼š (index)ã€‚
-     * @param  n (number): è°ƒç”¨ iteratee çš„æ¬¡æ•°ã€‚
-     * @param  [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
-     * @return [iteratee=_.identity] (Function): æ¯æ¬¡è¿­ä»£è°ƒç”¨çš„å‡½æ•°ã€‚
+     * µ÷ÓÃ iteratee n ´Î£¬Ã¿´Îµ÷ÓÃ·µ»ØµÄ½á¹û´æÈëµ½Êı×éÖĞ¡£ iteratee µ÷ÓÃÈë1¸ö²ÎÊı£º (index)¡£
+     * @param  n (number): µ÷ÓÃ iteratee µÄ´ÎÊı¡£
+     * @param  [iteratee=_.identity] (Function): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
+     * @return [iteratee=_.identity] (Function): Ã¿´Îµü´úµ÷ÓÃµÄº¯Êı¡£
      */
     times: function(n, iter) {
         var result = []
@@ -4458,9 +4458,9 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªè¿”å› value çš„å‡½æ•°ã€‚
-     * @param  value (*): è¦æ–°å‡½æ•°è¿”å›çš„å€¼ã€‚
-     * @return (Function): è¿”å›æ–°çš„å¸¸é‡å‡½æ•°ã€‚
+     * ´´½¨Ò»¸ö·µ»Ø value µÄº¯Êı¡£
+     * @param  value (*): ÒªĞÂº¯Êı·µ»ØµÄÖµ¡£
+     * @return (Function): ·µ»ØĞÂµÄ³£Á¿º¯Êı¡£
      */
     constant: function(value) {
         return function() {
@@ -4468,9 +4468,9 @@ TianXiaoBo = {
         }
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªå‡½æ•°å±æ€§åç§°çš„æ•°ç»„ï¼Œå‡½æ•°å±æ€§åç§°æ¥è‡ªobjectå¯¹è±¡è‡ªèº«å¯æšä¸¾å±æ€§ã€‚
-     * @param  object (Object): è¦æ£€æŸ¥çš„å¯¹è±¡ã€‚
-     * @return (Array): è¿”å›å‡½æ•°åã€‚
+     * ´´½¨Ò»¸öº¯ÊıÊôĞÔÃû³ÆµÄÊı×é£¬º¯ÊıÊôĞÔÃû³ÆÀ´×Ôobject¶ÔÏó×ÔÉí¿ÉÃ¶¾ÙÊôĞÔ¡£
+     * @param  object (Object): Òª¼ì²éµÄ¶ÔÏó¡£
+     * @return (Array): ·µ»Øº¯ÊıÃû¡£
      */
     functions: function(obj) {
         return Object.keys(obj)
@@ -4483,9 +4483,9 @@ TianXiaoBo = {
         return result
     },
     /**
-     * åˆ›å»ºä¸€ä¸ªå‡½æ•°å±æ€§åç§°çš„æ•°ç»„ï¼Œå‡½æ•°å±æ€§åç§°æ¥è‡ªobjectå¯¹è±¡è‡ªèº«å’Œç»§æ‰¿çš„å¯æšä¸¾å±æ€§ã€‚
-     * @param  object (Object): è¦æ£€æŸ¥çš„å¯¹è±¡ã€‚
-     * @return (Array): è¿”å›å‡½æ•°åã€‚
+     * ´´½¨Ò»¸öº¯ÊıÊôĞÔÃû³ÆµÄÊı×é£¬º¯ÊıÊôĞÔÃû³ÆÀ´×Ôobject¶ÔÏó×ÔÉíºÍ¼Ì³ĞµÄ¿ÉÃ¶¾ÙÊôĞÔ¡£
+     * @param  object (Object): Òª¼ì²éµÄ¶ÔÏó¡£
+     * @return (Array): ·µ»Øº¯ÊıÃû¡£
      */
     functionsIn: function(obj) {
         var result = []
@@ -4493,6 +4493,119 @@ TianXiaoBo = {
             result.push(keys)
         }
         return result
+    },
+    /**
+     * ¸ù¾İ object¶ÔÏóµÄpathÂ·¾¶»ñÈ¡Öµ¡£ Èç¹û½âÎö value ÊÇ undefined »áÒÔ defaultValue È¡´ú¡£
+     * @param  object (Object): Òª¼ìË÷µÄ¶ÔÏó¡£
+     * @param  path (Array|string): Òª»ñÈ¡ÊôĞÔµÄÂ·¾¶¡£
+     * @param  [defaultValue] (*): Èç¹û½âÎöÖµÊÇ undefined £¬ÕâÖµ»á±»·µ»Ø¡£
+     * @return (*): ·µ»Ø½âÎöµÄÖµ¡£
+     */
+    get: function(obj, path, defaults) {
+        var temp = [],
+            start = 0,
+            end = 1,
+            result
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        if (obj.hasOwnProperty(temp[0])) {
+            result = obj[temp[0]]
+        }
+        for (var i = 1; i < temp.length; i++) {
+            if (temp[i] in result) {
+                result = result[temp[i]]
+            } else {
+                return defaults
+            }
+        }
+        if (result === undefined) {
+            return defaults
+        }
+        return result
+    },
+    /**
+     * ´´½¨Ò»¸ö¼Ì³Ğ prototype µÄ¶ÔÏó¡£ Èç¹ûÌá¹©ÁË prototype£¬ËüµÄ¿ÉÃ¶¾ÙÊôĞÔ»á±»·ÖÅäµ½´´½¨µÄ¶ÔÏóÉÏ¡£
+     * @param  prototype (Object): Òª¼Ì³ĞµÄ¶ÔÏó¡£
+     * @param  [properties] (Object): ´ı·ÖÅäµÄÊôĞÔ¡£
+     * @return (Object): ·µ»ØĞÂ¶ÔÏó¡£
+     */
+    create: function(proto, prop) {
+        var result = {}
+        Object.setPrototypeOf(result, proto)
+        if (prop) {
+            for (var key in prop) {
+                result[key] = prop[key]
+            }
+        }
+        return result
+    },
+    /**
+     * ¼ì²é path ÊÇ·ñÊÇobject¶ÔÏóµÄÖ±½ÓÊôĞÔ¡£
+     * @param  object (Object): Òª¼ìË÷µÄ¶ÔÏó¡£
+     * @param  path (Array|string): Òª¼ì²éµÄÂ·¾¶path¡£
+     * @return (boolean): Èç¹ûpath´æÔÚ£¬ÄÇÃ´·µ»Ø true £¬·ñÔò·µ»Ø false¡£
+     */
+    has: function(obj, path) {
+        if (this.get(obj, path, 'undefined') === 'undefined') {
+            return false
+        }
+        return true
+    },
+    /**
+     * ¼ì²é path ÊÇ·ñÊÇobject¶ÔÏóµÄÖ±½Ó»ò¼Ì³ĞÊôĞÔ¡£
+     * @param  object (Object): Òª¼ìË÷µÄ¶ÔÏó¡£
+     * @param  path (Array|string): Òª¼ì²éµÄÂ·¾¶path¡£
+     * @return (boolean): Èç¹ûpath´æÔÚ£¬ÄÇÃ´·µ»Ø true £¬·ñÔò·µ»Ø false¡£
+     */
+    hasIn: function(obj, path) {
+        //debugger
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        return theIn(obj, temp, 0)
+
+        function theIn(obj, arr, index) {
+            if (index >= arr.length) {
+                return true
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1)
+            } else {
+                return false
+            }
+        }
     },
 
 

@@ -4342,6 +4342,95 @@ _ = {
         }
         return result
     },
+    get: function(obj, path, defaults) {
+        var temp = [],
+            start = 0,
+            end = 1,
+            result
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        if (obj.hasOwnProperty(temp[0])) {
+            result = obj[temp[0]]
+        }
+        for (var i = 1; i < temp.length; i++) {
+            if (temp[i] in result) {
+                result = result[temp[i]]
+            } else {
+                return defaults
+            }
+        }
+        if (result === undefined) {
+            return defaults
+        }
+        return result
+    },
+    create: function(proto, prop) {
+        var result = {}
+        Object.setPrototypeOf(result, proto)
+        if (prop) {
+            for (var key in prop) {
+                result[key] = prop[key]
+            }
+        }
+        return result
+    },
+    has: function(obj, path) {
+        if (this.get(obj, path, 'undefined') === 'undefined') {
+            return false
+        }
+        return true
+    },
+    hasIn: function(obj, path) {
+        //debugger
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        return theIn(obj, temp, 0)
+
+        function theIn(obj, arr, index) {
+            if (index >= arr.length) {
+                return true
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1)
+            } else {
+                return false
+            }
+        }
+
+    },
 
 
 
