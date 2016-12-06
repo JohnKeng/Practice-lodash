@@ -4431,6 +4431,26 @@ _ = {
         }
 
     },
+    invertBy: function(obj, iter) {
+        var result = {},
+            theKey
+        if (iter === undefined) {
+            var fn = function(obj) {
+                return obj
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (keys in obj) {
+            theKey = fn(obj[keys])
+            if (!(theKey in result)) {
+                result[theKey] = []
+            }
+            result[theKey].push(keys)
+        }
+        return result
+    },
 
 
 

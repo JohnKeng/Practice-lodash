@@ -4607,6 +4607,32 @@ TianXiaoBo = {
             }
         }
     },
+    /**
+     * 这个方法类似 _.invert，除了倒置对象 是 collection（集合）中的每个元素经过 iteratee（迭代函数） 处理后返回的结果。每个反转键相应反转的值是一个负责生成反转值key的数组。
+     * @param  object (Object): 要键值倒置对象。
+     * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
+     * @return (Object): 返回新的键值倒置后的对象。
+     */
+    invertBy: function(obj, iter) {
+        var result = {},
+            theKey
+        if (iter === undefined) {
+            var fn = function(obj) {
+                return obj
+            }
+        }
+        if (this.isFunction(iter)) {
+            var fn = iter
+        }
+        for (keys in obj) {
+            theKey = fn(obj[keys])
+            if (!(theKey in result)) {
+                result[theKey] = []
+            }
+            result[theKey].push(keys)
+        }
+        return result
+    },
 
 
 
