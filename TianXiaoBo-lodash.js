@@ -4763,6 +4763,178 @@ TianXiaoBo = {
         }
         return result
     },
+    /**
+     * 这个方法类似 _.get， 除了如果解析到的值是一个函数的话，就绑定 this 到这个函数并返回执行后的结果。
+     * @param  object (Object): 要检索的对象。
+     * @param  path (Array|string): 要解析的属性路径。
+     * @param  [defaultValue] (*): 如果值解析为 undefined，返回这个值。
+     * @return (*): 返回解析后的值。
+     */
+    result: function(obj, path, defaults) {
+        var temp = [],
+            start = 0,
+            end = 1,
+            result
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        if (obj.hasOwnProperty(temp[0])) {
+            result = obj[temp[0]]
+        }
+        for (var i = 1; i < temp.length; i++) {
+            if (temp[i] in result) {
+                result = result[temp[i]]
+            } else {
+                if (typeof defaults === 'function') {
+                    return defaults()
+                }
+                return defaults
+            }
+        }
+        if (result === undefined) {
+            if (typeof defaults === 'function') {
+                return defaults()
+            }
+            return defaults
+        }
+        if (typeof result === 'function') {
+            var self = this
+            return result.call(self)
+        }
+        return result
+    },
+    /**
+     * 设置 object对象中对应 path 属性路径上的值，如果path不存在，则创建。 缺少的索引属性会创建为数组，而缺少的属性会创建为对象。 使用 _.setWith 定制path创建。
+     * @param object (Object): 要修改的对象。
+     * @param path (Array|string): 要设置的对象路径。
+     * @param value (*): 要设置的值。
+     * @return (Object): 返回 object。
+     */
+    set: function(obj, path, value) {
+        debugger
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        theIn(obj, temp, 0, value)
+        return obj
+
+        function theIn(obj, arr, index, value) {
+            if (index >= arr.length - 1) {
+                obj[arr[index]] = value
+                return obj
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1, value)
+            } else if (arr[index + 1] === '0') {
+                obj[arr[index]] = []
+                return theIn(obj[arr[index]], arr, index + 1, value)
+            } else {
+                obj[arr[index]] = {}
+                return theIn(obj[arr[index]], arr, index + 1, value)
+            }
+        }
+    },
+    /**
+     * 这个方法类似_.set，除了它接受一个 customizer，调用生成对象的 path。 如果 customizer 返回 undefined 将会有它的处理方法代替
+     * @param object (Object): 要修改的对象
+     * @param path (Array|string): 要设置的对象路径。
+     * @param value (*): 要设置的值。
+     * @return (Object): 返回 object。
+     */
+    setWith: function(obj, path, value, cust) {
+        debugger
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[start] === '[') {
+                    start++
+                    end++
+                }
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        theIn(obj, temp, 0, value)
+        return obj
+
+        function theIn(obj, arr, index, value) {
+            if (index >= arr.length - 1) {
+                obj[arr[index]] = value
+                return obj
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1, value)
+            } else {
+                obj[arr[index]] = cust()
+                return theIn(obj[arr[index]], arr, index + 1, value)
+            }
+        }
+    },
+    /**
+     * 创建一个object对象自身可枚举属性的键值对数组。这个数组可以通过_.fromPairs撤回。如果object 是 map 或 set，返回其条目。
+     * @param  object (Object): 要检索的对象。
+     * @return (Array): 返回键值对的数组。
+     */
+    toPairs: function(obj) {
+        if (this.isMap(obj) || this.isSet(obj)) {
+            return obj
+        }
+        var result = [],
+            temp = []
+        for (var key in obj) {
+            temp = []
+            if (obj.hasOwnProperty(key)) {
+                temp.push(key)
+                temp.push(obj[key])
+                result.push(temp)
+            }
+        }
+        return result
+    },
 
 
 

@@ -4585,6 +4585,152 @@ _ = {
         }
         return result
     },
+    result: function(obj, path, defaults) {
+        var temp = [],
+            start = 0,
+            end = 1,
+            result
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        if (obj.hasOwnProperty(temp[0])) {
+            result = obj[temp[0]]
+        }
+        for (var i = 1; i < temp.length; i++) {
+            if (temp[i] in result) {
+                result = result[temp[i]]
+            } else {
+                if (typeof defaults === 'function') {
+                    return defaults()
+                }
+                return defaults
+            }
+        }
+        if (result === undefined) {
+            if (typeof defaults === 'function') {
+                return defaults()
+            }
+            return defaults
+        }
+        if (typeof result === 'function') {
+            var self = this
+            return result.call(self)
+        }
+        return result
+    },
+    set: function(obj, path, value) {
+        debugger
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        theIn(obj, temp, 0, value)
+        return obj
+
+        function theIn(obj, arr, index, value) {
+            if (index >= arr.length - 1) {
+                obj[arr[index]] = value
+                return obj
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1, value)
+            } else if (arr[index + 1] === '0') {
+                obj[arr[index]] = []
+                return theIn(obj[arr[index]], arr, index + 1, value)
+            } else {
+                obj[arr[index]] = {}
+                return theIn(obj[arr[index]], arr, index + 1, value)
+            }
+        }
+    },
+    setWith: function(obj, path, value, cust) {
+        debugger
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[start] === '[') {
+                    start++
+                    end++
+                }
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        theIn(obj, temp, 0, value)
+        return obj
+
+        function theIn(obj, arr, index, value) {
+            if (index >= arr.length - 1) {
+                obj[arr[index]] = value
+                return obj
+            }
+            if (arr[index] in obj) {
+                return theIn(obj[arr[index]], arr, index + 1, value)
+            } else {
+                obj[arr[index]] = cust()
+                return theIn(obj[arr[index]], arr, index + 1, value)
+            }
+        }
+    },
+    toPairs: function(obj) {
+        if (this.isMap(obj) || this.isSet(obj)) {
+            return obj
+        }
+        var result = [],
+            temp = []
+        for (var key in obj) {
+            temp = []
+            if (obj.hasOwnProperty(key)) {
+                temp.push(key)
+                temp.push(obj[key])
+                result.push(temp)
+            }
+        }
+        return result
+    }
 
 
 
