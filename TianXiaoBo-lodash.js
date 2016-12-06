@@ -2122,19 +2122,6 @@ TianXiaoBo = {
         return collection
     },
     /**
-     * 使用 iteratee 遍历对象的自身和继承的可枚举属性。 iteratee 会传入3个参数：(value, key, object)。 如果返回 false，iteratee 会提前退出遍历。
-     * @param  object (Object): 要遍历的对象。
-     * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
-     * @return (Object): 返回 object。
-     */
-    forIn: function(object, iteratee) {
-        if (typeof object == 'object') {
-            this.forEach(object, iteratee)
-        } else {
-            return object
-        }
-    },
-    /**
      * 创建一个调用func的函数，通过this绑定和创建函数的参数调用func，调用次数不超过 n 次。 之后再调用这个函数，将返回一次最后调用func的结果。
      * @param  n (number): 超过多少次不再调用func（愚人码头注：限制调用func 的次数）。
      * @param  func (Function): 限制执行的函数。
@@ -4392,6 +4379,32 @@ TianXiaoBo = {
         for (var key in colle) {
             if (fn(colle[key])) {
                 return key
+            }
+        }
+    },
+    /**
+     * 这个方法类似_.findKey。 不过它是反方向开始遍历的。
+     * @param  object (Object): 需要检索的对象。
+     * @param  [predicate=_.identity] (Function): 每次迭代时调用的函数。
+     * @return (*): 返回匹配的 key，否则返回 undefined.
+     */
+    findLastKey: function(colle, pred) {
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        var keys = Object.keys(colle)
+        for (var i = keys.length - 1; i >= 0; i--) {
+            if (fn(colle[keys[i]])) {
+                return keys[i]
             }
         }
     },

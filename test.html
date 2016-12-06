@@ -1556,12 +1556,8 @@ _ = {
      * // => Logs 'a', 'b', then 'c' (无法保证遍历的顺序)。
      */
     forIn: function(obj, fn) {
-        for (keys in obj) {
-            if (obj[keys]) {
-                fn(obj[keys], keys, obj)
-            } else {
-                break
-            }
+        for (var keys in obj) {
+            fn(obj[keys], keys, obj)
         }
         return obj
     },
@@ -2121,19 +2117,6 @@ _ = {
             }
         }
         return collection
-    },
-    /**
-     * 使用 iteratee 遍历对象的自身和继承的可枚举属性。 iteratee 会传入3个参数：(value, key, object)。 如果返回 false，iteratee 会提前退出遍历。
-     * @param  object (Object): 要遍历的对象。
-     * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
-     * @return (Object): 返回 object。
-     */
-    forIn: function(object, iteratee) {
-        if (typeof object == 'object') {
-            this.forEach(object, iteratee)
-        } else {
-            return object
-        }
     },
     /**
      * 创建一个调用func的函数，通过this绑定和创建函数的参数调用func，调用次数不超过 n 次。 之后再调用这个函数，将返回一次最后调用func的结果。
@@ -4302,7 +4285,6 @@ _ = {
             var fn = pred
         }
         var keys = Object.keys(colle)
-            //return keys
         for (var i = keys.length - 1; i >= 0; i--) {
             if (fn(colle[keys[i]])) {
                 return keys[i]
