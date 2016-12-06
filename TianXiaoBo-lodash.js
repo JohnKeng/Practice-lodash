@@ -4329,7 +4329,73 @@ TianXiaoBo = {
             num = float ? num : Math.round(num)
         } while (num < low || upp <= num)
         return num
-    }
+    },
+    /**
+     * 分配来源对象的可枚举属性到目标对象所有解析为 undefined 的属性上。 来源对象从左到右应用。 一旦设置了相同属性的值，后续的将被忽略掉。
+     * @param  object (Object): 目标对象。
+     * @param  [sources] (...Object): 来源对象。
+     * @return (Object): 返回 object。
+     */
+    defaults: function(obj) {
+        for (var i = 1; i < arguments.length; i++) {
+            for (var key in arguments[i]) {
+                if (key in obj) {
+                    continue
+                } else {
+                    obj[key] = arguments[i][key]
+                }
+            }
+        }
+        return obj
+    },
+    /**
+     * 这个方法类似 _.defaults，除了它会递归分配默认属性。
+     * @param  object (Object): 目标对象。
+     * @param  [sources] (...Object): 来源对象。
+     * @return (Object): 返回 object。
+     */
+    defaultsDeep: function(obj) {
+        for (var i = 1; i < arguments.length; i++) {
+            for (var key in arguments[i]) {
+                if (key in obj) {
+                    if (typeof obj[key] === 'object') {
+                        this.defaults(obj[key], arguments[i][key])
+                    } else {
+                        continue
+                    }
+                } else {
+                    obj[key] = arguments[i][key]
+                }
+            }
+        }
+        return obj
+    },
+    /**
+     * 这个方法类似 _.find 。 除了它返回最先被 predicate 判断为真值的元素 key，而不是元素本身。
+     * @param  object (Object): 需要检索的对象。
+     * @param  [predicate=_.identity] (Function): 每次迭代时调用的函数。
+     * @return (*): 返回匹配的 key，否则返回 undefined。
+     */
+    findKey: function(colle, pred) {
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        for (var key in colle) {
+            if (fn(colle[key])) {
+                return key
+            }
+        }
+    },
+
 
 
 

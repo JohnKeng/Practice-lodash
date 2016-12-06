@@ -1812,7 +1812,7 @@ _ = {
      */
     matchesProperty: function(path, value) {
         return function(obj) {
-            if (TianXiaoBo.isEqual(eval('obj.' + path), value)) {
+            if (_.isEqual(eval('obj.' + path), value)) {
                 return true
             } else {
                 return false
@@ -4259,7 +4259,57 @@ _ = {
             num = float ? num : Math.round(num)
         } while (num < low || upp <= num)
         return num
-    }
+    },
+    defaults: function(obj) {
+        for (var i = 1; i < arguments.length; i++) {
+            for (var key in arguments[i]) {
+                if (key in obj) {
+                    continue
+                } else {
+                    obj[key] = arguments[i][key]
+                }
+            }
+        }
+        return obj
+    },
+    defaultsDeep: function(obj) {
+        for (var i = 1; i < arguments.length; i++) {
+            for (var key in arguments[i]) {
+                if (key in obj) {
+                    if (typeof obj[key] === 'object') {
+                        this.defaults(obj[key], arguments[i][key])
+                    } else {
+                        continue
+                    }
+                } else {
+                    obj[key] = arguments[i][key]
+                }
+            }
+        }
+        return obj
+    },
+    findLastKey: function(colle, pred) {
+        if (this.isObject(pred)) {
+            var fn = this.matches(pred)
+        }
+        if (this.isArray(pred)) {
+            var fn = this.matchesProperty(...pred)
+        }
+        if (this.isString(pred)) {
+            var fn = this.property(pred)
+        }
+        if (this.isFunction(pred)) {
+            var fn = pred
+        }
+        var keys = Object.keys(colle)
+            //return keys
+        for (var i = keys.length - 1; i >= 0; i--) {
+            if (fn(colle[keys[i]])) {
+                return keys[i]
+            }
+        }
+    },
+
 
 
 
