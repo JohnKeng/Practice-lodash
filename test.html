@@ -1535,14 +1535,6 @@ _ = {
      * // => ['0', '1']
      * activate-power-mode
      */
-    keys: function(obj) {
-
-        var result = []
-        for (key in obj) {
-            result.push(key)
-        }
-        return result
-    },
     /**
      * 使用 iteratee 遍历对象的自身和继承的可枚举属性。 iteratee 会传入3个参数：(value, key, object)。 如果返回 false，iteratee 会提前退出遍历。
      * 参数
@@ -1690,28 +1682,7 @@ _ = {
      * merge(object, other);
      * // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
      */
-    merge: function(obj) {
-        debugger
-        for (var i = 1; i < arguments.length; i++) {
-            for (keys in arguments[i]) { //arguments[1] == other
-                if (!obj[keys]) { // obj[a]
-                    obj[keys] = arguments[i][keys]
-                } else {
-                    for (var j = 0; j < arguments[i][keys].length; j++) {
-                        if (typeof arguments[i][keys][j] == "object" && arguments[i][keys][j] !== null && !Array.isArray(arguments[i][keys][j] !== null)) {
-                            for (key in arguments[i][keys][j]) {
-                                obj[keys][j][key] = arguments[i][keys][j][key]
-                            }
-                        } else {
-                            obj[keys][j] = arguments[i][keys][j]
-                        }
-                    }
-                }
-            }
 
-        }
-        return obj
-    },
     /**
      * 创建一个调用func的函数，通过this绑定和创建函数的参数调用func，调用次数不超过 n 次。 之后再调用这个函数，将返回一次最后调用func的结果。
      * @param  n (number): 超过多少次不再调用func
@@ -4450,6 +4421,93 @@ _ = {
             result[theKey].push(keys)
         }
         return result
+    },
+    invoke: function(obj, path, ...args) {
+        //debugger
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        result = obj[temp[0]]
+        for (var i = 1; i < temp.length - 1; i++) {
+            result = result[temp[i]]
+        }
+        return result[temp[temp.length - 1]](...args)
+
+    },
+    keysIn: function(obj) {
+        var result = []
+        for (key in obj) {
+            result.push(key)
+        }
+        return result
+    },
+    keys: function(obj) {
+        var result = []
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                result.push(key)
+            }
+        }
+        return result
+    },
+    mergeWith: function(obj) {
+        if (arguments[arguments.length - 1] === undefined) {
+            var fn = function(objV, objS) {
+                obj[keys][j][key] = arguments[i][keys][j][key]
+            }
+        } else {
+            var fn = arguments[arguments.length - 1]
+        }
+        for (var i = 1; i < arguments.length - 1; i++) {
+            for (keys in arguments[i]) { //arguments[1] == other
+                if (!obj[keys]) { // obj[a]
+                    obj[keys] = arguments[i][keys]
+                } else {
+                    obj[keys] = fn(obj[keys], arguments[i][keys])
+                }
+            }
+
+        }
+        return obj
+    },
+    merge: function(obj) {
+        debugger
+        for (var i = 1; i < arguments.length; i++) {
+            for (keys in arguments[i]) { //arguments[1] == other
+                if (!obj[keys]) { // obj[a]
+                    obj[keys] = arguments[i][keys]
+                } else {
+                    for (var j = 0; j < arguments[i][keys].length; j++) {
+                        if (typeof arguments[i][keys][j] == "object" && arguments[i][keys][j] !== null) {
+                            for (key in arguments[i][keys][j]) {
+                                obj[keys][j][key] = arguments[i][keys][j][key]
+                            }
+                        } else {
+                            obj[keys][j] = arguments[i][keys][j]
+                        }
+                    }
+                }
+            }
+
+        }
+        return obj
     },
 
 

@@ -1535,7 +1535,20 @@ TianXiaoBo = {
      * activate-power-mode
      */
     keys: function(obj) {
-
+        var result = []
+        for (key in obj) {
+            if (obj.hasOwnProperty(key)) {
+                result.push(key)
+            }
+        }
+        return result
+    },
+    /**
+     * 创建一个 object 自身 和 继承的可枚举属性名为数组。
+     * @param  object (Object): 要检索的对象。
+     * @return (Array): 返回包含属性名的数组。
+     */
+    keysIn: function(obj) {
         var result = []
         for (key in obj) {
             result.push(key)
@@ -1690,14 +1703,13 @@ TianXiaoBo = {
      * // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
      */
     merge: function(obj) {
-        debugger
         for (var i = 1; i < arguments.length; i++) {
             for (keys in arguments[i]) { //arguments[1] == other
                 if (!obj[keys]) { // obj[a]
                     obj[keys] = arguments[i][keys]
                 } else {
                     for (var j = 0; j < arguments[i][keys].length; j++) {
-                        if (typeof arguments[i][keys][j] == "object" && arguments[i][keys][j] !== null && !Array.isArray(arguments[i][keys][j] !== null)) {
+                        if (typeof arguments[i][keys][j] == "object" && arguments[i][keys][j] !== null) {
                             for (key in arguments[i][keys][j]) {
                                 obj[keys][j][key] = arguments[i][keys][j][key]
                             }
@@ -1705,6 +1717,33 @@ TianXiaoBo = {
                             obj[keys][j] = arguments[i][keys][j]
                         }
                     }
+                }
+            }
+
+        }
+        return obj
+    },
+    /**
+     * 该方法类似_.merge，除了它接受一个 customizer，调用以产生目标对象和来源对象属性的合并值
+     * @param  object (Object): 目标对象。
+     * @param  [sources] (...Object): 来源对象。
+     * @param  customizer (Function): 这个函数定制合并值。
+     * @return (Object): 返回 object。
+     */
+    mergeWith: function(obj) {
+        if (arguments[arguments.length - 1] === undefined) {
+            var fn = function(objV, objS) {
+                obj[keys][j][key] = arguments[i][keys][j][key]
+            }
+        } else {
+            var fn = arguments[arguments.length - 1]
+        }
+        for (var i = 1; i < arguments.length - 1; i++) {
+            for (keys in arguments[i]) { //arguments[1] == other
+                if (!obj[keys]) { // obj[a]
+                    obj[keys] = arguments[i][keys]
+                } else {
+                    obj[keys] = fn(obj[keys], arguments[i][keys])
                 }
             }
 
@@ -4632,6 +4671,41 @@ TianXiaoBo = {
             result[theKey].push(keys)
         }
         return result
+    },
+    /**
+     * 调用object对象path上的方法。
+     * @param  object (Object): 要检索的对象。
+     * @param  path (Array|string): 用来调用的方法路径。
+     * @param  [args] (...*): 调用的方法的参数。
+     * @return (*): 返回调用方法的结果。
+     */
+    invoke: function(obj, path, ...args) {
+        //debugger
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        result = obj[temp[0]]
+        for (var i = 1; i < temp.length - 1; i++) {
+            result = result[temp[i]]
+        }
+        return result[temp[temp.length - 1]](...args)
     },
 
 
