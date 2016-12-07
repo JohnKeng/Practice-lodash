@@ -1650,7 +1650,9 @@ TianXiaoBo = {
     values: function(obj) {
         var result = []
         for (keys in obj) {
-            result.push(obj[keys])
+            if (obj.hasOwnProperty(keys)) {
+                result.push(obj[keys])
+            }
         }
         return result
     },
@@ -5130,6 +5132,84 @@ TianXiaoBo = {
             }
         }
     },
+    /**
+     * 创建 object 自身和继承的可枚举属性的值为数组
+     * @param  object (Object): 要检索的对象。
+     * @return (Array): 返回对象属性的值的数组。
+     */
+    valuesIn: function(obj) {
+        var result = []
+        for (keys in obj) {
+            result.push(obj[keys])
+        }
+        return result
+    },
+    /**
+     * 转义string中的 "&", "<", ">", '"', "'", 和 "`" 字符为HTML实体字符。
+     * @param  [string=''] (string): 要转义的字符串。
+     * @return (string): 返回转义后的字符串。
+     */
+    escape: function(str) {
+        var result = str.split("").map(function(a) {
+            switch (a) {
+                case '&':
+                    return '&amp;'
+                case '<':
+                    return '&lt;'
+                case '>':
+                    return '&gt;'
+                case '"':
+                    return '&quot;'
+                case "'":
+                    return '&apos'
+                default:
+                    return a
+            }
+        }).
+        reduce((a, b) => a.concat(b))
+        return result
+    },
+    /**
+     * 转义 RegExp 字符串中特殊的字符 "^", "$", "", ".", "*", "+", "?", "(", ")", "[", "]", "{", "}", 和 "|" 。
+     * @param  [string=''] (string): 要转义的字符串。
+     * @return (string): 返回转义后的字符串。
+     */
+    escapeRegExp: function(str) {
+        return str.split("").map(function(a) {
+            switch (a) {
+                case '^':
+                    return '\\^'
+                case '$':
+                    return '\\$'
+                case '.':
+                    return '\\.'
+                case '*':
+                    return '\\*'
+                case '+':
+                    return '\\+'
+                case '?':
+                    return '\\?'
+                case '(':
+                    return '\\('
+                case ')':
+                    return '\\)'
+                case '[':
+                    return '\\['
+                case ']':
+                    return '\\]'
+                case '{':
+                    return '\\{'
+                case '}':
+                    return '\\}'
+                case '|':
+                    return '\\|'
+                default:
+                    return a
+
+            }
+        }).
+        reduce((a, b) => a.concat(b))
+    }
 
 
 

@@ -1620,7 +1620,9 @@ _ = {
     values: function(obj) {
         var result = []
         for (keys in obj) {
-            result.push(obj[keys])
+            if (obj.hasOwnProperty(keys)) {
+                result.push(obj[keys])
+            }
         }
         return result
     },
@@ -4877,6 +4879,69 @@ _ = {
             }
         }
     },
+    valuesIn: function(obj) {
+        var result = []
+        for (keys in obj) {
+            result.push(obj[keys])
+        }
+        return result
+    },
+    escape: function(str) {
+        var result = str.split("").map(function(a) {
+            switch (a) {
+                case '&':
+                    return '&amp;'
+                case '<':
+                    return '&lt;'
+                case '>':
+                    return '&gt;'
+                case '"':
+                    return '&quot;'
+                case "'":
+                    return '&apos'
+                default:
+                    return a
+            }
+        }).
+        reduce((a, b) => a.concat(b))
+        return result
+    },
+    escapeRegExp: function(str) {
+        return str.split("").map(function(a) {
+            switch (a) {
+                case '^':
+                    return '\\^'
+                case '$':
+                    return '\\$'
+                case '.':
+                    return '\\.'
+                case '*':
+                    return '\\*'
+                case '+':
+                    return '\\+'
+                case '?':
+                    return '\\?'
+                case '(':
+                    return '\\('
+                case ')':
+                    return '\\)'
+                case '[':
+                    return '\\['
+                case ']':
+                    return '\\]'
+                case '{':
+                    return '\\{'
+                case '}':
+                    return '\\}'
+                case '|':
+                    return '\\|'
+                default:
+                    return a
+
+            }
+        }).
+        reduce((a, b) => a.concat(b))
+    }
 
 
 
