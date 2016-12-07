@@ -5209,7 +5209,31 @@ TianXiaoBo = {
             }
         }).
         reduce((a, b) => a.concat(b))
-    }
+    },
+    /**
+     * 转换string字符串为指定基数的整数。
+     * @param  string (string): 要转换的字符串。
+     * @param  [radix=10] (number):转换基数。
+     * @return (number): 返回转换后的整数。
+     */
+    parseInt: function(str, radix) {
+        radix = radix ? radix : 10
+        var temp = str.split("")
+        var result = []
+        if (temp[0] !== '-' && typeof(+temp[0]) !== 'number') {
+            return NaN
+        } else {
+            result.push(temp[0])
+        }
+        for (var i = 1; i < temp.length; i++) {
+            if (typeof(+temp[i]) === 'number') {
+                result.push(temp[i])
+            } else {
+                break
+            }
+        }
+        return +result.join("")
+    },
 
 
 

@@ -4941,6 +4941,25 @@ _ = {
             }
         }).
         reduce((a, b) => a.concat(b))
+    },
+    parseInt: function(str, radix) {
+        radix = radix ? radix : 10
+        var temp = str.split("")
+        var result = []
+        if (temp[0] !== '-' && typeof(+temp[0]) !== 'number') {
+            return NaN
+        } else {
+            result.push(temp[0])
+        }
+        for (var i = 1; i < temp.length; i++) {
+            if (typeof(+temp[i]) === 'number') {
+                result.push(temp[i])
+            } else {
+                break
+            }
+        }
+        return +result.join("")
+
     }
 
 
