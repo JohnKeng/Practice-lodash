@@ -1362,6 +1362,7 @@ TianXiaoBo = {
      * Р§зг
      **/
     map: function(colle, pred) {
+        //debugger
         var result = []
         if (this.isObject(pred)) {
             var fn = this.matches(pred)
@@ -1376,7 +1377,7 @@ TianXiaoBo = {
             var fn = pred
         }
         for (var key in colle) {
-            result.push(fn(colle[key]))
+            result.push(fn(colle[key], key, colle))
         }
         return result
     },
