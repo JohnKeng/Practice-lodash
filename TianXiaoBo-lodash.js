@@ -5234,6 +5234,108 @@ TianXiaoBo = {
         }
         return +result.join("")
     },
+    /**
+     * 替换string字符串中匹配的pattern为给定的replacement 。
+     * @param  [string=''] (string): 待替换的字符串。
+     * @param  pattern (RegExp|string): 要匹配的内容。
+     * @param  replacement (Function|string): 替换的内容。
+     * @return (string): 返回替换后的字符串
+     */
+    replace: function(str, pattern, replace) {
+        var result = [],
+            start = 0
+        for (var i = 0; i < str.length; i++) {
+            if (str[i] === pattern[0]) {
+                if (str.slice(i, i + pattern.length) === pattern) {
+                    result.push(str.slice(start, i))
+                    result.push(replace)
+                    i = i + pattern.length - 1
+                    start = i + 1
+                }
+            }
+        }
+        result.push(str.slice(start, str.length))
+        result = result.join("")
+        return result
+    },
+    /**
+     * 根据separator 拆分字符串string。
+     * @param  [string=''] (string): 要拆分的字符串。
+     * @param  separator (RegExp|string): 拆分的分隔符。
+     * @param  [limit] (number): 限制结果的数量。
+     * @return (Array): 返回拆分部分的字符串的数组。
+     */
+    split: function(str, separ, limit) {
+        var result = [],
+            start = 0
+        for (var i = 0; i < str.length; i++) {
+            if (str[i] === separ[0]) {
+                if (str.slice(i, i + separ.length) === separ) {
+                    result.push(str.slice(start, i))
+                    i = i + separ.length - 1
+                    start = i + 1
+                }
+            }
+            if (result.length >= limit) {
+                return result
+            }
+        }
+        result.push(str.slice(start, str.length))
+        return result
+    },
+    /**
+     * 转换 string 字符串为 start case.
+     * @param  [string=''] (string): 要转换的字符串。
+     * @return (string): 返回转换后的字符串。
+     */
+    startCase: function(str) {
+        debugger
+        var temp = str.split("")
+        if (('A'.charCodeAt() <= temp[0].charCodeAt() && temp[0].charCodeAt() <= 'Z'.charCodeAt()) || ('a'.charCodeAt() <= temp[0].charCodeAt() && temp[0].charCodeAt() <= 'z'.charCodeAt())) {
+            temp.splice(0, 1, temp[0].toUpperCase())
+        }
+        for (var i = 0; i < temp.length - 1; i++) {
+            if (!(('A'.charCodeAt() <= temp[i].charCodeAt() && temp[i].charCodeAt() <= 'Z'.charCodeAt()) || ('a'.charCodeAt() <= temp[i].charCodeAt() && temp[i].charCodeAt() <= 'z'.charCodeAt())) && (('A'.charCodeAt() <= temp[i + 1].charCodeAt() && temp[i + 1].charCodeAt() <= 'Z'.charCodeAt()) || ('a'.charCodeAt() <= temp[i + 1].charCodeAt() && temp[i + 1].charCodeAt() <= 'z'.charCodeAt()))) {
+                temp.splice(i + 1, 1, temp[i + 1].toUpperCase())
+            }
+            if (((temp[i].charCodeAt() < 'A'.charCodeAt() || 'Z'.charCodeAt() < temp[i].charCodeAt())) && (('A'.charCodeAt() <= temp[i + 1].charCodeAt() && temp[i + 1].charCodeAt() <= 'Z'.charCodeAt()))) {
+                temp.splice(i + 1, 0, ' ')
+                i++
+            }
+        }
+        for (var i = temp.length - 1; i >= 0; i--) {
+            if (!(('A'.charCodeAt() <= temp[i].charCodeAt() && temp[i].charCodeAt() <= 'Z'.charCodeAt()) || ('a'.charCodeAt() <= temp[i].charCodeAt() && temp[i].charCodeAt() <= 'z'.charCodeAt())) && temp[i] !== ' ') {
+                temp.splice(i, 1)
+            }
+        }
+        for (var i = 0; i < temp.length; i++) {
+            if (temp[i] !== ' ') {
+                break
+            } else {
+                temp.splice(i, 1)
+                i--
+            }
+        }
+        var result = temp.join("")
+        return result
+    },
+    /**
+     * 检查字符串string是否以 target 开头。
+     * @param  [string=''] (string): 要检索的字符串。
+     * @param  [target] (string): 要检查的字符串。
+     * @param  [position=0] (number): 检索的位置。
+     * @return (boolean): 如果string以 target，那么返回true，否则返回 false 。
+     */
+    startsWith: function(str, target, pos) {
+        if (pos === undefined) {
+            pos = 0
+        }
+        if (str.indexOf(target) === pos) {
+            return true
+        } else {
+            return false
+        }
+    }
 
 
 
