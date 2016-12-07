@@ -5423,6 +5423,323 @@ TianXiaoBo = {
         var result = temp.join("")
         return result
     },
+    trimStart: function(str, char) {
+        if (char === undefined) {
+            char = ' '
+        }
+        var temp = str.split("")
+        for (var i = 0; i < temp.length; i++) {
+            if (char.indexOf(temp[i]) >= 0) {
+                temp.splice(i, 1)
+                i--
+            } else {
+                break
+            }
+        }
+        var result = temp.join("")
+        return result
+    },
+    /**
+     * 截断string字符串，如果字符串超出了限定的最大值。 被截断的字符串后面会以 omission 代替，omission 默认是 "..."。
+     * @param  [string=''] (string): 要截断的字符串。
+     * @param  [options={}] (Object): 选项对象。
+     * @param  [options.length=30] (number): 允许的最大长度。
+     * @param  [options.omission='...'] (string): 超出后的代替字符。
+     * @param  [options.separator] (RegExp|string): 截断点。
+     * @return (string): Returns the truncated string.
+     */
+    truncate: function(str, options) {
+        if (options === undefined) {
+            options = {}
+            options.length = 30
+            options.omission = '...'
+        }
+        if (!('length' in options)) {
+            options.length = 30
+        }
+        if (!('omission' in options)) {
+            options.omission = '...'
+        }
+        var temp = str.split("")
+        if ('separator' in options) {
+            if (this.isRegExp(options.separator)) {
+                var theReg = new RegExp(options.separator, "g")
+                var tmp = str.match(theReg)
+                var theChar = tmp[tmp.length - 1]
+            } else {
+                var theChar = options.separator
+            }
+            for (var i = str.length - 1; i >= 0; i--) {
+                if (theChar[0] === str[i] && theChar === str.slice(i, theChar.length + i)) {
+                    temp.length = i
+                    break
+                }
+            }
+            temp.push(options.omission)
+
+        }
+        if (temp.length > options.length) {
+            temp.length = options.length - 3
+            temp.push(options.omission)
+
+        }
+
+        var result = temp.join("")
+        return result
+    },
+    /**
+     * _.escape的反向版。 这个方法转换string字符串中的 HTML 实体 &amp;, &lt;, &gt;, &quot;, &#39;, 和 &#96; 为对应的字符。
+     * @param  [string=''] (string): 要转换的字符串。
+     * @return (string): 返回转换后的字符串。
+     */
+    unescape: function(str) {
+        debugger
+        var temp = str.split("")
+        for (var i = 0, j = 0; i < str.length; i++, j++) {
+            if (str[i] === '&') {
+                do {
+                    j++
+                    if (str[j] === ';') {
+                        var theChar = str.slice(i, j + 1)
+                        temp.splice(i, j - i + 1, char(theChar))
+                        i = j
+                        break
+                    }
+                } while (j < str.length)
+            }
+        }
+        var result = temp.join("")
+        return result
+
+        function char(a) {
+            switch (a) {
+                case '&amp;':
+                    return '&'
+                case '&lt;':
+                    return '<'
+                case '&gt;':
+                    return '>'
+                case '&quot;':
+                    return '"'
+                case '&apos':
+                    return "'"
+                default:
+                    return a
+            }
+        }
+    },
+    /**
+     * 转换字符串string为 空格 分隔的大写单词。
+     * @param  [string=''] (string): 要转换的字符串。
+     * @return (string): 返回大写单词。
+     */
+    upperCase: function(str) {
+        return this.startCase(str).toUpperCase()
+    },
+    /**
+     * 转换字符串string的首字母为大写。
+     * @param  [string=''] (string): 要转换的字符串。
+     * @return (string): 返回转换后的字符串。
+     */
+    upperFirst: function(str) {
+        var temp = str.split("")
+        temp[0] = temp[0].toUpperCase()
+        var result = temp.join("")
+        return result
+    },
+    /**
+     * 拆分字符串string中的词为数组 。
+     * @param  [string=''] (string): 要拆分的字符串。
+     * @param  [pattern] (RegExp|string): 匹配模式。
+     * @return (Array): 返回拆分string后的数组。
+     */
+    words: function(str, pattern) {
+        if (pattern === undefined) {
+            var flag = 0,
+                result = []
+            for (var i = 0; i < str.length; i++, flag++) {
+                if (('A'.charCodeAt() <= str[i].charCodeAt() && str[i].charCodeAt() <= 'Z'.charCodeAt()) || ('a'.charCodeAt() <= str[i].charCodeAt() && str[i].charCodeAt() <= 'z'.charCodeAt())) {
+                    do {
+                        flag++
+                        if (flag === str.length || !(('A'.charCodeAt() <= str[flag].charCodeAt() && str[flag].charCodeAt() <= 'Z'.charCodeAt()) || ('a'.charCodeAt() <= str[flag].charCodeAt() && str[flag].charCodeAt() <= 'z'.charCodeAt()))) {
+                            var theChar = str.slice(i, flag)
+                            result.push(theChar)
+                            flag--
+                            i = flag
+                            break
+                        }
+                    } while (flag < str.length)
+                }
+            }
+        } else {
+            return str.match(pattern)
+        }
+        return result
+    },
+    /**
+     * 绑定一个对象的方法到对象本身，覆盖现有的方法。
+     * @param  object (Object): 用来绑定和分配绑定方法的对象。
+     * @param  methodNames (...(string|string[])): 对象绑定方法的名称。
+     * @return (Object): 返回 object.
+     */
+    bindAll: function(obj, method) {
+        var temp = []
+        if (typeof method === 'string') {
+            temp.push(method)
+        } else {
+            temp = method
+        }
+        for (var i = 0; i < temp.length; i++) {
+            obj[temp[i]].bind(obj)
+        }
+    },
+    /**
+     * 创建一个包含从 start 到 end，但不包含 end 本身范围数字的数组。 如果 start 是负数，而 end 或 step 没有指定，那么 step 从 -1 为开始。 如果 end 没有指定，start 设置为 0。 如果 end 小于 start ，会创建一个空数组，除非指定了 step。
+     * @param  [start=0] (number): 开始的范围。
+     * @param  end (number): 结束的范围。
+     * @param  [step=1] (number): 范围的增量 或者 减量。
+     * @return (Array): 返回范围内数字组成的新数组。
+     */
+    range: function(start, end, step) {
+        var result = []
+        if (start < 0 && end === undefined) {
+            step = -1
+        }
+        if (end === undefined) {
+            end = start
+            start = 0
+
+        }
+        if (end < start && step === undefined) {
+            return []
+        }
+        if (step === undefined) {
+            step = 1
+        }
+        var count = 0
+        if (end >= start) {
+            for (var i = start; i < end && count < end - start; i += step) {
+                result.push(i)
+                count++
+            }
+        } else {
+            for (var i = start; i > end && count < start - end; i += step) {
+                result.push(i)
+                count++
+            }
+        }
+        return result
+    },
+    /**
+     * 这个方法类似 _.range ， 除了它是降序生成值的。
+     * @param  [start=0] (number): 开始的范围。
+     * @param  end (number): 结束的范围。
+     * @param  [step=1] (number):范围的增量 或者 减量。
+     * @return (Array): 返回范围内数字组成的新数组。
+     */
+    rangeRight: function(start, end, step) {
+        var result = []
+        if (start < 0 && end === undefined) {
+            step = -1
+        }
+        if (end === undefined) {
+            end = start
+            start = 0
+
+        }
+        if (end < start && step === undefined) {
+            return []
+        }
+        if (step === undefined) {
+            step = 1
+        }
+        var count = 0
+        if (end >= start) {
+            for (var i = start; i < end && count < end - start; i += step) {
+                result.unshift(i)
+                count++
+            }
+        } else {
+            for (var i = start; i > end && count < start - end; i += step) {
+                result.unshift(i)
+                count++
+            }
+        }
+        return result
+    },
+    /**
+     * 将字符串转换为电话拨号盘数字
+     * @param  {[string]} str [需要转换的字符串]
+     * @return {[string]}     [转换后的数字字符串]
+     */
+    dellTo3355: function(str) {
+        return str.split("").map(charToDigit).join("")
+
+        function charToDigit(char) {
+            var lowerChar = char.toLowerCase()
+
+            if (lowerChar <= 'c') {
+                return 2
+            }
+
+            if (lowerChar <= 'f') {
+                return 3
+            }
+
+            if (lowerChar <= 'i') {
+                return 4
+            }
+
+            if (lowerChar <= 'l') {
+                return 5
+            }
+
+            if (lowerChar <= 'o') {
+                return 6
+            }
+
+            if (lowerChar <= 's') {
+                return 7
+            }
+
+            if (lowerChar <= 'v') {
+                return 8
+            }
+
+            if (lowerChar <= 'z') {
+                return 9
+            }
+        }
+    },
+    /**
+     * 判定一个数是不是素数
+     * @param  {[number]}  num [被判定数]
+     * @return {Boolean}     [真假]
+     */
+    isPrime: function(num) {
+        var isIPrime
+        if (num % 2 === 0) {
+            return false
+        }
+        for (var i = 3; i <= Math.sqrt(num); i += 2) {
+            if (num % i === 0) {
+                return false
+            }
+        }
+        return true
+    },
+    /**
+     * [提取一定范围内的所有素数]
+     * @param  {[n]} n [范围下限]
+     * @param  {[m]} m [范围上限]
+     * @return {[array]}   [提取出的素数]
+     */
+    'n - m 之间的素数': function(n, m) {
+
+        return new Array(m - n + 1).fill(0).map(a => n++).filter(isPrime)
+    },
+
+
 
 
 

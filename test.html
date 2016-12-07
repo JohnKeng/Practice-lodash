@@ -26,13 +26,13 @@ _ = {
         return result
     },
     /**
-     * 创建一个新数组并包含原数组中所有的非假值元素。例如 false、null、 0、""、undefined 和 NaN 都是“假值”。
+     * 创建一个新数组并包含原数组中所有的非假值元素。例如 false、null、 0、""、undefined 和 NaN 都是 “假值”。
      * 参数
      * array (Array): 数组参数。
      * 返回值
      * (Array): 返回过滤假值后的数组。
      * 例子
-     * compact([0, 1, false, 2, '', 3]);
+     * compact([0, 1, false, 2,'', 3]);
      * // => [1, 2, 3]
      **/
     compact: function(arr) {
@@ -54,8 +54,8 @@ _ = {
      * 例子
      * difference([1, 2, 3], [4, 2]);
      * // => [1, 3]
-     * difference([1, '2', 3], [4, 2]);
-     * // => [1, "2", 3]
+     * difference([1,'2', 3], [4, 2]);
+     * // => [1,"2", 3]
      **/
     difference: function(arr) {
         var tmp = []
@@ -148,7 +148,7 @@ _ = {
      * (Array): 返回 array 的剩余部分。
      * 例子
      * drop([1, 2, 3]);
-     * // => [2, 3] 默认是1开始的
+     * // => [2, 3] 默认是 1 开始的
      * drop([1, 2, 3], 2);
      * // => [3]
      * drop([1, 2, 3], 5);
@@ -194,7 +194,7 @@ _ = {
         return result
     },
     /**
-     * 获取数组 array的第一个元素
+     * 获取数组 array 的第一个元素
      * 参数
      * array (Array): 需要查询的数组
      * 返回值
@@ -210,7 +210,7 @@ _ = {
         return true
     },
     /**
-     * 获取数组 array的第一个元素
+     * 获取数组 array 的第一个元素
      * 参数
      * array (Array): 需要查询的数组
      * 返回值
@@ -226,11 +226,11 @@ _ = {
         return true
     },
     /**
-     * 去除数组最后一个元素array.
+     * 去除数组最后一个元素 array.
      * 参数
      * array (Array): 需要查询的数组.
      * 返回值
-     * (Array): 返回截取的数组array.
+     * (Array): 返回截取的数组 array.
      * 例子
      * initial([1, 2, 3]);
      * // => [1, 2]
@@ -245,7 +245,7 @@ _ = {
      * 参数
      * array (Array): 查询的数组
      * 返回值
-     * (*): 返回 array的最后一个元素.
+     * (*): 返回 array 的最后一个元素.
      * 例子
      * last([1, 2, 3]);
      * // => 3
@@ -255,7 +255,7 @@ _ = {
         return true
     },
     /**
-     * 获取数组 array第一个元素除外的所有元素.
+     * 获取数组 array 第一个元素除外的所有元素.
      * 参数
      * array (Array): 需要查询的数组
      * 返回值
@@ -274,7 +274,7 @@ _ = {
     /**
      * 可以理解为将嵌套数组的维数减少，flattened（平坦）. 如果 isDeep 值为 true 时，嵌套数组将递归为一维数组, 否则只减少嵌套数组一个级别的维数.
      * 参数
-     * array (Array): 需要flattened（减少维数）的嵌套数组
+     * array (Array): 需要 flattened（减少维数）的嵌套数组
      * [isDeep] (boolean): 是否深递归
      * 返回值
      * (Array): 返回处理后的数组
@@ -320,7 +320,7 @@ _ = {
         }
     },
     /**
-     * 递归地平坦一个嵌套的数组.相当于_.flatten(array, true)
+     * 递归地平坦一个嵌套的数组. 相当于_.flatten(array, true)
      * 参数
      * array (Array): 需要
      * 返回值
@@ -360,7 +360,7 @@ _ = {
         }
     },
     /**
-     * 创建一个剔除所有给定值的新数组，剔除值的时候，使用SameValueZero做相等比较.
+     * 创建一个剔除所有给定值的新数组，剔除值的时候，使用 SameValueZero 做相等比较.
      * 注意: 不像 _.pull, 这个方法会返回一个新数组。
      * 参数
      * array (Array): 要检查的数组。
@@ -386,7 +386,7 @@ _ = {
         return result
     },
     /**
-     * 创建一个按顺序排列的唯一值的数组。所有给定数组的元素值使用SameValueZero做等值比较。（愚人码头注： arrays（数组）的并集，按顺序返回，返回数组的元素是唯一的）
+     * 创建一个按顺序排列的唯一值的数组。所有给定数组的元素值使用 SameValueZero 做等值比较。（愚人码头注： arrays（数组）的并集，按顺序返回，返回数组的元素是唯一的）
      * 参数
      * [arrays] (...Array): 要检查的数组。
      * 返回值
@@ -412,7 +412,7 @@ _ = {
         return result
     },
     /**
-     * 创建唯一值的数组，这个数组包含所有给定数组都包含的元素，使用 SameValueZero进行相等性比较。（愚人码头注：可以理解为给定数组的交集）
+     * 创建唯一值的数组，这个数组包含所有给定数组都包含的元素，使用 SameValueZero 进行相等性比较。（愚人码头注：可以理解为给定数组的交集）
      * 参数
      * [arrays] (...Array): 待检查的数组。
      * 返回值
@@ -443,7 +443,7 @@ _ = {
         return result
     },
     /**
-     * 创建一个新数组，将array与任何数组 或 值连接在一起。
+     * 创建一个新数组，将 array 与任何数组 或 值连接在一起。
      * 参数
      * array (Array): 被连接的数组。
      * [values] (...*): 连接的值。
@@ -476,24 +476,24 @@ _ = {
         return result
     },
     /**
-     * 使用 value 值来填充（替换） array，从start位置开始, 到end位置结束（但不包含end位置）。
+     * 使用 value 值来填充（替换） array，从 start 位置开始, 到 end 位置结束（但不包含 end 位置）。
      * Note: 这个方法会改变 array
      * 参数
      * array (Array): 要填充改变的数组。
      * value (*): 填充给 array 的值。
-     * [start=0] (number): 开始位置（默认0）。
-     * [end=array.length] (number):结束位置（默认array.length）。
+     * [start=0] (number): 开始位置（默认 0）。
+     * [end=array.length] (number): 结束位置（默认 array.length）。
      * 返回值
      * (Array): 返回 array。
      * 例子
      * var array = [1, 2, 3];
-     * fill(array, 'a');
+     * fill(array,'a');
      * console.log(array);
      * // => ['a', 'a', 'a']
      * fill(Array(3), 2);
      * // => [2, 2, 2]
      * fill([4, 6, 8, 10], '*', 1, 3);
-     * // => [4, '*', '*', 10]
+     * // => [4,'*','*', 10]
      **/
     fill: function(arr, n, start, end) {
         if (!start) {
@@ -508,15 +508,15 @@ _ = {
         return arr
     },
     /**
-     * 这个方法返回一个由键值对pairs构成的对象。
+     * 这个方法返回一个由键值对 pairs 构成的对象。
      * Note: 这个方法会改变 array
      * 参数
-     * pairs (Array): 键值对pairs。
+     * pairs (Array): 键值对 pairs。
      * 返回值
      * (Object): 返回一个新对象。
      * 例子
      * fromPairs([['fred', 30], ['barney', 40]]);
-     * // => { 'fred': 30, 'barney': 40 }
+     * // => {'fred': 30, 'barney': 40}
      **/
     fromPairs: function(arr) {
         var result = {}
@@ -527,7 +527,7 @@ _ = {
         return result
     },
     /**
-     * 移除数组array中所有和给定值相等的元素，使用 SameValueZero 进行全等比较。
+     * 移除数组 array 中所有和给定值相等的元素，使用 SameValueZero 进行全等比较。
      * 注意： 和 _.without 方法不同，这个方法会改变数组。使用 _.remove 从一个数组中移除元素。
      * 参数
      * array (Array): 要修改的数组。
@@ -580,8 +580,8 @@ _ = {
         return arr
     },
     /**
-     * 根据索引 indexes，移除array中对应的元素，并返回被移除元素的数组。
-     * Note: 和 _.at不同, 这个方法会改变数组 array。
+     * 根据索引 indexes，移除 array 中对应的元素，并返回被移除元素的数组。
+     * Note: 和 _.at 不同, 这个方法会改变数组 array。
      * 参数
      * array (Array): 要修改的数组。
      * [indexes] (...(number|number[])): 要移除元素的索引。
@@ -608,7 +608,7 @@ _ = {
         return result
     },
     /**
-     * 反转array，使得第一个元素变为最后一个元素，第二个元素变为倒数第二个元素，依次类推。
+     * 反转 array，使得第一个元素变为最后一个元素，第二个元素变为倒数第二个元素，依次类推。
      * Note: 这个方法会改变原数组 array，基于 Array#reverse.
      * 参数
      * array (Array): 要修改的数组。
@@ -633,11 +633,11 @@ _ = {
         return arr
     },
     /**
-     * 获取除了array数组第一个元素以外的全部元素。
+     * 获取除了 array 数组第一个元素以外的全部元素。
      * 参数
      * array (Array): 要检索的数组。
      * 返回值
-     * (Array): 返回 array 数组的切片（除了array数组第一个元素以外的全部元素）。
+     * (Array): 返回 array 数组的切片（除了 array 数组第一个元素以外的全部元素）。
      * 例子
      * tail([1, 2, 3]);
      * // => [2, 3]
@@ -648,12 +648,12 @@ _ = {
         return result
     },
     /**
-     * 创建一个数组切片，从array数组的起始元素开始提取n个元素。
+     * 创建一个数组切片，从 array 数组的起始元素开始提取 n 个元素。
      * 参数
      * array (Array): 要检索的数组。
      * [n=1] (number): 要提取的元素个数。
      * 返回值
-     * (Array): 返回 array 数组的切片（从起始元素开始n个元素）。
+     * (Array): 返回 array 数组的切片（从起始元素开始 n 个元素）。
      * 例子
      * take([1, 2, 3]);
      * // => [1]
@@ -677,12 +677,12 @@ _ = {
         return result
     },
     /**
-     * 创建一个数组切片，从array数组的最后一个元素开始提取n个元素。
+     * 创建一个数组切片，从 array 数组的最后一个元素开始提取 n 个元素。
      * 参数
      * array (Array): 要检索的数组。
      * [n=1] (number): 要提取的元素个数。
      * 返回值
-     * (Array): 返回 array 数组的切片（从结尾元素开始n个元素）。
+     * (Array): 返回 array 数组的切片（从结尾元素开始 n 个元素）。
      * 例子
      * take([1, 2, 3]);
      * // => [3]
@@ -707,7 +707,7 @@ _ = {
         return result
     },
     /**
-     * 创建一个去重后的array数组副本。使用了 SameValueZero 做等值比较。只有第一次出现的元素才会被保留。
+     * 创建一个去重后的 array 数组副本。使用了 SameValueZero 做等值比较。只有第一次出现的元素才会被保留。
      * 参数
      * array (Array): 要检查的数组。
      * 返回值
@@ -756,7 +756,7 @@ _ = {
         return result
     },
     /**
-     * 创建一个给定数组唯一值的数组，使用symmetric difference做等值比较。返回值的顺序取决于他们数组的出现顺序。
+     * 创建一个给定数组唯一值的数组，使用 symmetric difference 做等值比较。返回值的顺序取决于他们数组的出现顺序。
      * 参数
      * [arrays] (...Array): 要检查的数组。
      * 返回值
@@ -766,7 +766,6 @@ _ = {
      * // => [1, 3]
      **/
     xor: function() {
-
         var result = []
         var len = arguments.length
         for (var i = 0; i < len; i++) {
@@ -815,13 +814,13 @@ _ = {
         return result
     },
     /**
-     * 使用 SameValueZero 等值比较，返回首次 value 在数组array中被找到的 索引值， 如果 fromIndex 为负值，将从数组array尾端索引进行匹配。
+     * 使用 SameValueZero 等值比较，返回首次 value 在数组 array 中被找到的 索引值， 如果 fromIndex 为负值，将从数组 array 尾端索引进行匹配。
      * 参数
      * array (Array): 需要查找的数组。
      * value (*): 需要查找的值。
      * [fromIndex=0] (number): 开始查询的位置。
      * 返回值
-     * (number): 返回 值value在数组中的索引位置, 没有找到为返回-1。
+     * (number): 返回 值 value 在数组中的索引位置, 没有找到为返回 - 1。
      * 例子
      * indexOf([1, 2, 1, 2], 2);
      * // => 1
@@ -865,7 +864,7 @@ _ = {
         return result
     },
     /**
-     * 这个方法类似 _.indexOf ，区别是它是从右到左遍历array的元素。
+     * 这个方法类似 _.indexOf ，区别是它是从右到左遍历 array 的元素。
      * 参数
      * array (Array): 要搜索的数组。
      * value (*): 要搜索的值。
@@ -899,7 +898,7 @@ _ = {
         }
     },
     /**
-     * 获取数组的索引n处的元素。 如果n为负，则返回从末尾开始的第n个元素。
+     * 获取数组的索引 n 处的元素。 如果 n 为负，则返回从末尾开始的第 n 个元素。
      * 参数
      * array (Array): The array to query.
      * [n=0] (number): The index of the element to return.
@@ -924,12 +923,12 @@ _ = {
         }
     },
     /**
-     * 使用二分检索来决定 value值 应该插入到数组中 尽可能小的索引位置，以保证array的排序。
+     * 使用二分检索来决定 value 值 应该插入到数组中 尽可能小的索引位置，以保证 array 的排序。
      * 参数
      * array (Array): 要检查的排序数组。
      * value (*): 要评估的值。
      * 返回值
-     * (number): 返回 value值 应该在数组array中插入的索引位置 index。
+     * (number): 返回 value 值 应该在数组 array 中插入的索引位置 index。
      * 例子
      * sortedIndex([30, 50], 40);
      * // => 1
@@ -953,7 +952,7 @@ _ = {
         return index
     },
     /**
-     * 转换字符串string为 驼峰写法。
+     * 转换字符串 string 为 驼峰写法。
      * 参数
      * [string=''] (string): 要转换的字符串。
      * 返回值
@@ -987,7 +986,7 @@ _ = {
         return result
     },
     /**
-     * 转换字符串string首字母为大写，剩下为小写。
+     * 转换字符串 string 首字母为大写，剩下为小写。
      * 参数
      * [string=''] (string): 要大写开头的字符串。
      * 返回值
@@ -1005,7 +1004,7 @@ _ = {
         return result
     },
     /**
-     * 转换字符串string中拉丁语-1补充字母 和 拉丁语扩展字母-A 为基本的拉丁字母，并且去除组合变音标记。
+     * 转换字符串 string 中拉丁语 - 1 补充字母 和 拉丁语扩展字母 - A 为基本的拉丁字母，并且去除组合变音标记。
      * 参数
      * [string=''] (string): 要处理的字符串。
      * 返回值
@@ -1015,7 +1014,6 @@ _ = {
      * // => 'deja vu'
      **/
     deburr: function(str) {
-
         var tmp = str.split("")
         for (var i = 0; i < tmp.length; i++) {
             if (192 <= tmp[i].charCodeAt(0) && tmp[i].charCodeAt(0) <= 221) {
@@ -1050,13 +1048,13 @@ _ = {
         }
     },
     /**
-     * 检查字符串string是否以给定的target字符串结尾。
+     * 检查字符串 string 是否以给定的 target 字符串结尾。
      * 参数
      * [string=''] (string): 要检索的字符串。
      * [target] (string): 要检索字符。
      * [position=string.length] (number): 检索的位置。
      * 返回值
-     * (boolean): 如果字符串string以target字符串结尾，那么返回 true，否则返回 false。
+     * (boolean): 如果字符串 string 以 target 字符串结尾，那么返回 true，否则返回 false。
      * 例子
      * endsWith('abc', 'c');
      * // => true
@@ -1072,7 +1070,7 @@ _ = {
         return n === str.charAt(str.length - index) ? true : false
     },
     /**
-     * 转换字符串string为 kebab case.
+     * 转换字符串 string 为 kebab case.
      * 参数
      * [string=''] (string): 要转换的字符串。
      * 返回值
@@ -1118,7 +1116,7 @@ _ = {
         return result
     },
     /**
-     * 转换字符串string以空格分开单词，并转换为小写。
+     * 转换字符串 string 以空格分开单词，并转换为小写。
      * 参数
      * [string=''] (string): 要转换的字符串。
      * 返回值
@@ -1164,7 +1162,7 @@ _ = {
         return result
     },
     /**
-     * 转换字符串string的首字母为小写。
+     * 转换字符串 string 的首字母为小写。
      * 参数
      * [string=''] (string): 要转换的字符串。
      * 返回值
@@ -1182,7 +1180,7 @@ _ = {
         return result
     },
     /**
-     * 如果string字符串长度小于 length 则从左侧和右侧填充字符。 如果没法平均分配，则截断超出的长度。
+     * 如果 string 字符串长度小于 length 则从左侧和右侧填充字符。 如果没法平均分配，则截断超出的长度。
      * 参数
      * [string=''] (string): 要填充的字符串。
      * [length=0] (number): 填充的长度。
@@ -1191,7 +1189,7 @@ _ = {
      * (string): 返回填充后的字符串。
      * 例子
      * pad('abc', 8);
-     * // => '  abc   '
+     * // => 'abc'
      * pad('abc', 8, '_-');
      * // => '_-abc_-_'
      * pad('abc', 3);
@@ -1219,7 +1217,7 @@ _ = {
         }
     },
     /**
-     * 如果string字符串长度小于 length 则在右侧填充字符。 如果超出length长度则截断超出的部分。
+     * 如果 string 字符串长度小于 length 则在右侧填充字符。 如果超出 length 长度则截断超出的部分。
      * 参数
      * [string=''] (string): 要填充的字符串。
      * [length=0] (number): 填充的长度。
@@ -1228,7 +1226,7 @@ _ = {
      * (string): 返回填充后的字符串。
      * 例子
      * padEnd('abc', 6);
-     * // => 'abc   '
+     * // => 'abc'
      * padEnd('abc', 6, '_-');
      * // => 'abc_-_'
      * padEnd('abc', 3);
@@ -1251,7 +1249,7 @@ _ = {
         }
     },
     /**
-     * 如果string字符串长度小于 length 则在左侧填充字符。 如果超出length长度则截断超出的部分。
+     * 如果 string 字符串长度小于 length 则在左侧填充字符。 如果超出 length 长度则截断超出的部分。
      * 参数
      * [string=''] (string): 要填充的字符串。
      * [length=0] (number): 填充的长度。
@@ -1260,7 +1258,7 @@ _ = {
      * (string): 返回填充后的字符串。
      * 例子
      * padStart('abc', 6);
-     * // => '   abc'
+     * // => 'abc'
      * padStart('abc', 6, '_-');
      * // => '_-_abc'
      * padStart('abc', 3);
@@ -1308,7 +1306,7 @@ _ = {
         return result
     },
     /**
-     * 转换字符串string为 snake case..
+     * 转换字符串 string 为 snake case..
      * 参数
      * [string=''] (string): 要转换的字符串。
      * 返回值
@@ -1354,7 +1352,7 @@ _ = {
         return result
     },
     /**
-     * 创建一个数组， value（值） 是 iteratee（迭代函数）遍历 collection（集合）中的每个元素后返回的结果。 iteratee（迭代函数）调用3个参数：(value, index|key, collection).
+     * 创建一个数组， value（值） 是 iteratee（迭代函数）遍历 collection（集合）中的每个元素后返回的结果。 iteratee（迭代函数）调用 3 个参数：(value, index|key, collection).
      * 参数
      * collection (Array|Object): 用来迭代的集合。
      * [iteratee=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
@@ -1436,7 +1434,7 @@ _ = {
         return result
     },
     /**
-     * 压缩 collection（集合）为一个值，通过 iteratee（迭代函数）遍历 collection（集合）中的每个元素，每次返回的值会作为下一次迭代使用(愚人码头注：作为iteratee（迭代函数）的第一个参数使用)。 如果没有提供 accumulator，则 collection（集合）中的第一个元素作为初始值。(愚人码头注：accumulator参数在第一次迭代的时候作为iteratee（迭代函数）第一个参数使用。) iteratee 调用4个参数：(accumulator, value, index|key, collection).
+     * 压缩 collection（集合）为一个值，通过 iteratee（迭代函数）遍历 collection（集合）中的每个元素，每次返回的值会作为下一次迭代使用 (愚人码头注：作为 iteratee（迭代函数）的第一个参数使用)。 如果没有提供 accumulator，则 collection（集合）中的第一个元素作为初始值。(愚人码头注：accumulator 参数在第一次迭代的时候作为 iteratee（迭代函数）第一个参数使用。) iteratee 调用 4 个参数：(accumulator, value, index|key, collection).
      * @param  collection (Array|Object): 用来迭代的集合。
      * @param  [iteratee=_.identity] (Function): 每次迭代调用的函数。
      * @param  [accumulator] (*): 初始值。
@@ -1456,7 +1454,7 @@ _ = {
         return acc
     },
     /**
-     * 这个方法类似 _.reduce ，除了它是从右到左遍历collection（集合）中的元素的。
+     * 这个方法类似 _.reduce ，除了它是从右到左遍历 collection（集合）中的元素的。
      * @param  collection (Array|Object): 用来迭代的集合。
      * @param  [iteratee=_.identity] (Function): 每次迭代调用的函数。
      * @param  [accumulator] (*): 初始值。
@@ -1476,15 +1474,15 @@ _ = {
         return acc
     },
     /**
-     * 创建一个object键值倒置后的对象。 如果 object 有重复的值，后面的值会覆盖前面的值。
+     * 创建一个 object 键值倒置后的对象。 如果 object 有重复的值，后面的值会覆盖前面的值。
      * 参数
      * object (Object): 要键值倒置对象。
      * 返回值
      * (Object): 返回新的键值倒置后的对象。
      * 例子
-     * var object = { 'a': 1, 'b': 2, 'c': 1 };
+     * var object = {'a': 1, 'b': 2, 'c': 1};
      * invert(object);
-     * // => { '1': 'c', '2': 'b' }
+     * // => {'1': 'c', '2': 'b'}
      */
     invert: function(obj) {
         var result = {}
@@ -1494,15 +1492,15 @@ _ = {
         return result
     },
     /**
-     * 创建一个object键值倒置后的对象。 如果 object 有重复的值，放入数组。
+     * 创建一个 object 键值倒置后的对象。 如果 object 有重复的值，放入数组。
      * 参数
      * object (Object): 要键值倒置对象。
      * 返回值
      * (Object): 返回新的键值倒置后的对象。
      * 例子
-     * var object = { 'a': 1, 'b': 2, 'c': 1 };
+     * var object = {'a': 1, 'b': 2, 'c': 1};
      * invert(object);
-     * // => { '1': 'c', '2': 'b' }
+     * // => {'1': 'c', '2': 'b'}
      */
     invert2: function(obj) {
         var result = {}
@@ -1535,7 +1533,7 @@ _ = {
      * activate-power-mode
      */
     /**
-     * 使用 iteratee 遍历对象的自身和继承的可枚举属性。 iteratee 会传入3个参数：(value, key, object)。 如果返回 false，iteratee 会提前退出遍历。
+     * 使用 iteratee 遍历对象的自身和继承的可枚举属性。 iteratee 会传入 3 个参数：(value, key, object)。 如果返回 false，iteratee 会提前退出遍历。
      * 参数
      * object (Object): 要遍历的对象。
      * [iteratee=_.identity] (Function): 每次迭代时调用的函数。
@@ -1557,12 +1555,12 @@ _ = {
         return obj
     },
     /**
-     * 反向版 _.mapValues。 这个方法创建一个对象，对象的值与object相同，并且 key 是通过 iteratee 运行 object 中每个自身可枚举属性名字符串 产生的。iteratee调用三个参数： (value, key, object)。
+     * 反向版 _.mapValues。 这个方法创建一个对象，对象的值与 object 相同，并且 key 是通过 iteratee 运行 object 中每个自身可枚举属性名字符串 产生的。iteratee 调用三个参数： (value, key, object)。
      * @param  object (Object): 要遍历的对象。
      * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
      * @return (Object): 返回映射后的新对象。
-     * example mapKeys({ 'a': 1, 'b': 2 }, function(value, key) {return key + value;});
-     * // => { 'a1': 1, 'b2': 2 }
+     * example mapKeys({'a': 1, 'b': 2}, function(value, key) {return key + value;});
+     * // => {'a1': 1, 'b2': 2}
      */
     mapKeys: function(obj, fn) {
         var result = {}
@@ -1572,15 +1570,15 @@ _ = {
         return result
     },
     /**
-     * 创建一个对象，这个对象的key与object对象相同，值是通过 iteratee 运行 object 中每个自身可枚举属性名字符串产生的。 iteratee调用三个参数： (value, key, object)。
+     * 创建一个对象，这个对象的 key 与 object 对象相同，值是通过 iteratee 运行 object 中每个自身可枚举属性名字符串产生的。 iteratee 调用三个参数： (value, key, object)。
      * @param  object (Object): 要遍历的对象。
      * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
      * @return (Object): 返回映射后的新对象。
-     * example var users = {'fred':{ 'user': 'fred',    'age': 40 },'pebbles': { 'user': 'pebbles', 'age': 1 }};
-     * mapValues(users, function(o) { return o.age; });
-     * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
-     * mapValues(users, 'age');
-     * // => { 'fred': 40, 'pebbles': 1 } (iteration order is not guaranteed)
+     * example var users = {'fred':{'user': 'fred',    'age': 40},'pebbles': {'user': 'pebbles', 'age': 1}};
+     * mapValues(users, function(o) {return o.age;});
+     * // => {'fred': 40, 'pebbles': 1} (iteration order is not guaranteed)
+     * mapValues(users,'age');
+     * // => {'fred': 40, 'pebbles': 1} (iteration order is not guaranteed)
      */
     mapValues: function(obj, fn) {
         var result = {}
@@ -1600,9 +1598,9 @@ _ = {
      * @param  object (Object): 来源对象。
      * @param  [props] (...(string|string[])): 要被忽略的属性。
      * @return (Object): 返回新对象。
-     * var object = { 'a': 1, 'b': '2', 'c': 3 };
-     * pick(object, ['a', 'c']);
-     * // => { 'a': 1, 'c': 3 }
+     * var object = {'a': 1, 'b': '2', 'c': 3};
+     * pick(object, ['a','c']);
+     * // => {'a': 1, 'c': 3}
      */
 
     /**
@@ -1626,12 +1624,12 @@ _ = {
         return result
     },
     /**
-     * 创建一个数组，值来自 object 的paths路径相应的值。
+     * 创建一个数组，值来自 object 的 paths 路径相应的值。
      * @param  object (Object): 要迭代的对象。
      * @param  [paths] (...(string|string[])): 要获取的对象的元素路径，单独指定或者指定在数组中。
      * @return (Array): 返回选中值的数组。
-     * example var object = { 'a': [{ 'b': { 'c': 3 } }, 4] };
-     * at(object, ['a[0].b.c', 'a[1]']);
+     * example var object = {'a': [{'b': {'c': 3} }, 4] };
+     * at(object, ['a[0].b.c','a[1]']);
      * // => [3, 4]
      */
     at: function(obj, arr) {
@@ -1651,8 +1649,8 @@ _ = {
      * function Bar() {this.c = 3;}
      * Foo.prototype.b = 2;
      * Bar.prototype.d = 4;
-     * assign({ 'a': 0 }, new Foo, new Bar);
-     * // => { 'a': 1, 'c': 3 }
+     * assign({'a': 0}, new Foo, new Bar);
+     * // => {'a': 1, 'c': 3}
      */
     assign: function(obj) {
         var result = {}
@@ -1664,19 +1662,19 @@ _ = {
         return result
     },
     /**
-     * 该方法类似_.assign， 除了它递归合并 sources 来源对象自身和继承的可枚举属性到 object 目标对象。如果目标值存在，被解析为undefined的sources 来源对象属性将被跳过。数组和普通对象会递归合并，其他对象和值会被直接分配覆盖。源对象从从左到右分配。后续的来源对象属性会覆盖之前分配的属性。
+     * 该方法类似_.assign， 除了它递归合并 sources 来源对象自身和继承的可枚举属性到 object 目标对象。如果目标值存在，被解析为 undefined 的 sources 来源对象属性将被跳过。数组和普通对象会递归合并，其他对象和值会被直接分配覆盖。源对象从从左到右分配。后续的来源对象属性会覆盖之前分配的属性。
      * @param  object (Object): 目标对象。
      * @param [sources] (...Object): 来源对象。
      * @return (Object): 返回 object.
-     * example var object = {'a': [{ 'b': 2 }, { 'd': 4 }]};
-     * var other = {'a': [{ 'c': 3 }, { 'e': 5 }]};
+     * example var object = {'a': [{'b': 2}, {'d': 4}]};
+     * var other = {'a': [{'c': 3}, {'e': 5}]};
      * merge(object, other);
-     * // => { 'a': [{ 'b': 2, 'c': 3 }, { 'd': 4, 'e': 5 }] }
+     * // => {'a': [{'b': 2, 'c': 3}, {'d': 4, 'e': 5}] }
      */
 
     /**
-     * 创建一个调用func的函数，通过this绑定和创建函数的参数调用func，调用次数不超过 n 次。 之后再调用这个函数，将返回一次最后调用func的结果。
-     * @param  n (number): 超过多少次不再调用func
+     * 创建一个调用 func 的函数，通过 this 绑定和创建函数的参数调用 func，调用次数不超过 n 次。 之后再调用这个函数，将返回一次最后调用 func 的结果。
+     * @param  n (number): 超过多少次不再调用 func
      * @param  func (Function): 限制执行的函数。
      * @return (Function): 返回新的限定函数。
      */
@@ -1694,7 +1692,7 @@ _ = {
         }
     },
     /**
-     * _.before的反向函数;此方法创建一个函数，当他被调用n或更多次之后将马上触发func 。
+     * _.before 的反向函数; 此方法创建一个函数，当他被调用 n 或更多次之后将马上触发 func 。
      * @param  n (number): func 方法应该在调用多少次后才执行。
      * @param  func (Function): 用来限定的函数。
      * @return (Function): 返回新的限定函数。
@@ -1714,8 +1712,8 @@ _ = {
      * @param  other (*): 另一个用来比较的值。
      * @return (boolean): 如果 两个值完全相同，那么返回 true，否则返回 false。
      * example
-     * var object = { 'a': 1 };
-     * var other = { 'a': 1 };
+     * var object = {'a': 1};
+     * var other = {'a': 1};
      * isEqual(object, other);
      * // => true
      */
@@ -1795,10 +1793,10 @@ _ = {
         }
     },
     /**
-     * 创建一个切片数组，去除array中从 predicate 返回假值开始到尾部的部分
+     * 创建一个切片数组，去除 array 中从 predicate 返回假值开始到尾部的部分
      * @param  array (Array): 要查询的数组。
      * @param  [predicate=_.identity] (Function): 这个函数会在每一次迭代调用。
-     * @return (Array): 返回array剩余切片。
+     * @return (Array): 返回 array 剩余切片。
      */
     dropRightWhile: function(arr, ident) {
         var newArray = Array.prototype.slice.call(arr)
@@ -1809,7 +1807,6 @@ _ = {
             }
         }
         if (this.isArray(ident)) {
-
             var fn = function(obj) {
                 return self.isEqual(obj[ident[0]], ident[1])
             }
@@ -1831,10 +1828,10 @@ _ = {
         return newArray
     },
     /**
-     * 创建一个切片数组，去除array中从起点开始到 predicate 返回假值结束部分。
+     * 创建一个切片数组，去除 array 中从起点开始到 predicate 返回假值结束部分。
      * @param  array (Array): 要查询的数组。
      * @param  [predicate=_.identity] (Function): 这个函数会在每一次迭代调用。
-     * @return (Array): 返回array剩余切片。
+     * @return (Array): 返回 array 剩余切片。
      */
     dropWhile: function(arr, ident) {
         var newArray = Array.prototype.slice.call(arr)
@@ -1868,7 +1865,7 @@ _ = {
     /**
      * 检查 value 是否是一个类 arguments 对象。
      * @param  value (*): 要检查的值。
-     * @return (boolean): 如果value是一个 arguments 对象 返回 true，否则返回 false。
+     * @return (boolean): 如果 value 是一个 arguments 对象 返回 true，否则返回 false。
      */
     isArguments: function(arg) {
         if (arg.callee) {
@@ -1880,7 +1877,7 @@ _ = {
     /**
      * 检查 value 是否是 Array 类对象。
      * @param  value (*): 要检查的值。
-     * @return (boolean): 如果value是一个数组返回 true，否则返回 false。
+     * @return (boolean): 如果 value 是一个数组返回 true，否则返回 false。
      */
     isArray: function(arr) {
         if (arr instanceof Array) {
@@ -1895,7 +1892,6 @@ _ = {
      * @return (boolean): 如果 value 是一个布尔值，那么返回 true，否则返回 false。
      */
     isBoolean: function(value) {
-
         return typeof value === 'boolean'
     },
     /**
@@ -1904,7 +1900,6 @@ _ = {
      * @return (boolean): 如果 value 是一个日期对象，那么返回 true，否则返回 false。
      */
     isDate: function(value) {
-
         return value instanceof Date
     },
     /**
@@ -1931,7 +1926,6 @@ _ = {
      * @return (boolean): 如果 value 是一个函数，那么返回 true，否则返回 false。
      */
     isFunction: function(value) {
-
         return typeof value === 'function'
     },
     /**
@@ -1955,7 +1949,7 @@ _ = {
     /**
      * 检查 valuealue 是否是 null。
      * @param  value (*): 要检查的值。
-     * @return (boolean): 如果 value 为null，那么返回 true，否则返回 false。
+     * @return (boolean): 如果 value 为 null，那么返回 true，否则返回 false。
      */
     isNull: function(value) {
         if (value == undefined && value !== undefined) {
@@ -1965,7 +1959,7 @@ _ = {
         }
     },
     /**
-     * 检查 value 是否是原始Number数值型 或者 对象。
+     * 检查 value 是否是原始 Number 数值型 或者 对象。
      * @param  value (*): 要检查的值。
      * @return (boolean): 如果 value 为一个对象，那么返回 true，否则返回 false。
      */
@@ -1993,21 +1987,19 @@ _ = {
         }
     },
     /**
-     * 检查 value 是否为RegExp对象。
+     * 检查 value 是否为 RegExp 对象。
      * @param  value (*): 要检查的值。
      * @return (boolean): 如果 value 为一个正则表达式，那么返回 true，否则返回 false。
      */
     isRegExp: function(value) {
-
         return value instanceof RegExp
     },
     /**
-     * 检查 value 是否是原始字符串String或者对象。
+     * 检查 value 是否是原始字符串 String 或者对象。
      * @param  value (*): 要检查的值。
      * @return (boolean): 如果 value 为一个字符串，那么返回 true，否则返回 false。
      */
     isString: function(value) {
-
         return typeof value == 'string'
     },
     /**
@@ -2016,7 +2008,6 @@ _ = {
      * @return (boolean): 如果 value 是 undefined ，那么返回 true，否则返回 false。
      */
     isUndefined: function(value) {
-
         return typeof value == 'undefined'
     },
     /**
@@ -2025,11 +2016,10 @@ _ = {
      * @return {[type]}       [description]
      */
     iscollection: function(value) {
-
         return this.isObject(value) || this.isString(value)
     },
     /**
-     * 返回collection（集合）的长度，如果集合是类数组或字符串，返回其 length ；如果集合是对象，返回其可枚举属性的个数。
+     * 返回 collection（集合）的长度，如果集合是类数组或字符串，返回其 length ；如果集合是对象，返回其可枚举属性的个数。
      * @param  collection (Array|Object): 要检查的集合
      * @return (number): 返回集合的长度。
      */
@@ -2043,7 +2033,7 @@ _ = {
         return count
     },
     /**
-     * 检查 value 是否为一个空对象，集合，映射或者set。
+     * 检查 value 是否为一个空对象，集合，映射或者 set。
      * @param  value (*): 要检查的值。
      * @return (boolean): 如果 value 为空，那么返回 true，否则返回 false。
      */
@@ -2061,11 +2051,10 @@ _ = {
      * @return (*): 返回 value.
      */
     identity: function(value) {
-
         return value
     },
     /**
-     * 调用 iteratee 遍历 collection(集合) 中的每个元素， iteratee 调用3个参数： (value, index|key, collection)
+     * 调用 iteratee 遍历 collection(集合) 中的每个元素， iteratee 调用 3 个参数： (value, index|key, collection)
      * @param  collection (Array|Object): 一个用来迭代的集合。
      * @param  [iteratee=_.identity] (Function): 每次迭代调用的函数。
      * @return (*): 返回集合 collection。
@@ -2085,8 +2074,8 @@ _ = {
         return collection
     },
     /**
-     * 创建一个调用func的函数，通过this绑定和创建函数的参数调用func，调用次数不超过 n 次。 之后再调用这个函数，将返回一次最后调用func的结果。
-     * @param  n (number): 超过多少次不再调用func（愚人码头注：限制调用func 的次数）。
+     * 创建一个调用 func 的函数，通过 this 绑定和创建函数的参数调用 func，调用次数不超过 n 次。 之后再调用这个函数，将返回一次最后调用 func 的结果。
+     * @param  n (number): 超过多少次不再调用 func（愚人码头注：限制调用 func 的次数）。
      * @param  func (Function): 限制执行的函数。
      * @return (Function): 返回新的限定函数。
      */
@@ -2104,7 +2093,7 @@ _ = {
         }
     },
     /**
-     * before的反向函数;此方法创建一个函数，当他被调用n或更多次之后将马上触发func 。
+     * before 的反向函数; 此方法创建一个函数，当他被调用 n 或更多次之后将马上触发 func 。
      * @param  n (number): func 方法应该在调用多少次后才执行。
      * @param  func (Function): 用来限定的函数
      * @return (Function): 返回新的限定函数。
@@ -2120,10 +2109,10 @@ _ = {
         }
     },
     /**
-     * 创建一个调用func的函数，thisArg绑定func函数中的 this ，并且func函数会接收partials附加参数。
-     * _.bind.placeholder值，默认是以 _ 作为附加部分参数的占位符。
+     * 创建一个调用 func 的函数，thisArg 绑定 func 函数中的 this ，并且 func 函数会接收 partials 附加参数。
+     * _.bind.placeholder 值，默认是以 _ 作为附加部分参数的占位符。
      * @param  func (Function): 绑定的函数。
-     * @param  thisArg (*): func 绑定的this对象。
+     * @param  thisArg (*): func 绑定的 this 对象。
      * @param  [partials] (...*): 附加的部分参数。
      * @return (Function): 返回新的绑定函数。
      */
@@ -2204,7 +2193,7 @@ _ = {
         return -1
     },
     /**
-     * 这个方式类似 _.findIndex， 区别是它是从右到左的迭代集合array中的元素。
+     * 这个方式类似 _.findIndex， 区别是它是从右到左的迭代集合 array 中的元素。
      * @param  array (Array): 要搜索的数组。
      * @param  [predicate=_.identity] (Array|Function|Object|string): 这个函数会在每一次迭代调用。
      * @param  [fromIndex=array.length-1] (number): The index to search from.
@@ -2241,7 +2230,7 @@ _ = {
     /**
      * 根据 depth 递归减少 array 的嵌套层级
      * @param  array (Array): 需要减少嵌套层级的数组。
-     * @param  [depth=1] (number):最多减少的嵌套层级数。
+     * @param  [depth=1] (number): 最多减少的嵌套层级数。
      * @return (Array): 返回减少嵌套层级后的新数组。
      */
     flattenDepth: function(arr, depth) {
@@ -2253,7 +2242,7 @@ _ = {
         return result
     },
     /**
-     * 这个方法类似 _.intersection，区别是它接受一个 iteratee 调用每一个arrays的每个值以产生一个值，通过产生的值进行了比较。结果值是从第一数组中选择。
+     * 这个方法类似 _.intersection，区别是它接受一个 iteratee 调用每一个 arrays 的每个值以产生一个值，通过产生的值进行了比较。结果值是从第一数组中选择。
      * @params [arrays] (...Array): 待检查的数组。
      * @params [iteratee=_.identity] (Array|Function|Object|string): iteratee（迭代器）调用每个元素。
      * @return (Array): 返回一个包含所有传入数组交集元素的新数组。
@@ -2281,7 +2270,7 @@ _ = {
         return result
     },
     /**
-     * 这个方法类似 _.intersection，区别是它接受一个 comparator 调用比较arrays中的元素。结果值是从第一数组中选择。comparator 会传入两个参数：(arrVal, othVal)。
+     * 这个方法类似 _.intersection，区别是它接受一个 comparator 调用比较 arrays 中的元素。结果值是从第一数组中选择。comparator 会传入两个参数：(arrVal, othVal)。
      * @params [arrays] (...Array): 待检查的数组。
      * @params [comparator] (Function): comparator（比较器）调用每个元素。
      * @return (Array): 返回一个包含所有传入数组交集元素的新数组。
@@ -2299,7 +2288,7 @@ _ = {
         return result
     },
     /**
-     * 创建一个调用func的函数。调用func时最多接受 n个参数，忽略多出的参数。
+     * 创建一个调用 func 的函数。调用 func 时最多接受 n 个参数，忽略多出的参数。
      * @param  func (Function): 需要被限制参数个数的函数。
      * @param  [n=func.length] (number): 限制的参数数量。
      * @return (Function): 返回新的覆盖函数。
@@ -2313,7 +2302,7 @@ _ = {
         }
     },
     /**
-     * 这个方法类似于_.pullAll ，区别是这个方法接受一个 iteratee（迭代函数） 调用 array 和 values的每个值以产生一个值，通过产生的值进行了比较。
+     * 这个方法类似于_.pullAll ，区别是这个方法接受一个 iteratee（迭代函数） 调用 array 和 values 的每个值以产生一个值，通过产生的值进行了比较。
      * @param  array (Array): 要修改的数组。
      * @param  values (Array): 要移除值的数组
      * @param  [iteratee=_.identity] (Array|Function|Object|string): iteratee（迭代器）调用每个元素。
@@ -2336,7 +2325,7 @@ _ = {
         return arr
     },
     /**
-     * 这个方法类似于 _.pullAll，区别是这个方法接受 comparator 调用array中的元素和values比较。
+     * 这个方法类似于 _.pullAll，区别是这个方法接受 comparator 调用 array 中的元素和 values 比较。
      * @param  array (Array): 要修改的数组。
      * @param  values (Array): 要移除值的数组。
      * @param  [comparator] (Function): comparator（比较器）调用每个元素。
@@ -2354,11 +2343,11 @@ _ = {
         return arr
     },
     /**
-     * 这个方法类似 _.sortedIndex ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）元素，返回结果和value 值比较来计算排序。
+     * 这个方法类似 _.sortedIndex ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）元素，返回结果和 value 值比较来计算排序。
      * @param  array (Array): 要检查的排序数组。
      * @param  value (*): 要评估的值。
      * @param  [iteratee=_.identity] (Array|Function|Object|string): 迭代函数，调用每个元素。
-     * @return (number): 返回 value值 应该在数组array中插入的索引位置 index。
+     * @return (number): 返回 value 值 应该在数组 array 中插入的索引位置 index。
      */
     sortedIndexBy: function(arr, value, iter) {
         if (this.isFunction(iter)) {
@@ -2377,7 +2366,7 @@ _ = {
         return i
     },
     /**
-     * 这个方法类似 _.indexOf，除了它是在已经排序的数组array上执行二进制检索。
+     * 这个方法类似 _.indexOf，除了它是在已经排序的数组 array 上执行二进制检索。
      * @param  array (Array): 要搜索的数组。
      * @param  value (*): 搜索的值。
      * @return (number): 返回匹配值的索引位置，否则返回 -1。
@@ -2391,10 +2380,10 @@ _ = {
         return -1
     },
     /**
-     * 此方法类似于_.sortedIndex，除了 它返回 value值 在 array 中尽可能大的索引位置（index）。
+     * 此方法类似于_.sortedIndex，除了 它返回 value 值 在 array 中尽可能大的索引位置（index）。
      * @param  array (Array): 要检查的排序数组。
      * @param  value (*): 要评估的值。
-     * @return (number): 返回 value值 应该在数组array中插入的索引位置 index。
+     * @return (number): 返回 value 值 应该在数组 array 中插入的索引位置 index。
      */
     sortedLastIndex: function(arr, value) {
         for (var i = arr.length - 1; i >= 0; i--) {
@@ -2405,11 +2394,11 @@ _ = {
         return -1
     },
     /**
-     * 这个方法类似 _.sortedLastIndex ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）元素，返回结果和value 值比较来计算排序。
+     * 这个方法类似 _.sortedLastIndex ，除了它接受一个 iteratee （迭代函数），调用每一个数组（array）元素，返回结果和 value 值比较来计算排序。
      * @param  array (Array): 要检查的排序数组。
      * @param  value (*): 要评估的值。
      * @param  [iteratee=_.identity] (Array|Function|Object|string): 迭代函数，调用每个元素。
-     * @return (number): 返回 value值 应该在数组array中插入的索引位置 index。
+     * @return (number): 返回 value 值 应该在数组 array 中插入的索引位置 index。
      */
     sortedLastIndexBy: function(arr, value, iter) {
         if (this.isFunction(iter)) {
@@ -2428,7 +2417,7 @@ _ = {
         return i
     },
     /**
-     * 这个方法类似 _.lastIndexOf，除了它是在已经排序的数组array上执行二进制检索。
+     * 这个方法类似 _.lastIndexOf，除了它是在已经排序的数组 array 上执行二进制检索。
      * @param  array (Array): 要搜索的数组。
      * @param  value (*): 搜索的值。
      * @return (number): 返回匹配值的索引位置，否则返回 -1。
@@ -2477,7 +2466,7 @@ _ = {
         return arr
     },
     /**
-     * 从array数组的最后一个元素开始提取元素，直到 predicate 返回假值。predicate 会传入三个参数： (value, index, array)。
+     * 从 array 数组的最后一个元素开始提取元素，直到 predicate 返回假值。predicate 会传入三个参数： (value, index, array)。
      * @param  array (Array): 要检索的数组。
      * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
      * @return (Array): 返回 array 数组的切片。
@@ -2512,7 +2501,7 @@ _ = {
         }
     },
     /**
-     * 从array数组的起始元素开始提取元素，，直到 predicate 返回假值
+     * 从 array 数组的起始元素开始提取元素，，直到 predicate 返回假值
      * @param  array (Array): 需要处理的数组
      * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
      * @return (Array): 返回 array 数组的切片。
@@ -2547,7 +2536,7 @@ _ = {
         }
     },
     /**
-     * 使用 iteratee 遍历自身的可枚举属性。 iteratee 会传入3个参数：(value, key, object)。 如果返回 false，iteratee 会提前退出遍历。
+     * 使用 iteratee 遍历自身的可枚举属性。 iteratee 会传入 3 个参数：(value, key, object)。 如果返回 false，iteratee 会提前退出遍历。
      * @param  object (Object): 要遍历的对象。
      * @param  [iteratee=_.identity] (Function): 每次迭代时调用的函数。
      * @return (Object): 返回 object。
@@ -2584,7 +2573,7 @@ _ = {
         return result
     },
     /**
-     * 这个方法类似 _.union， 除了它接受一个 comparator 调用比较arrays数组的每一个元素
+     * 这个方法类似 _.union， 除了它接受一个 comparator 调用比较 arrays 数组的每一个元素
      * @params [arrays] (...Array): 要检查的数组
      * @params [comparator] (Function): 比较函数，调用每个元素。
      * @return (Array): 返回一个新的联合数组。
@@ -2663,7 +2652,7 @@ _ = {
             if (jsonString[i] == '"') {
                 onOff = onOff ? false : true
             }
-            if (!onOff && (jsonString[i] == ' ' || jsonString[i] == '\n' || jsonString[i] == '\r' || jsonString[i] == '\t')) {
+            if (!onOff && (jsonString[i] == '' || jsonString[i] == '\n' || jsonString[i] == '\r' || jsonString[i] == '\t')) {
                 continue
             }
             theJson = theJson + jsonString[i]
@@ -2673,7 +2662,7 @@ _ = {
         /**
          * [指针指向合适的位置时进行的解析函数，根据字符串不同的表现返回不同的值]
          * @param  {[string]} jsonString [当前需要解析的字符串（可能是递归后的值）]
-         * @param  {[number]} index)     {                   var indexChar [指针]
+         * @param  {[number]} index)     {var indexChar [指针]
          * @return {[*]}            [解析后的值]
          */
         function parse() {
@@ -2723,7 +2712,7 @@ _ = {
         /**
          * [判断一个字符能否转换为数字]
          * @param  {[string]}  char [传入的单个字符]
-         * @return {Boolean}      [如果能转换为数字，返回true]
+         * @return {Boolean}      [如果能转换为数字，返回 true]
          */
         function isDigit(char) {
             if (!char) {
@@ -2739,7 +2728,7 @@ _ = {
             }
         }
         /**
-         * [parseString 解析值为字符串的value值]
+         * [parseString 解析值为字符串的 value 值]
          * @return {[string]} [返回作为值的字符串]
          */
         function parseString() {
@@ -2749,8 +2738,8 @@ _ = {
             return theString
         }
         /**
-         * [parseNull 解析 值为null的value值]
-         * @return {[type]} [返回null]
+         * [parseNull 解析 值为 null 的 value 值]
+         * @return {[type]} [返回 null]
          */
         function parseNull() {
             index += 4
@@ -2758,7 +2747,7 @@ _ = {
         }
         /**
          * [parseFalse 解析值为 false 的 value 值]
-         * @return {[boolean]} [返回false]
+         * @return {[boolean]} [返回 false]
          */
         function parseFalse() {
             index += 5
@@ -2766,7 +2755,7 @@ _ = {
         }
         /**
          * * [parseFalse 解析值为 true 的 value 值]
-         * @return {[boolean]} [返回true]
+         * @return {[boolean]} [返回 true]
          */
         function parseTrue() {
             index += 4
@@ -2827,11 +2816,10 @@ _ = {
      * @result (number): 返回总和。
      */
     add: function(num1, num2) {
-
         return num1 + num2
     },
     /**
-     * 此方法类似于_.unzip，除了它接受一个iteratee指定重组值应该如何被组合。iteratee 调用时会传入每个分组的值： (...group)。
+     * 此方法类似于_.unzip，除了它接受一个 iteratee 指定重组值应该如何被组合。iteratee 调用时会传入每个分组的值： (...group)。
      * @param  array (Array): 要处理的分组元素数组。
      * @param  [iteratee=_.identity] (Function): 这个函数用来组合重组的值。
      * @return (Array): 返回重组元素的新数组。
@@ -2894,7 +2882,7 @@ _ = {
         return result
     },
     /**
-     * 该方法是像 _.xor，除了它接受一个 comparator ，以调用比较数组的元素。 comparator 调用2个参数：(arrVal, othVal).
+     * 该方法是像 _.xor，除了它接受一个 comparator ，以调用比较数组的元素。 comparator 调用 2 个参数：(arrVal, othVal).
      * @params [arrays] (...Array): 要检查的数组。
      * @params [comparator] (Function): 调用每一个元素的比较函数。
      * @return (Array): 返回过滤值后的新数组。
@@ -2919,7 +2907,7 @@ _ = {
         return result
     },
     /**
-     * 这个方法类似 _.fromPairs，除了它接受2个数组，第一个数组中的值作为属性标识符（属性名），第二个数组中的值作为相应的属性值。
+     * 这个方法类似 _.fromPairs，除了它接受 2 个数组，第一个数组中的值作为属性标识符（属性名），第二个数组中的值作为相应的属性值。
      * @param  [props=[]] (Array): The property identifiers.
      * @param  [values=[]] (Array): The property values.
      * @return (Object): Returns the new object.
@@ -2947,7 +2935,7 @@ _ = {
         return result
             /**
              * 解析字符串，将字符串路径添加到对象上，并返回对象
-             * @param  {[string]} pathstr [路径字符串,且路径正确]
+             * @param  {[string]} pathstr [路径字符串, 且路径正确]
              * @param  {[object]} obj     [被添加的对象]
              * @param  {[number/string/boolean..]} [需要赋给叶子的值]
              * @return {[object]}         [返回对象]
@@ -2982,7 +2970,7 @@ _ = {
         }
     },
     /**
-     * 这个方法类似于_.zip，不同之处在于它接受一个 iteratee（迭代函数），来 指定分组的值应该如何被组合。 该iteratee调用每个组的元素： (...group).
+     * 这个方法类似于_.zip，不同之处在于它接受一个 iteratee（迭代函数），来 指定分组的值应该如何被组合。 该 iteratee 调用每个组的元素： (...group).
      * @param [arrays] (...Array): 要处理的数组。
      * @param [iteratee=_.identity] (Function): 函数用来组合分组的值。
      * @return (Array): 返回分组元素的新数组。
@@ -3002,7 +2990,7 @@ _ = {
         return result
     },
     /**
-     * 创建一个组成对象，key（键）是经过 iteratee（迭代函数） 执行处理collection中每个元素后返回的结果，每个key（键）对应的值是 iteratee（迭代函数）返回该key（键）的次数（愚人码头注：迭代次数）。
+     * 创建一个组成对象，key（键）是经过 iteratee（迭代函数） 执行处理 collection 中每个元素后返回的结果，每个 key（键）对应的值是 iteratee（迭代函数）返回该 key（键）的次数（愚人码头注：迭代次数）。
      * @param  {[type]} colle [description]
      * @param  {[type]} iter  [description]
      * @return {[type]}       [description]
@@ -3034,7 +3022,7 @@ _ = {
      * 通过 predicate（断言函数） 检查 collection（集合）中的 所有 元素是否都返回真值。
      * @param  collection (Array|Object): 一个用来迭代的集合。
      * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
-     * @return (boolean): 如果所有元素经 predicate（断言函数） 检查后都都返回真值，那么就返回true，否则返回 false 。
+     * @return (boolean): 如果所有元素经 predicate（断言函数） 检查后都都返回真值，那么就返回 true，否则返回 false 。
      */
     every: function(colle, pred) {
         //debugger
@@ -3058,7 +3046,7 @@ _ = {
         return true
     },
     /**
-     * 遍历 collection（集合）元素，返回 predicate（断言函数）第一个返回真值的第一个元素。predicate（断言函数）调用3个参数： (value, index|key, collection)。
+     * 遍历 collection（集合）元素，返回 predicate（断言函数）第一个返回真值的第一个元素。predicate（断言函数）调用 3 个参数： (value, index|key, collection)。
      * @param  collection (Array|Object): 一个用来迭代的集合。
      * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
      * @param  [fromIndex=0] (number): 开始搜索的索引位置。
@@ -3087,7 +3075,7 @@ _ = {
         }
     },
     /**
-     * 这个方法类似_.find ，不同之处在于，_.findLast是从右至左遍历collection （集合）元素的。
+     * 这个方法类似_.find ，不同之处在于，_.findLast 是从右至左遍历 collection （集合）元素的。
      * @param  collection (Array|Object): 一个用来迭代的集合。
      * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
      * @param  [fromIndex=collection.length-1] (number): 开始搜索的索引位置。
@@ -3116,7 +3104,7 @@ _ = {
         }
     },
     /**
-     * 创建一个扁平化（愚人码头注：同阶数组）的数组，这个数组的值来自collection（集合）中的每一个值经过 iteratee（迭代函数） 处理后返回的结果，并且扁平化合并。 iteratee 调用三个参数： (value, index|key, collection)。
+     * 创建一个扁平化（愚人码头注：同阶数组）的数组，这个数组的值来自 collection（集合）中的每一个值经过 iteratee（迭代函数） 处理后返回的结果，并且扁平化合并。 iteratee 调用三个参数： (value, index|key, collection)。
      * @param  collection (Array|Object): 一个用来迭代遍历的集合。
      * @param  [iteratee=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
      * @return (Array): 返回新扁平化数组。
@@ -3168,7 +3156,7 @@ _ = {
         return this.flattenDepth(result, depth)
     },
     /**
-     * 调用 iteratee 遍历 collection(集合) 中的每个元素， iteratee 调用3个参数： (value, index|key, collection)。 如果迭代函数（iteratee）显式的返回 false ，迭代会提前退出。
+     * 调用 iteratee 遍历 collection(集合) 中的每个元素， iteratee 调用 3 个参数： (value, index|key, collection)。 如果迭代函数（iteratee）显式的返回 false ，迭代会提前退出。
      * @param  collection (Array|Object): 一个用来迭代的集合。
      * @param  [iteratee=_.identity] (Function): 每次迭代调用的函数。
      * @return (*): 返回集合 collection。
@@ -3190,7 +3178,7 @@ _ = {
     /**
      * 创建一个对象，key 是 iteratee 遍历 collection(集合) 中的每个元素返回的结果。
      * @param  collection (Array|Object): 一个用来迭代的集合。
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): 这个迭代函数用来转换key。
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): 这个迭代函数用来转换 key。
      * @return (Object): 返回一个组成聚合的对象。
      */
     groupBy: function(colle, iter) {
@@ -3217,7 +3205,7 @@ _ = {
         return result
     },
     /**
-     * 检查 value(值) 是否在 collection(集合) 中。如果 collection(集合)是一个字符串，那么检查 value（值，子字符串） 是否在字符串中， 否则使用 SameValueZero 做等值比较。 如果指定 fromIndex 是负数，那么从 collection(集合) 的结尾开始检索。
+     * 检查 value(值) 是否在 collection(集合) 中。如果 collection(集合) 是一个字符串，那么检查 value（值，子字符串） 是否在字符串中， 否则使用 SameValueZero 做等值比较。 如果指定 fromIndex 是负数，那么从 collection(集合) 的结尾开始检索。
      * @param  collection (Array|Object|string): 要检索的集合。
      * @param  value (*): 要检索的值。
      * @param  [fromIndex=0] (number): 要检索的 索引位置。
@@ -3266,7 +3254,7 @@ _ = {
         return false
     },
     /**
-     * 调用path（路径）上的方法处理 collection(集合)中的每个元素，返回一个数组，包含每次调用方法得到的结果。任何附加的参数提供给每个被调用的方法。如果methodName（方法名）是一个函数，每次调用函数时，内部的 this 指向集合中的每个元素。
+     * 调用 path（路径）上的方法处理 collection(集合) 中的每个元素，返回一个数组，包含每次调用方法得到的结果。任何附加的参数提供给每个被调用的方法。如果 methodName（方法名）是一个函数，每次调用函数时，内部的 this 指向集合中的每个元素。
      * @param  collection (Array|Object): 用来迭代的集合。
      * @param  path (Array|Function|string): 用来调用方法的路径 或 者每次迭代调用的函数。
      * @param  [args] (...*): 调用每个方法的参数。
@@ -3287,9 +3275,9 @@ _ = {
         return result
     },
     /**
-     * 创建一个对象组成， key（键） 是 collection（集合）中的每个元素经过 iteratee（迭代函数） 处理后返回的结果。 每个 key（键）对应的值是生成key（键）的最后一个元素。iteratee（迭代函数）调用1个参数：(value)。
+     * 创建一个对象组成， key（键） 是 collection（集合）中的每个元素经过 iteratee（迭代函数） 处理后返回的结果。 每个 key（键）对应的值是生成 key（键）的最后一个元素。iteratee（迭代函数）调用 1 个参数：(value)。
      * @param  collection (Array|Object): 用来迭代的集合。
-     * @param  [iteratee=_.identity] (Array|Function|Object|string): 这个迭代函数用来转换key。
+     * @param  [iteratee=_.identity] (Array|Function|Object|string): 这个迭代函数用来转换 key。
      * @return (Object): 返回一个组成聚合的对象。
      */
     keyBy: function(colle, iter) {
@@ -3308,10 +3296,10 @@ _ = {
         return result
     },
     /**
-     * 此方法类似于_.sortBy，除了它允许指定 iteratee（迭代函数）结果如何排序。 如果没指定 orders（排序），所有值以升序排序。 否则，指定为"desc" 降序，或者指定为 "asc" 升序，排序对应值。
+     * 此方法类似于_.sortBy，除了它允许指定 iteratee（迭代函数）结果如何排序。 如果没指定 orders（排序），所有值以升序排序。 否则，指定为 "desc" 降序，或者指定为 "asc" 升序，排序对应值。
      * @param  collection (Array|Object): 用来迭代的集合。
      * @param  [iteratees=[_.identity]] (Array[]|Function[]|Object[]|string[]): 排序的迭代函数。
-     * @param  [orders] (string[]): iteratees迭代函数的排序顺序。
+     * @param  [orders] (string[]): iteratees 迭代函数的排序顺序。
      * @return (Array): 排序排序后的新数组。
      */
     orderBy: function(colle, iter, order) {
@@ -3342,7 +3330,7 @@ _ = {
         return colle
     },
     /**
-     * 创建一个分成两组的元素数组，第一组包含predicate（断言函数）返回为 truthy（真值）的元素，第二组包含predicate（断言函数）返回为 falsey（假值）的元素。predicate 调用1个参数：(value)。
+     * 创建一个分成两组的元素数组，第一组包含 predicate（断言函数）返回为 truthy（真值）的元素，第二组包含 predicate（断言函数）返回为 falsey（假值）的元素。predicate 调用 1 个参数：(value)。
      * @param  collection (Array|Object): 用来迭代的集合。
      * @param  {[predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
      * @return (Array): 返回元素分组后的数组。
@@ -3374,7 +3362,7 @@ _ = {
         return result
     },
     /**
-     * _.filter的反向方法;此方法 返回 predicate（断言函数） 不 返回 truthy（真值）的collection（集合）元素（愚人码头注释：非真）。
+     * _.filter 的反向方法; 此方法 返回 predicate（断言函数） 不 返回 truthy（真值）的 collection（集合）元素（愚人码头注释：非真）。
      * @param  collection (Array|Object): 用来迭代的集合。
      * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
      * @return (Array): 返回过滤后的新数组
@@ -3404,7 +3392,7 @@ _ = {
         return result
     },
     /**
-     * 从collection（集合）中获得一个随机元素。
+     * 从 collection（集合）中获得一个随机元素。
      * @param  collection (Array|Object): 要取样的集合。
      * @return (*): 返回随机元素。
      */
@@ -3413,7 +3401,7 @@ _ = {
         return colle[theKey]
     },
     /**
-     * 从collection（集合）中获得 n 个随机元素。
+     * 从 collection（集合）中获得 n 个随机元素。
      * @param  collection (Array|Object): 要取样的集合。
      * @param  [n=1] (number): 取样的元素个数。
      * @return (Array): 返回随机元素。
@@ -3434,7 +3422,7 @@ _ = {
         return result
     },
     /**
-     * 通过 predicate（断言函数） 检查collection（集合）中的元素是否存在 任意 truthy（真值）的元素，一旦 predicate（断言函数） 返回 truthy（真值），遍历就停止。 predicate 调用3个参数：(value, index|key, collection)。
+     * 通过 predicate（断言函数） 检查 collection（集合）中的元素是否存在 任意 truthy（真值）的元素，一旦 predicate（断言函数） 返回 truthy（真值），遍历就停止。 predicate 调用 3 个参数：(value, index|key, collection)。
      * @param  collection (Array|Object): 用来迭代的集合。
      * @param  [predicate=_.identity] (Array|Function|Object|string): 每次迭代调用的函数。
      * @return (boolean): 如果任意元素经 predicate 检查都为 truthy（真值），返回 true ，否则返回 false 。
@@ -3460,7 +3448,7 @@ _ = {
         return false
     },
     /**
-     * 创建一个元素数组。 以 iteratee 处理的结果升序排序。 这个方法执行稳定排序，也就是说相同元素会保持原始排序。 iteratees 调用1个参数： (value)。
+     * 创建一个元素数组。 以 iteratee 处理的结果升序排序。 这个方法执行稳定排序，也就是说相同元素会保持原始排序。 iteratees 调用 1 个参数： (value)。
      * @param  collection (Array|Object): 用来迭代的集合。
      * @param [iteratees=[_.identity]] (...(Array|Array[]|Function|Function[]|Object|Object[]|string|string[])): 这个函数决定排序。
      * @return (Array): 返回排序后的数组。
@@ -3510,24 +3498,22 @@ _ = {
         return colle
     },
     /**
-     * 推迟调用func，直到当前堆栈清理完毕。 调用时，任何附加的参数会传给func。
+     * 推迟调用 func，直到当前堆栈清理完毕。 调用时，任何附加的参数会传给 func。
      * @param  func (Function): 要延迟的函数。
      * @param  [args] (...*): 会在调用时传给 func 的参数
-     * @return (number):返回计时器 id。
+     * @return (number): 返回计时器 id。
      */
     defer: function(func, ...args) {
-
         return setTimeout(func(...args), 0);
     },
     /**
-     * 延迟 wait 毫秒后调用 func。 调用时，任何附加的参数会传给func。
+     * 延迟 wait 毫秒后调用 func。 调用时，任何附加的参数会传给 func。
      * @param  func (Function): 要延迟的函数。
      * @param  wait (number): 要延迟的毫秒数。
      * @param  [args] (...*): 会在调用时传入到 func 的参数。
      * @return (number): 返回计时器 id
      */
     delay: function(func, wait, ...args) {
-
         return setTimeout(func(...args), wait);
     },
     /**
@@ -3563,7 +3549,7 @@ _ = {
         return result
     },
     /**
-     * 通过调用断言source的属性与 object 的相应属性值，检查 object是否符合 source。当source偏应用时，这种方法和 _.conforms函数是等价的。
+     * 通过调用断言 source 的属性与 object 的相应属性值，检查 object 是否符合 source。当 source 偏应用时，这种方法和 _.conforms 函数是等价的。
      * @param  object (Object): 要检查的对象。
      * @param  source (Object): 要断言属性是否符合的对象。
      * @return (boolean): 如果 object 符合，返回 true，否则 false。
@@ -3596,10 +3582,10 @@ _ = {
         return false
     },
     /**
-     * 检查 value是否大于 other。
+     * 检查 value 是否大于 other。
      * @param  value (*): 要比较的值。
      * @param  other (*): 另一个要比较的值。
-     * @return (boolean): 如果value 大于 other 返回 true，否则返回 false。
+     * @return (boolean): 如果 value 大于 other 返回 true，否则返回 false。
      */
     gt: function(value, other) {
         if (value > other) {
@@ -3608,10 +3594,10 @@ _ = {
         return false
     },
     /**
-     * 检查 value是否大于或者等于 other。
+     * 检查 value 是否大于或者等于 other。
      * @param  value (*): 要比较的值。
      * @param  other (*): 另一个要比较的值。
-     * @return (boolean): 如果value 大于或者等于 other 返回 true，否则返回 false。
+     * @return (boolean): 如果 value 大于或者等于 other 返回 true，否则返回 false。
      */
     gte: function(value, other) {
         if (value >= other) {
@@ -3622,16 +3608,15 @@ _ = {
     /**
      * 检查 value 是否是 ArrayBuffer 对象。
      * @param  value (*): 要检查的值。
-     * @return (boolean): 如果value是一个数组 buffer 返回 true，否则返回 false。
+     * @return (boolean): 如果 value 是一个数组 buffer 返回 true，否则返回 false。
      */
     isArrayBuffer: function(value) {
-
         return value instanceof ArrayBuffer
     },
     /**
-     * 检查 value 是否是类数组。 如果一个值被认为是类数组，那么它不是一个函数，并且value.length是个整数，大于等于 0，小于或等于 Number.MAX_SAFE_INTEGER。
+     * 检查 value 是否是类数组。 如果一个值被认为是类数组，那么它不是一个函数，并且 value.length 是个整数，大于等于 0，小于或等于 Number.MAX_SAFE_INTEGER。
      * @param  value (*): 要检查的值
-     * @return (boolean): 如果value是一个类数组，那么返回 true，否则返回 false。
+     * @return (boolean): 如果 value 是一个类数组，那么返回 true，否则返回 false。
      */
     isArrayLike: function(value) {
         if (this.isFunction(value)) {
@@ -3645,7 +3630,7 @@ _ = {
         return false
     },
     /**
-     * 这个方法类似_.isArrayLike。除了它还检查value是否是个对象。
+     * 这个方法类似_.isArrayLike。除了它还检查 value 是否是个对象。
      * @param  value (*): 要检查的值。
      * @return (boolean): 如果 value 是一个类数组对象，那么返回 true，否则返回 false。
      */
@@ -3663,7 +3648,7 @@ _ = {
     /**
      * 检查 value 是否是可能是 DOM 元素。
      * @param  value (*): 要检查的值。
-     * @return (boolean): 如果 value 是一个DOM元素，那么返回 true，否则返回 false。
+     * @return (boolean): 如果 value 是一个 DOM 元素，那么返回 true，否则返回 false。
      */
     isElement: function(value) {
         if (value instanceof HTMLElement) {
@@ -3672,12 +3657,11 @@ _ = {
         return false
     },
     /**
-     * 检查 value 是否是 Error, EvalError, RangeError, ReferenceError, SyntaxError, TypeError, 或者 URIError对象。
+     * 检查 value 是否是 Error, EvalError, RangeError, ReferenceError, SyntaxError, TypeError, 或者 URIError 对象。
      * @param  value (*): 要检查的值。
      * @return (boolean): 如果 value 是一个错误（Error）对象，那么返回 true，否则返回 false。
      */
     isError: function(value) {
-
         return value instanceof Error
     },
     isInteger: function(value) {
@@ -3702,14 +3686,13 @@ _ = {
      * @return (boolean): 如果 value 是一个 Map 对象，那么返回 true，否则返回 false。
      */
     isMap: function(value) {
-
         return value instanceof Map
     },
     /**
      * 执行一个深度比较，来确定 object 是否含有和 source 完全相等的属性值。
      * @param  object (Object): 要检查的对象。
      * @param  source (Object): 属性值相匹配的对象。
-     * @return (boolean): 如果object匹配，那么返回 true，否则返回 false。
+     * @return (boolean): 如果 object 匹配，那么返回 true，否则返回 false。
      */
     isMatch: function(obj, source) {
         if (source === undefined) {
@@ -3745,7 +3728,7 @@ _ = {
     /**
      * 检查 value 是否是 null 或者 undefined。
      * @param  value (*): 要检查的值。
-     * @return (boolean): 如果 value 为null 或 undefined，那么返回 true，否则返回 false。
+     * @return (boolean): 如果 value 为 null 或 undefined，那么返回 true，否则返回 false。
      */
     isNil: function(value) {
         if (value === undefined || value === null) {
@@ -3781,22 +3764,20 @@ _ = {
      * @return (boolean): 如果 value 为一个安全整数，那么返回 true，否则返回 false。
      */
     isSafeInteger: function(value) {
-
         return value === parseInt(value)
     },
     /**
-     * 检查 value 是否是一个Set对象。
+     * 检查 value 是否是一个 Set 对象。
      * @param  value (*): 要检查的值。
      * @return (boolean): 如果 value 为一个 set 对象，那么返回 true，否则返回 false。
      */
     isSet: function(value) {
-
         return value instanceof Set
     },
     /**
      * 检查 value 是否是原始 Symbol 或者对象。
      * @param  value (*): 要检查的值。
-     * @return (boolean): 如果 value 为一个symbol，那么返回 true，否则返回 false。
+     * @return (boolean): 如果 value 为一个 symbol，那么返回 true，否则返回 false。
      */
     isSymbol: function(value) {
         if (typeof value === 'symbol' || typeof value === 'object') {
@@ -3805,9 +3786,9 @@ _ = {
         return false
     },
     /**
-     * 检查 value 是否是TypedArray。
+     * 检查 value 是否是 TypedArray。
      * @param  value (*): 要检查的值。
-     * @return (boolean): 如果 value 为一个typed array，那么返回 true，否则返回 false。
+     * @return (boolean): 如果 value 为一个 typed array，那么返回 true，否则返回 false。
      */
     isTypedArray: function(value) {
         if (value.constructor === Int8Array) {
@@ -3845,7 +3826,6 @@ _ = {
      * @return (boolean): 如果 value 为一个 WeakMap 对象 ，那么返回 true，否则返回 false。
      */
     isWeakMap: function(value) {
-
         return value instanceof WeakMap
     },
     /**
@@ -3854,14 +3834,13 @@ _ = {
      * @return (boolean): 如果 value 为一个 WeakSet 对象 ，那么返回 true，否则返回 false。
      */
     isWeakSet: function(value) {
-
         return value instanceof WeakSet
     },
     /**
      * 检查 value 是否小于 other。
      * @param  value (*): 用来比较的值。
      * @param  other (*): 另一个用来比较的值。
-     * @return (boolean): 如果value 小于等于 other 返回 true，否则返回 false。
+     * @return (boolean): 如果 value 小于等于 other 返回 true，否则返回 false。
      */
     lt: function(value, other) {
         if (value < other) {
@@ -4020,7 +3999,6 @@ _ = {
      * @return (number): 返回商数。
      */
     divide: function(dividend, divisor) {
-
         return dividend / divisor
     },
     /**
@@ -4058,7 +4036,7 @@ _ = {
         return arr.reduce((a, b) => a > b ? a : b)
     },
     /**
-     * 这个方法类似 _.max 除了它接受 iteratee 来调用 array中的每一个元素，来生成其值排序的标准。 iteratee 会调用1个参数: (value) 。
+     * 这个方法类似 _.max 除了它接受 iteratee 来调用 array 中的每一个元素，来生成其值排序的标准。 iteratee 会调用 1 个参数: (value) 。
      * @param  array (Array): 要迭代的数组。
      * @param  [iteratee=_.identity] (Function): 调用每个元素的迭代函数。
      * @return (*): 返回最大的值。
@@ -4956,7 +4934,6 @@ _ = {
             }
         }
         return +result.join("")
-
     },
     replace: function(str, pattern, replace) {
         var result = [],
@@ -5009,12 +4986,12 @@ _ = {
             }
         }
         for (var i = temp.length - 1; i >= 0; i--) {
-            if (!(('A'.charCodeAt() <= temp[i].charCodeAt() && temp[i].charCodeAt() <= 'Z'.charCodeAt()) || ('a'.charCodeAt() <= temp[i].charCodeAt() && temp[i].charCodeAt() <= 'z'.charCodeAt())) && temp[i] !== ' ') {
+            if (!(('A'.charCodeAt() <= temp[i].charCodeAt() && temp[i].charCodeAt() <= 'Z'.charCodeAt()) || ('a'.charCodeAt() <= temp[i].charCodeAt() && temp[i].charCodeAt() <= 'z'.charCodeAt())) && temp[i] !== '') {
                 temp.splice(i, 1)
             }
         }
         for (var i = 0; i < temp.length; i++) {
-            if (temp[i] !== ' ') {
+            if (temp[i] !== '') {
                 break
             } else {
                 temp.splice(i, 1)
@@ -5094,6 +5071,292 @@ _ = {
         var result = temp.join("")
         return result
     },
+    truncate: function(str, options) {
+        if (options === undefined) {
+            options = {}
+            options.length = 30
+            options.omission = '...'
+        }
+        if (!('length' in options)) {
+            options.length = 30
+        }
+        if (!('omission' in options)) {
+            options.omission = '...'
+        }
+        var temp = str.split("")
+        if ('separator' in options) {
+            if (this.isRegExp(options.separator)) {
+                var theReg = new RegExp(options.separator, "g")
+                var tmp = str.match(theReg)
+                var theChar = tmp[tmp.length - 1]
+            } else {
+                var theChar = options.separator
+            }
+            for (var i = str.length - 1; i >= 0; i--) {
+                if (theChar[0] === str[i] && theChar === str.slice(i, theChar.length + i)) {
+                    temp.length = i
+                    break
+                }
+            }
+            temp.push(options.omission)
+
+        }
+        if (temp.length > options.length) {
+            temp.length = options.length - 3
+            temp.push(options.omission)
+
+        }
+
+        var result = temp.join("")
+        return result
+    },
+    unescape: function(str) {
+        debugger
+        var temp = str.split("")
+        for (var i = 0, j = 0; i < str.length; i++, j++) {
+            if (str[i] === '&') {
+                do {
+                    j++
+                    if (str[j] === ';') {
+                        var theChar = str.slice(i, j + 1)
+                        temp.splice(i, j - i + 1, char(theChar))
+                        i = j
+                        break
+                    }
+                } while (j < str.length)
+            }
+        }
+        var result = temp.join("")
+        return result
+
+        function char(a) {
+            switch (a) {
+                case '&amp;':
+                    return '&'
+                case '&lt;':
+                    return '<'
+                case '&gt;':
+                    return '>'
+                case '&quot;':
+                    return '"'
+                case '&apos':
+                    return "'"
+                default:
+                    return a
+            }
+        }
+    },
+    upperCase: function(str) {
+        return this.startCase(str).toUpperCase()
+    },
+    upperFirst: function(str) {
+        var temp = str.split("")
+        temp[0] = temp[0].toUpperCase()
+        var result = temp.join("")
+        return result
+    },
+    words: function(str, pattern) {
+        if (pattern === undefined) {
+            var flag = 0,
+                result = []
+            for (var i = 0; i < str.length; i++, flag++) {
+                if (('A'.charCodeAt() <= str[i].charCodeAt() && str[i].charCodeAt() <= 'Z'.charCodeAt()) || ('a'.charCodeAt() <= str[i].charCodeAt() && str[i].charCodeAt() <= 'z'.charCodeAt())) {
+                    do {
+                        flag++
+                        if (flag === str.length || !(('A'.charCodeAt() <= str[flag].charCodeAt() && str[flag].charCodeAt() <= 'Z'.charCodeAt()) || ('a'.charCodeAt() <= str[flag].charCodeAt() && str[flag].charCodeAt() <= 'z'.charCodeAt()))) {
+                            var theChar = str.slice(i, flag)
+                            result.push(theChar)
+                            flag--
+                            i = flag
+                            break
+                        }
+                    } while (flag < str.length)
+                }
+            }
+        } else {
+            return str.match(pattern)
+        }
+        return result
+    },
+    bindAll: function(obj, method) {
+        var temp = []
+        if (typeof method === 'string') {
+            temp.push(method)
+        } else {
+            temp = method
+        }
+        for (var i = 0; i < temp.length; i++) {
+            obj[temp[i]].bind(obj)
+        }
+    },
+    defaultTo: function(value, defaults) {
+        if (isNaN(value) || value === null || value === undefined) {
+            return defaults
+        } else {
+            return value
+        }
+    },
+    range: function(start, end, step) {
+        var result = []
+        if (start < 0 && end === undefined) {
+            step = -1
+        }
+        if (end === undefined) {
+            end = start
+            start = 0
+
+        }
+        if (end < start && step === undefined) {
+            return []
+        }
+        if (step === undefined) {
+            step = 1
+        }
+        var count = 0
+        if (end >= start) {
+            for (var i = start; i < end && count < end - start; i += step) {
+                result.push(i)
+                count++
+            }
+        } else {
+            for (var i = start; i > end && count < start - end; i += step) {
+                result.push(i)
+                count++
+            }
+        }
+        return result
+    },
+    rangeRight: function(start, end, step) {
+        var result = []
+        if (start < 0 && end === undefined) {
+            step = -1
+        }
+        if (end === undefined) {
+            end = start
+            start = 0
+
+        }
+        if (end < start && step === undefined) {
+            return []
+        }
+        if (step === undefined) {
+            step = 1
+        }
+        var count = 0
+        if (end >= start) {
+            for (var i = start; i < end && count < end - start; i += step) {
+                result.unshift(i)
+                count++
+            }
+        } else {
+            for (var i = start; i > end && count < start - end; i += step) {
+                result.unshift(i)
+                count++
+            }
+        }
+        return result
+    },
+    toPath: function(path) {
+        var temp = [],
+            start = 0,
+            end = 1
+        if (typeof path === 'string') {
+            while (start < path.length) {
+                if (path[end] === '.' || path[end] === '[' || path[end] === undefined) {
+                    temp.push(path.slice(start, end))
+                    end++
+                    start = end
+                } else if (path[end] === ']') {
+                    temp.push(path.slice(start, end))
+                    end += 2
+                    start = end
+                } else {
+                    end++
+                }
+            }
+        } else {
+            temp = path
+        }
+        return temp
+    },
+    dellTo3355: function(str) {
+        return str.split("").map(charToDigit).join("")
+
+        function charToDigit(char) {
+            var lowerChar = char.toLowerCase()
+
+            if (lowerChar <= 'c') {
+                return 2
+            }
+
+            if (lowerChar <= 'f') {
+                return 3
+            }
+
+            if (lowerChar <= 'i') {
+                return 4
+            }
+
+            if (lowerChar <= 'l') {
+                return 5
+            }
+
+            if (lowerChar <= 'o') {
+                return 6
+            }
+
+            if (lowerChar <= 's') {
+                return 7
+            }
+
+            if (lowerChar <= 'v') {
+                return 8
+            }
+
+            if (lowerChar <= 'z') {
+                return 9
+            }
+        }
+    },
+
+    isPrime: function(num) {
+        var isIPrime
+        if (num % 2 === 0) {
+            return false
+        }
+        for (var i = 3; i <= Math.sqrt(num); i += 2) {
+            if (num % i === 0) {
+                return false
+            }
+        }
+        return true
+    },
+    // 最大公约数
+    // 大整数相加
+    'n - m 之间的素数': function(n, m) {
+        return new Array(m - n + 1).fill(0).map(a => n++).filter(isPrime)
+    },
+    // 求数组最大项
+    // 1 - n 的和
+    // 1 - n 以内的完全数
+    // abc 排序
+    // fibb
+    // m 的 n 次方
+    // Sin - Taylor
+    // 第一次只出现一次的字符
+    // 反向输出一个三位数
+    // 分解质因数
+    // 猴子选王
+    // 评委打分
+    // 敲 7
+    // 求平方根
+    // 日历
+    // 四舍五入
+    // 向量点积
+    // 字符串展开
+    // 最小公倍数
+    // 最小的能被 1 - n 整除的数
+
 
 
 
@@ -5103,17 +5366,12 @@ _ = {
 }
 
 /**
-if (this.isObject(pred)) {
-    var fn = this.matches(pred)
+if (this.isObject(pred)) {var fn = this.matches(pred)
 }
-if (this.isArray(pred)) {
-    var fn = this.matchesProperty(...pred)
+if (this.isArray(pred)) {var fn = this.matchesProperty(...pred)
 }
-if (this.isString(pred)) {
-    var fn = this.property(pred)
+if (this.isString(pred)) {var fn = this.property(pred)
 }
-if (this.isFunction(pred)) {
-    var fn = pred
-}
+if (this.isFunction(pred)) {var fn = pred}
 */
 </script>
