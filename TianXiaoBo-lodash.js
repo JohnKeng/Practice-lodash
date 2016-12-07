@@ -3753,10 +3753,8 @@ TianXiaoBo = {
      * @return (boolean): 如果 value 是一个DOM元素，那么返回 true，否则返回 false。
      */
     isElement: function(value) {
-        if ('nodeType' in value) {
-            if (0 < value.nodeType && value.nodeType <= 12) {
-                return true
-            }
+        if (value instanceof HTMLElement) {
+            return true
         }
         return false
     },
@@ -5361,7 +5359,7 @@ TianXiaoBo = {
      */
     trim: function(str, char) {
         if (char === undefined) {
-            char = ' '
+            char = " "
         }
         var temp = str.split("")
         for (var i = 0; i < temp.length; i++) {
@@ -5375,6 +5373,49 @@ TianXiaoBo = {
         for (var i = temp.length - 1; i >= 0; i--) {
             if (char.indexOf(temp[i]) >= 0) {
                 temp.splice(i, 1)
+            } else {
+                break
+            }
+        }
+        var result = temp.join("")
+        return result
+    },
+    /**
+     * 从string字符串中移除后面的 空格 或 指定的字符。
+     * @param  [string=''] (string): 要处理的字符串。
+     * @param  [chars=whitespace] (string): 要移除的字符。
+     * @return (string): 返回处理后的字符串。
+     */
+    trimEnd: function(str, char) {
+        if (char === undefined) {
+            char = " "
+        }
+        var temp = str.split("")
+        for (var i = temp.length - 1; i >= 0; i--) {
+            if (char.indexOf(temp[i]) >= 0) {
+                temp.splice(i, 1)
+            } else {
+                break
+            }
+        }
+        var result = temp.join("")
+        return result
+    },
+    /**
+     * 从string字符串中移除前面的 空格 或 指定的字符。
+     * @param  [string=''] (string): 要处理的字符串。
+     * @param  [chars=whitespace] (string): 要移除的字符。
+     * @return (string): 返回处理后的字符串。
+     */
+    trimStart: function(str, char) {
+        if (char === undefined) {
+            char = " "
+        }
+        var temp = str.split("")
+        for (var i = 0; i < temp.length; i++) {
+            if (char.indexOf(temp[i]) >= 0) {
+                temp.splice(i, 1)
+                i--
             } else {
                 break
             }

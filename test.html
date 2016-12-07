@@ -1736,7 +1736,7 @@ _ = {
                 if (typeof value1[p] !== 'undefined' && typeof value2[p] === 'undefined') {
                     return false;
                 }
-                if (!TianXiaoBo.isEqual(value1[p], value2[p])) {
+                if (!_.isEqual(value1[p], value2[p])) {
                     return false;
                 }
 
@@ -3666,10 +3666,8 @@ _ = {
      * @return (boolean): 如果 value 是一个DOM元素，那么返回 true，否则返回 false。
      */
     isElement: function(value) {
-        if ('nodeType' in value) {
-            if (0 < value.nodeType && value.nodeType <= 12) {
-                return true
-            }
+        if (value instanceof HTMLElement) {
+            return true
         }
         return false
     },
@@ -5058,6 +5056,37 @@ _ = {
         for (var i = temp.length - 1; i >= 0; i--) {
             if (char.indexOf(temp[i]) >= 0) {
                 temp.splice(i, 1)
+            } else {
+                break
+            }
+        }
+        var result = temp.join("")
+        return result
+    },
+    trimEnd: function(str, char) {
+        if (char === undefined) {
+            char = ' '
+        }
+        var temp = str.split("")
+        for (var i = temp.length - 1; i >= 0; i--) {
+            if (char.indexOf(temp[i]) >= 0) {
+                temp.splice(i, 1)
+            } else {
+                break
+            }
+        }
+        var result = temp.join("")
+        return result
+    },
+    trimStart: function(str, char) {
+        if (char === undefined) {
+            char = ' '
+        }
+        var temp = str.split("")
+        for (var i = 0; i < temp.length; i++) {
+            if (char.indexOf(temp[i]) >= 0) {
+                temp.splice(i, 1)
+                i--
             } else {
                 break
             }
