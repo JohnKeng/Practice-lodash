@@ -1362,7 +1362,6 @@ TianXiaoBo = {
      * 例子
      **/
     map: function(colle, pred) {
-        //debugger
         var result = []
         if (this.isObject(pred)) {
             var fn = this.matches(pred)
@@ -1377,7 +1376,7 @@ TianXiaoBo = {
             var fn = pred
         }
         for (var key in colle) {
-            result.push(fn(colle[key], key, colle))
+            result.push(fn(colle[key]))
         }
         return result
     },
@@ -5335,7 +5334,53 @@ TianXiaoBo = {
         } else {
             return false
         }
-    }
+    },
+    /**
+     * 转换整个string字符串的字符为小写，类似 String#toLowerCase。
+     * @param  [string=''] (string): 要转换的字符串。
+     * @return (string): 返回小写的字符串。
+     */
+    toLower: function(str) {
+
+        return str.toLowerCase()
+    },
+    /**
+     * 转换整个string字符串的字符为大写，类似 String#toUpperCase.
+     * @param  [string=''] (string): 要转换的字符串。
+     * @return (string): 返回大写的字符串。
+     */
+    toUpper: function(str) {
+        return str.toUpperCase()
+    },
+    /**
+     * 从string字符串中移除前面和后面的 空格 或 指定的字符。
+     * @param  [string=''] (string): 要处理的字符串。
+     * @param  [chars=whitespace] (string): 要移除的字符。
+     * @return (string): 返回处理后的字符串。
+     */
+    trim: function(str, char) {
+        if (char === undefined) {
+            char = ' '
+        }
+        var temp = str.split("")
+        for (var i = 0; i < temp.length; i++) {
+            if (char.indexOf(temp[i]) >= 0) {
+                temp.splice(i, 1)
+                i--
+            } else {
+                break
+            }
+        }
+        for (var i = temp.length - 1; i >= 0; i--) {
+            if (char.indexOf(temp[i]) >= 0) {
+                temp.splice(i, 1)
+            } else {
+                break
+            }
+        }
+        var result = temp.join("")
+        return result
+    },
 
 
 

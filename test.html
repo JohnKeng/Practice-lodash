@@ -1363,7 +1363,6 @@ _ = {
      * 例子
      **/
     map: function(colle, pred) {
-        //debugger
         var result = []
         if (this.isObject(pred)) {
             var fn = this.matches(pred)
@@ -1378,7 +1377,7 @@ _ = {
             var fn = pred
         }
         for (var key in colle) {
-            result.push(fn(colle[key], key, colle))
+            result.push(fn(colle[key]))
         }
         return result
     },
@@ -5036,6 +5035,35 @@ _ = {
         } else {
             return false
         }
+    },
+    toLower: function(str) {
+        return str.toLowerCase()
+    },
+    toUpper: function(str) {
+        return str.toUpperCase()
+    },
+    trim: function(str, char) {
+        if (char === undefined) {
+            char = ' '
+        }
+        var temp = str.split("")
+        for (var i = 0; i < temp.length; i++) {
+            if (char.indexOf(temp[i]) >= 0) {
+                temp.splice(i, 1)
+                i--
+            } else {
+                break
+            }
+        }
+        for (var i = temp.length - 1; i >= 0; i--) {
+            if (char.indexOf(temp[i]) >= 0) {
+                temp.splice(i, 1)
+            } else {
+                break
+            }
+        }
+        var result = temp.join("")
+        return result
     }
 
 
