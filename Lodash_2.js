@@ -170,11 +170,34 @@ let _ = lodash = ( function () {
 		return toString.call( value ) === '[object Date]'
 	}
 
-	let isElement = function () {
-
+	/**
+	 * 检查一个值 是否是 DOM 元素
+	 * @param  {*}  value      被检查的值
+	 * @return {Boolean}       如果是 DOM 元素，返回 true
+	 */
+	let isElement = function ( value ) {
+		return /Element\]$/.test( toString.call( value ) )
 	}
 
-	let isEmpty = function () {}
+	/**
+	 * 检查一个值是不是 空对象
+	 * @param  {*}  value      被检查的值
+	 * @return {Boolean}       如果是空对象，返回 true
+	 */
+	let isEmpty = function ( value ) {
+		if ( value === null ) {
+			return true
+		}
+		if ( value.length && value.length === 0 ) {
+			return true
+		} else if ( value.size && value.size === 0 ) {
+			return true
+		} else if ( Object.keys( value ) && Object.keys( value ).length === 0 ) {
+			return true
+		}
+		return false
+	}
+
 	let isEqual = function () {}
 	let isFinite = function () {}
 	let isFunction = function () {}
@@ -225,6 +248,8 @@ let _ = lodash = ( function () {
 		isBoolean: isBoolean,
 		isBuffer: isBuffer,
 		isDate: isDate,
+		isElement: isElement,
+		isEmpty: isEmpty,
 
 	}
 } )( window )
