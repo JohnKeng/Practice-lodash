@@ -33,12 +33,23 @@
       return function(...arg) {
         count++
         if (count <= n) {
-          result = func.call(this, ...arg)
+          result = func.apply(this, arg)
         }
         return result
       }
     }
-    let bind = function() {}
+    let bind = function(func, thisArg, ...partials) {
+      return function(...args) {
+        var arg, index
+        if (partials.indexOf(_) === -1) {
+          arg = partials.concat(args)
+        } else {
+          index = partials.indexOf(_)
+          arg = partials.slice(0, index).concat(args).concat(partials.slice(index + 1))
+        }
+        return func.apply(thisArg, arg)
+      }
+    }
     let chain = function() {}
     let clone = function() {}
     let compact = function() {}
@@ -99,6 +110,13 @@
     let uniqueId = function() {}
     let value = function() {}
     let valu = function() {}
+      // =========================
+    function zn(obj) {
+      this.__wrapped__ =
+    }
+    window._ = {
+
+      }
       // =========================
     return {
       assign: assign,
