@@ -1,0 +1,118 @@
+<div id="div" style="width:100px;height:100px;border:1px solid #333;"></div>
+<script type="text/javascript">
+  let _ = lodash = (function() {
+
+    /**
+     * 分配一个或多个被复制对象可自身可枚举属性，到目标对象上，
+     * 分配的属性会覆盖目标对象身上的同名属性
+     * @param  {object} obj  目标属性
+     * @param  {[object]} args 被分配的对象
+     * @return {object}      分配后的目标对象
+     */
+    let assign = function(obj, ...args) {
+      args.forEach(function(a) {
+        for (let key in a) {
+          if (a.hasOwnProperty(key)) {
+            obj[key] = a[key]
+          }
+        }
+      })
+      return obj
+    }
+    let assignIn = function(obj, ...args) {
+      args.forEach(function(a) {
+        for (let key in a) {
+          obj[key] = a[key]
+        }
+      })
+      return obj
+    }
+    let before = function(n, func) {
+      let count = 0
+      let result
+      return function(...arg) {
+        count++
+        if (count <= n) {
+          result = func.call(this, ...arg)
+        }
+        return result
+      }
+    }
+    let bind = function() {}
+    let chain = function() {}
+    let clone = function() {}
+    let compact = function() {}
+    let concat = function() {}
+    let create = function() {}
+    let defaults = function() {}
+    let defer = function() {}
+    let delay = function() {}
+    let each = function() {}
+    let escape = function() {}
+    let every = function() {}
+    let filter = function() {}
+    let find = function() {}
+    let flatten = function() {}
+    let flattenDeep = function() {}
+    let forEach = function() {}
+    let has = function() {}
+    let head = function() {}
+    let identity = function() {}
+    let indexOf = function() {}
+    let isArguments = function() {}
+    let isArray = function() {}
+    let isBoolean = function() {}
+    let isDate = function() {}
+    let isEmpty = function() {}
+    let isEqual = function() {}
+    let isFinite = function() {}
+    let isFunction = function() {}
+    let isNaN = function() {}
+    let isNull = function() {}
+    let isNumber = function() {}
+    let isObject = function() {}
+    let isRegExp = function() {}
+    let isString = function() {}
+    let isUndefined = function() {}
+    let iteratee = function() {}
+    let keys = function() {}
+    let last = function() {}
+    let map = function() {}
+    let matches = function() {}
+    let max = function() {}
+    let min = function() {}
+    let mixin = function() {}
+    let negate = function() {}
+    let noConflict = function() {}
+    let noop = function() {}
+    let once = function() {}
+    let pick = function() {}
+    let reduce = function() {}
+    let result = function() {}
+    let size = function() {}
+    let slice = function() {}
+    let some = function() {}
+    let sortBy = function() {}
+    let tap = function() {}
+    let thru = function() {}
+    let toArray = function() {}
+    let uniqueId = function() {}
+    let value = function() {}
+    let valu = function() {}
+      // =========================
+    return {
+      assign: assign,
+      assignIn: assignIn,
+      before: before,
+    }
+  })(window)
+
+</script>
+<script type="text/javascript">
+  let oDiv = document.getElementById('div')
+  var n = 1
+  oDiv.addEventListener('click', _.before(5, function() {
+    this.innerHTML = n++
+  }))
+
+</script>
