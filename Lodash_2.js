@@ -63,14 +63,13 @@ let _ = lodash = ( function () {
 	 */
 	let bind = function ( func, thisArg, ...partials ) {
 		return function ( ...args ) {
-			var arg, index
-			if ( partials.indexOf( _ ) === -1 ) {
-				arg = partials.concat( args )
-			} else {
-				index = partials.indexOf( _ )
-				arg = partials.slice( 0, index ).concat( args ).concat( partials.slice( index + 1 ) )
-			}
-			return func.apply( thisArg, arg )
+			var arg = partials.map( function ( a ) {
+				if ( a === _ ) {
+					a = args.shift()
+				}
+				return a
+			} )
+			return func.apply( thisArg, arg.concat( args ) )
 		}
 	}
 
@@ -101,7 +100,7 @@ let _ = lodash = ( function () {
 	 * @return {Boolean}       如果是 arguments 对象，返回 true
 	 */
 	let isArguments = function ( value ) {
-		return typeof value === 'object' ? !!value.callee : false
+		return toString.call( value ) === '[object Arguments]'
 	}
 
 	/**
