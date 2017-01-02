@@ -197,16 +197,63 @@ let _ = lodash = ( function () {
 		return false
 	}
 
-	let isEqual = function () {}
-	let isFinite = function () {}
-	let isFunction = function () {}
-	let isNaN = function () {}
-	let isNull = function () {}
-	let isNumber = function () {}
+	/**
+	 * 检查值是否是有限数
+	 * @param  {*}  value      被检查的值
+	 * @return {Boolean}       如果是有限数，返回 true
+	 */
+	let isFinite = function ( value ) {
+		return Number.isFinite( value )
+	}
+
+	/**
+	 * 检查值是否是 函数对象
+	 * @param  {*}  value      被检查的值
+	 * @return {Boolean}       如果是函数对象，返回 true
+	 */
+	let isFunction = function ( value ) {
+		return toString.call( value ) === '[object Function]'
+	}
+
+	/**
+	 * 判断一个值是不是 NaN，实例 NaN 对象也会正常判断，
+	 * 出数字外其他类型值判断返回 false
+	 * @param  {*}  value      被检查的值
+	 * @return {Boolean}       如果是 NaN 对象，返回 true
+	 */
+	let isNaN = function ( value ) {
+		if ( ( typeof value === 'number' || value instanceof Number ) && +value !== +value ) {
+			return true
+		}
+		return false
+	}
+
+	/**
+	 * 检查一个值 是不是 null
+	 * @param  {*}  value      被检查的对象
+	 * @return {Boolean}       如果是 null，返回 true
+	 */
+	let isNull = function ( value ) {
+		return toString.call( value ) === '[object Null]'
+	}
+
+	/**
+	 * 判断一个值是不是数字类型
+	 * @param  {*}  value      被检查的数
+	 * @return {Boolean}       如果是 数字，返回 true
+	 */
+	let isNumber = function ( value ) {
+		return toString.call( value ) === '[object Number]'
+	}
 	let isObject = function () {}
 	let isRegExp = function () {}
 	let isString = function () {}
 	let isUndefined = function () {}
+		// 数组、buffer、布尔值、日期、error、map、数字、对象、正则、集合、字符串、symbols、类数组对象
+		// 对象通过自有的属性进行比较，函数和 DOM 通过 === 进行比较。
+	let isEqual = function ( value, other ) {
+
+	}
 	let iteratee = function () {}
 	let keys = function () {}
 	let last = function () {}
@@ -249,6 +296,12 @@ let _ = lodash = ( function () {
 		isDate: isDate,
 		isElement: isElement,
 		isEmpty: isEmpty,
+		isFinite: isFinite,
+		isFunction: isFunction,
+		isNaN: isNaN,
+		isNull: isNull,
+		isNumber: isNumber,
+
 
 	}
 } )( window )
