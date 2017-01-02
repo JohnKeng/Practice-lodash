@@ -50,7 +50,9 @@
         return func.apply(thisArg, arg)
       }
     }
-    let chain = function() {}
+    let chain = function() {
+      console.log(this)
+    }
     let clone = function() {}
     let compact = function() {}
     let concat = function() {}
@@ -111,26 +113,14 @@
     let value = function() {}
     let valu = function() {}
       // =========================
-    function zn(obj) {
-      this.__wrapped__ =
-    }
-    window._ = {
 
-      }
-      // =========================
+    // =========================
     return {
       assign: assign,
       assignIn: assignIn,
       before: before,
+      chain: chain
     }
   })(window)
-
-</script>
-<script type="text/javascript">
-  let oDiv = document.getElementById('div')
-  var n = 1
-  oDiv.addEventListener('click', _.before(5, function() {
-    this.innerHTML = n++
-  }))
 
 </script>

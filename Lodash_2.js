@@ -282,10 +282,39 @@ let _ = lodash = ( function () {
 		return toString.call( value ) === '[object Undefined]'
 	}
 
-	// 数组、buffer、布尔值、日期、error、map、数字、对象、正则、集合、字符串、symbols、类数组对象
-	// 对象通过自有的属性进行比较，函数和 DOM 通过 === 进行比较。
+	// 数组、buffer、map、对象、集合、类数组对象
+	// 对象通过自有的属性进行比较 DOM 通过 === 进行比较。
 	let isEqual = function ( value, other ) {
-
+		if ( value === other ) {
+			return true
+		}
+		if ( this.isRegExp( value ) && this.isRegExp( other ) ) {
+			return '' + value === '' + other
+		}
+		if ( this.isNumber( value ) && this.isNumber( other ) ) {
+			return +value === +other
+		}
+		if ( this.isString( value ) && this.isString( other ) ) {
+			return '' + value === '' + other
+		}
+		if ( this.isBoolean( value ) && this.isBoolean( other ) ) {
+			return !!value === !!other
+		}
+		if ( this.isError( value ) && this.isError( other ) ) {
+			return value.message === other.message
+		}
+		if ( this.isDate( value ) && this.isDate( other ) ) {
+			return '' + value === '' + other
+		}
+		if ( this.isSymbol( value ) && this.isSymbol( other ) ) {
+			return value.name === other.name
+		}
+		if ( this.isFunction( value ) && this.isFunction( other ) ) {
+			return value === other
+		}
+		if ( this.isElement( value ) && this.isElement( other ) ) {
+			return value === other
+		}
 	}
 	let iteratee = function () {}
 	let keys = function () {}
