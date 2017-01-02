@@ -273,10 +273,17 @@ let _ = lodash = ( function () {
 		return toString.call( value ) === '[object String]'
 	}
 
+	/**
+	 * 判断一个值是不是 未定义的值
+	 * @param  {*}  value      被检查的值
+	 * @return {Boolean}       如果是 未定义 undefined ，返回 true
+	 */
+	let isUndefined = function ( value ) {
+		return toString.call( value ) === '[object Undefined]'
+	}
 
-	let isUndefined = function () {}
-		// 数组、buffer、布尔值、日期、error、map、数字、对象、正则、集合、字符串、symbols、类数组对象
-		// 对象通过自有的属性进行比较，函数和 DOM 通过 === 进行比较。
+	// 数组、buffer、布尔值、日期、error、map、数字、对象、正则、集合、字符串、symbols、类数组对象
+	// 对象通过自有的属性进行比较，函数和 DOM 通过 === 进行比较。
 	let isEqual = function ( value, other ) {
 
 	}
