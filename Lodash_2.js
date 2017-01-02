@@ -245,9 +245,35 @@ let _ = lodash = ( function () {
 	let isNumber = function ( value ) {
 		return toString.call( value ) === '[object Number]'
 	}
-	let isObject = function () {}
-	let isRegExp = function () {}
-	let isString = function () {}
+
+	/**
+	 * 检查一个值 是否是 对象，null 返回 false
+	 * @param  {*}  value      被检查的值
+	 * @return {Boolean}       如果该值继承自对象，返回 true
+	 */
+	let isObject = function ( value ) {
+		return value instanceof Object
+	}
+
+	/**
+	 * 检查一个值是否是正则表达式
+	 * @param  {*}  value      被检查的值
+	 * @return {Boolean}       如果是正则表达式，返回 true
+	 */
+	let isRegExp = function ( value ) {
+		return toString.call( value ) === '[object RegExp]'
+	}
+
+	/**
+	 * 检查一个值是否是字符串
+	 * @param  {*}  value 被检查的值
+	 * @return {Boolean}       如果是字符串，返回 true
+	 */
+	let isString = function ( value ) {
+		return toString.call( value ) === '[object String]'
+	}
+
+
 	let isUndefined = function () {}
 		// 数组、buffer、布尔值、日期、error、map、数字、对象、正则、集合、字符串、symbols、类数组对象
 		// 对象通过自有的属性进行比较，函数和 DOM 通过 === 进行比较。
@@ -301,6 +327,9 @@ let _ = lodash = ( function () {
 		isNaN: isNaN,
 		isNull: isNull,
 		isNumber: isNumber,
+		isObject: isObject,
+		isRegExp: isRegExp,
+		isString: isString,
 
 
 	}
