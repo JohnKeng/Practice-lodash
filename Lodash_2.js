@@ -63,7 +63,7 @@ let _ = lodash = ( function () {
 	 */
 	let bind = function ( func, thisArg, ...partials ) {
 		return function ( ...args ) {
-			var arg = partials.map( function ( a ) {
+			let arg = partials.map( function ( a ) {
 				if ( a === _ ) {
 					a = args.shift()
 				}
@@ -282,7 +282,6 @@ let _ = lodash = ( function () {
 		return toString.call( value ) === '[object Undefined]'
 	}
 
-
 	/**
 	 * 将两个值进行深度比较，确定他们是否相等
 	 * This method supports comparing
@@ -333,13 +332,13 @@ let _ = lodash = ( function () {
 			( this.isArrayLikeObject( value ) && this.isArrayLikeObject( other ) ) ||
 			( this.isBuffer( value ) && this.isBuffer( other ) )
 		) {
-			var size = Object.keys( value )
+			let size = Object.keys( value )
 			if ( size.length === 0 && Object.keys( other ).length === 0 ) {
 				return true
 			}
 			if ( size.length === Object.keys( other ).length ) {
-				var onOff = true
-				for ( var i = 0; i < size.length; i++ ) {
+				let onOff = true
+				for ( let i = 0; i < size.length; i++ ) {
 					if ( !this.isEqual( value[ size[ i ] ], other[ size[ i ] ] ) ) {
 						onOff = false
 						break
@@ -351,9 +350,62 @@ let _ = lodash = ( function () {
 		return false
 	}
 
-	let iteratee = function () {}
-	let keys = function () {}
-	let last = function () {}
+	/**
+	 * 根据参数重载，如果参数是属性名（字符串形式），返回 返回对应的属性值 的回调函数
+	 * 如果参数是数组（长度为 2 的一维 键值对），返回 返回布尔值 的回调函数
+	 * 如果参数是对象 ，返回布尔值
+	 * @param  {string | array | object} func 选择回调函数的参数
+	 * @return {function}                     返回该回调函数
+	 */
+	let iteratee = function ( func ) {
+		if ( this.isString( func ) ) {
+			return function ( it ) {
+				return it[ func ]
+			}
+		}
+		if ( this.isArray( func ) ) {
+			return function ( it ) {
+				return it[ func[ 0 ] ] === func[ 1 ]
+			}
+		}
+		if ( this.isObject( func ) ) {
+			return function ( it ) {
+				for ( let key in func ) {
+					if ( func.hasOwnProperty( key ) ) {
+						if ( it[ key ] !== func[ key ] ) {
+							return false
+						}
+					}
+				}
+				return true
+			}
+		}
+	}
+
+	/**
+	 * 创建一个包含所给对象所有的可枚举属性的数组
+	 * @param  {object} object 被枚举的对象
+	 * @return {array}         包含所给对象的所有可枚举自有属性的数组
+	 */
+	let keys = function ( object ) {
+		let obj = Object( object )
+		let result = []
+		for ( let key in object ) {
+			if ( object.hasOwnProperty( key ) ) {
+				result.push( key )
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 返回数组的最后一项的值
+	 * @param  {array} array  被查询的数组
+	 * @return {*}            该数组最后一项的值
+	 */
+	let last = function ( array ) {
+		return array[ array.length - 1 ]
+	}
 	let map = function () {}
 	let matches = function () {}
 	let max = function () {}
@@ -401,6 +453,11 @@ let _ = lodash = ( function () {
 		isObject: isObject,
 		isRegExp: isRegExp,
 		isString: isString,
+		isUndefined: isUndefined,
+		isEqual: isEqual,
+		iteratee: iteratee,
+		keys: keys,
+		last: last,
 
 
 	}
