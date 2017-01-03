@@ -282,8 +282,17 @@ let _ = lodash = ( function () {
 		return toString.call( value ) === '[object Undefined]'
 	}
 
-	// 数组、buffer、map、对象、集合、类数组对象
-	// 对象通过自有的属性进行比较 DOM 通过 === 进行比较。
+
+	/**
+	 * 将两个值进行深度比较，确定他们是否相等
+	 * This method supports comparing
+	 * arrays, array buffers, booleans, date objects, error objects, maps, numbers, Object objects, regexes, sets, strings, symbols, and typed arrays.
+	 * Object objects are compared by their own, not inherited, enumerable properties.
+	 * Functions and DOM nodes are compared by strict equality, i.e. ===.
+	 * @param  {*}  value      被检查的值
+	 * @param  {[type]}  other 去比较的值
+	 * @return {Boolean}       如果两个值深度相等，返回 true
+	 */
 	let isEqual = function ( value, other ) {
 		if ( value === other ) {
 			return true
@@ -315,7 +324,33 @@ let _ = lodash = ( function () {
 		if ( this.isElement( value ) && this.isElement( other ) ) {
 			return value === other
 		}
+		if ( ( this.isArray( value ) && this.isArray( other ) ) ||
+			( this.isArrayBuffer( value ) && this.isArrayBuffer( other ) ) ||
+			( this.isMap( value ) && this.isMap( other ) ) ||
+			( this.isPlainObject( value ) && this.isPlainObject( other ) ) ||
+			( this.isSet( value ) && this.isSet( other ) ) ||
+			( this.isArrayLike( value ) && this.isArrayLike( other ) ) ||
+			( this.isArrayLikeObject( value ) && this.isArrayLikeObject( other ) ) ||
+			( this.isBuffer( value ) && this.isBuffer( other ) )
+		) {
+			var size = Object.keys( value )
+			if ( size.length === 0 && Object.keys( other ).length === 0 ) {
+				return true
+			}
+			if ( size.length === Object.keys( other ).length ) {
+				var onOff = true
+				for ( var i = 0; i < size.length; i++ ) {
+					if ( !this.isEqual( value[ size[ i ] ], other[ size[ i ] ] ) ) {
+						onOff = false
+						break
+					}
+				}
+				return onOff
+			}
+		}
+		return false
 	}
+
 	let iteratee = function () {}
 	let keys = function () {}
 	let last = function () {}
