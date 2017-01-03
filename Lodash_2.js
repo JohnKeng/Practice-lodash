@@ -1,4 +1,4 @@
-let _ = lodash = ( function () {
+( function ( windowGlobal ) {
 
 	/**
 	 * 分配一个或多个被分配对象可自身可枚举属性，到目标对象上，
@@ -91,6 +91,11 @@ let _ = lodash = ( function () {
 		return toString.call( value ) === '[object Array]'
 	}
 
+	/**
+	 * 检查一个值是不是 ArrayBuffer 对象
+	 * @param  {*}  value      需要检查的值
+	 * @return {Boolean}       如果是 ArrayBuffer 对象，返回 true
+	 */
 	let isArrayBuffer = function ( value ) {
 		return toString.call( value ) === '[object ArrayBuffer]'
 	}
@@ -235,6 +240,40 @@ let _ = lodash = ( function () {
 	}
 
 	/**
+	 * 这个方法返回 undefined
+	 * @return undefined
+	 */
+	let noop = function () {
+		return void 0
+	}
+
+	/**
+	 * 调用迭代器 n 次，并将调用的结果以数组的形式返回，
+	 * 迭代器只传一个参数：循环的指针数
+	 * @param  {number} n          需要调用的次数
+	 * @param  {function} iteratee 被调用的迭代器
+	 * @return {array}             迭代出的结果集
+	 */
+	let times = function ( n, iteratee ) {
+		var result = []
+		for ( var i = 0; i < n; i++ ) {
+			result.push( iteratee( i ) )
+		}
+		return result
+	}
+
+	/**
+	 * 创建一个返回值的函数
+	 * @param  {*} value      被新函数返回的值
+	 * @return {function}     新的函数
+	 */
+	let constant = function ( value ) {
+		return function () {
+			return value
+		}
+	}
+
+	/**
 	 * 检查一个值是否是正则表达式
 	 * @param  {*}  value      被检查的值
 	 * @return {Boolean}       如果是正则表达式，返回 true
@@ -330,6 +369,42 @@ let _ = lodash = ( function () {
 	}
 
 	/**
+	 * 判断一个值是不是 error 对象
+	 * @param  {*}  value      被判断的值
+	 * @return {Boolean}       如果是 error 对象，返回 true
+	 */
+	let isError = function ( value ) {
+		return toString.call( value ) === '[object Error]'
+	}
+
+	/**
+	 * 判断一个值是不是 Symbol 对象
+	 * @param  {*}  value      被判断的值
+	 * @return {Boolean}       如果是 Symbol 对象，返回 true
+	 */
+	let isSymbol = function ( value ) {
+		return toString.call( value ) === '[object Symbol]'
+	}
+
+	/**
+	 * 判断一个值是不是 Map 对象
+	 * @param  {*}  value      被判断的值
+	 * @return {Boolean}       如果是 Map 对象，返回 true
+	 */
+	let isMap = function ( value ) {
+		return toString.call( value ) === '[object Map]'
+	}
+
+	/**
+	 * 判断一个值是不是 WeakMap 对象
+	 * @param  {*}  value      被判断的值
+	 * @return {Boolean}       如果是 WeakMap 对象，返回 true
+	 */
+	let isWeakMap = function ( value ) {
+		return toString.call( value ) === '[object WeakMap]'
+	}
+
+	/**
 	 * 根据参数重载，如果参数是属性名（字符串形式），返回 返回对应的属性值 的回调函数
 	 * 如果参数是数组（长度为 2 的一维 键值对），返回 返回布尔值 的回调函数
 	 * 如果参数是对象 ，返回布尔值
@@ -337,13 +412,14 @@ let _ = lodash = ( function () {
 	 * @return {function}                     返回该回调函数
 	 */
 	let iteratee = function ( func ) {
+		//debugger
 		if ( this.isString( func ) ) {
 			return this.property( func )
 		}
 		if ( this.isArray( func ) ) {
-			return this.matchesProperty( path )
+			return this.matchesProperty( func[ 0 ], func[ 1 ] )
 		}
-		if ( this.isObject( func ) ) {
+		if ( this.isPlainObject( func ) ) {
 			return this.matches( func )
 		}
 	}
@@ -402,19 +478,16 @@ let _ = lodash = ( function () {
 	let matchesProperty = function ( path, srcValue ) {
 		let prop
 		if ( this.isString( path ) ) {
-			prop = path.match( /\w+/ )
+			prop = path.match( /\w+/g )
 		}
 		if ( this.isArray( path ) ) {
 			prop = path
 		}
+		let that = this
 		return function ( it ) {
-			if ( this.isEqual( prop.reduce( function ( memo, curr ) {
-					return memo = memo[ curr ]
-				}, it ), srcValue ) ) {
-				return true
-			} else {
-				return false
-			}
+			return that.isEqual( prop.reduce( function ( memo, curr ) {
+				return memo = memo[ curr ]
+			}, it ), srcValue )
 		}
 	}
 
@@ -426,7 +499,7 @@ let _ = lodash = ( function () {
 	let property = function ( path ) {
 		let prop
 		if ( this.isString( path ) ) {
-			prop = path.match( /\w+/ )
+			prop = path.match( /\w+/g )
 		}
 		if ( this.isArray( path ) ) {
 			prop = path
@@ -438,13 +511,63 @@ let _ = lodash = ( function () {
 		}
 	}
 
-	let map = function () {}
+	/**
+	 * 迭代集合的每一个元素，通过调用 iteratee 返回一个新的数组
+	 * @param  {array | object} collection    被迭代的集合
+	 * @param  {function | string} iteratee   用于迭代的函数
+	 * @return {array}                        返回一个新数组
+	 */
+	let map = function ( collection, iteratee ) {
+		let result = []
+		for ( let key in collection ) {
+			if ( collection.hasOwnProperty( key ) ) {
+				if ( this.isString( iteratee ) ) {
+					result.push( this.property( iteratee )( collection[ key ] ) )
+				} else if ( this.isFunction( iteratee ) ) {
+					result.push( iteratee( collection[ key ] ) )
+				}
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 迭代集合元素，返回成员调用断言函数后为 true 的数组
+	 * @param  {array | object} collection                     被迭代的对象
+	 * @param  {function | object | array | string} predicate  断言
+	 * @return {array}                                         筛选后的新数组
+	 */
+	let filter = function ( collection, predicate ) {
+		let result = []
+		for ( let key in collection ) {
+			if ( collection.hasOwnProperty( key ) ) {
+				if ( ( this.isString( predicate ) && this.property( predicate )( collection[ key ] ) ) ||
+					( this.isArray( predicate ) && this.matchesProperty( predicate[ 0 ], predicate[ 1 ] )( collection[ key ] ) ) ||
+					( this.isPlainObject( predicate ) && this.matches( predicate )( collection[ key ] ) ) ||
+					( this.isFunction( predicate ) && predicate( collection[ key ] ) )
+				) {
+					result.push( collection[ key ] )
+				}
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 判断一个值是不是纯对象
+	 * 纯对象为 Object 构造函数构造出来的对象或 原型对象为 null 的对象
+	 * @param  {*}  value      被检查的值
+	 * @return {Boolean}       如果是纯对象，返回 true
+	 */
+	let isPlainObject = function ( value ) {
+		return value.constructor === Object || Object.getPrototypeOf( value ) === null
+	}
+
 	let max = function () {}
 	let min = function () {}
 	let mixin = function () {}
 	let negate = function () {}
 	let noConflict = function () {}
-	let noop = function () {}
 	let once = function () {}
 	let pick = function () {}
 	let reduce = function () {}
@@ -470,7 +593,6 @@ let _ = lodash = ( function () {
 	let each = function () {}
 	let escape = function () {}
 	let every = function () {}
-	let filter = function () {}
 	let find = function () {}
 	let flatten = function () {}
 	let flattenDeep = function () {}
@@ -497,7 +619,8 @@ let _ = lodash = ( function () {
 	}
 
 	// =========================
-	return {
+
+	windowGlobal._ = {
 		assign: assign,
 		assignIn: assignIn,
 		extend: assignIn,
@@ -531,7 +654,16 @@ let _ = lodash = ( function () {
 		matchesProperty: matchesProperty,
 		property: property,
 		forOwn: forOwn,
-
+		map: map,
+		filter: filter,
+		isPlainObject: isPlainObject,
+		times: times,
+		constant: constant,
+		noop: noop,
+		isError: isError,
+		isSymbol: isSymbol,
+		isMap: isMap,
+		isWeakMap: isWeakMap,
 
 	}
-} )( window )
+} )( typeof global === 'undefined' ? window : global )
