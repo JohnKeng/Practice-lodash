@@ -73,27 +73,6 @@ let _ = lodash = ( function () {
 		}
 	}
 
-	let chain = function () {}
-	let clone = function () {}
-	let compact = function () {}
-	let concat = function () {}
-	let create = function () {}
-	let defaults = function () {}
-	let defer = function () {}
-	let delay = function () {}
-	let each = function () {}
-	let escape = function () {}
-	let every = function () {}
-	let filter = function () {}
-	let find = function () {}
-	let flatten = function () {}
-	let flattenDeep = function () {}
-	let forEach = function () {}
-	let has = function () {}
-	let head = function () {}
-	let identity = function () {}
-	let indexOf = function () {}
-
 	/**
 	 * 检查传入的值是不是一个 arguments 对象
 	 * @param  {*}  value      被检查的对象
@@ -359,26 +338,13 @@ let _ = lodash = ( function () {
 	 */
 	let iteratee = function ( func ) {
 		if ( this.isString( func ) ) {
-			return function ( it ) {
-				return it[ func ]
-			}
+			return this.property( func )
 		}
 		if ( this.isArray( func ) ) {
-			return function ( it ) {
-				return it[ func[ 0 ] ] === func[ 1 ]
-			}
+			return this.matchesProperty( path )
 		}
 		if ( this.isObject( func ) ) {
-			return function ( it ) {
-				for ( let key in func ) {
-					if ( func.hasOwnProperty( key ) ) {
-						if ( it[ key ] !== func[ key ] ) {
-							return false
-						}
-					}
-				}
-				return true
-			}
+			return this.matches( func )
 		}
 	}
 
@@ -406,8 +372,73 @@ let _ = lodash = ( function () {
 	let last = function ( array ) {
 		return array[ array.length - 1 ]
 	}
+
+	/**
+	 * 返回一个函数，执行对象和给定参数的深度对比，
+	 * 如果对象具有等效的属性。返回 true
+	 * @param  {object} source 需要对比的参数
+	 * @return {function}      返回新的函数
+	 */
+	let matches = function ( source ) {
+		let that = this
+		return function ( it ) {
+			for ( let key in source ) {
+				if ( source.hasOwnProperty( key ) ) {
+					if ( !that.isEqual( source[ key ], it[ key ] ) ) {
+						return false
+					}
+				}
+			}
+			return true
+		}
+	}
+
+	/**
+	 * 创建一个函数，根据指定的路径和值来判断对象，如果等值，则返回 true
+	 * @param  { array | string } path     用于比较的路径
+	 * @param  {*} srcValue                用于比较的值
+	 * @return {function}                  返回新的函数
+	 */
+	let matchesProperty = function ( path, srcValue ) {
+		let prop
+		if ( this.isString( path ) ) {
+			prop = path.match( /\w+/ )
+		}
+		if ( this.isArray( path ) ) {
+			prop = path
+		}
+		return function ( it ) {
+			if ( this.isEqual( prop.reduce( function ( memo, curr ) {
+					return memo = memo[ curr ]
+				}, it ), srcValue ) ) {
+				return true
+			} else {
+				return false
+			}
+		}
+	}
+
+	/**
+	 * 创建一个返回给定对象路径的值的函数
+	 * @param  {array | string} path 查找的路径
+	 * @return {function}       创建的新的函数
+	 */
+	let property = function ( path ) {
+		let prop
+		if ( this.isString( path ) ) {
+			prop = path.match( /\w+/ )
+		}
+		if ( this.isArray( path ) ) {
+			prop = path
+		}
+		return function ( it ) {
+			return prop.reduce( function ( memo, curr ) {
+				return memo = memo[ curr ]
+			}, it )
+		}
+	}
+
 	let map = function () {}
-	let matches = function () {}
 	let max = function () {}
 	let min = function () {}
 	let mixin = function () {}
@@ -428,13 +459,51 @@ let _ = lodash = ( function () {
 	let uniqueId = function () {}
 	let value = function () {}
 	let valu = function () {}
-		// =========================
+	let chain = function () {}
+	let clone = function () {}
+	let compact = function () {}
+	let concat = function () {}
+	let create = function () {}
+	let defaults = function () {}
+	let defer = function () {}
+	let delay = function () {}
+	let each = function () {}
+	let escape = function () {}
+	let every = function () {}
+	let filter = function () {}
+	let find = function () {}
+	let flatten = function () {}
+	let flattenDeep = function () {}
+	let forEach = function () {}
+	let has = function () {}
+	let head = function () {}
+	let identity = function () {}
+	let indexOf = function () {}
+
+	/**
+	 * 遍历对象的可枚举自有属性
+	 * @param  {object} object     被迭代的对象
+	 * @param  {function} iteratee 对对象每个成员进行调用的函数
+	 * @return {object}            返回一个对象
+	 */
+	let forOwn = function ( object, iteratee ) {
+		for ( let key in object ) {
+			if ( object.hasOwnProperty( key ) ) {
+				if ( iteratee( object[ key ], key, object ) === false ) {
+					break
+				}
+			}
+		}
+	}
+
+	// =========================
 	return {
 		assign: assign,
 		assignIn: assignIn,
 		extend: assignIn,
 		before: before,
 		bind: bind,
+		// ===
 		isArguments: isArguments,
 		isArray: isArray,
 		isArrayBuffer: isArrayBuffer,
@@ -458,6 +527,10 @@ let _ = lodash = ( function () {
 		iteratee: iteratee,
 		keys: keys,
 		last: last,
+		matches: matches,
+		matchesProperty: matchesProperty,
+		property: property,
+		forOwn: forOwn,
 
 
 	}
