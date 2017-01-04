@@ -532,7 +532,7 @@
 		}
 		let that = this
 		return function ( it ) {
-			return that.isEqual( prop.reduce( function ( memo, curr ) {
+			return that.isEqual( that.reduce( prop, function ( memo, curr ) {
 				return memo = memo[ curr ]
 			}, it ), srcValue )
 		}
@@ -573,8 +573,9 @@
 		if ( this.isArray( path ) ) {
 			prop = path
 		}
+		let that = this
 		return function ( it ) {
-			return prop.reduce( function ( memo, curr ) {
+			return that.reduce( prop, function ( memo, curr ) {
 				return memo = memo[ curr ]
 			}, it )
 		}
@@ -654,16 +655,133 @@
 		return value.constructor === Object || Object.getPrototypeOf( value ) === null
 	}
 
-	let max = function () {}
-	let min = function () {}
-	let mixin = function () {}
-	let negate = function () {}
-	let noConflict = function () {}
-	let once = function () {}
-	let pick = function () {}
-	let reduce = function () {}
-	let result = function () {}
-	let size = function () {}
+	/**
+	 * 计算数组的最大值，如果 array 为空或者 false，返回 undefined
+	 * @param  {array} array 需要判断的数组
+	 * @return {*}           最大值
+	 */
+	let max = function ( array ) {
+		if ( this.isEmpty( array ) || !array ) {
+			return void 0
+		}
+		return this.reduce( array, function ( memo, curr ) {
+			return memo > curr ? memo : curr
+		} )
+	}
+
+	/**
+	 * 计算数组的最小值，如果 array 为空或者 false，返回 undefined
+	 * @param  {array} array 需要判断的数组
+	 * @return {*}           最小值
+	 */
+	let min = function ( array ) {
+		if ( this.isEmpty( array ) || !array ) {
+			return void 0
+		}
+		return this.reduce( array, function ( memo, curr ) {
+			return memo < curr ? memo : curr
+		} )
+	}
+
+	/**
+	 * 创建一个否定 func 结果的函数，并绑定 this
+	 * @param  {function} predicate 被否定的函数
+	 * @return {function}           新建的函数
+	 */
+	let negate = function ( predicate ) {
+		let that = this
+		return function ( ...arg ) {
+			return !predicate.call( that, arg )
+		}
+	}
+
+	/**
+	 * 创建一个限制多次调用 func 的函数，对于重复调用 func，只返回 第一次调用的值
+	 * @param  {function} func 被限制的函数
+	 * @return {function}      限制后的函数
+	 */
+	let once = function ( func ) {
+		let onOff = true
+		let that = this
+		let result
+		return function ( ...arg ) {
+			if ( onOff ) {
+				onOff = false
+				return result = func.call( that, arg )
+			} else {
+				return result
+			}
+		}
+	}
+
+	/**
+	 * 创建由选取的对象属性组成的对象
+	 * @param  {object} object         被选取的对象
+	 * @param  {string | array} paths  选取条件
+	 * @return {object}                新的对象
+	 */
+	let pick = function ( object, paths ) {
+		let arr
+		if ( this.isString( paths ) ) {
+			arr = [ paths ]
+		} else {
+			arr = paths
+		}
+		let result = {}
+		for ( let i = 0; i < arr.length; i++ ) {
+			result[ arr[ i ] ] = object[ arr[ i ] ]
+		}
+		return result
+	}
+
+	/**
+	 * 将集合由 iteratee 迭代成一个值
+	 * @param  {array | object} collection               被迭代的集合
+	 * @param  {function} [iteratee=this.identity]       迭代器
+	 * @param  {*} accumulator                           初始值
+	 * @return {*}                                       迭代出来的值
+	 */
+	let reduce = function ( collection, iteratee = this.identity, accumulator ) {
+		let result = accumulator
+		for ( let key in collection ) {
+			if ( collection.hasOwnProperty( key ) ) {
+				result = iteratee( result, collection[ key ], key, collection )
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 通过给定路径返回给定对象的值，如果值是函数，返回调用的结果
+	 * 如果返回值是 undefined ，返回 defaultValue
+	 * @param  {object} object               被查找的对象
+	 * @param  {array | string} path         查找的路径
+	 * @param  {*} defaultValue              替代返回值是 undefined 的值
+	 * @return {*}                           得到的值
+	 */
+	let result = function ( object, path, defaultValue ) {
+		let result = this.property( path )( object )
+		result = result === undefined ? defaultValue : result
+		if ( this.isFunction( result ) ) {
+			return result.call( this )
+		}
+		return result
+	}
+
+	/**
+	 * 返回 集合的大小
+	 * @param  {array | string | object} collection 被统计的对象
+	 * @return {number}                             统计后的大小
+	 */
+	let size = function ( collection ) {
+		let count = 0
+		for ( let key in collection ) {
+			if ( collection.hasOwnProperty( key ) ) {
+				count++
+			}
+		}
+		return count
+	}
 	let slice = function () {}
 	let some = function () {}
 	let tap = function () {}
@@ -689,6 +807,8 @@
 	let head = function () {}
 	let indexOf = function () {}
 
+	// ===========================
+
 	/**
 	 * 遍历对象的可枚举自有属性
 	 * @param  {object} object     被迭代的对象
@@ -704,6 +824,11 @@
 			}
 		}
 	}
+
+	// Seq ====================
+
+	let mixin = function () {}
+	let noConflict = function () {}
 
 	// =========================
 
@@ -756,6 +881,14 @@
 		identity: identity,
 		find: find,
 		sortBy: sortBy,
+		max: max,
+		min: min,
+		negate: negate,
+		once: once,
+		pick: pick,
+		reduce: reduce,
+		result: result,
+		size: size,
 
 	}
 } )( typeof global === 'undefined' ? window : global )
