@@ -888,19 +888,201 @@
 		return toString.call( value ) === '[object Set]'
 	}
 
+	/**
+	 * 创建一个删除所有可隐式为 false 的元素的数组
+	 * @param  {array} array  被筛选的数组
+	 * @return {array}        新的数组
+	 */
+	let compact = function ( array ) {
+		let result = []
+		for ( let i = 0; i < array.length; i++ ) {
+			if ( array[ i ] ) {
+				result.push( array[ i ] )
+			}
+		}
+		return result
+	}
 
-	let compact = function () {}
-	let concat = function () {}
-	let create = function () {}
-	let defaults = function () {}
-	let defer = function () {}
-	let delay = function () {}
-	let each = function () {}
-	let every = function () {}
-	let flatten = function () {}
-	let flattenDeep = function () {}
-	let forEach = function () {}
-	let has = function () {}
+	/**
+	 * 连接值和数组
+	 * @param  {array} array   被连接的数组
+	 * @param  {...*} values   需要连接的数组
+	 * @return {array}         连接后的数组
+	 */
+	let concat = function ( array, ...values ) {
+		let result = []
+		for ( let i = 0; i < array.length; i++ ) {
+			result.push( array[ i ] )
+		}
+		for ( let i = 0; i < values.length; i++ ) {
+			if ( this.isArray( values[ i ] ) ) {
+				for ( let j = 0; j < values[ i ].length; j++ ) {
+					result.push( values[ i ][ j ] )
+				}
+			} else {
+				result.push( values[ i ] )
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 创建一个从原型继承的对象，如果给出属性，
+	 * 该属性的可枚举自有属性会被分配给创建的对对象
+	 * @param  {object} prototype  继承的对象
+	 * @param  {object} properties 需要分配的属性
+	 * @return {object}            返回新的对象
+	 */
+	let create = function ( prototype, properties ) {
+		let obj = new Object()
+		Object.setPrototypeOf( obj, prototype )
+		if ( properties ) {
+			for ( let key in properties ) {
+				if ( properties.hasOwnProperty( key ) ) {
+					obj[ key ] = properties[ key ]
+				}
+			}
+		}
+		return obj
+	}
+
+	/**
+	 * 将源对象的可枚举自有属性分配到目标对象上，
+	 * 目标对象上已有的键值不能被覆盖
+	 * @param  {object} object     目标对象
+	 * @param  {...object} sources 源对象
+	 * @return {object}            修改后的目标对象
+	 */
+	let defaults = function ( object, ...sources ) {
+		sources.forEach( function ( obj ) {
+			for ( let key in obj ) {
+				if ( obj.hasOwnProperty( key ) && !( key in object ) ) {
+					object[ key ] = obj[ key ]
+				}
+			}
+		} )
+		return object
+	}
+
+	/**
+	 * 等待当前调用栈清空后调用函数，并可以传给该函数参数
+	 * @param  {function} func 被调用函数
+	 * @param  {...*} args     传入的参数
+	 * @return {number}        id
+	 */
+	let defer = function ( func, ...args ) {
+		return setTimeout( func.bind( this, ...args, 0 ) )
+	}
+
+	/**
+	 * 延时调用函数
+	 * @param  {function} func 延时调用函数
+	 * @param  {number} wait   延时时间
+	 * @param  {...*} args     传入函数的参数
+	 * @return {number}        id
+	 */
+	let delay = function ( func, wait, ...args ) {
+		return setTimeout( func.bind( this, ...args ), wait )
+	}
+
+	/**
+	 * 使用迭代器迭代集合
+	 * @param  {array | object} collection          被迭代的集合
+	 * @param  {function} [iteratee=identity]        迭代器
+	 * @return {*}                                   返回值
+	 */
+	let each = function ( collection, iteratee = this.identity ) {
+		for ( let key in collection ) {
+			if ( collection.hasOwnProperty( key ) ) {
+				if ( iteratee( collection[ key ], key, collection ) === false ) {
+					return
+				}
+			}
+		}
+	}
+
+	/**
+	 * 迭代器迭代集合，当所有迭代结果都为 true 时，返回 true
+	 * @param  {array | object} collection                被迭代的集合
+	 * @param  {function} [predicate=this.identity]       迭代器
+	 * @return {boolean}                                  如果所有成员迭代结果都为 true ，返回 true
+	 */
+	let every = function ( collection, predicate = this.identity ) {
+		for ( let key in collection ) {
+			if ( collection.hasOwnProperty( key ) ) {
+				if ( this.iteratee( predicate )( collection[ key ], key, collection ) === false ) {
+					return false
+				}
+			}
+		}
+		return true
+	}
+
+	/**
+	 * 将数组降一维
+	 * @param  {array} array 待降维数组
+	 * @return {array}       降维后的数组
+	 */
+	let flatten = function ( array ) {
+		let result = []
+		let that = this
+		array.forEach( function ( it ) {
+			if ( that.isArray( it ) ) {
+				it.forEach( function ( a ) {
+					result.push( a )
+				} )
+			} else {
+				result.push( it )
+			}
+		} )
+		return result
+	}
+
+	/**
+	 * 将数组将为一维数组
+	 * @param  {array} array 待降维数组
+	 * @return {array}       降维后的一维数组
+	 */
+	let flattenDeep = function ( array ) {
+		let result = this.flatten( array )
+		let onOff = true
+		for ( let i = 0; i < result.length; i++ ) {
+			if ( this.isArray( result[ i ] ) ) {
+				onOff = false
+				break
+			}
+		}
+		if ( !onOff ) {
+			result = this.flattenDeep( result )
+		}
+		return result
+	}
+
+	/**
+	 * 判断给定路径是否在对象自身上存在，且可枚举
+	 * @param  {object}  object         被查找的对象
+	 * @param  {array | string}  path   给定的路径
+	 * @return {Boolean}                如果存在，返回 true
+	 */
+	let has = function ( object, path ) {
+		let prop
+		if ( this.isString( path ) ) {
+			prop = path.match( /\w+/g )
+		} else {
+			prop = path
+		}
+		var temp = object
+		for ( let i = 0; i < prop.length; i++ ) {
+			if ( temp.hasOwnProperty( prop[ i ] ) ) {
+				temp = temp[ prop[ i ] ]
+			} else {
+				return false
+			}
+		}
+		return true
+	}
+
+
 	let head = function () {}
 	let indexOf = function () {}
 
@@ -996,6 +1178,18 @@
 		uniqueId: uniqueId,
 		isSet: isSet,
 		clone: clone,
+		compact: compact,
+		concat: concat,
+		create: create,
+		defaults: defaults,
+		defer: defer,
+		delay: delay,
+		forEach: each,
+		each: each,
+		every: every,
+		flatten: flatten,
+		flattenDeep: flattenDeep,
+		has: has,
 
 	}
 } )( typeof global === 'undefined' ? window : global )
