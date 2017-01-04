@@ -254,12 +254,21 @@
 	 * @param  {function} iteratee 被调用的迭代器
 	 * @return {array}             迭代出的结果集
 	 */
-	let times = function ( n, iteratee ) {
-		var result = []
-		for ( var i = 0; i < n; i++ ) {
+	let times = function ( n, iteratee = this.identity ) {
+		let result = []
+		for ( let i = 0; i < n; i++ ) {
 			result.push( iteratee( i ) )
 		}
 		return result
+	}
+
+	/**
+	 * 返回接收到的第一个参数
+	 * @param  {*} value 任何值
+	 * @return {*}       返回值
+	 */
+	let identity = function ( value ) {
+		return value
 	}
 
 	/**
@@ -411,7 +420,7 @@
 	 * @param  {string | array | object} func 选择回调函数的参数
 	 * @return {function}                     返回该回调函数
 	 */
-	let iteratee = function ( func ) {
+	let iteratee = function ( func = this.identity ) {
 		//debugger
 		if ( this.isString( func ) ) {
 			return this.property( func )
@@ -422,6 +431,44 @@
 		if ( this.isPlainObject( func ) ) {
 			return this.matches( func )
 		}
+		if ( this.isFunction( func ) ) {
+			return func
+		}
+	}
+
+	/**
+	 * 将第一个参数作为包装函数的第一个参数，将提供给新建函数的其他参数追加到函数里，
+	 * 并绑定 this 与包装器相同
+	 * @param  {*} value        被封装的值
+	 * @param  {[type]} wrapper 封装函数
+	 * @return {[type]}         被封装后的新函数
+	 */
+	let wrap = function ( value, wrapper = this.identity ) {
+		return this.bind( wrapper, this, value )
+	}
+
+	/**
+	 * 将字符串中的 '&' '<' '>' "'" '"' 转换成对应的 HTML 实体
+	 * @param  {string} string 待转换的字符串
+	 * @return {string}        转换后的字符串
+	 */
+	let escape = function ( string = '' ) {
+		return string.replace( /[\&\<\>\'\"]/g, function ( char ) {
+			switch ( char ) {
+				case '&':
+					return '&amp;'
+				case '<':
+					return '&lt;'
+				case '>':
+					return '&gt;'
+				case "'":
+					return '&acute;'
+				case '"':
+					return '&quot;'
+				default:
+					return ''
+			}
+		} )
 	}
 
 	/**
@@ -492,6 +539,28 @@
 	}
 
 	/**
+	 * 迭代集合元素，返回第一个 返回 true 的元素
+	 * @param  {array | object} collection                被迭代的集合
+	 * @param  {function} [predicate=this.identity]       判定条件
+	 * @param  {Number} [fromIndex=0]                     判定起始位置
+	 * @return {*}                                        第一个判定成功的元素
+	 */
+	let find = function ( collection, predicate = this.identity, fromIndex = 0 ) {
+		for ( let key in collection ) {
+			if ( this.isArray( collection ) ) {
+				if ( key < fromIndex ) {
+					continue
+				}
+			}
+			if ( collection.hasOwnProperty( key ) ) {
+				if ( this.iteratee( predicate )( collection[ key ] ) ) {
+					return collection[ key ]
+				}
+			}
+		}
+	}
+
+	/**
 	 * 创建一个返回给定对象路径的值的函数
 	 * @param  {array | string} path 查找的路径
 	 * @return {function}       创建的新的函数
@@ -509,6 +578,32 @@
 				return memo = memo[ curr ]
 			}, it )
 		}
+	}
+
+	/**
+	 * 返回一个以升序排序后的数组
+	 * @param  {array} collection                    被排序的对象
+	 * @param  {Array}  [iteratee=[ this.identity ]] 判断条件集合
+	 * @return {array}                               排序后的新数组
+	 */
+	let sortBy = function ( collection, iteratee = [ this.identity ] ) {
+		let that = this
+		let result = []
+		for ( let i = 0; i < collection.length; i++ ) {
+			result.push( this.assign( {}, collection[ i ] ) )
+		}
+		if ( this.isFunction( iteratee ) ) {
+			result.sort( function ( a, b ) {
+				return that.iteratee( iteratee )( a ) > that.iteratee( iteratee )( b )
+			} )
+		} else {
+			for ( let i = 0; i < iteratee.length; i++ ) {
+				result.sort( function ( a, b ) {
+					return that.iteratee( iteratee[ i ] )( a ) > that.iteratee( iteratee[ i ] )( b )
+				} )
+			}
+		}
+		return result
 	}
 
 	/**
@@ -541,11 +636,7 @@
 		let result = []
 		for ( let key in collection ) {
 			if ( collection.hasOwnProperty( key ) ) {
-				if ( ( this.isString( predicate ) && this.property( predicate )( collection[ key ] ) ) ||
-					( this.isArray( predicate ) && this.matchesProperty( predicate[ 0 ], predicate[ 1 ] )( collection[ key ] ) ) ||
-					( this.isPlainObject( predicate ) && this.matches( predicate )( collection[ key ] ) ) ||
-					( this.isFunction( predicate ) && predicate( collection[ key ] ) )
-				) {
+				if ( this.iteratee( predicate )( collection[ key ] ) ) {
 					result.push( collection[ key ] )
 				}
 			}
@@ -575,7 +666,6 @@
 	let size = function () {}
 	let slice = function () {}
 	let some = function () {}
-	let sortBy = function () {}
 	let tap = function () {}
 	let thru = function () {}
 	let toArray = function () {}
@@ -591,15 +681,12 @@
 	let defer = function () {}
 	let delay = function () {}
 	let each = function () {}
-	let escape = function () {}
 	let every = function () {}
-	let find = function () {}
 	let flatten = function () {}
 	let flattenDeep = function () {}
 	let forEach = function () {}
 	let has = function () {}
 	let head = function () {}
-	let identity = function () {}
 	let indexOf = function () {}
 
 	/**
@@ -626,7 +713,6 @@
 		extend: assignIn,
 		before: before,
 		bind: bind,
-		// ===
 		isArguments: isArguments,
 		isArray: isArray,
 		isArrayBuffer: isArrayBuffer,
@@ -647,6 +733,7 @@
 		isString: isString,
 		isUndefined: isUndefined,
 		isEqual: isEqual,
+		// ===
 		iteratee: iteratee,
 		keys: keys,
 		last: last,
@@ -664,6 +751,11 @@
 		isSymbol: isSymbol,
 		isMap: isMap,
 		isWeakMap: isWeakMap,
+		escape: escape,
+		wrap: wrap,
+		identity: identity,
+		find: find,
+		sortBy: sortBy,
 
 	}
 } )( typeof global === 'undefined' ? window : global )
