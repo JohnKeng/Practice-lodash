@@ -782,16 +782,113 @@
 		}
 		return count
 	}
-	let slice = function () {}
-	let some = function () {}
-	let tap = function () {}
-	let thru = function () {}
-	let toArray = function () {}
-	let uniqueId = function () {}
-	let value = function () {}
-	let valu = function () {}
-	let chain = function () {}
-	let clone = function () {}
+
+	/**
+	 * 提取数组片段
+	 * @param  {array} array               被提取的数组
+	 * @param  {Number} [start=0]          提取起始位置
+	 * @param  {number} [end=array.length] 提取结束位置（不包括）
+	 * @return {array}                     被提取的数组
+	 */
+	let slice = function ( array, start = 0, end = array.length ) {
+		let result = []
+		for ( let i = start; i < end; i++ ) {
+			if ( array[ i ] !== undefined ) {
+				result.push( array[ i ] )
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 使用迭代器检查集合成员是否满足条件，一旦满足，返回 true
+	 * @param  {array | object} collection                被检查的对象
+	 * @param  {function} [predicate=this.identity]       迭代器
+	 * @return {boolean}                                  一旦满足，返回 true
+	 */
+	let some = function ( collection, predicate = this.identity ) {
+		for ( let key in collection ) {
+			if ( collection.hasOwnProperty( key ) ) {
+				if ( this.iteratee( predicate )( collection[ key ], key, collection ) ) {
+					return true
+				}
+			}
+		}
+		return false
+	}
+
+	/**
+	 * 将值转换为数组
+	 * @param  {*} value      需要被转换的值
+	 * @return {array}        返回转换后的数组
+	 */
+	let toArray = function ( value ) {
+		let result = []
+		for ( let key in value ) {
+			if ( value.hasOwnProperty( key ) ) {
+				result.push( value[ key ] )
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 生成唯一的 ID，如果有前缀，附上前缀
+	 * @param  {*} value      前缀
+	 * @return {array}        ID
+	 */
+	let uniqueId = ( function () {
+		let uniqueIdCount = 0
+		return function ( prefix = '' ) {
+			uniqueIdCount++
+			return prefix + uniqueIdCount
+		}
+	} )()
+
+	/**
+	 * 浅复制两值，并返回
+	 * @param  {*} value 被复制的值
+	 * @return {*}       复制后的值
+	 */
+	let clone = function ( value ) {
+		let result
+		if ( this.isDate( value ) ) {
+			return new Date( value.toString() )
+		} else if ( this.isRegExp( value ) ) {
+			return new RegExp( value )
+		} else if ( this.isSymbol( value ) || this.isString( value ) || this.isBoolean( value ) || this.isNumber( value ) ) {
+			return value
+		} else if ( this.isArray( value ) ) {
+			result = new Array()
+		} else if ( this.isArrayBuffer( value ) ) {
+			result = new ArrayBuffer()
+		} else if ( this.isMap( value ) ) {
+			result = new Map()
+		} else if ( this.isPlainObject( value ) ) {
+			result = new Object()
+		} else if ( this.isSet( value ) ) {
+			result = new Set()
+		} else {
+			return {}
+		}
+		for ( let key in value ) {
+			if ( value.hasOwnProperty( key ) ) {
+				result[ key ] = value[ key ]
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 判断一个值是不是 Set
+	 * @param  {*}  value 需要判断的值
+	 * @return {Boolean}  如果是 返回 true
+	 */
+	let isSet = function ( value ) {
+		return toString.call( value ) === '[object Set]'
+	}
+
+
 	let compact = function () {}
 	let concat = function () {}
 	let create = function () {}
@@ -829,6 +926,10 @@
 
 	let mixin = function () {}
 	let noConflict = function () {}
+	let tap = function () {}
+	let thru = function () {}
+	let value = function () {}
+	let chain = function () {}
 
 	// =========================
 
@@ -889,6 +990,12 @@
 		reduce: reduce,
 		result: result,
 		size: size,
+		slice: slice,
+		some: some,
+		toArray: toArray,
+		uniqueId: uniqueId,
+		isSet: isSet,
+		clone: clone,
 
 	}
 } )( typeof global === 'undefined' ? window : global )
