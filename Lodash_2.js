@@ -1071,7 +1071,7 @@
 		} else {
 			prop = path
 		}
-		var temp = object
+		let temp = object
 		for ( let i = 0; i < prop.length; i++ ) {
 			if ( temp.hasOwnProperty( prop[ i ] ) ) {
 				temp = temp[ prop[ i ] ]
@@ -1082,11 +1082,25 @@
 		return true
 	}
 
+	/**
+	 * 返回数组的第一项
+	 * @param  {array} array 被查询的数组
+	 * @return {*}           数组中的第一个成员
+	 */
+	let head = function ( array ) {
+		return array[ 0 ]
+	}
 
-	let head = function () {}
-	let indexOf = function () {}
-
-	// ===========================
+	let indexOf = function ( array, value, fromIndex = 0 ) {
+		let len = array.length
+		let index = fromIndex
+		for ( ; index < len; index++ ) {
+			if ( this.isEqual( array[ index ], value ) ) {
+				break
+			}
+		}
+		return index < len ? index : -1
+	}
 
 	/**
 	 * 遍历对象的可枚举自有属性
@@ -1103,6 +1117,7 @@
 			}
 		}
 	}
+
 
 	// Seq ====================
 
@@ -1190,6 +1205,9 @@
 		flatten: flatten,
 		flattenDeep: flattenDeep,
 		has: has,
+		head: head,
+		first: head,
+		indexOf: indexOf,
 
 	}
 } )( typeof global === 'undefined' ? window : global )
