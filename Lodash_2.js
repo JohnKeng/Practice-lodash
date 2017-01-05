@@ -1093,13 +1093,20 @@
 
 	let indexOf = function ( array, value, fromIndex = 0 ) {
 		let len = array.length
-		let index = fromIndex
-		for ( ; index < len; index++ ) {
-			if ( this.isEqual( array[ index ], value ) ) {
-				break
+		if ( fromIndex >= 0 ) {
+			for ( ; fromIndex < len; fromIndex++ ) {
+				if ( this.isEqual( array[ fromIndex ], value ) ) {
+					break
+				}
+			}
+		} else {
+			for ( fromIndex = len + fromIndex; fromIndex >= 0; fromIndex-- ) {
+				if ( this.isEqual( array[ fromIndex ], value ) ) {
+					break
+				}
 			}
 		}
-		return index < len ? index : -1
+		return fromIndex < len ? fromIndex : -1
 	}
 
 	/**
@@ -1158,14 +1165,14 @@
 	let differenceBy = function ( array, ...others ) {
 		let iteratee
 		let that = this
-		if ( this.isFunction( others[ others.length - 1 ] ) ) {
+		if ( !this.isArray( others[ others.length - 1 ] ) ) {
 			iteratee = others.pop()
 		} else {
 			iteratee = this.identity
 		}
-		let flat = this.map( this.flatten( others ), it => iteratee( it ) )
+		let flat = this.map( this.flatten( others ), it => this.iteratee( iteratee )( it ) )
 		return this.reduce( array, function ( memo, curr ) {
-			if ( !that.includes( flat, iteratee( curr ) ) ) {
+			if ( !that.includes( flat, that.iteratee( iteratee )( curr ) ) ) {
 				memo.push( curr )
 			}
 			return memo
@@ -1219,6 +1226,245 @@
 		}
 		return false
 	}
+
+	/**
+	 * 返回一个 从指定位置在原数组上切割 的新数组
+	 * @param  {array} array  被切割数组
+	 * @param  {Number} [n=1] 开始切割的位置
+	 * @return {array}        返回新数组
+	 */
+	let drop = function ( array, n = 1 ) {
+		return array.reduce( function ( memo, curr, index ) {
+			if ( index >= n ) {
+				memo.push( curr )
+			}
+			return memo
+		}, [] )
+	}
+
+	/**
+	 * 返回一个 从指定位置反方向在原数组上切割 的新数组
+	 * @param  {array} array  被切割数组
+	 * @param  {Number} [n=1] 开始切割的位置
+	 * @return {array}        返回新数组
+	 */
+	let dropRight = function ( array, n = 1 ) {
+		let index = array.length - n
+		return array.reduce( function ( memo, curr, i ) {
+			if ( i < index ) {
+				memo.push( curr )
+			}
+			return memo
+		}, [] )
+	}
+
+	/**
+	 * 返回一个 切割数组，直道从右往左出现的第一个 false
+	 * @param  {array} array                        被切割数组
+	 * @param  {function} [predicate=this.identity] 断言函数
+	 * @return {array}                              返回新数组
+	 */
+	let dropRightWhile = function ( array, predicate = this.identity ) {
+		let result = [],
+			i = array.length - 1
+		for ( ; i >= 0; i-- ) {
+			if ( this.iteratee( predicate )( array[ i ] ) === false ) {
+				break
+			}
+		}
+		for ( let j = 0; j <= i; j++ ) {
+			result.push( array[ j ] )
+		}
+		return result
+	}
+
+	/**
+	 * 返回一个 切割数组 从左往右出现的第一个 false 开始切割
+	 * @param  {array} array                        被切割数组
+	 * @param  {function} [predicate=this.identity] 断言函数
+	 * @return {array}                              返回新数组
+	 */
+	let dropWhile = function ( array, predicate = this.identity ) {
+		let result = [],
+			i = 0
+		for ( ; i < array.length; i++ ) {
+			if ( this.iteratee( predicate )( array[ i ] ) === false ) {
+				break
+			}
+		}
+		for ( ; i < array.length; i++ ) {
+			result.push( array[ i ] )
+		}
+		return result
+	}
+
+	/**
+	 * 给数组指定区段分配成员
+	 * @param  {array} array               被分配的数组
+	 * @param  {*} value                   分配给数组的值
+	 * @param  {Number} [start=0]          区段起始位置
+	 * @param  {number} [end=array.length] 区段结束为止（不包含）
+	 * @return {array}                     修改后的数组
+	 */
+	let fill = function ( array, value, start = 0, end = array.length ) {
+		for ( let i = start; i < end; i++ ) {
+			array[ i ] = value
+		}
+		return array
+	}
+
+	/**
+	 * 返回断言函数第一次返回 true 的元素的索引
+	 * @param  {array} array                        被查找的数组
+	 * @param  {function} [predicate=this.identity] 断言函数
+	 * @param  {Number} [fromIndex=0]               开始查找的位置
+	 * @return {number}                             索引
+	 */
+	let findIndex = function ( array, predicate = this.identity, fromIndex = 0 ) {
+		for ( let i = fromIndex; i < array.length; i++ ) {
+			if ( this.iteratee( predicate )( array[ i ] ) ) {
+				return i
+			}
+		}
+		return -1
+	}
+
+	/**
+	 * 从右往左返回断言函数第一次返回 true 的元素的索引
+	 * @param  {array} array                        被查找的数组
+	 * @param  {function} [predicate=this.identity] 断言函数
+	 * @param  {Number} [fromIndex=0]               开始查找的位置
+	 * @return {number}                             索引
+	 */
+	let findLastIndex = function ( array, predicate = this.identity, fromIndex = array.length - 1 ) {
+		for ( let i = fromIndex; i >= 0; i-- ) {
+			if ( this.iteratee( predicate )( array[ i ] ) ) {
+				return i
+			}
+		}
+		return -1
+	}
+
+	/**
+	 * 指定降维深度
+	 * @param  {array} array      降维数组
+	 * @param  {Number} [depth=1] 降维深度
+	 * @return {array}            降维后的数组
+	 */
+	let flattenDepth = function ( array, depth = 1 ) {
+		let result = array
+		for ( let i = 0; i < depth; i++ ) {
+			result = this.flatten( result )
+		}
+		return result
+	}
+
+	/**
+	 * 将二维数组转换为对象
+	 * @param  {array} pairs  键值对二维数组
+	 * @return {object}       转换后的对象
+	 */
+	let fromPairs = function ( pairs ) {
+		return pairs.reduce( function ( memo, curr ) {
+			memo[ curr[ 0 ] ] = curr[ 1 ]
+			return memo
+		}, {} )
+	}
+
+	/**
+	 * 返回一个除了原数组最后一个元素的数组
+	 * @param  {array} array 原数组
+	 * @return {array}       新数组
+	 */
+	let initial = function ( array ) {
+		return array.reduce( function ( memo, curr, index ) {
+			if ( index < array.length - 1 ) {
+				memo.push( curr )
+			}
+			return memo
+		}, [] )
+	}
+
+	/**
+	 * 返回一个所有参数数组都拥有的值的集合
+	 * @param  {...array} array 被筛选数组群
+	 * @return {array}          筛选出来的数组
+	 */
+	let intersection = function ( ...array ) {
+		return this.intersectionBy( ...array )
+	}
+
+	/**
+	 * 和 intersection 类似，通过 迭代器筛选
+	 * @param  {...array} array 被筛选数组群
+	 * @return {array}          筛选出来的数组
+	 */
+	let intersectionBy = function ( ...paras ) {
+		let iteratee
+		if ( !this.isArray( paras[ paras.length - 1 ] ) ) {
+			iteratee = paras.pop()
+		} else {
+			iteratee = this.identity
+		}
+		let temp = this.drop( paras )
+		let that = this
+		return paras[ 0 ].reduce( function ( memo, curr ) {
+			let onOff = that.reduce( temp, function ( me, cu ) {
+				let tmp = that.map( cu, it => that.iteratee( iteratee )( it ) )
+				if ( !that.includes( tmp, that.iteratee( iteratee )( curr ) ) ) {
+					me = false
+				}
+				return me
+			}, true )
+			if ( onOff ) {
+				memo.push( curr )
+			}
+			return memo
+		}, [] )
+	}
+
+	/**
+	 * 和 intersection 类似，可自定义比较方式
+	 * @param  {...array} array 被筛选数组群
+	 * @return {array}          筛选出来的数组
+	 */
+	let intersectionWith = function ( ...paras ) {
+		let comparator = paras.pop()
+		let that = this
+		let others = this.drop( paras )
+		return paras[ 0 ].reduce( function ( memo, curr ) {
+			let onOff = that.reduce( others, function ( me, cu ) {
+				for ( let i = 0; i < cu.length; i++ ) {
+					if ( comparator.call( that, curr, cu[ i ] ) ) {
+						me = true
+					}
+				}
+				return me
+			}, false )
+			if ( onOff ) {
+				memo.push( curr )
+			}
+			return memo
+		}, [] )
+	}
+
+	/**
+	 * 根据指定符号连接数组成员为字符串
+	 * @param  {array} array           被连接的数组
+	 * @param  {String} [separator=''] 连接符号
+	 * @return {string}                连接成功的字符串
+	 */
+	let join = function ( array, separator = '' ) {
+		return this.reduce( array, function ( memo, curr, index, arr ) {
+			if ( index == arr.length - 1 ) {
+				memo += curr
+			} else {
+				memo += curr + separator
+			}
+			return memo
+		}, '' )
+	}
+
 
 
 	// Seq ====================
@@ -1315,6 +1561,20 @@
 		difference: difference,
 		differenceWith: differenceWith,
 		differenceBy: differenceBy,
+		drop: drop,
+		dropRight: dropRight,
+		dropRightWhile: dropRightWhile,
+		dropWhile: dropWhile,
+		fill: fill,
+		findIndex: findIndex,
+		findLastIndex: findLastIndex,
+		flattenDepth: flattenDepth,
+		fromPairs: fromPairs,
+		initial: initial,
+		intersection: intersection,
+		intersectionBy: intersectionBy,
+		intersectionWith: intersectionWith,
+		join: join,
 
 	}
 } )( typeof global === 'undefined' ? window : global )
