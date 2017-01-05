@@ -1,4 +1,4 @@
-( function ( windowGlobal ) {
+(function (windowGlobal) {
 
 	// core function ==========================
 
@@ -9,13 +9,13 @@
 	 * @param  {...object} args 被分配的对象
 	 * @return {object}         分配后的目标对象
 	 */
-	let assign = function ( obj, ...sources ) {
+	let assign = function (obj, ...sources) {
 		let that = this
-		this.forEach( sources, function ( a ) {
-			that.forOwn( a, function ( element, key ) {
-				obj[ key ] = element
-			} )
-		} )
+		this.forEach(sources, function (a) {
+			that.forOwn(a, function (element, key) {
+				obj[key] = element
+			})
+		})
 		return obj
 	}
 
@@ -26,12 +26,12 @@
 	 * @param  {...sources} args 被分配的对象
 	 * @return {object}          分配后的目标对象
 	 */
-	let assignIn = function ( obj, ...sources ) {
-		this.forEach( sources, function ( a ) {
-			for ( let key in a ) {
-				obj[ key ] = a[ key ]
+	let assignIn = function (obj, ...sources) {
+		this.forEach(sources, function (a) {
+			for (let key in a) {
+				obj[key] = a[key]
 			}
-		} )
+		})
 		return obj
 	}
 
@@ -42,13 +42,13 @@
 	 * @param  {function} func 指定被限制调用的函数
 	 * @return {function}      新的被限制调用的函数
 	 */
-	let before = function ( n, func ) {
+	let before = function (n, func) {
 		let count = 0
 		let result
-		return function ( ...arg ) {
+		return function (...arg) {
 			count++
-			if ( count <= n ) {
-				result = func.apply( this, arg )
+			if (count <= n) {
+				result = func.apply(this, arg)
 			}
 			return result
 		}
@@ -62,16 +62,16 @@
 	 * @param  {...*}  partials     被绑定的参数
 	 * @return {function}           绑定后的新函数
 	 */
-	let bind = function ( func, thisArg, ...partials ) {
+	let bind = function (func, thisArg, ...partials) {
 		let that = this
-		return function ( ...args ) {
-			partials = that.map( partials, function ( a ) {
-				if ( a === _ ) {
+		return function (...args) {
+			partials = that.map(partials, function (a) {
+				if (a === _) {
 					a = args.shift()
 				}
 				return a
-			} )
-			return func.call( thisArg, ...partials, ...args )
+			})
+			return func.call(thisArg, ...partials, ...args)
 		}
 	}
 
@@ -80,8 +80,8 @@
 	 * @param  {*}  value      被检查的对象
 	 * @return {Boolean}       如果是 arguments 对象，返回 true
 	 */
-	let isArguments = function ( value ) {
-		return toString.call( value ) === '[object Arguments]'
+	let isArguments = function (value) {
+		return toString.call(value) === '[object Arguments]'
 	}
 
 	/**
@@ -89,8 +89,8 @@
 	 * @param  {*}  value      被检查的对象
 	 * @return {Boolean}       如果是 对象，返回 true
 	 */
-	let isArray = function ( value ) {
-		return toString.call( value ) === '[object Array]'
+	let isArray = function (value) {
+		return toString.call(value) === '[object Array]'
 	}
 
 	/**
@@ -98,8 +98,8 @@
 	 * @param  {*}  value      需要检查的值
 	 * @return {Boolean}       如果是 ArrayBuffer 对象，返回 true
 	 */
-	let isArrayBuffer = function ( value ) {
-		return toString.call( value ) === '[object ArrayBuffer]'
+	let isArrayBuffer = function (value) {
+		return toString.call(value) === '[object ArrayBuffer]'
 	}
 
 	/**
@@ -107,12 +107,12 @@
 	 * @param  {*}  value      被检查的对象
 	 * @return {Boolean}       如果是 类数组对象，返回 true
 	 */
-	let isArrayLike = function ( value ) {
-		return !!( ( typeof value === 'object' || typeof value === 'string' ) &&
-			isFinite( value.length ) &&
-			Number.isInteger( value.length ) &&
+	let isArrayLike = function (value) {
+		return !!((typeof value === 'object' || typeof value === 'string') &&
+			isFinite(value.length) &&
+			Number.isInteger(value.length) &&
 			value.length >= 0 &&
-			value.length <= Number.MAX_SAFE_INTEGER )
+			value.length <= Number.MAX_SAFE_INTEGER)
 	}
 
 	/**
@@ -120,12 +120,12 @@
 	 * @param  {*}  value      被检查的对象
 	 * @return {Boolean}       如果是 类数组对象，返回 true
 	 */
-	let isArrayLikeObject = function ( value ) {
-		return !!( typeof value === 'object' &&
-			isFinite( value.length ) &&
-			Number.isInteger( value.length ) &&
+	let isArrayLikeObject = function (value) {
+		return !!(typeof value === 'object' &&
+			isFinite(value.length) &&
+			Number.isInteger(value.length) &&
 			value.length >= 0 &&
-			value.length <= Number.MAX_SAFE_INTEGER )
+			value.length <= Number.MAX_SAFE_INTEGER)
 	}
 
 	/**
@@ -133,8 +133,8 @@
 	 * @param  {*}  value      被检查的对象
 	 * @return {Boolean}       如果是布尔值。返回 true
 	 */
-	let isBoolean = function ( value ) {
-		return toString.call( value ) === '[object Boolean]'
+	let isBoolean = function (value) {
+		return toString.call(value) === '[object Boolean]'
 	}
 
 	/**
@@ -142,8 +142,8 @@
 	 * @param  {*}  value      被检查的对象
 	 * @return {Boolean}       如果是 buffer 对象，返回 true
 	 */
-	let isBuffer = function ( value ) {
-		return toString.call( value ) === '[object Uint8Array]'
+	let isBuffer = function (value) {
+		return toString.call(value) === '[object Uint8Array]'
 	}
 
 	/**
@@ -151,8 +151,8 @@
 	 * @param  {*}  value      被检查的对象
 	 * @return {Boolean}       如果是 Date 对象，返回 true
 	 */
-	let isDate = function ( value ) {
-		return toString.call( value ) === '[object Date]'
+	let isDate = function (value) {
+		return toString.call(value) === '[object Date]'
 	}
 
 	/**
@@ -160,8 +160,8 @@
 	 * @param  {*}  value      被检查的值
 	 * @return {Boolean}       如果是 DOM 元素，返回 true
 	 */
-	let isElement = function ( value ) {
-		return /Element\]$/.test( toString.call( value ) )
+	let isElement = function (value) {
+		return /Element\]$/.test(toString.call(value))
 	}
 
 	/**
@@ -169,15 +169,15 @@
 	 * @param  {*}  value      被检查的值
 	 * @return {Boolean}       如果是空对象，返回 true
 	 */
-	let isEmpty = function ( value ) {
-		if ( value === null ) {
+	let isEmpty = function (value) {
+		if (value === null) {
 			return true
 		}
-		if ( value.length && value.length === 0 ) {
+		if (value.length && value.length === 0) {
 			return true
-		} else if ( value.size && value.size === 0 ) {
+		} else if (value.size && value.size === 0) {
 			return true
-		} else if ( Object.keys( value ) && Object.keys( value ).length === 0 ) {
+		} else if (Object.keys(value) && Object.keys(value).length === 0) {
 			return true
 		}
 		return false
@@ -188,8 +188,8 @@
 	 * @param  {*}  value      被检查的值
 	 * @return {Boolean}       如果是有限数，返回 true
 	 */
-	let isFinite = function ( value ) {
-		return Number.isFinite( value )
+	let isFinite = function (value) {
+		return Number.isFinite(value)
 	}
 
 	/**
@@ -197,8 +197,8 @@
 	 * @param  {*}  value      被检查的值
 	 * @return {Boolean}       如果是函数对象，返回 true
 	 */
-	let isFunction = function ( value ) {
-		return toString.call( value ) === '[object Function]'
+	let isFunction = function (value) {
+		return toString.call(value) === '[object Function]'
 	}
 
 	/**
@@ -207,8 +207,8 @@
 	 * @param  {*}  value      被检查的值
 	 * @return {Boolean}       如果是 NaN 对象，返回 true
 	 */
-	let isNaN = function ( value ) {
-		if ( ( typeof value === 'number' || value instanceof Number ) && +value !== +value ) {
+	let isNaN = function (value) {
+		if ((typeof value === 'number' || value instanceof Number) && +value !== +value) {
 			return true
 		}
 		return false
@@ -219,8 +219,8 @@
 	 * @param  {*}  value      被检查的对象
 	 * @return {Boolean}       如果是 null，返回 true
 	 */
-	let isNull = function ( value ) {
-		return toString.call( value ) === '[object Null]'
+	let isNull = function (value) {
+		return toString.call(value) === '[object Null]'
 	}
 
 	/**
@@ -228,8 +228,8 @@
 	 * @param  {*}  value      被检查的数
 	 * @return {Boolean}       如果是 数字，返回 true
 	 */
-	let isNumber = function ( value ) {
-		return toString.call( value ) === '[object Number]'
+	let isNumber = function (value) {
+		return toString.call(value) === '[object Number]'
 	}
 
 	/**
@@ -237,7 +237,7 @@
 	 * @param  {*}  value      被检查的值
 	 * @return {Boolean}       如果该值继承自对象，返回 true
 	 */
-	let isObject = function ( value ) {
+	let isObject = function (value) {
 		return value instanceof Object
 	}
 
@@ -256,10 +256,10 @@
 	 * @param  {function} iteratee 被调用的迭代器
 	 * @return {array}             迭代出的结果集
 	 */
-	let times = function ( n, iteratee = this.identity ) {
+	let times = function (n, iteratee = this.identity) {
 		let result = []
-		for ( let i = 0; i < n; i++ ) {
-			result.push( iteratee( i ) )
+		for (let i = 0; i < n; i++) {
+			result.push(iteratee(i))
 		}
 		return result
 	}
@@ -269,7 +269,7 @@
 	 * @param  {*} value 任何值
 	 * @return {*}       返回值
 	 */
-	let identity = function ( value ) {
+	let identity = function (value) {
 		return value
 	}
 
@@ -278,7 +278,7 @@
 	 * @param  {*} value      被新函数返回的值
 	 * @return {function}     新的函数
 	 */
-	let constant = function ( value ) {
+	let constant = function (value) {
 		return function () {
 			return value
 		}
@@ -289,8 +289,8 @@
 	 * @param  {*}  value      被检查的值
 	 * @return {Boolean}       如果是正则表达式，返回 true
 	 */
-	let isRegExp = function ( value ) {
-		return toString.call( value ) === '[object RegExp]'
+	let isRegExp = function (value) {
+		return toString.call(value) === '[object RegExp]'
 	}
 
 	/**
@@ -298,8 +298,8 @@
 	 * @param  {*}  value 被检查的值
 	 * @return {Boolean}       如果是字符串，返回 true
 	 */
-	let isString = function ( value ) {
-		return toString.call( value ) === '[object String]'
+	let isString = function (value) {
+		return toString.call(value) === '[object String]'
 	}
 
 	/**
@@ -307,8 +307,8 @@
 	 * @param  {*}  value      被检查的值
 	 * @return {Boolean}       如果是 未定义 undefined ，返回 true
 	 */
-	let isUndefined = function ( value ) {
-		return toString.call( value ) === '[object Undefined]'
+	let isUndefined = function (value) {
+		return toString.call(value) === '[object Undefined]'
 	}
 
 	/**
@@ -321,54 +321,54 @@
 	 * @param  {[type]}  other 去比较的值
 	 * @return {Boolean}       如果两个值深度相等，返回 true
 	 */
-	let isEqual = function ( value, other ) {
-		if ( value === other ) {
+	let isEqual = function (value, other) {
+		if (value === other) {
 			return true
 		}
-		if ( this.isRegExp( value ) && this.isRegExp( other ) ) {
+		if (this.isRegExp(value) && this.isRegExp(other)) {
 			return '' + value === '' + other
 		}
-		if ( this.isNumber( value ) && this.isNumber( other ) ) {
+		if (this.isNumber(value) && this.isNumber(other)) {
 			return +value === +other
 		}
-		if ( this.isString( value ) && this.isString( other ) ) {
+		if (this.isString(value) && this.isString(other)) {
 			return '' + value === '' + other
 		}
-		if ( this.isBoolean( value ) && this.isBoolean( other ) ) {
+		if (this.isBoolean(value) && this.isBoolean(other)) {
 			return !!value === !!other
 		}
-		if ( this.isError( value ) && this.isError( other ) ) {
+		if (this.isError(value) && this.isError(other)) {
 			return value.message === other.message
 		}
-		if ( this.isDate( value ) && this.isDate( other ) ) {
+		if (this.isDate(value) && this.isDate(other)) {
 			return '' + value === '' + other
 		}
-		if ( this.isSymbol( value ) && this.isSymbol( other ) ) {
+		if (this.isSymbol(value) && this.isSymbol(other)) {
 			return value.name === other.name
 		}
-		if ( this.isFunction( value ) && this.isFunction( other ) ) {
+		if (this.isFunction(value) && this.isFunction(other)) {
 			return value === other
 		}
-		if ( this.isElement( value ) && this.isElement( other ) ) {
+		if (this.isElement(value) && this.isElement(other)) {
 			return value === other
 		}
-		if ( ( this.isArray( value ) && this.isArray( other ) ) ||
-			( this.isArrayBuffer( value ) && this.isArrayBuffer( other ) ) ||
-			( this.isMap( value ) && this.isMap( other ) ) ||
-			( this.isPlainObject( value ) && this.isPlainObject( other ) ) ||
-			( this.isSet( value ) && this.isSet( other ) ) ||
-			( this.isArrayLike( value ) && this.isArrayLike( other ) ) ||
-			( this.isArrayLikeObject( value ) && this.isArrayLikeObject( other ) ) ||
-			( this.isBuffer( value ) && this.isBuffer( other ) )
+		if ((this.isArray(value) && this.isArray(other)) ||
+			(this.isArrayBuffer(value) && this.isArrayBuffer(other)) ||
+			(this.isMap(value) && this.isMap(other)) ||
+			(this.isPlainObject(value) && this.isPlainObject(other)) ||
+			(this.isSet(value) && this.isSet(other)) ||
+			(this.isArrayLike(value) && this.isArrayLike(other)) ||
+			(this.isArrayLikeObject(value) && this.isArrayLikeObject(other)) ||
+			(this.isBuffer(value) && this.isBuffer(other))
 		) {
-			let size = Object.keys( value )
-			if ( size.length === 0 && Object.keys( other ).length === 0 ) {
+			let size = Object.keys(value)
+			if (size.length === 0 && Object.keys(other).length === 0) {
 				return true
 			}
-			if ( size.length === Object.keys( other ).length ) {
+			if (size.length === Object.keys(other).length) {
 				let onOff = true
-				for ( let i = 0; i < size.length; i++ ) {
-					if ( !this.isEqual( value[ size[ i ] ], other[ size[ i ] ] ) ) {
+				for (let i = 0; i < size.length; i++) {
+					if (!this.isEqual(value[size[i]], other[size[i]])) {
 						onOff = false
 						break
 					}
@@ -384,8 +384,8 @@
 	 * @param  {*}  value      被判断的值
 	 * @return {Boolean}       如果是 error 对象，返回 true
 	 */
-	let isError = function ( value ) {
-		return toString.call( value ) === '[object Error]'
+	let isError = function (value) {
+		return toString.call(value) === '[object Error]'
 	}
 
 	/**
@@ -393,8 +393,8 @@
 	 * @param  {*}  value      被判断的值
 	 * @return {Boolean}       如果是 Symbol 对象，返回 true
 	 */
-	let isSymbol = function ( value ) {
-		return toString.call( value ) === '[object Symbol]'
+	let isSymbol = function (value) {
+		return toString.call(value) === '[object Symbol]'
 	}
 
 	/**
@@ -402,8 +402,8 @@
 	 * @param  {*}  value      被判断的值
 	 * @return {Boolean}       如果是 Map 对象，返回 true
 	 */
-	let isMap = function ( value ) {
-		return toString.call( value ) === '[object Map]'
+	let isMap = function (value) {
+		return toString.call(value) === '[object Map]'
 	}
 
 	/**
@@ -411,8 +411,8 @@
 	 * @param  {*}  value      被判断的值
 	 * @return {Boolean}       如果是 WeakMap 对象，返回 true
 	 */
-	let isWeakMap = function ( value ) {
-		return toString.call( value ) === '[object WeakMap]'
+	let isWeakMap = function (value) {
+		return toString.call(value) === '[object WeakMap]'
 	}
 
 	/**
@@ -422,18 +422,18 @@
 	 * @param  {string | array | object} func 选择回调函数的参数
 	 * @return {function}                     返回该回调函数
 	 */
-	let iteratee = function ( func = this.identity ) {
+	let iteratee = function (func = this.identity) {
 		//debugger
-		if ( this.isString( func ) ) {
-			return this.property( func )
+		if (this.isString(func)) {
+			return this.property(func)
 		}
-		if ( this.isArray( func ) ) {
-			return this.matchesProperty( func[ 0 ], func[ 1 ] )
+		if (this.isArray(func)) {
+			return this.matchesProperty(func[0], func[1])
 		}
-		if ( this.isPlainObject( func ) ) {
-			return this.matches( func )
+		if (this.isPlainObject(func)) {
+			return this.matches(func)
 		}
-		if ( this.isFunction( func ) ) {
+		if (this.isFunction(func)) {
 			return func
 		}
 	}
@@ -445,8 +445,8 @@
 	 * @param  {[type]} wrapper 封装函数
 	 * @return {[type]}         被封装后的新函数
 	 */
-	let wrap = function ( value, wrapper = this.identity ) {
-		return this.bind( wrapper, this, value )
+	let wrap = function (value, wrapper = this.identity) {
+		return this.bind(wrapper, this, value)
 	}
 
 	/**
@@ -454,9 +454,9 @@
 	 * @param  {string} string 待转换的字符串
 	 * @return {string}        转换后的字符串
 	 */
-	let escape = function ( string = '' ) {
-		return string.replace( /[\&\<\>\'\"]/g, function ( char ) {
-			switch ( char ) {
+	let escape = function (string = '') {
+		return string.replace(/[\&\<\>\'\"]/g, function (char) {
+			switch (char) {
 				case '&':
 					return '&amp;'
 				case '<':
@@ -470,7 +470,7 @@
 				default:
 					return ''
 			}
-		} )
+		})
 	}
 
 	/**
@@ -478,12 +478,12 @@
 	 * @param  {object} object 被枚举的对象
 	 * @return {array}         包含所给对象的所有可枚举自有属性的数组
 	 */
-	let keys = function ( object ) {
-		let obj = Object( object )
+	let keys = function (object) {
+		let obj = Object(object)
 		let result = []
-		this.forOwn( object, function ( value, key ) {
-			result.push( key )
-		} )
+		this.forOwn(object, function (value, key) {
+			result.push(key)
+		})
 		return result
 	}
 
@@ -492,8 +492,8 @@
 	 * @param  {array} array  被查询的数组
 	 * @return {*}            该数组最后一项的值
 	 */
-	let last = function ( array ) {
-		return array[ array.length - 1 ]
+	let last = function (array) {
+		return array[array.length - 1]
 	}
 
 	/**
@@ -502,12 +502,12 @@
 	 * @param  {object} source 需要对比的参数
 	 * @return {function}      返回新的函数
 	 */
-	let matches = function ( source ) {
+	let matches = function (source) {
 		let that = this
-		return function ( it ) {
-			for ( let key in source ) {
-				if ( source.hasOwnProperty( key ) ) {
-					if ( !that.isEqual( source[ key ], it[ key ] ) ) {
+		return function (it) {
+			for (let key in source) {
+				if (source.hasOwnProperty(key)) {
+					if (!that.isEqual(source[key], it[key])) {
 						return false
 					}
 				}
@@ -522,19 +522,19 @@
 	 * @param  {*} srcValue                用于比较的值
 	 * @return {function}                  返回新的函数
 	 */
-	let matchesProperty = function ( path, srcValue ) {
+	let matchesProperty = function (path, srcValue) {
 		let prop
-		if ( this.isString( path ) ) {
-			prop = path.match( /\w+/g )
+		if (this.isString(path)) {
+			prop = path.match(/\w+/g)
 		}
-		if ( this.isArray( path ) ) {
+		if (this.isArray(path)) {
 			prop = path
 		}
 		let that = this
-		return function ( it ) {
-			return that.isEqual( that.reduce( prop, function ( memo, curr ) {
-				return memo = memo[ curr ]
-			}, it ), srcValue )
+		return function (it) {
+			return that.isEqual(that.reduce(prop, function (memo, curr) {
+				return memo = memo[curr]
+			}, it), srcValue)
 		}
 	}
 
@@ -545,16 +545,16 @@
 	 * @param  {Number} [fromIndex=0]                     判定起始位置
 	 * @return {*}                                        第一个判定成功的元素
 	 */
-	let find = function ( collection, predicate = this.identity, fromIndex = 0 ) {
-		for ( let key in collection ) {
-			if ( this.isArray( collection ) ) {
-				if ( key < fromIndex ) {
+	let find = function (collection, predicate = this.identity, fromIndex = 0) {
+		for (let key in collection) {
+			if (this.isArray(collection)) {
+				if (key < fromIndex) {
 					continue
 				}
 			}
-			if ( collection.hasOwnProperty( key ) ) {
-				if ( this.iteratee( predicate )( collection[ key ] ) ) {
-					return collection[ key ]
+			if (collection.hasOwnProperty(key)) {
+				if (this.iteratee(predicate)(collection[key])) {
+					return collection[key]
 				}
 			}
 		}
@@ -565,19 +565,19 @@
 	 * @param  {array | string} path 查找的路径
 	 * @return {function}       创建的新的函数
 	 */
-	let property = function ( path ) {
+	let property = function (path) {
 		let prop
-		if ( this.isString( path ) ) {
-			prop = path.match( /\w+/g )
+		if (this.isString(path)) {
+			prop = path.match(/\w+/g)
 		}
-		if ( this.isArray( path ) ) {
+		if (this.isArray(path)) {
 			prop = path
 		}
 		let that = this
-		return function ( it ) {
-			return that.reduce( prop, function ( memo, curr ) {
-				return memo = memo[ curr ]
-			}, it )
+		return function (it) {
+			return that.reduce(prop, function (memo, curr) {
+				return memo = memo[curr]
+			}, it)
 		}
 	}
 
@@ -587,21 +587,21 @@
 	 * @param  {Array}  [iteratee=[ this.identity ]] 判断条件集合
 	 * @return {array}                               排序后的新数组
 	 */
-	let sortBy = function ( collection, iteratee = [ this.identity ] ) {
+	let sortBy = function (collection, iteratee = [this.identity]) {
 		let that = this
 		let result = []
-		for ( let i = 0; i < collection.length; i++ ) {
-			result.push( this.assign( {}, collection[ i ] ) )
+		for (let i = 0; i < collection.length; i++) {
+			result.push(this.assign({}, collection[i]))
 		}
-		if ( this.isFunction( iteratee ) ) {
-			result.sort( function ( a, b ) {
-				return that.iteratee( iteratee )( a ) > that.iteratee( iteratee )( b )
-			} )
+		if (this.isFunction(iteratee)) {
+			result.sort(function (a, b) {
+				return that.iteratee(iteratee)(a) > that.iteratee(iteratee)(b)
+			})
 		} else {
-			for ( let i = 0; i < iteratee.length; i++ ) {
-				result.sort( function ( a, b ) {
-					return that.iteratee( iteratee[ i ] )( a ) > that.iteratee( iteratee[ i ] )( b )
-				} )
+			for (let i = 0; i < iteratee.length; i++) {
+				result.sort(function (a, b) {
+					return that.iteratee(iteratee[i])(a) > that.iteratee(iteratee[i])(b)
+				})
 			}
 		}
 		return result
@@ -613,14 +613,14 @@
 	 * @param  {function | string} iteratee   用于迭代的函数
 	 * @return {array}                        返回一个新数组
 	 */
-	let map = function ( collection, iteratee ) {
+	let map = function (collection, iteratee) {
 		let result = []
-		for ( let key in collection ) {
-			if ( collection.hasOwnProperty( key ) ) {
-				if ( this.isString( iteratee ) ) {
-					result.push( this.property( iteratee )( collection[ key ] ) )
-				} else if ( this.isFunction( iteratee ) ) {
-					result.push( iteratee( collection[ key ] ) )
+		for (let key in collection) {
+			if (collection.hasOwnProperty(key)) {
+				if (this.isString(iteratee)) {
+					result.push(this.property(iteratee)(collection[key]))
+				} else if (this.isFunction(iteratee)) {
+					result.push(iteratee(collection[key]))
 				}
 			}
 		}
@@ -633,12 +633,12 @@
 	 * @param  {function | object | array | string} predicate  断言
 	 * @return {array}                                         筛选后的新数组
 	 */
-	let filter = function ( collection, predicate ) {
+	let filter = function (collection, predicate) {
 		let result = []
-		for ( let key in collection ) {
-			if ( collection.hasOwnProperty( key ) ) {
-				if ( this.iteratee( predicate )( collection[ key ] ) ) {
-					result.push( collection[ key ] )
+		for (let key in collection) {
+			if (collection.hasOwnProperty(key)) {
+				if (this.iteratee(predicate)(collection[key])) {
+					result.push(collection[key])
 				}
 			}
 		}
@@ -651,8 +651,8 @@
 	 * @param  {*}  value      被检查的值
 	 * @return {Boolean}       如果是纯对象，返回 true
 	 */
-	let isPlainObject = function ( value ) {
-		return value.constructor === Object || Object.getPrototypeOf( value ) === null
+	let isPlainObject = function (value) {
+		return value.constructor === Object || Object.getPrototypeOf(value) === null
 	}
 
 	/**
@@ -660,13 +660,13 @@
 	 * @param  {array} array 需要判断的数组
 	 * @return {*}           最大值
 	 */
-	let max = function ( array ) {
-		if ( this.isEmpty( array ) || !array ) {
+	let max = function (array) {
+		if (this.isEmpty(array) || !array) {
 			return void 0
 		}
-		return this.reduce( array, function ( memo, curr ) {
+		return this.reduce(array, function (memo, curr) {
 			return memo > curr ? memo : curr
-		} )
+		})
 	}
 
 	/**
@@ -674,13 +674,13 @@
 	 * @param  {array} array 需要判断的数组
 	 * @return {*}           最小值
 	 */
-	let min = function ( array ) {
-		if ( this.isEmpty( array ) || !array ) {
+	let min = function (array) {
+		if (this.isEmpty(array) || !array) {
 			return void 0
 		}
-		return this.reduce( array, function ( memo, curr ) {
+		return this.reduce(array, function (memo, curr) {
 			return memo < curr ? memo : curr
-		} )
+		})
 	}
 
 	/**
@@ -688,10 +688,10 @@
 	 * @param  {function} predicate 被否定的函数
 	 * @return {function}           新建的函数
 	 */
-	let negate = function ( predicate ) {
+	let negate = function (predicate) {
 		let that = this
-		return function ( ...arg ) {
-			return !predicate.call( that, arg )
+		return function (...arg) {
+			return !predicate.call(that, arg)
 		}
 	}
 
@@ -700,14 +700,14 @@
 	 * @param  {function} func 被限制的函数
 	 * @return {function}      限制后的函数
 	 */
-	let once = function ( func ) {
+	let once = function (func) {
 		let onOff = true
 		let that = this
 		let result
-		return function ( ...arg ) {
-			if ( onOff ) {
+		return function (...arg) {
+			if (onOff) {
 				onOff = false
-				return result = func.call( that, arg )
+				return result = func.call(that, arg)
 			} else {
 				return result
 			}
@@ -720,16 +720,16 @@
 	 * @param  {string | array} paths  选取条件
 	 * @return {object}                新的对象
 	 */
-	let pick = function ( object, paths ) {
+	let pick = function (object, paths) {
 		let arr
-		if ( this.isString( paths ) ) {
-			arr = [ paths ]
+		if (this.isString(paths)) {
+			arr = [paths]
 		} else {
 			arr = paths
 		}
 		let result = {}
-		for ( let i = 0; i < arr.length; i++ ) {
-			result[ arr[ i ] ] = object[ arr[ i ] ]
+		for (let i = 0; i < arr.length; i++) {
+			result[arr[i]] = object[arr[i]]
 		}
 		return result
 	}
@@ -741,11 +741,11 @@
 	 * @param  {*} accumulator                           初始值
 	 * @return {*}                                       迭代出来的值
 	 */
-	let reduce = function ( collection, iteratee = this.identity, accumulator ) {
+	let reduce = function (collection, iteratee = this.identity, accumulator) {
 		let result = accumulator
-		for ( let key in collection ) {
-			if ( collection.hasOwnProperty( key ) ) {
-				result = iteratee( result, collection[ key ], key, collection )
+		for (let key in collection) {
+			if (collection.hasOwnProperty(key)) {
+				result = iteratee(result, collection[key], key, collection)
 			}
 		}
 		return result
@@ -759,11 +759,11 @@
 	 * @param  {*} defaultValue              替代返回值是 undefined 的值
 	 * @return {*}                           得到的值
 	 */
-	let result = function ( object, path, defaultValue ) {
-		let result = this.property( path )( object )
+	let result = function (object, path, defaultValue) {
+		let result = this.property(path)(object)
 		result = result === undefined ? defaultValue : result
-		if ( this.isFunction( result ) ) {
-			return result.call( this )
+		if (this.isFunction(result)) {
+			return result.call(this)
 		}
 		return result
 	}
@@ -773,10 +773,10 @@
 	 * @param  {array | string | object} collection 被统计的对象
 	 * @return {number}                             统计后的大小
 	 */
-	let size = function ( collection ) {
+	let size = function (collection) {
 		let count = 0
-		for ( let key in collection ) {
-			if ( collection.hasOwnProperty( key ) ) {
+		for (let key in collection) {
+			if (collection.hasOwnProperty(key)) {
 				count++
 			}
 		}
@@ -790,11 +790,11 @@
 	 * @param  {number} [end=array.length] 提取结束位置（不包括）
 	 * @return {array}                     被提取的数组
 	 */
-	let slice = function ( array, start = 0, end = array.length ) {
+	let slice = function (array, start = 0, end = array.length) {
 		let result = []
-		for ( let i = start; i < end; i++ ) {
-			if ( array[ i ] !== undefined ) {
-				result.push( array[ i ] )
+		for (let i = start; i < end; i++) {
+			if (array[i] !== undefined) {
+				result.push(array[i])
 			}
 		}
 		return result
@@ -806,10 +806,10 @@
 	 * @param  {function} [predicate=this.identity]       迭代器
 	 * @return {boolean}                                  一旦满足，返回 true
 	 */
-	let some = function ( collection, predicate = this.identity ) {
-		for ( let key in collection ) {
-			if ( collection.hasOwnProperty( key ) ) {
-				if ( this.iteratee( predicate )( collection[ key ], key, collection ) ) {
+	let some = function (collection, predicate = this.identity) {
+		for (let key in collection) {
+			if (collection.hasOwnProperty(key)) {
+				if (this.iteratee(predicate)(collection[key], key, collection)) {
 					return true
 				}
 			}
@@ -822,11 +822,11 @@
 	 * @param  {*} value      需要被转换的值
 	 * @return {array}        返回转换后的数组
 	 */
-	let toArray = function ( value ) {
+	let toArray = function (value) {
 		let result = []
-		for ( let key in value ) {
-			if ( value.hasOwnProperty( key ) ) {
-				result.push( value[ key ] )
+		for (let key in value) {
+			if (value.hasOwnProperty(key)) {
+				result.push(value[key])
 			}
 		}
 		return result
@@ -837,43 +837,43 @@
 	 * @param  {*} value      前缀
 	 * @return {array}        ID
 	 */
-	let uniqueId = ( function () {
+	let uniqueId = (function () {
 		let uniqueIdCount = 0
-		return function ( prefix = '' ) {
+		return function (prefix = '') {
 			uniqueIdCount++
 			return prefix + uniqueIdCount
 		}
-	} )()
+	})()
 
 	/**
 	 * 浅复制两值，并返回
 	 * @param  {*} value 被复制的值
 	 * @return {*}       复制后的值
 	 */
-	let clone = function ( value ) {
+	let clone = function (value) {
 		let result
-		if ( this.isDate( value ) ) {
-			return new Date( value.toString() )
-		} else if ( this.isRegExp( value ) ) {
-			return new RegExp( value )
-		} else if ( this.isSymbol( value ) || this.isString( value ) || this.isBoolean( value ) || this.isNumber( value ) ) {
+		if (this.isDate(value)) {
+			return new Date(value.toString())
+		} else if (this.isRegExp(value)) {
+			return new RegExp(value)
+		} else if (this.isSymbol(value) || this.isString(value) || this.isBoolean(value) || this.isNumber(value)) {
 			return value
-		} else if ( this.isArray( value ) ) {
+		} else if (this.isArray(value)) {
 			result = new Array()
-		} else if ( this.isArrayBuffer( value ) ) {
+		} else if (this.isArrayBuffer(value)) {
 			result = new ArrayBuffer()
-		} else if ( this.isMap( value ) ) {
+		} else if (this.isMap(value)) {
 			result = new Map()
-		} else if ( this.isPlainObject( value ) ) {
+		} else if (this.isPlainObject(value)) {
 			result = new Object()
-		} else if ( this.isSet( value ) ) {
+		} else if (this.isSet(value)) {
 			result = new Set()
 		} else {
 			return {}
 		}
-		for ( let key in value ) {
-			if ( value.hasOwnProperty( key ) ) {
-				result[ key ] = value[ key ]
+		for (let key in value) {
+			if (value.hasOwnProperty(key)) {
+				result[key] = value[key]
 			}
 		}
 		return result
@@ -884,8 +884,8 @@
 	 * @param  {*}  value 需要判断的值
 	 * @return {Boolean}  如果是 返回 true
 	 */
-	let isSet = function ( value ) {
-		return toString.call( value ) === '[object Set]'
+	let isSet = function (value) {
+		return toString.call(value) === '[object Set]'
 	}
 
 	/**
@@ -893,11 +893,11 @@
 	 * @param  {array} array  被筛选的数组
 	 * @return {array}        新的数组
 	 */
-	let compact = function ( array ) {
+	let compact = function (array) {
 		let result = []
-		for ( let i = 0; i < array.length; i++ ) {
-			if ( array[ i ] ) {
-				result.push( array[ i ] )
+		for (let i = 0; i < array.length; i++) {
+			if (array[i]) {
+				result.push(array[i])
 			}
 		}
 		return result
@@ -909,18 +909,18 @@
 	 * @param  {...*} values   需要连接的数组
 	 * @return {array}         连接后的数组
 	 */
-	let concat = function ( array, ...values ) {
+	let concat = function (array, ...values) {
 		let result = []
-		for ( let i = 0; i < array.length; i++ ) {
-			result.push( array[ i ] )
+		for (let i = 0; i < array.length; i++) {
+			result.push(array[i])
 		}
-		for ( let i = 0; i < values.length; i++ ) {
-			if ( this.isArray( values[ i ] ) ) {
-				for ( let j = 0; j < values[ i ].length; j++ ) {
-					result.push( values[ i ][ j ] )
+		for (let i = 0; i < values.length; i++) {
+			if (this.isArray(values[i])) {
+				for (let j = 0; j < values[i].length; j++) {
+					result.push(values[i][j])
 				}
 			} else {
-				result.push( values[ i ] )
+				result.push(values[i])
 			}
 		}
 		return result
@@ -933,13 +933,13 @@
 	 * @param  {object} properties 需要分配的属性
 	 * @return {object}            返回新的对象
 	 */
-	let create = function ( prototype, properties ) {
+	let create = function (prototype, properties) {
 		let obj = new Object()
-		Object.setPrototypeOf( obj, prototype )
-		if ( properties ) {
-			for ( let key in properties ) {
-				if ( properties.hasOwnProperty( key ) ) {
-					obj[ key ] = properties[ key ]
+		Object.setPrototypeOf(obj, prototype)
+		if (properties) {
+			for (let key in properties) {
+				if (properties.hasOwnProperty(key)) {
+					obj[key] = properties[key]
 				}
 			}
 		}
@@ -953,14 +953,14 @@
 	 * @param  {...object} sources 源对象
 	 * @return {object}            修改后的目标对象
 	 */
-	let defaults = function ( object, ...sources ) {
-		sources.forEach( function ( obj ) {
-			for ( let key in obj ) {
-				if ( obj.hasOwnProperty( key ) && !( key in object ) ) {
-					object[ key ] = obj[ key ]
+	let defaults = function (object, ...sources) {
+		sources.forEach(function (obj) {
+			for (let key in obj) {
+				if (obj.hasOwnProperty(key) && !(key in object)) {
+					object[key] = obj[key]
 				}
 			}
-		} )
+		})
 		return object
 	}
 
@@ -970,8 +970,8 @@
 	 * @param  {...*} args     传入的参数
 	 * @return {number}        id
 	 */
-	let defer = function ( func, ...args ) {
-		return setTimeout( func.bind( this, ...args, 0 ) )
+	let defer = function (func, ...args) {
+		return setTimeout(func.bind(this, ...args, 0))
 	}
 
 	/**
@@ -981,8 +981,8 @@
 	 * @param  {...*} args     传入函数的参数
 	 * @return {number}        id
 	 */
-	let delay = function ( func, wait, ...args ) {
-		return setTimeout( func.bind( this, ...args ), wait )
+	let delay = function (func, wait, ...args) {
+		return setTimeout(func.bind(this, ...args), wait)
 	}
 
 	/**
@@ -991,10 +991,10 @@
 	 * @param  {function} [iteratee=identity]        迭代器
 	 * @return {*}                                   返回值
 	 */
-	let each = function ( collection, iteratee = this.identity ) {
-		for ( let key in collection ) {
-			if ( collection.hasOwnProperty( key ) ) {
-				if ( iteratee( collection[ key ], key, collection ) === false ) {
+	let each = function (collection, iteratee = this.identity) {
+		for (let key in collection) {
+			if (collection.hasOwnProperty(key)) {
+				if (iteratee(collection[key], key, collection) === false) {
 					return
 				}
 			}
@@ -1007,10 +1007,10 @@
 	 * @param  {function} [predicate=this.identity]       迭代器
 	 * @return {boolean}                                  如果所有成员迭代结果都为 true ，返回 true
 	 */
-	let every = function ( collection, predicate = this.identity ) {
-		for ( let key in collection ) {
-			if ( collection.hasOwnProperty( key ) ) {
-				if ( this.iteratee( predicate )( collection[ key ], key, collection ) === false ) {
+	let every = function (collection, predicate = this.identity) {
+		for (let key in collection) {
+			if (collection.hasOwnProperty(key)) {
+				if (this.iteratee(predicate)(collection[key], key, collection) === false) {
 					return false
 				}
 			}
@@ -1023,18 +1023,18 @@
 	 * @param  {array} array 待降维数组
 	 * @return {array}       降维后的数组
 	 */
-	let flatten = function ( array ) {
+	let flatten = function (array) {
 		let result = []
 		let that = this
-		array.forEach( function ( it ) {
-			if ( that.isArray( it ) ) {
-				it.forEach( function ( a ) {
-					result.push( a )
-				} )
+		array.forEach(function (it) {
+			if (that.isArray(it)) {
+				it.forEach(function (a) {
+					result.push(a)
+				})
 			} else {
-				result.push( it )
+				result.push(it)
 			}
-		} )
+		})
 		return result
 	}
 
@@ -1043,17 +1043,17 @@
 	 * @param  {array} array 待降维数组
 	 * @return {array}       降维后的一维数组
 	 */
-	let flattenDeep = function ( array ) {
-		let result = this.flatten( array )
+	let flattenDeep = function (array) {
+		let result = this.flatten(array)
 		let onOff = true
-		for ( let i = 0; i < result.length; i++ ) {
-			if ( this.isArray( result[ i ] ) ) {
+		for (let i = 0; i < result.length; i++) {
+			if (this.isArray(result[i])) {
 				onOff = false
 				break
 			}
 		}
-		if ( !onOff ) {
-			result = this.flattenDeep( result )
+		if (!onOff) {
+			result = this.flattenDeep(result)
 		}
 		return result
 	}
@@ -1064,17 +1064,17 @@
 	 * @param  {array | string}  path   给定的路径
 	 * @return {Boolean}                如果存在，返回 true
 	 */
-	let has = function ( object, path ) {
+	let has = function (object, path) {
 		let prop
-		if ( this.isString( path ) ) {
-			prop = path.match( /\w+/g )
+		if (this.isString(path)) {
+			prop = path.match(/\w+/g)
 		} else {
 			prop = path
 		}
 		let temp = object
-		for ( let i = 0; i < prop.length; i++ ) {
-			if ( temp.hasOwnProperty( prop[ i ] ) ) {
-				temp = temp[ prop[ i ] ]
+		for (let i = 0; i < prop.length; i++) {
+			if (temp.hasOwnProperty(prop[i])) {
+				temp = temp[prop[i]]
 			} else {
 				return false
 			}
@@ -1087,21 +1087,21 @@
 	 * @param  {array} array 被查询的数组
 	 * @return {*}           数组中的第一个成员
 	 */
-	let head = function ( array ) {
-		return array[ 0 ]
+	let head = function (array) {
+		return array[0]
 	}
 
-	let indexOf = function ( array, value, fromIndex = 0 ) {
+	let indexOf = function (array, value, fromIndex = 0) {
 		let len = array.length
-		if ( fromIndex >= 0 ) {
-			for ( ; fromIndex < len; fromIndex++ ) {
-				if ( this.isEqual( array[ fromIndex ], value ) ) {
+		if (fromIndex >= 0) {
+			for (; fromIndex < len; fromIndex++) {
+				if (this.isEqual(array[fromIndex], value)) {
 					break
 				}
 			}
 		} else {
-			for ( fromIndex = len + fromIndex; fromIndex >= 0; fromIndex-- ) {
-				if ( this.isEqual( array[ fromIndex ], value ) ) {
+			for (fromIndex = len + fromIndex; fromIndex >= 0; fromIndex--) {
+				if (this.isEqual(array[fromIndex], value)) {
 					break
 				}
 			}
@@ -1115,10 +1115,10 @@
 	 * @param  {function} iteratee 对对象每个成员进行调用的函数
 	 * @return {object}            返回一个对象
 	 */
-	let forOwn = function ( object, iteratee = this.identity ) {
-		for ( let key in object ) {
-			if ( object.hasOwnProperty( key ) ) {
-				if ( iteratee( object[ key ], key, object ) === false ) {
+	let forOwn = function (object, iteratee = this.identity) {
+		for (let key in object) {
+			if (object.hasOwnProperty(key)) {
+				if (iteratee(object[key], key, object) === false) {
 					break
 				}
 			}
@@ -1133,16 +1133,16 @@
 	 * @param  {Number} [size=1] 每组长度
 	 * @return {array}           新的数组
 	 */
-	let chunk = function ( array, size = 1 ) {
+	let chunk = function (array, size = 1) {
 		//debugger
-		return this.reduce( array, function ( memo, curr, index ) {
-			if ( index % size === 0 ) {
-				memo.push( [ curr ] )
+		return this.reduce(array, function (memo, curr, index) {
+			if (index % size === 0) {
+				memo.push([curr])
 			} else {
-				memo[ memo.length - 1 ].push( curr )
+				memo[memo.length - 1].push(curr)
 			}
 			return memo
-		}, [] )
+		}, [])
 	}
 
 	/**
@@ -1151,8 +1151,8 @@
 	 * @param  {...array} values 比较数组
 	 * @return {array}           返回新的数组
 	 */
-	let difference = function ( array, ...values ) {
-		return this.differenceBy( array, ...values )
+	let difference = function (array, ...values) {
+		return this.differenceBy(array, ...values)
 	}
 
 	/**
@@ -1162,21 +1162,21 @@
 	 * @param  {function} iteratee=_.identity 调用的函数
 	 * @return {array}           返回新的数组
 	 */
-	let differenceBy = function ( array, ...others ) {
+	let differenceBy = function (array, ...others) {
 		let iteratee
 		let that = this
-		if ( !this.isArray( others[ others.length - 1 ] ) ) {
+		if (!this.isArray(others[others.length - 1])) {
 			iteratee = others.pop()
 		} else {
 			iteratee = this.identity
 		}
-		let flat = this.map( this.flatten( others ), it => this.iteratee( iteratee )( it ) )
-		return this.reduce( array, function ( memo, curr ) {
-			if ( !that.includes( flat, that.iteratee( iteratee )( curr ) ) ) {
-				memo.push( curr )
+		let flat = this.map(this.flatten(others), it => this.iteratee(iteratee)(it))
+		return this.reduce(array, function (memo, curr) {
+			if (!that.includes(flat, that.iteratee(iteratee)(curr))) {
+				memo.push(curr)
 			}
 			return memo
-		}, [] )
+		}, [])
 	}
 
 	/**
@@ -1186,18 +1186,18 @@
 	 * @param  {function} comparator            调用的函数
 	 * @return {array}                          返回新的数组
 	 */
-	let differenceWith = function ( array, ...others ) {
+	let differenceWith = function (array, ...others) {
 		let that = this
 		let comparator = others.pop()
-		let flat = this.flatten( others )
-		return this.reduce( array, function ( memo, curr ) {
-			that.each( flat, function ( a ) {
-				if ( !comparator.call( that, a, curr ) ) {
-					memo.push( curr )
+		let flat = this.flatten(others)
+		return this.reduce(array, function (memo, curr) {
+			that.each(flat, function (a) {
+				if (!comparator.call(that, a, curr)) {
+					memo.push(curr)
 				}
-			} )
+			})
 			return memo
-		}, [] )
+		}, [])
 	}
 
 	/**
@@ -1207,22 +1207,22 @@
 	 * @param  {Number} [fromIndex=0]                  查找的索引
 	 * @return {booleam}                               如果存在，返回 true
 	 */
-	let includes = function ( collection, value, fromIndex = 0 ) {
+	let includes = function (collection, value, fromIndex = 0) {
 		let count = 0
-		for ( let key in collection ) {
-			if ( count < fromIndex ) {
+		for (let key in collection) {
+			if (count < fromIndex) {
 				count++
 				continue
 			}
-			if ( collection.hasOwnProperty( key ) ) {
-				if ( this.isEqual( collection[ key ], value ) ) {
+			if (collection.hasOwnProperty(key)) {
+				if (this.isEqual(collection[key], value)) {
 					return true
 				}
 			}
 		}
-		if ( this.isString( collection ) && this.isString( value ) ) {
-			let reg = new RegExp( value )
-			return reg.test( collection )
+		if (this.isString(collection) && this.isString(value)) {
+			let reg = new RegExp(value)
+			return reg.test(collection)
 		}
 		return false
 	}
@@ -1233,13 +1233,13 @@
 	 * @param  {Number} [n=1] 开始切割的位置
 	 * @return {array}        返回新数组
 	 */
-	let drop = function ( array, n = 1 ) {
-		return array.reduce( function ( memo, curr, index ) {
-			if ( index >= n ) {
-				memo.push( curr )
+	let drop = function (array, n = 1) {
+		return array.reduce(function (memo, curr, index) {
+			if (index >= n) {
+				memo.push(curr)
 			}
 			return memo
-		}, [] )
+		}, [])
 	}
 
 	/**
@@ -1248,14 +1248,14 @@
 	 * @param  {Number} [n=1] 开始切割的位置
 	 * @return {array}        返回新数组
 	 */
-	let dropRight = function ( array, n = 1 ) {
+	let dropRight = function (array, n = 1) {
 		let index = array.length - n
-		return array.reduce( function ( memo, curr, i ) {
-			if ( i < index ) {
-				memo.push( curr )
+		return array.reduce(function (memo, curr, i) {
+			if (i < index) {
+				memo.push(curr)
 			}
 			return memo
-		}, [] )
+		}, [])
 	}
 
 	/**
@@ -1264,16 +1264,16 @@
 	 * @param  {function} [predicate=this.identity] 断言函数
 	 * @return {array}                              返回新数组
 	 */
-	let dropRightWhile = function ( array, predicate = this.identity ) {
+	let dropRightWhile = function (array, predicate = this.identity) {
 		let result = [],
 			i = array.length - 1
-		for ( ; i >= 0; i-- ) {
-			if ( this.iteratee( predicate )( array[ i ] ) === false ) {
+		for (; i >= 0; i--) {
+			if (this.iteratee(predicate)(array[i]) === false) {
 				break
 			}
 		}
-		for ( let j = 0; j <= i; j++ ) {
-			result.push( array[ j ] )
+		for (let j = 0; j <= i; j++) {
+			result.push(array[j])
 		}
 		return result
 	}
@@ -1284,16 +1284,16 @@
 	 * @param  {function} [predicate=this.identity] 断言函数
 	 * @return {array}                              返回新数组
 	 */
-	let dropWhile = function ( array, predicate = this.identity ) {
+	let dropWhile = function (array, predicate = this.identity) {
 		let result = [],
 			i = 0
-		for ( ; i < array.length; i++ ) {
-			if ( this.iteratee( predicate )( array[ i ] ) === false ) {
+		for (; i < array.length; i++) {
+			if (this.iteratee(predicate)(array[i]) === false) {
 				break
 			}
 		}
-		for ( ; i < array.length; i++ ) {
-			result.push( array[ i ] )
+		for (; i < array.length; i++) {
+			result.push(array[i])
 		}
 		return result
 	}
@@ -1306,9 +1306,9 @@
 	 * @param  {number} [end=array.length] 区段结束为止（不包含）
 	 * @return {array}                     修改后的数组
 	 */
-	let fill = function ( array, value, start = 0, end = array.length ) {
-		for ( let i = start; i < end; i++ ) {
-			array[ i ] = value
+	let fill = function (array, value, start = 0, end = array.length) {
+		for (let i = start; i < end; i++) {
+			array[i] = value
 		}
 		return array
 	}
@@ -1320,9 +1320,9 @@
 	 * @param  {Number} [fromIndex=0]               开始查找的位置
 	 * @return {number}                             索引
 	 */
-	let findIndex = function ( array, predicate = this.identity, fromIndex = 0 ) {
-		for ( let i = fromIndex; i < array.length; i++ ) {
-			if ( this.iteratee( predicate )( array[ i ] ) ) {
+	let findIndex = function (array, predicate = this.identity, fromIndex = 0) {
+		for (let i = fromIndex; i < array.length; i++) {
+			if (this.iteratee(predicate)(array[i])) {
 				return i
 			}
 		}
@@ -1336,9 +1336,9 @@
 	 * @param  {Number} [fromIndex=0]               开始查找的位置
 	 * @return {number}                             索引
 	 */
-	let findLastIndex = function ( array, predicate = this.identity, fromIndex = array.length - 1 ) {
-		for ( let i = fromIndex; i >= 0; i-- ) {
-			if ( this.iteratee( predicate )( array[ i ] ) ) {
+	let findLastIndex = function (array, predicate = this.identity, fromIndex = array.length - 1) {
+		for (let i = fromIndex; i >= 0; i--) {
+			if (this.iteratee(predicate)(array[i])) {
 				return i
 			}
 		}
@@ -1351,10 +1351,10 @@
 	 * @param  {Number} [depth=1] 降维深度
 	 * @return {array}            降维后的数组
 	 */
-	let flattenDepth = function ( array, depth = 1 ) {
+	let flattenDepth = function (array, depth = 1) {
 		let result = array
-		for ( let i = 0; i < depth; i++ ) {
-			result = this.flatten( result )
+		for (let i = 0; i < depth; i++) {
+			result = this.flatten(result)
 		}
 		return result
 	}
@@ -1364,11 +1364,11 @@
 	 * @param  {array} pairs  键值对二维数组
 	 * @return {object}       转换后的对象
 	 */
-	let fromPairs = function ( pairs ) {
-		return pairs.reduce( function ( memo, curr ) {
-			memo[ curr[ 0 ] ] = curr[ 1 ]
+	let fromPairs = function (pairs) {
+		return pairs.reduce(function (memo, curr) {
+			memo[curr[0]] = curr[1]
 			return memo
-		}, {} )
+		}, {})
 	}
 
 	/**
@@ -1376,13 +1376,13 @@
 	 * @param  {array} array 原数组
 	 * @return {array}       新数组
 	 */
-	let initial = function ( array ) {
-		return array.reduce( function ( memo, curr, index ) {
-			if ( index < array.length - 1 ) {
-				memo.push( curr )
+	let initial = function (array) {
+		return array.reduce(function (memo, curr, index) {
+			if (index < array.length - 1) {
+				memo.push(curr)
 			}
 			return memo
-		}, [] )
+		}, [])
 	}
 
 	/**
@@ -1390,8 +1390,8 @@
 	 * @param  {...array} array 被筛选数组群
 	 * @return {array}          筛选出来的数组
 	 */
-	let intersection = function ( ...array ) {
-		return this.intersectionBy( ...array )
+	let intersection = function (...array) {
+		return this.intersectionBy(...array)
 	}
 
 	/**
@@ -1399,28 +1399,28 @@
 	 * @param  {...array} array 被筛选数组群
 	 * @return {array}          筛选出来的数组
 	 */
-	let intersectionBy = function ( ...paras ) {
+	let intersectionBy = function (...paras) {
 		let iteratee
-		if ( !this.isArray( paras[ paras.length - 1 ] ) ) {
+		if (!this.isArray(paras[paras.length - 1])) {
 			iteratee = paras.pop()
 		} else {
 			iteratee = this.identity
 		}
-		let temp = this.drop( paras )
+		let temp = this.drop(paras)
 		let that = this
-		return paras[ 0 ].reduce( function ( memo, curr ) {
-			let onOff = that.reduce( temp, function ( me, cu ) {
-				let tmp = that.map( cu, it => that.iteratee( iteratee )( it ) )
-				if ( !that.includes( tmp, that.iteratee( iteratee )( curr ) ) ) {
+		return paras[0].reduce(function (memo, curr) {
+			let onOff = that.reduce(temp, function (me, cu) {
+				let tmp = that.map(cu, it => that.iteratee(iteratee)(it))
+				if (!that.includes(tmp, that.iteratee(iteratee)(curr))) {
 					me = false
 				}
 				return me
-			}, true )
-			if ( onOff ) {
-				memo.push( curr )
+			}, true)
+			if (onOff) {
+				memo.push(curr)
 			}
 			return memo
-		}, [] )
+		}, [])
 	}
 
 	/**
@@ -1428,24 +1428,24 @@
 	 * @param  {...array} array 被筛选数组群
 	 * @return {array}          筛选出来的数组
 	 */
-	let intersectionWith = function ( ...paras ) {
+	let intersectionWith = function (...paras) {
 		let comparator = paras.pop()
 		let that = this
-		let others = this.drop( paras )
-		return paras[ 0 ].reduce( function ( memo, curr ) {
-			let onOff = that.reduce( others, function ( me, cu ) {
-				for ( let i = 0; i < cu.length; i++ ) {
-					if ( comparator.call( that, curr, cu[ i ] ) ) {
+		let others = this.drop(paras)
+		return paras[0].reduce(function (memo, curr) {
+			let onOff = that.reduce(others, function (me, cu) {
+				for (let i = 0; i < cu.length; i++) {
+					if (comparator.call(that, curr, cu[i])) {
 						me = true
 					}
 				}
 				return me
-			}, false )
-			if ( onOff ) {
-				memo.push( curr )
+			}, false)
+			if (onOff) {
+				memo.push(curr)
 			}
 			return memo
-		}, [] )
+		}, [])
 	}
 
 	/**
@@ -1454,15 +1454,15 @@
 	 * @param  {String} [separator=''] 连接符号
 	 * @return {string}                连接成功的字符串
 	 */
-	let join = function ( array, separator = ',' ) {
-		return this.reduce( array, function ( memo, curr, index, arr ) {
-			if ( index == arr.length - 1 ) {
+	let join = function (array, separator = ',') {
+		return this.reduce(array, function (memo, curr, index, arr) {
+			if (index == arr.length - 1) {
 				memo += curr
 			} else {
 				memo += curr + separator
 			}
 			return memo
-		}, '' )
+		}, '')
 	}
 
 	/**
@@ -1472,9 +1472,9 @@
 	 * @param  {number} [fromIndex=array.length - 1] 判断的起始位置
 	 * @return {number}                              索引值
 	 */
-	let lastIndexOf = function ( array, value, fromIndex = array.length - 1 ) {
-		for ( let i = fromIndex; i >= 0; i-- ) {
-			if ( this.isEqual( array[ i ], value ) ) {
+	let lastIndexOf = function (array, value, fromIndex = array.length - 1) {
+		for (let i = fromIndex; i >= 0; i--) {
+			if (this.isEqual(array[i], value)) {
 				return i
 			}
 		}
@@ -1487,11 +1487,11 @@
 	 * @param  {Number} [n=0] 索引
 	 * @return {*}            找到的值
 	 */
-	let nth = function ( array, n = 0 ) {
-		if ( n >= 0 ) {
-			return array[ n ]
+	let nth = function (array, n = 0) {
+		if (n >= 0) {
+			return array[n]
 		} else {
-			return array[ array.length + n ]
+			return array[array.length + n]
 		}
 	}
 
@@ -1501,8 +1501,8 @@
 	 * @param  {*} values      指定的值
 	 * @return {array}         操作后的值
 	 */
-	let pull = function ( array, ...values ) {
-		return this.pullAllBy( array, values )
+	let pull = function (array, ...values) {
+		return this.pullAllBy(array, values)
 	}
 
 	/**
@@ -1511,8 +1511,8 @@
 	 * @param  {*} values      指定的值
 	 * @return {array}         操作后的值
 	 */
-	let pullAll = function ( array, values ) {
-		return this.pullAllBy( array, values )
+	let pullAll = function (array, values) {
+		return this.pullAllBy(array, values)
 	}
 
 	/**
@@ -1522,16 +1522,16 @@
 	 * @param  {function} [iteratee=this.identity] 迭代器
 	 * @return {array}                             操作后的值
 	 */
-	let pullAllBy = function ( array, values, iteratee = this.identity ) {
+	let pullAllBy = function (array, values, iteratee = this.identity) {
 		let that = this
-		this.forEach( values, function ( element ) {
-			for ( let i = 0; i < array.length; i++ ) {
-				if ( that.isEqual( that.iteratee( iteratee )( element ), that.iteratee( iteratee )( array[ i ] ) ) ) {
-					array.splice( i, 1 )
+		this.forEach(values, function (element) {
+			for (let i = 0; i < array.length; i++) {
+				if (that.isEqual(that.iteratee(iteratee)(element), that.iteratee(iteratee)(array[i]))) {
+					array.splice(i, 1)
 					i--
 				}
 			}
-		} )
+		})
 		return array
 	}
 
@@ -1542,16 +1542,16 @@
 	 * @param  {function} [comparator]             自定义函数
 	 * @return {array}                             操作后的值
 	 */
-	let pullAllWith = function ( array, values, comparator ) {
+	let pullAllWith = function (array, values, comparator) {
 		let that = this
-		this.forEach( values, function ( element ) {
-			for ( let i = 0; i < array.length; i++ ) {
-				if ( comparator.call( that, element, array[ i ] ) ) {
-					array.splice( i, 1 )
+		this.forEach(values, function (element) {
+			for (let i = 0; i < array.length; i++) {
+				if (comparator.call(that, element, array[i])) {
+					array.splice(i, 1)
 					i--
 				}
 			}
-		} )
+		})
 		return array
 	}
 
@@ -1561,15 +1561,34 @@
 	 * @param  {number} indexs 索引集
 	 * @return {array}         操作后的数组
 	 */
-	let pullAt = function ( array, ...indexs ) {
+	let pullAt = function (array, ...indexs) {
 		let result = []
-		let index = this.flatten( indexs )
-		for ( let i = 0; i < index.length; i++ ) {
-			result.push( array[ index[ i ] ] )
+		let index = this.flatten(indexs)
+		for (let i = 0; i < index.length; i++) {
+			result.push(array[index[i]])
 		}
-		index = index.sort( ( a, b ) => b - a )
-		for ( let i = 0; i < index.length; i++ ) {
-			array.splice( index[ i ], 1 )
+		index = index.sort((a, b) => b - a)
+		for (let i = 0; i < index.length; i++) {
+			array.splice(index[i], 1)
+		}
+		return result
+	}
+
+
+	/**
+	 * 断言数组内所有的成员，删除返回 true 的成员并返回被删成员数组
+	 * @param  {array} array                      被判断的数组
+	 * @param  {function} predicate=this.identity 断言函数
+	 * @return {array}                            被删成员集合
+	 */
+	let remove = function (array, predicate = this.identity) {
+		let result = []
+		for (let i = 0; i < array.length; i++) {
+			if (predicate(array[i])) {
+				result.push(array[i])
+				array.splice(i, 1)
+				i--
+			}
 		}
 		return result
 	}
@@ -1689,6 +1708,7 @@
 		pullAllBy: pullAllBy,
 		pullAllWith: pullAllWith,
 		pullAt: pullAt,
+		remove: remove,
 
 	}
-} )( typeof global === 'undefined' ? window : global )
+})(typeof global === 'undefined' ? window : global)
