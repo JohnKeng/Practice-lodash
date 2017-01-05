@@ -1,19 +1,20 @@
 ( function ( windowGlobal ) {
 
+	// core function ==========================
+
 	/**
 	 * 分配一个或多个被分配对象可自身可枚举属性，到目标对象上，
 	 * 分配的属性会覆盖目标对象身上的同名属性
-	 * @param  {object} obj    目标属性
-	 * @param  {[object]} args 被分配的对象
-	 * @return {object}        分配后的目标对象
+	 * @param  {object} obj     目标属性
+	 * @param  {...object} args 被分配的对象
+	 * @return {object}         分配后的目标对象
 	 */
-	let assign = function ( obj, ...args ) {
-		args.forEach( function ( a ) {
-			for ( let key in a ) {
-				if ( a.hasOwnProperty( key ) ) {
-					obj[ key ] = a[ key ]
-				}
-			}
+	let assign = function ( obj, ...sources ) {
+		let that = this
+		this.forEach( sources, function ( a ) {
+			that.forOwn( a, function ( element, key ) {
+				obj[ key ] = element
+			} )
 		} )
 		return obj
 	}
@@ -21,12 +22,12 @@
 	/**
 	 * 分配一个或者多个被分配对象自身 或者 继承到的 可枚举属性，到目标对象上，
 	 * 分配的属性会覆盖目标身上的同名属性
-	 * @param  {object} obj    目标属性
-	 * @param  {[object]} args 被分配的对象
-	 * @return {object}        分配后的目标对象
+	 * @param  {object} obj      目标属性
+	 * @param  {...sources} args 被分配的对象
+	 * @return {object}          分配后的目标对象
 	 */
-	let assignIn = function ( obj, ...args ) {
-		args.forEach( function ( a ) {
+	let assignIn = function ( obj, ...sources ) {
+		this.forEach( sources, function ( a ) {
 			for ( let key in a ) {
 				obj[ key ] = a[ key ]
 			}
@@ -62,14 +63,15 @@
 	 * @return {function}           绑定后的新函数
 	 */
 	let bind = function ( func, thisArg, ...partials ) {
+		let that = this
 		return function ( ...args ) {
-			let arg = partials.map( function ( a ) {
+			partials = that.map( partials, function ( a ) {
 				if ( a === _ ) {
 					a = args.shift()
 				}
 				return a
 			} )
-			return func.apply( thisArg, arg.concat( args ) )
+			return func.call( thisArg, ...partials, ...args )
 		}
 	}
 
@@ -479,11 +481,9 @@
 	let keys = function ( object ) {
 		let obj = Object( object )
 		let result = []
-		for ( let key in object ) {
-			if ( object.hasOwnProperty( key ) ) {
-				result.push( key )
-			}
-		}
+		this.forOwn( object, function ( value, key ) {
+			result.push( key )
+		} )
 		return result
 	}
 
@@ -1108,7 +1108,7 @@
 	 * @param  {function} iteratee 对对象每个成员进行调用的函数
 	 * @return {object}            返回一个对象
 	 */
-	let forOwn = function ( object, iteratee ) {
+	let forOwn = function ( object, iteratee = this.identity ) {
 		for ( let key in object ) {
 			if ( object.hasOwnProperty( key ) ) {
 				if ( iteratee( object[ key ], key, object ) === false ) {
@@ -1116,6 +1116,108 @@
 				}
 			}
 		}
+	}
+
+	// base function ================================
+
+	/**
+	 * 创建一个新数组，将原数组分组
+	 * @param  {array} array     原数组
+	 * @param  {Number} [size=1] 每组长度
+	 * @return {array}           新的数组
+	 */
+	let chunk = function ( array, size = 1 ) {
+		//debugger
+		return this.reduce( array, function ( memo, curr, index ) {
+			if ( index % size === 0 ) {
+				memo.push( [ curr ] )
+			} else {
+				memo[ memo.length - 1 ].push( curr )
+			}
+			return memo
+		}, [] )
+	}
+
+	/**
+	 * 创建一个新数组，其成员是被比较数组中的成员，且不在对比数组中的值
+	 * @param  {array} array     被比较数组
+	 * @param  {...array} values 比较数组
+	 * @return {array}           返回新的数组
+	 */
+	let difference = function ( array, ...values ) {
+		return this.differenceBy( array, ...values )
+	}
+
+	/**
+	 * 类似于 difference 为每个值调用 iteratee ，在进行比较
+	 * @param  {array} array                  被比较数组
+	 * @param  {...array} values              比较数组
+	 * @param  {function} iteratee=_.identity 调用的函数
+	 * @return {array}           返回新的数组
+	 */
+	let differenceBy = function ( array, ...others ) {
+		let iteratee
+		let that = this
+		if ( this.isFunction( others[ others.length - 1 ] ) ) {
+			iteratee = others.pop()
+		} else {
+			iteratee = this.identity
+		}
+		let flat = this.map( this.flatten( others ), it => iteratee( it ) )
+		return this.reduce( array, function ( memo, curr ) {
+			if ( !that.includes( flat, iteratee( curr ) ) ) {
+				memo.push( curr )
+			}
+			return memo
+		}, [] )
+	}
+
+	/**
+	 * 类似于 difference 自定义比较方式在进行比较
+	 * @param  {array} array                    被比较数组
+	 * @param  {...array} values                比较数组
+	 * @param  {function} comparator            调用的函数
+	 * @return {array}                          返回新的数组
+	 */
+	let differenceWith = function ( array, ...others ) {
+		let that = this
+		let comparator = others.pop()
+		let flat = this.flatten( others )
+		return this.reduce( array, function ( memo, curr ) {
+			that.each( flat, function ( a ) {
+				if ( !comparator.call( that, a, curr ) ) {
+					memo.push( curr )
+				}
+			} )
+			return memo
+		}, [] )
+	}
+
+	/**
+	 * 检查一个值事都在集合中
+	 * @param  {array | object | string} collection    被比较的集合
+	 * @param  {*} value                               检查的值
+	 * @param  {Number} [fromIndex=0]                  查找的索引
+	 * @return {booleam}                               如果存在，返回 true
+	 */
+	let includes = function ( collection, value, fromIndex = 0 ) {
+		let count = 0
+		for ( let key in collection ) {
+			if ( count < fromIndex ) {
+				count++
+				continue
+			}
+			if ( collection.hasOwnProperty( key ) ) {
+				if ( this.isEqual( collection[ key ], value ) ) {
+					return true
+				}
+			}
+		}
+		if ( this.isString( collection ) && this.isString( value ) ) {
+			let reg = new RegExp( value )
+			return reg.test( collection )
+		}
+		return false
 	}
 
 
@@ -1208,6 +1310,11 @@
 		head: head,
 		first: head,
 		indexOf: indexOf,
+		chunk: chunk,
+		includes: includes,
+		difference: difference,
+		differenceWith: differenceWith,
+		differenceBy: differenceBy,
 
 	}
 } )( typeof global === 'undefined' ? window : global )
