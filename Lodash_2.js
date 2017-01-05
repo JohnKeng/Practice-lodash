@@ -1454,7 +1454,7 @@
 	 * @param  {String} [separator=''] 连接符号
 	 * @return {string}                连接成功的字符串
 	 */
-	let join = function ( array, separator = '' ) {
+	let join = function ( array, separator = ',' ) {
 		return this.reduce( array, function ( memo, curr, index, arr ) {
 			if ( index == arr.length - 1 ) {
 				memo += curr
@@ -1465,6 +1465,114 @@
 		}, '' )
 	}
 
+	/**
+	 * 从走往左检索数组，返回第一个与给定值相等的索引
+	 * @param  {array} array                         被检索的数组
+	 * @param  {*} value                             给定判断的值
+	 * @param  {number} [fromIndex=array.length - 1] 判断的起始位置
+	 * @return {number}                              索引值
+	 */
+	let lastIndexOf = function ( array, value, fromIndex = array.length - 1 ) {
+		for ( let i = fromIndex; i >= 0; i-- ) {
+			if ( this.isEqual( array[ i ], value ) ) {
+				return i
+			}
+		}
+		return -1
+	}
+
+	/**
+	 * 返回数组中给定索引的值，给定索引为负数时，从后往前找
+	 * @param  {array} array  待查数组
+	 * @param  {Number} [n=0] 索引
+	 * @return {*}            找到的值
+	 */
+	let nth = function ( array, n = 0 ) {
+		if ( n >= 0 ) {
+			return array[ n ]
+		} else {
+			return array[ array.length + n ]
+		}
+	}
+
+	/**
+	 * 从给定数组中剔除所有指定的值
+	 * @param  {array} array   被操作的数组
+	 * @param  {*} values      指定的值
+	 * @return {array}         操作后的值
+	 */
+	let pull = function ( array, ...values ) {
+		return this.pullAllBy( array, values )
+	}
+
+	/**
+	 * 从给定数组中剔除指定数组中的所有值
+	 * @param  {array} array   被操作的数组
+	 * @param  {*} values      指定的值
+	 * @return {array}         操作后的值
+	 */
+	let pullAll = function ( array, values ) {
+		return this.pullAllBy( array, values )
+	}
+
+	/**
+	 * 通过迭代器从给定数组中剔除所有指定的值
+	 * @param  {array} array                       被操作的数组
+	 * @param  {*} values                          指定的值
+	 * @param  {function} [iteratee=this.identity] 迭代器
+	 * @return {array}                             操作后的值
+	 */
+	let pullAllBy = function ( array, values, iteratee = this.identity ) {
+		let that = this
+		this.forEach( values, function ( element ) {
+			for ( let i = 0; i < array.length; i++ ) {
+				if ( that.isEqual( that.iteratee( iteratee )( element ), that.iteratee( iteratee )( array[ i ] ) ) ) {
+					array.splice( i, 1 )
+					i--
+				}
+			}
+		} )
+		return array
+	}
+
+	/**
+	 * 和 pullAllBy 类似，自定义指定比较函数
+	 * @param  {array} array                       被操作的数组
+	 * @param  {*} values                          指定的值
+	 * @param  {function} [comparator]             自定义函数
+	 * @return {array}                             操作后的值
+	 */
+	let pullAllWith = function ( array, values, comparator ) {
+		let that = this
+		this.forEach( values, function ( element ) {
+			for ( let i = 0; i < array.length; i++ ) {
+				if ( comparator.call( that, element, array[ i ] ) ) {
+					array.splice( i, 1 )
+					i--
+				}
+			}
+		} )
+		return array
+	}
+
+	/**
+	 * 移除制定索引的元素
+	 * @param  {array} array   被操作的数组
+	 * @param  {number} indexs 索引集
+	 * @return {array}         操作后的数组
+	 */
+	let pullAt = function ( array, ...indexs ) {
+		let result = []
+		let index = this.flatten( indexs )
+		for ( let i = 0; i < index.length; i++ ) {
+			result.push( array[ index[ i ] ] )
+		}
+		index = index.sort( ( a, b ) => b - a )
+		for ( let i = 0; i < index.length; i++ ) {
+			array.splice( index[ i ], 1 )
+		}
+		return result
+	}
 
 
 	// Seq ====================
@@ -1504,7 +1612,6 @@
 		isString: isString,
 		isUndefined: isUndefined,
 		isEqual: isEqual,
-		// ===
 		iteratee: iteratee,
 		keys: keys,
 		last: last,
@@ -1575,6 +1682,13 @@
 		intersectionBy: intersectionBy,
 		intersectionWith: intersectionWith,
 		join: join,
+		lastIndexOf: lastIndexOf,
+		nth: nth,
+		pull: pull,
+		pullAll: pullAll,
+		pullAllBy: pullAllBy,
+		pullAllWith: pullAllWith,
+		pullAt: pullAt,
 
 	}
 } )( typeof global === 'undefined' ? window : global )
