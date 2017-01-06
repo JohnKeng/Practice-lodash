@@ -1574,7 +1574,6 @@
 		return result
 	}
 
-
 	/**
 	 * 断言数组内所有的成员，删除返回 true 的成员并返回被删成员数组
 	 * @param  {array} array                      被判断的数组
@@ -1602,24 +1601,228 @@
 		return array.reverse()
 	}
 
+	/**
+	 * 将给定的值插入到所给数组中，保持其顺序不变
+	 * @param  {array} array 被检索数组
+	 * @param  {*} value     给定的值
+	 * @return {unmber}      检索出的索引
+	 */
 	let sortedIndex = function (array, value) {
-		let index = parseInt(array.length / 2)
-		while (1) {
-			if (index === 0) {
-				return value >= array[index] ? 1 : 0
-			}
-			if (index === array.length - 1) {
-				return value > array[index] ? index + 1 : index
-			}
-			if (value <= array[index] && value > array[index - 1]) {
-				return index
-			} else if (value <= array[index]) {
-				index = parseInt(index / 2)
-			} else {
-				index += parseInt(index / 2)
+		return this.sortedIndexBy(array, value)
+	}
+
+	/**
+	 * 类似 sortedIndex 调用迭代函数检索
+	 * @param  {array} array 被检索的数组
+	 * @param  {*} value     给定的值
+	 * @param  {function}    调用的迭代函数
+	 * @return {number}      索引值 
+	 */
+	let sortedIndexBy = function (array, value, iteratee = this.identity) {
+		let i = 0;
+		for (; i < array.length; i++) {
+			if (this.iteratee(iteratee)(value) <= this.iteratee(iteratee)(array[i])) {
+				break
 			}
 		}
+		return i
 	}
+
+	/**
+	 * 第一个匹配到值的索引
+	 * @param  {array} array 被查找的数组
+	 * @param  {*} value     匹配的值
+	 * @return {number}      匹配到的索引
+	 */
+	let sortedIndexOf = function (array, value) {
+		let i = 0
+		for (; i < array.length; i++) {
+			if (this.isEqual(array[i], value)) {
+				break
+			}
+		}
+		return i === array.length ? -1 : i
+	}
+
+	/**
+	 * 从左往右将给定的值插入到所给数组中，保持其顺序不变
+	 * @param  {array} array 被检索数组
+	 * @param  {*} value     给定的值
+	 * @return {unmber}      检索出的索引
+	 */
+	let sortedLastIndex = function (array, value) {
+		return this.sortedLastIndexBy(array, value)
+	}
+
+	/**
+	 * 从左往右类似 sortedIndex 调用迭代函数检索
+	 * @param  {array} array 被检索的数组
+	 * @param  {*} value     给定的值
+	 * @param  {function}    调用的迭代函数
+	 * @return {number}      索引值 
+	 */
+	let sortedLastIndexBy = function (array, value, iteratee = this.identity) {
+		let i = array.length - 1
+		for (; i >= 0; i--) {
+			if (this.iteratee(iteratee)(value) >= this.iteratee(iteratee)(array[i])) {
+				break
+			}
+		}
+		return i + 1
+	}
+
+	/**
+	 * 从左往右第一个匹配到值的索引
+	 * @param  {array} array 被查找的数组
+	 * @param  {*} value     匹配的值
+	 * @return {number}      匹配到的索引
+	 */
+	let sortedLastIndexOf = function (array, value) {
+		let i = array.length - 1
+		for (; i >= 0; i--) {
+			if (this.isEqual(array[i], value)) {
+				return i
+			}
+		}
+		return -1
+	}
+
+	/**
+	 * 类似 uniq 筛选的时候保持顺序
+	 * @param  {array} array 被筛选的数组
+	 * @return {array}       筛选后的数组
+	 */
+	let sortedUniq = function (array) {
+		return this.uniqBy(array)
+	}
+
+	/**
+	 * 类似 uniq 通过迭代器筛选 数组
+	 * @param  {array} array        被筛选的数组
+	 * @param  {function} iteratee  迭代器
+	 * @return {array}              筛选后的数组
+	 */
+	let sortedUniqBy = function (array, iteratee) {
+		return this.uniqBy(array, iteratee)
+	}
+
+
+	/**
+	 * 筛选数组，保持数组内不存在重复项
+	 * @param  {array} array 被筛选的数组
+	 * @return {array}       筛选后的数组
+	 */
+	let uniq = function (array) {
+		return this.uniqBy(array)
+	}
+
+	/**
+	 * 类似 uniq 通过迭代器筛选数组
+	 * @param  {array} array               被筛选的数组
+	 * @param  {function} iteratee=this.identity 迭代器
+	 * @return {array}                     筛选后的数组
+	 */
+	let uniqBy = function (array, iteratee = this.identity) {
+		let that = this
+		return this.reduce(array, function (memo, curr) {
+			for (let i = 0; i < memo.length; i++) {
+				if (that.isEqual(that.iteratee(iteratee)(curr), that.iteratee(iteratee)(memo[i]))) {
+					return memo
+				}
+			}
+			memo.push(curr)
+			return memo
+		}, [])
+	}
+
+	/**
+	 * 将数组第一项去除
+	 * @param  {array} array 被操作的数组
+	 * @return {array}       操作后的数组
+	 */
+	let tail = function (array) {
+		return this.reduce(array, function (memo, curr, i) {
+			if (i == 0) {
+				return memo
+			}
+			memo.push(curr)
+			return memo
+		}, [])
+	}
+
+	/**
+	 * 顺序提取给定数量的成员
+	 * @param  {array} array 被提取的数组
+	 * @param  {number} n=1  给定的数量
+	 * @return {array}       提取后的数组
+	 */
+	let take = function (array, n = 1) {
+		return this.reduce(array, function (memo, curr, i) {
+			if (i >= n) {
+				return memo
+			}
+			memo.push(curr)
+			return memo
+		}, [])
+	}
+
+	/**
+	 * 根据给定的数目，从右往左提取成员
+	 * @param  {array} array 被提取的数组
+	 * @param  {*} n=1       给定的数量
+	 * @return {array}       提取后的数组
+	 */
+	let takeRight = function (array, n = 1) {
+		let index = array.length - n
+		return this.reduce(array, function (memo, curr, i) {
+			if (i < index) {
+				return memo
+			}
+			memo.push(curr)
+			return memo
+		}, [])
+	}
+
+	/**
+	 * 依据断言函数，从右向左提取数据
+	 * @param  {array} array                      被提取数组
+	 * @param  {function} predicate=this.identity 断言函数
+	 * @return {array}                            提取后的数组
+	 */
+	let takeRightWhile = function (array, predicate = this.identity) {
+		debugger
+		let result = [],
+			onOff = true
+		for (let i = array.length - 1; i >= 0; i--) {
+			if (this.iteratee(predicate)(array[i], i, array) === false) {
+				onOff = false
+			}
+			if (onOff) {
+				result.unshift(array[i])
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 依据断言函数，提取数据
+	 * @param  {array} array                      被提取数组
+	 * @param  {function} predicate=this.identity 断言函数
+	 * @return {array}                            提取后的数组
+	 */
+	let takeWhile = function (array, predicate = this.identity) {
+		let result = []
+		for (let i = 0; i < array.length; i++) {
+			if (this.iteratee(predicate)(array[i], i, array) === false) {
+				return result
+			}
+			result.push(array[i])
+		}
+		return result
+	}
+
+
+
 
 
 	// Seq ====================
@@ -1739,6 +1942,30 @@
 		remove: remove,
 		reverse: reverse,
 		sortedIndex: sortedIndex,
+		sortedIndexBy: sortedIndexBy,
+		sortedIndexOf: sortedIndexOf,
+		sortedLastIndex: sortedLastIndex,
+		sortedLastIndexBy: sortedLastIndexBy,
+		sortedLastIndex: sortedLastIndex,
+		sortedLastIndexBy: sortedLastIndexBy,
+		sortedLastIndexOf: sortedLastIndexOf,
+		uniq: uniq,
+		sortedUniq: sortedUniq,
+		uniqBy: uniqBy,
+		sortedUniqBy: sortedUniqBy,
+		tail: tail,
+		take: take,
+		takeRight: takeRight,
+		takeRightWhile: takeRightWhile,
+		takeWhile: takeWhile,
+
+
+
+
+
+
+
+
 
 	}
 })(typeof global === 'undefined' ? window : global)
