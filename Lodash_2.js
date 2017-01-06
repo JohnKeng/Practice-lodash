@@ -1593,6 +1593,34 @@
 		return result
 	}
 
+	/**
+	 * 反转数组
+	 * @param  {array} array 待反转的数组
+	 * @return {array}       反转后的数组
+	 */
+	let reverse = function (array) {
+		return array.reverse()
+	}
+
+	let sortedIndex = function (array, value) {
+		let index = parseInt(array.length / 2)
+		while (1) {
+			if (index === 0) {
+				return value >= array[index] ? 1 : 0
+			}
+			if (index === array.length - 1) {
+				return value > array[index] ? index + 1 : index
+			}
+			if (value <= array[index] && value > array[index - 1]) {
+				return index
+			} else if (value <= array[index]) {
+				index = parseInt(index / 2)
+			} else {
+				index += parseInt(index / 2)
+			}
+		}
+	}
+
 
 	// Seq ====================
 
@@ -1709,6 +1737,8 @@
 		pullAllWith: pullAllWith,
 		pullAt: pullAt,
 		remove: remove,
+		reverse: reverse,
+		sortedIndex: sortedIndex,
 
 	}
 })(typeof global === 'undefined' ? window : global)
