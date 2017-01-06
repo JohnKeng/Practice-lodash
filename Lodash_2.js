@@ -1718,9 +1718,9 @@
 
 	/**
 	 * 类似 uniq 通过迭代器筛选数组
-	 * @param  {array} array               被筛选的数组
-	 * @param  {function} iteratee=this.identity 迭代器
-	 * @return {array}                     筛选后的数组
+	 * @param  {array} array                      被筛选的数组
+	 * @param  {function} iteratee=this.identity  迭代器
+	 * @return {array}                            筛选后的数组
 	 */
 	let uniqBy = function (array, iteratee = this.identity) {
 		let that = this
@@ -1821,8 +1821,112 @@
 		return result
 	}
 
+	/**
+	 * 将数组集提取出成员，且不重复提取
+	 * @param  {array} ...arrays  被提取的数组集
+	 * @return {array}            提取后的数组 
+	 */
+	let union = function (...arrays) {
+		let that = this
+		return Array.from(new Set(that.flatten(arrays)))
+	}
+
+	/**
+	 * 通过迭代函数将数组集提取出成员，且不重复提取
+	 * @param  {array} ...arrays   被提取的数组集
+	 * @param  {function}          迭代函数
+	 * @return {array}             提取后的数组 
+	 */
+	let unionBy = function (...others) {
+		let iteratee
+		if (!this.isArray(others[others.length - 1])) {
+			iteratee = others.pop()
+		} else {
+			iteratee = this.identity
+		}
+		let that = this
+		others = this.flatten(others)
+		return others.map(it => this.iteratee(iteratee)(it)).reduce(function (memo, curr, i) {
+			let onOff = memo.reduce(function (me, cu) {
+				if (that.isEqual(that.iteratee(iteratee)(cu), curr)) {
+					me = false
+				}
+				return me
+			}, true)
+			if (onOff) {
+				memo.push(others[i])
+			}
+			return memo
+		}, [])
+	}
+
+	/**
+	 * 自定义函数将数组集提取出成员，且不重复提取
+	 * @param  {array} ...arrays  被提取的数组集
+	 * @param  {function}         对比函数
+	 * @return {array}            提取后的数组 
+	 */
+	let unionWith = function (...others) {
+		let comparator = others.pop()
+		others = this.flatten(others)
+		for (let i = 0; i < others.length; i++) {
+			for (let j = i + 1; j < others.length; j++) {
+				if (comparator.call(this, others[i], others[j])) {
+					others.splice(j, 1)
+				}
+			}
+		}
+		return others
+	}
+
+	/**
+	 * 返回一个数组，将每个成员数组的相同项统筹
+	 * @param  {array} ...arrays 被压缩的数组
+	 * @return                   压缩后的数组
+	 */
+	let zip = function (...arrays) {
+		let result = []
+		for (let i = 0; i < arrays[0].length; i++) {
+			result.push([arrays[0][i]])
+		}
+		for (let i = 1; i < arrays.length; i++) {
+			for (let j = 0; j < arrays[i].length; j++) {
+				result[j].push(arrays[i][j])
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 解压数组
+	 * @param  {array} array 需要被解压的数组
+	 * @return {array}       解压后的数组
+	 */
+	let unzip = function (array) {
+		return this.zip(...array)
+	}
 
 
+	/**
+	 * 通过迭代器解压数组
+	 * @param  {array} array                    需要被解压的数组
+	 * @param  {array} iteratee=this.identity   迭代函数
+	 * @return                                  解压后的数组  
+	 */
+	let unzipWith = function (array, iteratee = this.identity) {
+		let temp = this.zip(...array)
+		return this.map(temp, (it) => this.iteratee(iteratee)(...it))
+	}
+
+	/**
+	 * 两数相加
+	 * @param  {number} augend 加数
+	 * @param  {number} addend 被加数
+	 * @return {number}        和
+	 */
+	let add = function (augend, addend) {
+		return augend + addend
+	}
 
 
 	// Seq ====================
@@ -1958,6 +2062,13 @@
 		takeRight: takeRight,
 		takeRightWhile: takeRightWhile,
 		takeWhile: takeWhile,
+		union: union,
+		unionBy: unionBy,
+		unionWith: unionWith,
+		zip: zip,
+		unzip: unzip,
+		unzipWith: unzipWith,
+		add: add,
 
 
 
