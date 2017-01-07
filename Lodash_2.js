@@ -742,11 +742,10 @@
 	 * @return {*}                                       迭代出来的值
 	 */
 	let reduce = function (collection, iteratee = this.identity, accumulator) {
-		let result = accumulator
-		for (let key in collection) {
-			if (collection.hasOwnProperty(key)) {
-				result = iteratee(result, collection[key], key, collection)
-			}
+		let keys = Object.keys(collection)
+		let result = accumulator || collection[keys[0]]
+		for (let i = accumulator ? 0 : 1; i < keys.length; i++) {
+			result = iteratee(result, collection[keys[i]], keys[i], collection)
 		}
 		return result
 	}
@@ -2178,7 +2177,6 @@
 		}, {})
 	}
 
-
 	/**
 	 * 对集合中每一个元素调用方法，返回结果数组
 	 * @param  {array | object} collection      被调用的集合
@@ -2230,7 +2228,115 @@
 			return memo
 		}, {})
 	}
+	/**
+	 * 类似于 sortby 除了可以指定排序顺序
+	 * @param  {array | object} collection                                         被排序的集合
+	 * @param  {function[] | array[] | object[] | string[]} iteratee=this.identity 迭代器
+	 * @param  {string} orders='asc'                                               顺序指令
+	 * @return {array}                                                             排序后的数组
+	 */
+	let orderBy = function (collection, iteratee = this.identity, orders = 'asc') {
+		let that = this
+		let result = this.clone(collection)
+		for (let i = iteratee.length - 1; i >= 0; i--) {
+			result.sort(function (a, b) {
+				let order = that.iteratee(iteratee[i])(a) > that.iteratee(iteratee[i])(b)
+				return orders[i] === 'asc' ? order : !order
+			})
+		}
+		return result
+	}
 
+	/**
+	 * 断言集合中的元素，并进行分组
+	 * @param  {array | object} collection        被断言的集合
+	 * @param  {function} predicate=this.identity 断言函数
+	 * @return {array}                            分组后的数组
+	 */
+	let partition = function (collection, predicate = this.identity) {
+		let that = this
+		let result = [
+			[],
+			[]
+		]
+		return this.reduce(collection, function (memo, curr) {
+			that.iteratee(predicate)(curr) ? result[0].push(curr) : result[1].push(curr)
+			return result
+		}, result)
+	}
+
+	/**
+	 * 同 reduce 从右往左迭代
+	 * @param  {array | object} collection       别迭代的集合
+	 * @param  {function} iteratee=this.identity 迭代器
+	 * @param  {*} accumulator                   初始值
+	 * @return {*}                               迭代后的值
+	 */
+	let reduceRight = function (collection, iteratee = this.identity, accumulator) {
+		let keys = Object.keys(collection)
+		let result = accumulator || collection[keys[0]]
+		for (let i = accumulator ? keys.length - 1 : keys.length - 2; i >= 0; i--) {
+			result = iteratee(result, collection[keys[i]], keys[i], collection)
+		}
+		return result
+	}
+
+	/**
+	 * 和 filter 相反，收集断言失败的函数
+	 * @param  {array | object} collection        被断言的集合
+	 * @param  {function} predicate=this.identity 断言函数 
+	 * @return {array}                            收集的集合
+	 */
+	let reject = function (collection, predicate = this.identity) {
+		let result = []
+		for (let key in collection) {
+			if (collection.hasOwnProperty(key)) {
+				if (!this.iteratee(predicate)(collection[key])) {
+					result.push(collection[key])
+				}
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 随机选取一组成员
+	 * @param  {array | object} collection 待选集合
+	 * @return {array}                     选中成员数组
+	 */
+	let sample = function (collection) {
+		let keys = Object.keys(collection)
+		let size = keys.length
+		return collection[keys[~~(Math.random() * size)]]
+	}
+
+	let sampleSize = function (collection, n = 1) {
+		let result = []
+		let keys = Object.keys(collection)
+		let size = keys.length
+		let index
+		n = n >= size ? size : n
+		while (n) {
+			index = ~~(Math.random() * size)
+			result.push(collection[keys.splice(index, 1)[0]])
+			size--
+			n--
+		}
+		//this.map(result, it => collection[it])
+		return result
+	}
+
+	let shuffle = function (collection) {
+		let result = Object.keys(collection)
+		let size = result.length
+		let index
+		result.forEach(function (a, i, array) {
+			index = ~~(Math.random() * (size - i - 1)) + i
+			array.splice(i, 1, array[index])
+			array.splice(index, 1, a)
+		})
+		return this.map(result, it => collection[it])
+	}
 
 
 
@@ -2394,6 +2500,13 @@
 		invokeMap: invokeMap,
 		propertyOf: propertyOf,
 		keyBy: keyBy,
+		orderBy: orderBy,
+		partition: partition,
+		reduceRight: reduceRight,
+		reject: reject,
+		sample: sample,
+		sampleSize: sampleSize,
+		shuffle: shuffle,
 
 
 
