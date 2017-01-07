@@ -48,7 +48,7 @@
 		return function (...arg) {
 			count++
 			if (count <= n) {
-				result = func.apply(this, arg)
+				result = func(...arg)
 			}
 			return result
 		}
@@ -553,7 +553,7 @@
 				}
 			}
 			if (collection.hasOwnProperty(key)) {
-				if (this.iteratee(predicate)(collection[key])) {
+				if (this.iteratee(predicate)(collection[key], key, collection)) {
 					return collection[key]
 				}
 			}
@@ -618,9 +618,9 @@
 		for (let key in collection) {
 			if (collection.hasOwnProperty(key)) {
 				if (this.isString(iteratee)) {
-					result.push(this.property(iteratee)(collection[key]))
+					result.push(this.property(iteratee)(collection[key], key, collection))
 				} else if (this.isFunction(iteratee)) {
-					result.push(iteratee(collection[key]))
+					result.push(iteratee(collection[key], key, collection))
 				}
 			}
 		}
@@ -637,7 +637,7 @@
 		let result = []
 		for (let key in collection) {
 			if (collection.hasOwnProperty(key)) {
-				if (this.iteratee(predicate)(collection[key])) {
+				if (this.iteratee(predicate)(collection[key], key, collection)) {
 					result.push(collection[key])
 				}
 			}
@@ -2291,7 +2291,7 @@
 		let result = []
 		for (let key in collection) {
 			if (collection.hasOwnProperty(key)) {
-				if (!this.iteratee(predicate)(collection[key])) {
+				if (!this.iteratee(predicate)(collection[key], key, collection)) {
 					result.push(collection[key])
 				}
 			}
@@ -2300,7 +2300,7 @@
 	}
 
 	/**
-	 * 随机选取一组成员
+	 * 随机选取一个成员
 	 * @param  {array | object} collection 待选集合
 	 * @return {array}                     选中成员数组
 	 */
@@ -2310,6 +2310,12 @@
 		return collection[keys[~~(Math.random() * size)]]
 	}
 
+	/**
+	 * 随机选取一组成员
+	 * @param  {array | object} collection 待选集合
+	 * @param  {number}                    选取成员的个数
+	 * @return {array}                     选中成员数组
+	 */
 	let sampleSize = function (collection, n = 1) {
 		let result = []
 		let keys = Object.keys(collection)
@@ -2322,10 +2328,14 @@
 			size--
 			n--
 		}
-		//this.map(result, it => collection[it])
 		return result
 	}
 
+	/**
+	 * 通过 Fisher - Yates 随机打乱数组
+	 * @param  {array | object} collection 待打乱集合
+	 * @return {array | object}            打乱后的数组
+	 */
 	let shuffle = function (collection) {
 		let result = Object.keys(collection)
 		let size = result.length
@@ -2337,6 +2347,59 @@
 		})
 		return this.map(result, it => collection[it])
 	}
+	/**
+	 * 返回从 1970 1.1 00：00：00 UTC 至今的毫秒数
+	 */
+	let now = function () {
+		return Date.now()
+	}
+
+	/**
+	 * func 在第 n 次调用后才会执行
+	 * @param  {number} n      约定第几次开始执行函数 func
+	 * @param  {function} func 被约束的函数
+	 * @return {function}      新的函数
+	 */
+	let after = function (n, func) {
+		let count = 0
+		return function (...args) {
+			count++
+			if (count >= n) {
+				return func(...args)
+			}
+		}
+	}
+
+	/**
+	 * 返回一个新函数来限制调用函数的参数数量
+	 * @param  {function} func        被限制的函数
+	 * @param  {number} n=func.length 被限制参数的数量
+	 */
+	let ary = function (func, n = func.length) {
+		return function (...args) {
+			args.length = n
+			return func(...args)
+		}
+	}
+
+	/**
+	 * 返回一个函数，调用对象的方法
+	 * @param  {object} object         被调用方法所附的对象
+	 * @param  {string} key            方法名    
+	 * @param  {partials} ...partials  绑定的参数
+	 */
+	let bindKey = function (object, key, ...partials) {
+		return function (...args) {
+			partials = partials.map(function (it) {
+				if (it === _) {
+					it = args.shift()
+				}
+				return it
+			})
+			return object[key](...partials, ...args)
+		}
+	}
+
 
 
 	// Seq ====================
@@ -2504,6 +2567,10 @@
 		sample: sample,
 		sampleSize: sampleSize,
 		shuffle: shuffle,
+		now: now,
+		after: after,
+		ary: ary,
+		bindKey: bindKey,
 
 
 
