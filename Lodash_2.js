@@ -995,10 +995,11 @@
 		for (let key in collection) {
 			if (collection.hasOwnProperty(key)) {
 				if (iteratee(collection[key], key, collection) === false) {
-					return
+					return collection
 				}
 			}
 		}
+		return collection
 	}
 
 	/**
@@ -2023,6 +2024,12 @@
 		}, {})
 	}
 
+	/**
+	 * 根据路径，将参数打包成对象
+	 * @param  {array} props=[] 路径
+	 * @param  {array} values=[] 值
+	 * @return {object}           打包后的对象
+	 */
 	let zipObjectDeep = function (props = [], values = []) {
 		let that = this
 		debugger
@@ -2051,6 +2058,180 @@
 			return obj
 		}
 	}
+
+	/**
+	 * 根据迭代器 打包数组
+	 * @param {array} ...array                    需要打包的数组
+	 * @param {function} iteratee = this.identity 迭代器
+	 * @return {array}                            打包后的数组
+	 */
+	let zipWith = function (...others) {
+		let iteratee
+		if (!this.isArray(others[others.length - 1])) {
+			iteratee = others.pop()
+		} else {
+			iteratee = this.identity
+		}
+		let result = this.zip(...others)
+		return this.map(result, a => iteratee(...a))
+	}
+
+	/**
+	 * 创建一个对象，
+	 * 将每个元素的迭代结果作为该对象的键名，该结果出现的次数，作为该对象的键值
+	 * @param  {array | object} collection       被操作的集合
+	 * @param  {function} iteratee=this.identity 迭代器
+	 * @return {object}                           迭代出的结果
+	 */
+	let countBy = function (collection, iteratee = this.identity) {
+		let that = this
+		return this.reduce(collection, function (memo, curr) {
+			let key = that.iteratee(iteratee)(curr)
+			if (key in memo) {
+				memo[key]++
+			} else {
+				memo[key] = 1
+			}
+			return memo
+		}, {})
+	}
+
+	/**
+	 * 反方向遍历数组
+	 * @param  {array | object} collection 被迭代的集合
+	 * @param  {function} iteratee=this.identity 迭代器
+	 * @return {*}                               返回集合
+	 */
+	let eachRight = function (collection, iteratee = this.identity) {
+		let keys = Object.keys(collection)
+		for (let i = keys.length - 1; i >= 0; i--) {
+			if (iteratee(collection[keys[i]], keys[i], collection) === false) {
+				return collection
+			}
+		}
+		return collection
+	}
+
+	/**
+	 * 从右往左迭代成员，返回第一个满足的成员
+	 * @param  {array | object} collection                     被迭代的集合
+	 * @param  {function} predicate=this.identity     迭代器
+	 * @param  {number} fromIndex=collection.length-1 索引起始位置
+	 * @return {*}                                    满足条件的第一个成员，未找到返回 undefined
+	 */
+	let findLast = function (collection, predicate = this.identity, fromIndex = collection.length - 1) {
+		let keys = Object.keys(collection)
+		for (let i = fromIndex; i >= 0; i--) {
+			if (this.iteratee(predicate)(collection[keys[i]])) {
+				return collection[keys[i]]
+			}
+		}
+	}
+
+	/**
+	 * 迭代集合成员，并将结果降一维
+	 * @param  {array | object} collection                 被迭代的集合
+	 * @param  {function} iteratee=this.identity 迭代器
+	 * @return {array}                           处理后的数组
+	 */
+	let flatMap = function (collection, iteratee = this.identity) {
+		return this.flatten(this.map(collection, (it, index, array) => iteratee(it, index, array)))
+	}
+
+	/**
+	 * 迭代集合成员，并将结果降成一维
+	 * @param  {array | object} collection                 被迭代的集合
+	 * @param  {function} iteratee=this.identity 迭代器
+	 * @return {array}                           处理后的数组
+	 */
+	let flatMapDeep = function (collection, iteratee = this.identity) {
+		return this.flattenDeep(this.map(collection, (it, index, array) => iteratee(it, index, array)))
+	}
+
+	/**
+	 * 迭代集合成员，并将结果降维，维度自定义
+	 * @param  {array | object} collection                 被迭代的集合
+	 * @param  {function} iteratee=this.identity 迭代器
+	 * @param  {number} depth = 1                维度
+	 * @return {array}                           处理后的数组
+	 */
+	let flatMapDepth = function (collection, iteratee = this.identity, depth = 1) {
+		return this.flattenDepth(this.map(collection, (it, index, array) => iteratee(it, index, array)), depth)
+	}
+
+	/**
+	 * 利用迭代期迭代集合，将迭代出来的结果作为键名，被迭代的成员作为键值
+	 * @param  {array | object} collection       被迭代的集合
+	 * @param  {function} iteratee=this.identity 迭代器
+	 * @return {object}                          新对象
+	 */
+	let groupBy = function (collection, iteratee = this.identity) {
+		let that = this
+		return this.reduce(collection, function (memo, curr) {
+			let tmp = that.iteratee(iteratee)(curr)
+			if (tmp in memo) {
+				memo[tmp].push(curr)
+			} else {
+				memo[tmp] = [curr]
+			}
+			return memo
+		}, {})
+	}
+
+
+	/**
+	 * 对集合中每一个元素调用方法，返回结果数组
+	 * @param  {array | object} collection      被调用的集合
+	 * @param  {array | function | string} path 调用方法的路径
+	 * @param  {...*} ...args                   方法的参数
+	 * @return {array}                          结果集
+	 */
+	let invokeMap = function (collection, path, ...args) {
+		let that = this
+		return this.map(collection, function (it) {
+			if (that.isFunction(path)) {
+				return path.apply(it, args)
+			} else {
+				return that.propertyOf(it)(path).call(it, ...args)
+			}
+		})
+	}
+
+	/**
+	 * 与 property 相反，通过对象返回一个函数，函数通过参数返回结果
+	 * @param  {object} object         查找的对象
+	 * @return {function}              返回的函数
+	 */
+	let propertyOf = function (object) {
+		let that = this
+		return function (path) {
+			let prop
+			if (that.isString(path)) {
+				prop = path.match(/\w+/g)
+			}
+			if (that.isArray(path)) {
+				prop = path
+			}
+			return that.reduce(prop, function (memo, curr) {
+				return memo = memo[curr]
+			}, object)
+		}
+	}
+	/**
+	 * 创建一个对象，键名是集合成员通过接待后的结果，键值是该成员
+	 * @param  {array | object} collection       被迭代的集合
+	 * @param  {function} iteratee=this.identity 迭代器
+	 * @return {object}                          生成的新对象
+	 */
+	let keyBy = function (collection, iteratee = this.identity) {
+		let that = this
+		return this.reduce(collection, function (memo, curr) {
+			memo[that.iteratee(iteratee)(curr)] = curr
+			return memo
+		}, {})
+	}
+
+
 
 
 
@@ -2201,6 +2382,18 @@
 		xorWith: xorWith,
 		zipObject: zipObject,
 		zipObjectDeep: zipObjectDeep,
+		zipWith: zipWith,
+		countBy: countBy,
+		eachRight: eachRight,
+		forEachRight: eachRight,
+		findLast: findLast,
+		flatMap: flatMap,
+		flatMapDeep: flatMapDeep,
+		flatMapDepth: flatMapDepth,
+		groupBy: groupBy,
+		invokeMap: invokeMap,
+		propertyOf: propertyOf,
+		keyBy: keyBy,
 
 
 
