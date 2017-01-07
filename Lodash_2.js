@@ -1906,7 +1906,6 @@
 		return this.zip(...array)
 	}
 
-
 	/**
 	 * 通过迭代器解压数组
 	 * @param  {array} array                    需要被解压的数组
@@ -1927,6 +1926,133 @@
 	let add = function (augend, addend) {
 		return augend + addend
 	}
+	/**
+	 * 将数组内所有给定值都去除
+	 * @param  {array} array 被操作的数组
+	 * @param  {*} ...values 需要在数组中去除的值
+	 * @return {array}       操作后的数组
+	 */
+	let without = function (array, ...values) {
+		let that = this
+		let result = this.clone(array)
+		return this.reduce(values, function (memo, curr) {
+			for (let i = 0; i < memo.length; i++) {
+				if (that.isEqual(memo[i], curr)) {
+					memo.splice(i, 1)
+					i--
+				}
+			}
+			return memo
+		}, result)
+	}
+	/**
+	 * 仅保留数组中出现一次的成员
+	 * @param  {array} ...arrays 被检查的数组
+	 * @return {array}           筛选出的数组
+	 */
+	let xor = function (...arrays) {
+		let that = this
+		let result = this.flatten(arrays)
+		return this.reduce(result, function (memo, curr, i, array) {
+			if (that.lastIndexOf(array, curr) != i) {
+				for (let i = 0; i < array.length; i++) {
+					if (that.isEqual(curr, array[i])) {
+						array.splice(i, 1)
+					}
+				}
+			}
+			return array
+		})
+	}
+
+	/**
+	 * 通过迭代仅保留数组中出现一次的成员
+	 * @param  {array} ...arrays 被检查的数组
+	 * @return {array}           筛选出的数组
+	 */
+	let xorBy = function (...others) {
+		let iteratee
+		if (!this.isArray(others[others.length - 1])) {
+			iteratee = others.pop()
+		} else {
+			iteratee = this.identity
+		}
+		let result = this.flatten(others)
+		for (let i = 0; i < result.length; i++) {
+			for (let j = i + 1; j < result.length; j++) {
+				if (this.isEqual(this.iteratee(iteratee)(result[i]), this.iteratee(iteratee)(result[j]))) {
+					result.splice(j, 1)
+					result.splice(i, 1)
+					i--
+				}
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 通过自定义函数仅保留数组中出现一次的成员
+	 * @param  {array} ...arrays 被检查的数组
+	 * @return {array}           筛选出的数组
+	 */
+	let xorWith = function (...others) {
+		let comparator = others.pop()
+		let result = this.flatten(others)
+		for (let i = 0; i < result.length; i++) {
+			for (let j = i + 1; j < result.length; j++) {
+				if (comparator.call(this, result[i], result[j])) {
+					result.splice(j, 1)
+					result.splice(i, 1)
+					i--
+				}
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 将参数压缩成对象
+	 * @param  {array} props=[]  键
+	 * @param  {array} values=[] 值
+	 * @return {object}          压缩后的对象
+	 */
+	let zipObject = function (props = [], values = []) {
+		return this.reduce(props, function (memo, curr, i) {
+			memo[curr] = values[i]
+			return memo
+		}, {})
+	}
+
+	let zipObjectDeep = function (props = [], values = []) {
+		let that = this
+		debugger
+		let prop = props.map(it => it.match(/\w+/g))
+		let result = {}
+		for (let i = 0; i < prop.length; i++) {
+			parse(prop[i], result, values[i])
+		}
+		return result
+
+		function parse(path, obj, value) {
+			let key = path.shift()
+			if (path.length === 0) {
+				obj[key] = value
+				return obj
+			}
+			if (obj[key]) {
+				parse(path, obj[key], value)
+			} else if (that.isNaN(+path[0])) {
+				obj[key] = {}
+				parse(path, obj[key], value)
+			} else {
+				obj[key] = []
+				parse(path, obj[key], value)
+			}
+			return obj
+		}
+	}
+
+
 
 
 	// Seq ====================
@@ -2069,6 +2195,12 @@
 		unzip: unzip,
 		unzipWith: unzipWith,
 		add: add,
+		without: without,
+		xor: xor,
+		xorBy: xorBy,
+		xorWith: xorWith,
+		zipObject: zipObject,
+		zipObjectDeep: zipObjectDeep,
 
 
 

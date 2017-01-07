@@ -2,9 +2,10 @@
 <!-- 测试用例如果需要用到 jQuery ，解注下面 jQuery 的 CDN -->
 <script src="https://code.jquery.com/jquery-3.1.1.min.js" charset="utf-8"></script>
 <script src="././Lodash_2.js" charset="utf-8"></script>
-<!-- <script type="text/javascript">
-  $('#div').on('click', function() {
-    this.innerHTML += 1
+<script type="text/javascript">
+  let count = 0
+  $('#div').on('click', function () {
+    count++
+    $(this).text(`现在计数器是${count}`)
   })
-
-</script> -->
+</script>
