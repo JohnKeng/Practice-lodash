@@ -4,11 +4,9 @@
 <script src="././Lodash_2.js" charset="utf-8"></script>
 <script type="text/javascript">
   let count = 0
-  var a = _.before(5, function () {
-    count++
-  })
-  $('#div').on('click', function () {
-    a()
-    $(this).text(`现在计数器是${count}`)
-  })
+
+  $('#div').on('click', _.debounce(function () {
+    //debugger
+    $('#div').text(`现在计数器是${count++}`)
+  }, 1000))
 </script>

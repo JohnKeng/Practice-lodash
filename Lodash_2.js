@@ -2489,6 +2489,35 @@
 			return func(...args, ...partials)
 		}
 	}
+	/**
+	 * 返回一个函数，将传入的参数颠倒调用
+	 * @param  {function} func 被调用的函数
+	 * @return {function}      调整后的函数
+	 */
+	let flip = function (func) {
+		let that = this
+		return function (...args) {
+			return func(...that.reverse(args))
+		}
+	}
+
+	// unfinish =======================
+
+	// 未完全实现 
+
+	let debounce = function (func, wait = 0, options = {}) {
+		let lastTimer = this.now()
+		let that = this
+		return function () {
+			let currTimer = that.now()
+			if (currTimer - lastTimer >= wait) {
+				lastTimer = currTimer
+				return func()
+			} else {
+				lastTimer = currTimer
+			}
+		}
+	}
 
 
 
@@ -2665,6 +2694,9 @@
 		partial: partial,
 		partialRight: partialRight,
 		curryRight: curryRight,
+		debounce: debounce,
+		flip: flip,
+
 
 
 
