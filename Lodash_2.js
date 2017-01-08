@@ -2402,6 +2402,12 @@
 		}
 	}
 
+	/**
+	 * 柯里化函数
+	 * @param  {function} func            需要柯里化的函数
+	 * @param  {number} arity=func.length 指定参数数量
+	 * @return {function}                 柯里化后的函数
+	 */
 	let curry = function (func, arity = func.length) {
 		let that = this
 		let len
@@ -2420,6 +2426,12 @@
 		}
 	}
 
+	/**
+	 * 反向柯里化函数
+	 * @param  {function} func            需要柯里化的函数
+	 * @param  {number} arity=func.length 指定参数数量
+	 * @return {function}                 柯里化后的函数
+	 */
 	let curryRight = function (func, arity = func.length) {
 		let that = this
 		let len
@@ -2438,6 +2450,12 @@
 		}
 	}
 
+	/**
+	 * 参数绑定
+	 * @param  {function} func      需要参数绑定的函数
+	 * @param  {...*} ...partials   被绑定的参数
+	 * @return {function}           绑定后的函数
+	 */
 	let partial = function (func, ...partials) {
 		let that = this
 		return function (...args) {
@@ -2452,6 +2470,12 @@
 		}
 	}
 
+	/**
+	 * 反向参数绑定
+	 * @param  {function} func      需要参数绑定的函数
+	 * @param  {...*} ...partials   被绑定的参数
+	 * @return {function}           绑定后的函数
+	 */
 	let partialRight = function (func, ...partials) {
 		let that = this
 		return function (...args) {
