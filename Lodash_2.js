@@ -743,8 +743,8 @@
 	 */
 	let reduce = function (collection, iteratee = this.identity, accumulator) {
 		let keys = Object.keys(collection)
-		let result = accumulator || collection[keys[0]]
-		for (let i = accumulator ? 0 : 1; i < keys.length; i++) {
+		let result = accumulator !== undefined ? accumulator : collection[keys[0]]
+		for (let i = accumulator !== undefined ? 0 : 1; i < keys.length; i++) {
 			result = iteratee(result, collection[keys[i]], keys[i], collection)
 		}
 		return result
@@ -2374,6 +2374,7 @@
 	 * 返回一个新函数来限制调用函数的参数数量
 	 * @param  {function} func        被限制的函数
 	 * @param  {number} n=func.length 被限制参数的数量
+	 * @return {function}             返回新的函数
 	 */
 	let ary = function (func, n = func.length) {
 		return function (...args) {
@@ -2387,6 +2388,7 @@
 	 * @param  {object} object         被调用方法所附的对象
 	 * @param  {string} key            方法名    
 	 * @param  {partials} ...partials  绑定的参数
+	 * @return {function}              返回新的函数
 	 */
 	let bindKey = function (object, key, ...partials) {
 		return function (...args) {
@@ -2397,6 +2399,70 @@
 				return it
 			})
 			return object[key](...partials, ...args)
+		}
+	}
+
+	let curry = function (func, arity = func.length) {
+		let that = this
+		let len
+		return function fn(...args) {
+			len = that.reduce(args, function (memo, curr) {
+				if (curr === _) {
+					return memo
+				}
+				return ++memo
+			}, 0)
+			if (len < arity) {
+				return that.partial(fn, ...args)
+			} else {
+				return func(...args)
+			}
+		}
+	}
+
+	let curryRight = function (func, arity = func.length) {
+		let that = this
+		let len
+		return function fn(...args) {
+			len = that.reduce(args, function (memo, curr) {
+				if (curr === _) {
+					return memo
+				}
+				return ++memo
+			}, 0)
+			if (len < arity) {
+				return that.partialRight(fn, ...args)
+			} else {
+				return func(...args)
+			}
+		}
+	}
+
+	let partial = function (func, ...partials) {
+		let that = this
+		return function (...args) {
+			partials = that.map(partials, function (it) {
+				if (it === _) {
+					return args.shift()
+				} else {
+					return it
+				}
+			})
+			return func(...partials, ...args)
+		}
+	}
+
+	let partialRight = function (func, ...partials) {
+		let that = this
+		return function (...args) {
+			partials = that.map(partials, function (it) {
+				if (it === _) {
+					return args.shift()
+				} else {
+					return it
+				}
+			})
+			return func(...args, ...partials)
 		}
 	}
 
@@ -2571,6 +2637,10 @@
 		after: after,
 		ary: ary,
 		bindKey: bindKey,
+		curry: curry,
+		partial: partial,
+		partialRight: partialRight,
+		curryRight: curryRight,
 
 
 
