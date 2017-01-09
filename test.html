@@ -8,7 +8,7 @@
 <script type="text/javascript">
   let count = 0
 
-  $('#div').on('click', _.once(function () {
+  $('#div').on('click', _.throttle(function () {
     //debugger
     $('#div').text(`现在计数器是${count++}`)
   }, 1000))

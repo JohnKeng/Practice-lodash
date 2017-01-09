@@ -700,7 +700,7 @@
 	 * @return {function}      限制后的函数
 	 */
 	let once = function (func) {
-		return this.before(1, func)
+		return this.before(1, func.bind(this))
 	}
 
 	/**
@@ -2546,6 +2546,45 @@
 		}
 	}
 
+	/**
+	 * 返回一个新函数根据 给定 参数位置，重新对参数进行排序
+	 * @param {function} func        需要调整参数的函数
+	 * @param {...* | array} indexes 给定参数下标   
+	 * @returns {function}           新的函数
+	 */
+	let rearg = function (func, ...indexes) {
+		indexes = this.flatten(indexes)
+		let that = this
+		return function (...args) {
+			let arg = that.map(indexes, it => args[it])
+			return func(...arg)
+		}
+	}
+
+	/**
+	 * 创建一个新函数，收集原函数没有形参的实参
+	 * @param {function} func                   被收集参数的函数
+	 * @param {number} [start=func.length - 1]  起始收集位置
+	 * @returns {function}                      新的函数
+	 */
+	let rest = function (func, start = func.length - 1) {
+		return function (...args) {
+			let restArg = args.splice(start, args.length - start)
+			return func(...args, restArg)
+		}
+	}
+
+	/**
+	 * 船价格一个新函数，是的原函数只接受一个参数，多余的参数忽略
+	 * @param {any} func 被消减参数的函数
+	 * @returns          新的函数
+	 */
+	let unary = function (func) {
+		return this.ary(func, 1)
+	}
+
+
+
 	// unfinish =======================
 
 	// 未完全实现 
@@ -2564,6 +2603,25 @@
 		}
 	}
 
+	let throttle = function (func, wait = 0, options = {}) {
+		let lastTimer = this.now()
+		let that = this
+		return function () {
+			let currTimer = that.now()
+			if (currTimer - lastTimer >= wait) {
+				lastTimer = currTimer
+				return func()
+			}
+		}
+	}
+
+
+	let spread = function (func, start = 0) {
+		let that = this
+		return function (arg) {
+			return func.call(that, ...arg)
+		}
+	}
 
 
 	// Seq ====================
@@ -2744,6 +2802,11 @@
 		memoize: memoize,
 		values: values,
 		overArgs: overArgs,
+		rearg: rearg,
+		rest: rest,
+		spread: spread,
+		throttle: throttle,
+		unary: unary,
 
 
 
