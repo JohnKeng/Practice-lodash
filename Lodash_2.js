@@ -689,9 +689,8 @@
 	 * @return {function}           新建的函数
 	 */
 	let negate = function (predicate) {
-		let that = this
 		return function (...arg) {
-			return !predicate.call(that, arg)
+			return !predicate(...arg)
 		}
 	}
 
@@ -701,17 +700,7 @@
 	 * @return {function}      限制后的函数
 	 */
 	let once = function (func) {
-		let onOff = true
-		let that = this
-		let result
-		return function (...arg) {
-			if (onOff) {
-				onOff = false
-				return result = func.call(that, arg)
-			} else {
-				return result
-			}
-		}
+		return this.before(1, func)
 	}
 
 	/**
@@ -2500,6 +2489,62 @@
 			return func(...that.reverse(args))
 		}
 	}
+	/**
+	 * 缓存计算结果，二次调用时，直接返回缓存中的数据
+	 * @param  {function} func     被缓存的值的函数
+	 * @param  {function} resolver 缓存键名迭代方法
+	 * @return {function}          
+	 */
+	let memoize = function (func, resolver) {
+		let cache = new Map()
+		let that = this
+		return function fn(...args) {
+			fn.cache = cache
+			let key = (resolver ? resolver.call(that, ...args) : args[0])
+			if (cache.has(key)) {
+				return cache.get(key)
+			} else {
+				cache.set(key, func.call(that, ...args))
+				return cache.get(key)
+			}
+		}
+	}
+
+
+	/**
+	 * 将对象的值放入数组返回
+	 * @param  {object} object 被处理的数组
+	 * @return {array}         提取后的数组
+	 */
+	let values = function (object) {
+		let result = []
+		for (let key in object) {
+			if (object.hasOwnProperty(key)) {
+				result.push(object[key])
+			}
+		}
+		return result
+	}
+
+	/**
+	 * 返回一个新函数，将函数的所有参数依次调用 transform 函数，再传入函数执行
+	 * @param {function} func                    需要改变参数的函数
+	 * @param {function | function[]} transforms 被参数调用的函数
+	 * @returns {function}                       新的函数
+	 */
+	let overArgs = function (func, ...transforms) {
+		let that = this
+		return function (...args) {
+			transforms = that.flatten(transforms)
+			transforms.length = args.length
+			transforms.map(function (it) {
+				return transforms || that.identity
+			})
+			return func(...args.map(function (it, i) {
+				return transforms[i](it)
+			}))
+		}
+	}
 
 	// unfinish =======================
 
@@ -2696,13 +2741,9 @@
 		curryRight: curryRight,
 		debounce: debounce,
 		flip: flip,
-
-
-
-
-
-
-
+		memoize: memoize,
+		values: values,
+		overArgs: overArgs,
 
 
 
