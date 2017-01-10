@@ -867,6 +867,11 @@
     return result
   }
 
+  /**
+   * 深度复制
+   * @param  {*} value  被复制的值
+   * @return {*}        复制后的值
+   */
   let cloneDeep = function (value) {
     let result
     if (this.isDate(value)) {
@@ -2613,6 +2618,12 @@
     return this.ary(func, 1)
   }
 
+
+  /**
+   * 将值强行转换为数组
+   * @param {*} value  待转换的值
+   * @returns {array}  转换后的数组
+   */
   let castArray = function (value) {
     if (this.isArray(value)) {
       return value
@@ -2623,6 +2634,56 @@
     }
   }
 
+  /**
+   * 通过 source 方法，检查 object 是否满足条件
+   * @param {object} object 被判断的对象
+   * @param {object} source 判断条件安
+   * @returns {boolean}     满足，返回 true
+   */
+  let conformsTo = function (object, source) {
+    for (let key in source) {
+      if (source.hasOwnProperty(key)) {
+        if (!source[key](object[key])) {
+          return false
+        }
+      }
+    }
+    return true
+  }
+
+  /**
+   * 判断两个值是否浅相等
+   * NaN 与 NaN 相等
+   * @param {*} value 第一个值
+   * @param {*} other 第二个值
+   * @returns {bolean} 相等，返回 true
+   */
+  let eq = function (value, other) {
+    if (this.isNaN(value) && this.isNaN(other)) {
+      return true
+    }
+    return value === other
+  }
+
+  /**
+   * 判断第一个值是否大于第二个值
+   * @param {*} value 第一个值
+   * @param {*} other 第二个值
+   * @returns {boolean} 大于，返回 true
+   */
+  let gt = function (value, other) {
+    return value > other
+  }
+
+  /**
+   * 判断第一个值是否大于等于第二个值
+   * @param {*} value 第一个值
+   * @param {*} other 第二个值
+   * @returns {boolean} 大于，返回 true
+   */
+  let gte = function (value, other) {
+    return value >= other
+  }
 
 
 
@@ -2667,7 +2728,8 @@
   }
 
 
-  // Seq ====================
+
+  // undo ====================
 
   let mixin = function () {}
   let noConflict = function () {}
@@ -2675,8 +2737,29 @@
   let thru = function () {}
   let value = function () {}
   let chain = function () {}
+  let cloneWith = function () {}
+  let cloneDeepWith = function () {}
+
 
   // =========================
+
+  /*  let _ = function (value) {
+      this.wrapped = value
+    }*/
+
+  /*
+  function _(value) {
+    this.wrapped = value
+  }
+  _.a = function(){}
+  _.b = function(){}
+
+  for(m in _) {
+    _.prototype[m] = function(...args){
+      return this.wrapped = _[m](this.wrapped,...args)
+    }
+  }
+  */
 
   windowGlobal._ = {
     assign: assign,
@@ -2852,6 +2935,10 @@
     unary: unary,
     castArray: castArray,
     cloneDeep: cloneDeep,
+    conformsTo: conformsTo,
+    eq: eq,
+    gt: gt,
+    gte: gte,
 
 
 
