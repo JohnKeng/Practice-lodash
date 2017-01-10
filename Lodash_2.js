@@ -2685,6 +2685,16 @@
     return value >= other
   }
 
+  /**
+   * 判断值是不是整数
+   * 
+   * @param {*} value 被判断的值
+   * @returns {boolean} 如果是，返回 true
+   */
+  let isInteger = function (value) {
+    return Number.isInteger(value)
+  }
+
 
 
 
@@ -2739,6 +2749,7 @@
   let chain = function () {}
   let cloneWith = function () {}
   let cloneDeepWith = function () {}
+  let isEqualWith = function () {}
 
 
   // =========================
@@ -2939,6 +2950,7 @@
     eq: eq,
     gt: gt,
     gte: gte,
+    isInteger: isInteger,
 
 
 
