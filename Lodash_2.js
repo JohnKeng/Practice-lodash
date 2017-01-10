@@ -2687,7 +2687,6 @@
 
   /**
    * 判断值是不是整数
-   * 
    * @param {*} value 被判断的值
    * @returns {boolean} 如果是，返回 true
    */
