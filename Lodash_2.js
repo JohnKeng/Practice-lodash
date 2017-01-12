@@ -2694,6 +2694,15 @@
     return Number.isInteger(value)
   }
 
+  /**
+   * 判断一个值是否复合 length 属性
+   * @param {*} value   被判断的值
+   * @returns {boolean} 可作为 length 属性，返回 true
+   */
+  let isLength = function (value) {
+    return this.isInteger(value) && 0 <= value && value <= 4294967295
+  }
+
 
 
 
@@ -2950,6 +2959,7 @@
     gt: gt,
     gte: gte,
     isInteger: isInteger,
+    isLength: isLength,
 
 
 
