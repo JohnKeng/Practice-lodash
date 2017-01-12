@@ -2703,6 +2703,25 @@
     return this.isInteger(value) && 0 <= value && value <= 4294967295
   }
 
+  let isMatch = function (object, source) {
+    return this.isMatchWith(object, source)
+  }
+
+  /**
+   * 类似 isMatch 接收一个函数进行比较
+   * @param {any} object
+   * @param {any} source
+   * @param {any} customizer
+   * @returns
+   */
+  let isMatchWith = function (object, source, customizer) {
+    customizer = customizer || this.isEqual
+    let that = this
+    let temp = Object.entries(source)
+    return temp.every(function (it) {
+      return customizer.call(that, object[it[0]], it[1], it[0], object, source)
+    })
+  }
 
 
 
@@ -2960,6 +2979,8 @@
     gte: gte,
     isInteger: isInteger,
     isLength: isLength,
+    isMatchWith: isMatchWith,
+    isMatch: isMatch,
 
 
 
