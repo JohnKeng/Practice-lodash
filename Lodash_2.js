@@ -2703,15 +2703,21 @@
     return this.isInteger(value) && 0 <= value && value <= 4294967295
   }
 
+  /**
+   * 深度不交 object 与 source 是否后等值的属性
+   * @param {object} object   被比较的对象
+   * @param {object} source   匹配的对象
+   * @returns {boolean}       匹配成功 返回 true
+   */
   let isMatch = function (object, source) {
     return this.isMatchWith(object, source)
   }
 
   /**
    * 类似 isMatch 接收一个函数进行比较
-   * @param {any} object
-   * @param {any} source
-   * @param {any} customizer
+   * @param {object} object      要检查的对象
+   * @param {object} source      匹配的对象
+   * @param {boolean} customizer 如果对象满足，返回 true
    * @returns
    */
   let isMatchWith = function (object, source, customizer) {
@@ -2723,6 +2729,24 @@
     })
   }
 
+  /**
+   * 判断一个值是否是 null 或是 undefined
+   * @param {*} value   被判断的值
+   * @returns {boolean} 如果是，返回 true
+   */
+  let isNil = function (value) {
+    return this.isNull(value) || this.isUndefined(value)
+  }
+
+  /**
+   * 
+   * 判断值是不是类对象
+   * @param {*} value   要检查的值
+   * @returns {boolean} 如果是，返回 true
+   */
+  let isObjectLike = function (value) {
+    return typeof value === 'object' ? (!this.isNull(value)) ? true : false : false
+  }
 
 
 
@@ -2777,6 +2801,7 @@
   let cloneWith = function () {}
   let cloneDeepWith = function () {}
   let isEqualWith = function () {}
+  let isNative = function () {}
 
 
   // =========================
@@ -2981,6 +3006,8 @@
     isLength: isLength,
     isMatchWith: isMatchWith,
     isMatch: isMatch,
+    isNil: isNil,
+    isObjectLike: isObjectLike,
 
 
 
