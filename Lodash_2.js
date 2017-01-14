@@ -2748,9 +2748,78 @@
     return typeof value === 'object' ? (!this.isNull(value)) ? true : false : false
   }
 
+
+  /**
+   * 判断这个数是不是安全整数
+   * @param {*} value   被判断的数
+   * @returns {boolean} 如果是，返回 true 
+   */
   let isSafeInteger = function (value) {
     return Number.isSafeInteger(value)
   }
+
+  /**
+   * 判断一个值是不是类型数组
+   * @param {*} value   被判断的值
+   * @returns {boolean} 如果是，返回 true
+   */
+  let isTypedArray = function (value) {
+    return toString.call(value) === '[object Uint8Array]'
+  }
+
+  /**
+   * 检查值是hi否是弱类型集合
+   * @param {*} value   被判断的值
+   * @returns {boolean} 如果是，返回 true
+   */
+  let isWeakSet = function (value) {
+    return toString.call(value) === '[object WeakSet]'
+  }
+
+  /**
+   * 判断值是否小于第二个值
+   * @param {*} value   需要判断的值
+   * @param {*} other   对比的值
+   * @returns {boolean} 如果满足，返回 true
+   */
+  let lt = function (value, other) {
+    return value < other
+  }
+
+  /**
+   * 判断值是否小于等于第二个值
+   * @param {*} value   需要判断的值
+   * @param {*} other   对比的值
+   * @returns {boolean} 如果满足，返回 true
+   */
+  let lte = function (value, other) {
+    return value <= other
+  }
+
+  /**
+   * 将一个值转为有限数
+   * @param {*} value   被转换的值
+   * @returns {number}  转换后的值
+   */
+  let toFinite = function (value) {
+    return value < -Number.MAX_VALUE ? -Number.MAX_VALUE : value > Number.MAX_VALUE ? Number.MAX_VALUE : isNaN(value) ? 0 : +value
+  }
+
+  /**
+   * 将值转换为整数
+   * @param {*} value   被转换的值
+   * @returns {number}  转换后的值
+   */
+  let toInteger = function (value) {
+    return Math.round(this.toFinite(value))
+  }
+
+  let toLength = function (value) {
+    return this.toInteger(value)
+  }
+
+
+
 
 
 
@@ -3013,7 +3082,12 @@
     isNil: isNil,
     isObjectLike: isObjectLike,
     isSafeInteger: isSafeInteger,
-
+    isTypedArray: isTypedArray,
+    isWeakSet: isWeakSet,
+    lt: lt,
+    lte: lte,
+    toFinite: toFinite,
+    toInteger: toInteger,
 
 
   }
