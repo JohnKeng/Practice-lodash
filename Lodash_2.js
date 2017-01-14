@@ -2748,6 +2748,10 @@
     return typeof value === 'object' ? (!this.isNull(value)) ? true : false : false
   }
 
+  let isSafeInteger = function (value) {
+    return Number.isSafeInteger(value)
+  }
+
 
 
   // unfinish =======================
@@ -3008,6 +3012,7 @@
     isMatch: isMatch,
     isNil: isNil,
     isObjectLike: isObjectLike,
+    isSafeInteger: isSafeInteger,
 
 
 
