@@ -2814,8 +2814,23 @@
     return Math.round(this.toFinite(value))
   }
 
+  /**
+   * 将值转换为 长度
+   * @param {*} value    被转换的值
+   * @returns {number}   转换后的值
+   */
   let toLength = function (value) {
-    return this.toInteger(value)
+    let result = this.toInteger(value)
+    return result > 4294967295 ? 4294967295 : result < 0 ? 0 : result
+  }
+
+  /**
+   * 将值转换为数字
+   * @param {*} value   被转换的值
+   * @returns {number}  转换后的值
+   */
+  let toNumber = function (value) {
+    return +value
   }
 
 
@@ -3088,6 +3103,7 @@
     lte: lte,
     toFinite: toFinite,
     toInteger: toInteger,
+    toLength: toLength,
 
 
   }
