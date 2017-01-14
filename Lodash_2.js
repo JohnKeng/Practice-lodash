@@ -2833,6 +2833,19 @@
     return +value
   }
 
+  /**
+   * 将值转换为纯对象
+   * @param {*} value    被转换的值
+   * @returns {object}   转换后的值
+   */
+  let toPlainObject = function (value) {
+    let result = {}
+    for (let key in value) {
+      result[key] = value[key]
+    }
+    return result
+  }
+
 
 
 
@@ -3104,6 +3117,8 @@
     toFinite: toFinite,
     toInteger: toInteger,
     toLength: toLength,
+    toPlainObject: toPlainObject,
+    toNumber: toNumber,
 
 
   }
