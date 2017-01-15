@@ -2846,10 +2846,26 @@
     return result
   }
 
+  /**
+   * 将值转换为安全整数
+   * @param {*} value   需要转换的值
+   * @returns {boolean} 转换后的值
+   */
   let toSafeInteger = function (value) {
     let result = +value
     return isNaN(result) ? 0 : result > 9007199254740991 ? 9007199254740991 : result < -9007199254740991 ? -9007199254740991 : ~~result
   }
+
+  /**
+   * 求两个值的除数
+   * @param {number} dividend 被除数
+   * @param {number} divisor  除数
+   * @returns {number}        商
+   */
+  let divide = function (dividend, divisor) {
+    return dividend / divisor
+  }
+
 
 
 
@@ -2908,6 +2924,8 @@
   let cloneDeepWith = function () {}
   let isEqualWith = function () {}
   let isNative = function () {}
+  let ceil = function (number, precision = 0) {}
+  let floor = function (number, precision = 0) {}
 
 
   // =========================
@@ -3125,6 +3143,8 @@
     toPlainObject: toPlainObject,
     toNumber: toNumber,
     toSafeInteger: toSafeInteger,
+    ceil: ceil,
+    divide: divide,
 
 
   }
