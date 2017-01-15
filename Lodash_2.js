@@ -2846,6 +2846,11 @@
     return result
   }
 
+  let toSafeInteger = function (value) {
+    let result = +value
+    return isNaN(result) ? 0 : result > 9007199254740991 ? 9007199254740991 : result < -9007199254740991 ? -9007199254740991 : ~~result
+  }
+
 
 
 
@@ -3119,6 +3124,7 @@
     toLength: toLength,
     toPlainObject: toPlainObject,
     toNumber: toNumber,
+    toSafeInteger: toSafeInteger,
 
 
   }
