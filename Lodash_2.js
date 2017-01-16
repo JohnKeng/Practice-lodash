@@ -2943,11 +2943,54 @@
     return this.sumBy(array)
   }
 
+  /**
+   * 
+   * 通过迭代计算集合总和
+   * @param {array} array  被叠加的集合
+   * @returns {number}     总和
+   */
   let sumBy = function (array, iteratee = this.identity) {
     let that = this
     return this.reduce(array, function (memo, curr) {
       return memo + that.iteratee(iteratee)(curr)
     }, 0)
+  }
+
+  /**
+   * 
+   * 限制 number
+   * @param {number} number    被限制的数
+   * @param {number} lower     下限
+   * @param {number} upper     上限
+   * @returns {number}         返回被限制的值
+   */
+  let clamp = function (number, ...args) {
+    if (args.length == 1) {
+      return number > args[0] ? args[0] : number
+    } else {
+      return number > args[1] ? args[1] : number < args[0] ? args[0] : number
+    }
+  }
+
+  /**
+   * 
+   * 检查 值 是否在区间内
+   * @param {number} number  被检查值
+   * @param {number} start   下限
+   * @param {number} end     上限
+   * @returns {number}       如果在，返回 true
+   */
+  let inRange = function (number, start, end) {
+    if (end === undefined) {
+      end = start
+      start = 0
+    }
+    if (start > end) {
+      let temp = start
+      start = end
+      end = temp
+    }
+    return number < start ? false : number >= end ? false : true
   }
 
 
@@ -3239,6 +3282,8 @@
     subtract: subtract,
     sum: sum,
     sumBy: sumBy,
+    clamp: clamp,
+    inRange: inRange,
 
 
   }
