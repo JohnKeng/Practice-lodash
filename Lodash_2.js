@@ -2894,10 +2894,7 @@
    * @returns {number}     得到的平均值
    */
   let meanBy = function (array, iteratee = this.identity) {
-    let that = this
-    return this.reduce(array, function (memo, curr) {
-      return memo + that.iteratee(iteratee)(curr)
-    }, 0) / array.length
+    return this.sumBy(array, iteratee) / array.length
   }
 
   /**
@@ -2913,6 +2910,46 @@
       return that.iteratee(iteratee)(memo) < that.iteratee(iteratee)(curr) ? memo : curr
     })
   }
+
+  /**
+   * 
+   * 两数相乘
+   * @param {number} multiplier     乘数
+   * @param {number} multiplicand   乘数
+   * @returns {number}              乘积
+   */
+  let multiply = function (multiplier, multiplicand) {
+    return multiplier * multiplicand
+  }
+
+  /**
+   * 
+   * 两数相减
+   * @param {number} minuend     被减数
+   * @param {number} subtrahend  减数
+   * @returns {number}           被减数
+   */
+  let subtract = function (minuend, subtrahend) {
+    return minuend - subtrahend
+  }
+
+  /**
+   * 
+   * 计算集合总和
+   * @param {array} array  被叠加的集合
+   * @returns {number}     总和
+   */
+  let sum = function (array) {
+    return this.sumBy(array)
+  }
+
+  let sumBy = function (array, iteratee = this.identity) {
+    let that = this
+    return this.reduce(array, function (memo, curr) {
+      return memo + that.iteratee(iteratee)(curr)
+    }, 0)
+  }
+
 
 
 
@@ -2974,6 +3011,7 @@
   let isNative = function () {}
   let ceil = function (number, precision = 0) {}
   let floor = function (number, precision = 0) {}
+  let round = function (number, precision = 0) {}
 
 
   // =========================
@@ -3197,6 +3235,10 @@
     meanBy: meanBy,
     mean: mean,
     minBy: minBy,
+    multiply: multiply,
+    subtract: subtract,
+    sum: sum,
+    sumBy: sumBy,
 
 
   }
