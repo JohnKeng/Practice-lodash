@@ -2866,6 +2866,54 @@
     return dividend / divisor
   }
 
+  /**
+   * 通过迭代选择出数组内最大项
+   * @param {array} array                       被选数组
+   * @param {function} [iteratee=this.identity] 迭代函数
+   * @returns {*}                               最大值
+   */
+  let maxBy = function (array, iteratee = this.identity) {
+    let that = this
+    return this.reduce(array, function (memo, curr) {
+      return that.iteratee(iteratee)(memo) > that.iteratee(iteratee)(curr) ? memo : curr
+    })
+  }
+
+  /**
+   * 求平均数
+   * @param {array} array  求数组的平均数
+   * @returns {number}     得到的平均值
+   */
+  let mean = function (array) {
+    return this.meanBy(array)
+  }
+
+  /**
+   * 通过迭代求平均数
+   * @param {array} array  求数组的平均数
+   * @returns {number}     得到的平均值
+   */
+  let meanBy = function (array, iteratee = this.identity) {
+    let that = this
+    return this.reduce(array, function (memo, curr) {
+      return memo + that.iteratee(iteratee)(curr)
+    }, 0) / array.length
+  }
+
+  /**
+   * 
+   * 根据迭代求出最小值
+   * @param {array} array                       被筛选数组
+   * @param {function} [iteratee=this.identity] 迭代函数
+   * @return {*}                                最小值
+   */
+  let minBy = function (array, iteratee = this.identity) {
+    let that = this
+    return this.reduce(array, function (memo, curr) {
+      return that.iteratee(iteratee)(memo) < that.iteratee(iteratee)(curr) ? memo : curr
+    })
+  }
+
 
 
 
@@ -3145,6 +3193,10 @@
     toSafeInteger: toSafeInteger,
     ceil: ceil,
     divide: divide,
+    maxBy: maxBy,
+    meanBy: meanBy,
+    mean: mean,
+    minBy: minBy,
 
 
   }
