@@ -2993,6 +2993,39 @@
     return number < start ? false : number >= end ? false : true
   }
 
+  /**
+   * 
+   * 生成规定范围内的随机数
+   * @param {number} lower 下限
+   * @param {number} upper 上限
+   * @param {boolean} floating 是否返回浮点数
+   * @return {number}      随机数
+   */
+  let random = function (...args) {
+    let lower, upper, floating
+    if (args.length === 1) {
+      lower = 0
+      upper = args[0]
+      floating = true
+    } else if (args.length === 2) {
+      if (this.isNumber(args[1])) {
+        lower = args[0]
+        upper = args[1]
+        floating = true
+      } else {
+        lower = 0
+        upper = args[0]
+        floating = args[1]
+      }
+    } else {
+      lower = args[0]
+      upper = args[1]
+      floating = args[2]
+    }
+    let result = Math.random() * (upper - lower) + lower
+    return floating ? result : parseInt(result)
+  }
+
 
 
 
@@ -3284,6 +3317,7 @@
     sumBy: sumBy,
     clamp: clamp,
     inRange: inRange,
+    random: random,
 
 
   }
