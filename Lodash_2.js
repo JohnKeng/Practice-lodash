@@ -35,6 +35,24 @@
     return obj
   }
 
+  let assignInWith = function (object, ...args) {
+    let sources, customizer
+    console.log(this)
+    if (this.isFunction(args[args.length - 1])) {
+      customizer = args.pop()
+    } else {
+      customizer = function (objValue, srcValue) {
+        return srcValue
+      }
+    }
+    this.forEach(args, function (it, i, array) {
+      for (let key in it) {
+        object[key] = customizer(object[key], it[key], key, object, array)
+      }
+    })
+    return object
+  }
+
   /**
    * 限制函数的调用的函数，让函数只能被调用有限次数（n 次）
    * 当 限制次数为 0 时，被限制的函数不会被调用， 返回 undefined
@@ -3318,6 +3336,7 @@
     clamp: clamp,
     inRange: inRange,
     random: random,
+    assignInWith: assignInWith,
 
 
   }
