@@ -1037,6 +1037,27 @@
     return object
   }
 
+
+  /**
+   * 递归分配属性
+   * 目标对象上已有的键值不能被覆盖
+   * @param  {object} object     目标对象
+   * @param  {...object} sources 源对象
+   * @return {object}            修改后的目标对象
+   */
+  let defaultsDeep = function (object, ...sources) {
+    sources.forEach(function (obj) {
+      for (let key in obj) {
+        if (typeof object[key] === 'object' && typeof obj[key] === 'object') {
+          defaultsDeep(object[key], obj[key])
+        } else if (obj.hasOwnProperty(key) && !(key in object)) {
+          object[key] = obj[key]
+        }
+      }
+    })
+    return object
+  }
+
   /**
    * 等待当前调用栈清空后调用函数，并可以传给该函数参数
    * @param  {function} func 被调用函数
@@ -3084,7 +3105,6 @@
    * @returns {array}                值的数组
    */
   let at = function (object, ...path) {
-    debugger
     let p,
       that = this
     path = this.flatten(path)
@@ -3396,6 +3416,7 @@
     assignInWith: assignInWith,
     assignWith: assignWith,
     at: at,
+    defaultsDeep: defaultsDeep,
 
 
   }
