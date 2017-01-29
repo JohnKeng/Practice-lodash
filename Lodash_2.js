@@ -3077,6 +3077,31 @@
   }
 
 
+  /**
+   * 创建一个数组，成员是 path 的路径对应的值
+   * @param {object} object          被迭代的对象
+   * @param {string | string[]} path 路径
+   * @returns {array}                值的数组
+   */
+  let at = function (object, ...path) {
+    debugger
+    let p,
+      that = this
+    path = this.flatten(path)
+    return this.reduce(path, function (memo, curr) {
+      temp = object
+      p = curr.split(/[\[\]\.]/)
+      memo.push(that.reduce(p, function (memo, curr) {
+        if (curr !== '') {
+          memo = memo[curr]
+        }
+        return memo
+      }, object))
+      return memo
+    }, [])
+  }
+
+
 
 
 
@@ -3370,6 +3395,7 @@
     random: random,
     assignInWith: assignInWith,
     assignWith: assignWith,
+    at: at,
 
 
   }
