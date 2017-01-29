@@ -36,7 +36,7 @@
   }
 
   /**
-   * 类似 assign 但接收一个 customizer
+   * 类似 assignIn 但接收一个 customizer
    * @param {object} object 目标对象
    * @param {...object} args 被分配的对象
    * @param {function} customizer 处理函数
@@ -54,6 +54,32 @@
     this.forEach(args, function (it, i, array) {
       for (let key in it) {
         object[key] = customizer(object[key], it[key], key, object, array)
+      }
+    })
+    return object
+  }
+
+  /**
+   * 类似 assignIn 但接收一个 customizer
+   * @param {object} object 目标对象
+   * @param {...object} args 被分配的对象
+   * @param {function} customizer 处理函数
+   * @returns
+   */
+  let assignWith = function (object, ...args) {
+    let sources, customizer
+    if (this.isFunction(args[args.length - 1])) {
+      customizer = args.pop()
+    } else {
+      customizer = function (objValue, srcValue) {
+        return srcValue
+      }
+    }
+    this.forEach(args, function (it, i, array) {
+      for (let key in it) {
+        if (it.hasOwnProperty(key)) {
+          object[key] = customizer(object[key], it[key], key, object, array)
+        }
       }
     })
     return object
@@ -3343,6 +3369,7 @@
     inRange: inRange,
     random: random,
     assignInWith: assignInWith,
+    assignWith: assignWith,
 
 
   }
