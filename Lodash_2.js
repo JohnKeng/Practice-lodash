@@ -35,9 +35,15 @@
     return obj
   }
 
+  /**
+   * 类似 assign 但接收一个 customizer
+   * @param {object} object 目标对象
+   * @param {...object} args 被分配的对象
+   * @param {function} customizer 处理函数
+   * @returns
+   */
   let assignInWith = function (object, ...args) {
     let sources, customizer
-    console.log(this)
     if (this.isFunction(args[args.length - 1])) {
       customizer = args.pop()
     } else {
@@ -2528,7 +2534,7 @@
           return it
         }
       })
-      return func(...args, ...partials)
+      return func.call(that, ...args, ...partials)
     }
   }
   /**
