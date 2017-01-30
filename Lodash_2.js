@@ -3203,6 +3203,11 @@
     return object
   }
 
+  /**
+   * 列举对象中所有自有方法 
+   * @param {object} object 被列举的对象
+   * @returns {array}       返回函数名数组
+   */
   let functions = function (object) {
     let result = []
     if (object === null) {
@@ -3210,6 +3215,25 @@
     } else {
       for (let key in object) {
         if (object.hasOwnProperty(key) && this.isFunction(object[key])) {
+          result.push(key)
+        }
+      }
+    }
+    return result
+  }
+
+  /**
+   * 列举对象中所有自有和继承方法 
+   * @param {object} object 被列举的对象
+   * @returns {array}       返回函数名数组
+   */
+  let functionsIn = function (object) {
+    let result = []
+    if (object === null) {
+      return result
+    } else {
+      for (let key in object) {
+        if (this.isFunction(object[key])) {
           result.push(key)
         }
       }
@@ -3519,6 +3543,7 @@
     forInRight: forInRight,
     forOwnRight: forOwnRight,
     functions: functions,
+    functionsIn: functionsIn,
 
 
   }
