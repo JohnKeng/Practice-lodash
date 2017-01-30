@@ -611,6 +611,23 @@
   }
 
   /**
+   * 迭代集合元素，返回第一个 返回 true 的元素键名
+   * @param  {array | object} collection                被迭代的集合
+   * @param  {function} [predicate=this.identity]       判定条件
+   * @param  {Number} [fromIndex=0]                     判定起始位置
+   * @return {*}                                        第一个判定成功的元素的键名
+   */
+  let findKey = function (collection, predicate = this.identity) {
+    for (let key in collection) {
+      if (collection.hasOwnProperty(key)) {
+        if (this.iteratee(predicate)(collection[key], key, collection)) {
+          return key
+        }
+      }
+    }
+  }
+
+  /**
    * 创建一个返回给定对象路径的值的函数
    * @param  {array | string} path 查找的路径
    * @return {function}       创建的新的函数
@@ -2223,6 +2240,22 @@
   }
 
   /**
+   * 从右往左迭代成员，返回第一个满足的成员的键名
+   * @param  {array | object} collection            被迭代的集合
+   * @param  {function} predicate=this.identity     迭代器
+   * @param  {number} fromIndex=collection.length-1 索引起始位置
+   * @return {*}                                    满足条件的第一个成员的键名，未找到返回 undefined
+   */
+  let findLastKey = function (collection, predicate = this.identity) {
+    let keys = Object.keys(collection)
+    for (let i = keys.length - 1; i >= 0; i--) {
+      if (this.iteratee(predicate)(collection[keys[i]])) {
+        return keys[i]
+      }
+    }
+  }
+
+  /**
    * 迭代集合成员，并将结果降一维
    * @param  {array | object} collection                 被迭代的集合
    * @param  {function} iteratee=this.identity 迭代器
@@ -3121,6 +3154,69 @@
     }, [])
   }
 
+  /**
+   * 通過 iteratee 迭代对象的可枚举和不可枚举对象
+   * @param {object} object                     被迭代的对象
+   * @param {function} [iteratee=this.identity] 迭代器
+   * @returns {object}                          返回原对象
+   */
+  let forIn = function (object, iteratee = this.identity) {
+    for (let key in object) {
+      iteratee(object[key], key, object)
+    }
+    return object
+  }
+
+  /**
+   * 通過 iteratee 反向迭代对象的可枚举和不可枚举对象
+   * @param {object} object                     被迭代的对象
+   * @param {function} [iteratee=this.identity] 迭代器
+   * @returns {object}                          返回原对象
+   */
+  let forInRight = function (object, iteratee = this.identity) {
+    let keys = []
+    for (let key in object) {
+      keys.push(key)
+    }
+    for (let i = keys.length - 1; i >= 0; i--) {
+      iteratee(object[keys[i]], keys[i], object)
+    }
+    return object
+  }
+
+  /**
+   * 通過 iteratee 反向迭代对象的可枚举和不可枚举对象
+   * @param {object} object                     被迭代的对象
+   * @param {function} [iteratee=this.identity] 迭代器
+   * @returns {object}                          返回原对象
+   */
+  let forOwnRight = function (object, iteratee = this.identity) {
+    let keys = []
+    for (let key in object) {
+      if (object.hasOwnProperty(key)) {
+        keys.push(key)
+      }
+    }
+    for (let i = keys.length - 1; i >= 0; i--) {
+      iteratee(object[keys[i]], keys[i], object)
+    }
+    return object
+  }
+
+  let functions = function (object) {
+    let result = []
+    if (object === null) {
+      return result
+    } else {
+      for (let key in object) {
+        if (object.hasOwnProperty(key) && this.isFunction(object[key])) {
+          result.push(key)
+        }
+      }
+    }
+    return result
+  }
+
 
 
 
@@ -3417,6 +3513,12 @@
     assignWith: assignWith,
     at: at,
     defaultsDeep: defaultsDeep,
+    findKey: findKey,
+    findLastKey: findLastKey,
+    forIn: forIn,
+    forInRight: forInRight,
+    forOwnRight: forOwnRight,
+    functions: functions,
 
 
   }
