@@ -3143,11 +3143,9 @@
     path = this.flatten(path)
     return this.reduce(path, function (memo, curr) {
       temp = object
-      p = curr.split(/[\[\]\.]/)
+      p = curr.split(/[\[\]\.]/).filter(it => it !== '')
       memo.push(that.reduce(p, function (memo, curr) {
-        if (curr !== '') {
-          memo = memo[curr]
-        }
+        memo = memo[curr]
         return memo
       }, object))
       return memo
@@ -3239,6 +3237,40 @@
       }
     }
     return result
+  }
+
+  /**
+   * 根据路径获取值
+   * 
+   * @param {object} object       被检索的对象
+   * @param {array | string} path 路径
+   * @param {*} defaultValue      如果解析 undefined，返回该值
+   * @returns {*}                 解析出来的值
+   */
+  let get = function (object, path, defaultValue) {
+    if (this.isString(path)) {
+      path = path.split(/[\[\]\.]/).filter(it => it !== '')
+    }
+    let result = path.reduce(function (memo, curr) {
+      return memo === undefined ? memo : memo[curr]
+    }, object)
+    return result === undefined ? defaultValue : result
+  }
+
+  /**
+   * 检查 path 是否是对象的继承和直接属性
+   * @param {object} object       检索对象
+   * @param {array | string} path 检查的路径
+   * @returns {boolean}           存在，返回 true
+   */
+  let hasIn = function (object, path) {
+    if (this.isString(path)) {
+      path = path.split(/[\[\]\.]/).filter(it => it !== '')
+    }
+    let result = path.reduce(function (memo, curr) {
+      return memo === undefined ? memo : memo[curr]
+    }, object)
+    return result === undefined ? false : true
   }
 
 
@@ -3544,6 +3576,8 @@
     forOwnRight: forOwnRight,
     functions: functions,
     functionsIn: functionsIn,
+    get: get,
+    hasIn: hasIn,
 
 
   }
