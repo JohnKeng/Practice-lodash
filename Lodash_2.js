@@ -3287,6 +3287,27 @@
     return result
   }
 
+  /**
+   * 进过迭代函数，返回键值倒置，值为数组的对象
+   * 
+   * @param {object} object                     被倒置的对象
+   * @param {function} [iteratee=this.identity] 倒置后的对象
+   * @returns
+   */
+  let invertBy = function (object, iteratee = this.identity) {
+    let result = {},
+      tempKey
+    for (let key in object) {
+      tempKey = iteratee(object[key], key, object)
+      if (result[tempKey] === undefined) {
+        result[tempKey] = [key]
+      } else {
+        result[tempKey].push(key)
+      }
+    }
+    return result
+  }
+
 
 
 
@@ -3593,6 +3614,7 @@
     get: get,
     hasIn: hasIn,
     invert: invert,
+    invertBy: invertBy,
 
 
   }
