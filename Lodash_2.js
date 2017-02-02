@@ -3273,6 +3273,12 @@
     return result === undefined ? false : true
   }
 
+  /**
+   * 创建一个 object 键值倒置后的对象
+   * 
+   * @param {object} object 被倒置的对象
+   * @returns {object}      倒置后的对象
+   */
   let invert = function (object) {
     let result = {}
     for (let key in object) {
