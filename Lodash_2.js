@@ -3273,6 +3273,14 @@
     return result === undefined ? false : true
   }
 
+  let invert = function (object) {
+    let result = {}
+    for (let key in object) {
+      result[object[key]] = key
+    }
+    return result
+  }
+
 
 
 
@@ -3578,6 +3586,7 @@
     functionsIn: functionsIn,
     get: get,
     hasIn: hasIn,
+    invert: invert,
 
 
   }
