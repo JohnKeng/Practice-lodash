@@ -537,6 +537,14 @@
     return result
   }
 
+  let keysIn = function (object) {
+    let result = []
+    for (let key in object) {
+      result.push(key)
+    }
+    return result
+  }
+
   /**
    * 返回数组的最后一项的值
    * @param  {array} array  被查询的数组
@@ -3315,6 +3323,7 @@
 
 
 
+
   // unfinish =======================
 
   // 未完全实现
@@ -3370,6 +3379,7 @@
   let ceil = function (number, precision = 0) {}
   let floor = function (number, precision = 0) {}
   let round = function (number, precision = 0) {}
+  let invoke = function (object, path, ...args) {}
 
 
   // =========================
@@ -3615,6 +3625,8 @@
     hasIn: hasIn,
     invert: invert,
     invertBy: invertBy,
+    invoke: invoke,
+    keysIn: keysIn,
 
 
   }
