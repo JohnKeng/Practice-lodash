@@ -524,7 +524,7 @@
   }
 
   /**
-   * 创建一个包含所给对象所有的可枚举属性的数组
+   * 创建一个包含所给对象所有的可枚举自有属性的数组
    * @param  {object} object 被枚举的对象
    * @return {array}         包含所给对象的所有可枚举自有属性的数组
    */
@@ -537,6 +537,11 @@
     return result
   }
 
+  /**
+   * 创建一个包含所给对象所有的可枚举属性的数组
+   * @param  {object} object 被枚举的对象
+   * @return {array}         包含所给对象的所有可枚举自有属性的数组
+   */
   let keysIn = function (object) {
     let result = []
     for (let key in object) {
